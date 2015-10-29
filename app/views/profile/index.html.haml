@@ -1,0 +1,102 @@
+%nav.navbar.navbar-fixed-top
+  .container-fluid
+    / Brand and toggle get grouped for better mobile display
+    .navbar-header
+      %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.logo.navbar-brand{:href => "#"}
+        = image_tag("logo.png", id: "logo", alt: "Simplist Logo")
+    / Collect the nav links, forms, and other content for toggling
+    #main-nav.collapse.navbar-collapse
+      %ul.nav.navbar-nav.text-uppercase
+        %li.active
+          %a{:href => "#"}
+            %strong Explore
+        %li
+          %a{:href => "#"}
+            %strong Profile
+      %form.navbar-form.navbar-right{:role => "search"}
+        .form-group
+          %input.form-control{:placeholder => "Search", :type => "text"}/
+      %ul.nav.navbar-nav.navbar-right
+        %li.dropdown
+          %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+            Hi April!
+            %span.caret
+          %ul.dropdown-menu
+            %li
+              %a{:href => "#"} Action
+            %li
+              %a{:href => "#"} Another action
+            %li
+              %a{:href => "#"} Something else here
+            %li.divider{:role => "separator"}
+            %li
+              %a{:href => "#"} Separated link
+    / /.navbar-collapse
+  / /.container-fluid
+.container-fluid.beneath-nav
+  .row
+    .sidebar.col-md-3
+      .sidebar-content.text-center.center-block
+        = image_tag("aprilk.png", class: "img-circle center-block", alt: "April Koh profile picture")
+        %h3 April Koh
+        %h6 I like cottage cheese and cheese cottages
+        .socials
+          %i.fa.fa-facebook
+          %i.fa.fa-twitter
+          %i.fa.fa-pinterest
+    .simplists.col-md-9
+      .simplist
+        %h5
+          Top Movies
+          .pull-right.carousel-next
+            %i.fa.fa-long-arrow-right
+        .container-fluid
+          .row.no-gutter.slick-carousel
+            .movie
+              = image_tag("content/movie1.jpg", class: "content", alt: "Favorite Movie")
+            .movie
+              = image_tag("content/movie2.jpg", class: "content", alt: "Favorite Movie")
+            .movie
+              = image_tag("content/movie3.jpg", class: "content", alt: "Favorite Movie")
+            .movie
+              = image_tag("content/movie4.jpg", class: "content", alt: "Favorite Movie")
+            .movie
+              = image_tag("content/movie5.jpg", class: "content", alt: "Favorite Movie")
+            .movie
+              = image_tag("content/movie6.jpg", class: "content", alt: "Favorite Movie")
+            .movie
+              = image_tag("content/movie7.jpg", class: "content", alt: "Favorite Movie")
+            .movie
+              = image_tag("content/movie8.jpg", class: "content", alt: "Favorite Movie")
+            .movie
+              = image_tag("content/movie9.jpg", class: "content", alt: "Favorite Movie")
+        .simplist.top-buffer
+          %h5
+            Top Songs
+            .pull-right.carousel-next-2
+              %i.fa.fa-long-arrow-right
+          .container-fluid
+            .row.no-gutter.slick-carousel-2
+              .song
+                = image_tag("content/song1.jpg", class: "content", alt: "Favorite Song")
+              .song
+                = image_tag("content/song1.jpg", class: "content", alt: "Favorite Song")
+              .song
+                = image_tag("content/song1.jpg", class: "content", alt: "Favorite Song")
+              .song
+                = image_tag("content/song1.jpg", class: "content", alt: "Favorite Song")
+              .song
+                = image_tag("content/song1.jpg", class: "content", alt: "Favorite Song")
+        .simplist.top-buffer
+          %h5
+            Top Icons
+            .pull-right.carousel-next
+              %i.fa.fa-long-arrow-right
+          .container-fluid
+            .row.no-gutter.slick-carousel-3
+              .celeb-icon
