@@ -4,6 +4,7 @@
 .sidebar {
   position: -webkit-sticky;
   position: sticky;
+  position: fixed;
   border-right: .75px #dddddd solid;
   padding-top: 20px;
   .sidebar-content {
@@ -39,8 +40,9 @@
   padding-left: 0;
 }
 
-.top-buffer { margin-top:20px; }
-
+.celeb-icon {
+  padding: 15px;
+}
 
 .fa-long-arrow-right {
   color: #D93010;
