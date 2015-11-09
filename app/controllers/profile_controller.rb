@@ -1,4 +1,8 @@
 class ProfileController < ApplicationController
-  def index
+  def april
   end
+
+  def diane
+  end
+
 end

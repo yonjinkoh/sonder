@@ -1,51 +1,60 @@
 // Place all the styles related to the profile controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.sidebar {
-  position: -webkit-sticky;
-  position: sticky;
-  position: fixed;
-  border-right: .75px #dddddd solid;
-  padding-top: 20px;
-  .sidebar-content {
-    width: 70%;
-    img {
-      width: 50%;
+
+
+  .logo {
+    padding: 10px 15px;
+  }
+
+  .beneath-nav {
+    margin-top: 100px
+  }
+
+  .content {
+    width: 100%;
+  }
+
+  #main-nav {
+    color: black;
+    a {color: black;}
+  }
+
+  .celeb-icon {
+    padding: 15px;
+    // width: 100px;
+  }
+
+  .socials {
+    i {font-size: 20px;padding: 10px;}
+  }
+
+  .fa-long-arrow-right {
+    color: #D93010;
+    margin-right: 10px;
+  }
+
+@media (min-width: 992px)  {
+
+  .sidebar {
+    position: -webkit-sticky;
+    position: sticky;
+    position: fixed;
+    border-right: .75px #dddddd solid;
+    padding-top: 20px;
+    .sidebar-content {
+      width: 70%;
+      img {
+        width: 50%;
+      }
     }
   }
-}
 
-#main-nav {
-  color: black;
-  a {color: black;}
-}
+  .simplists {
+    padding-left: 0;
+    padding-right: 0;
+  }
 
-.logo {
-  padding: 10px 15px;
-}
 
-.beneath-nav {
-  margin-top: 100px
-}
 
-.content {
-  width: 100%;
-}
-
-.socials {
-  i {font-size: 20px;padding: 10px;}
-}
-
-.simplists {
-  padding-left: 0;
-  padding-right: 0;
-}
-
-.celeb-icon {
-  padding: 15px;
-}
-
-.fa-long-arrow-right {
-  color: #D93010;
-  margin-right: 10px;
 }
