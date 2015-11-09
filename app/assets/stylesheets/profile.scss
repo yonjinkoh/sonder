@@ -34,6 +34,13 @@
     margin-right: 10px;
   }
 
+  .sidebar-content {
+    width: 70%;
+    img {
+      width: 50%;
+    }
+  }
+
 @media (min-width: 992px)  {
 
   .sidebar {
@@ -42,12 +49,6 @@
     position: fixed;
     border-right: .75px #dddddd solid;
     padding-top: 20px;
-    .sidebar-content {
-      width: 70%;
-      img {
-        width: 50%;
-      }
-    }
   }
 
   .simplists {

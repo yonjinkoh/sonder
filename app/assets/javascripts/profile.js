@@ -16,7 +16,7 @@ $(document).ready(function(){
       }
     },
     {
-      breakpoint: 600,
+      breakpoint: 750,
       settings: {
         slidesToShow: 4,
         slidesToScroll: 4
@@ -55,7 +55,7 @@ $(document).ready(function(){
       }
     },
     {
-      breakpoint: 600,
+      breakpoint: 750,
       settings: {
         slidesToShow: 4,
         slidesToScroll: 4
@@ -92,7 +92,7 @@ $(document).ready(function(){
       }
     },
     {
-      breakpoint: 600,
+      breakpoint: 750,
       settings: {
         slidesToShow: 3,
         slidesToScroll: 3
@@ -129,7 +129,7 @@ $(document).ready(function(){
       }
     },
     {
-      breakpoint: 600,
+      breakpoint: 750,
       settings: {
         slidesToShow: 4,
         slidesToScroll: 4
