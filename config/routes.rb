@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get 'aprilkoh' => 'profile#april'
   get 'dianekim' => 'profile#diane'
+  get 'aprilkoh/edit' => 'profile#edit'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
