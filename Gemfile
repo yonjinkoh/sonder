@@ -9,6 +9,11 @@ gem "font-awesome-rails"
 gem "jquery-slick-rails"
 #Use touch-enabled carousel
 
+# gem "select2-rails"
+# Select2 is a jQuery based replacement for select boxes. It supports searching, remote data sets, and infinite scrolling of results.
+
+gem 'themoviedb'
+
 gem 'haml'
 #use haml for easy html
 

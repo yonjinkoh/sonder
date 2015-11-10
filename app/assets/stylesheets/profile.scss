@@ -41,6 +41,23 @@
     }
   }
 
+.select2-result-movie__poster {
+  width: 20%;
+  img {width:100%;}
+  float: left;
+}
+
+.select2-result-movie__meta {
+  display: inline-block;
+  float: left;
+  padding: 0px 10px;
+  max-width: 75%;
+}
+
+.select2-selection {
+  height: 200px;
+}
+
 @media (min-width: 992px)  {
 
   .sidebar {
