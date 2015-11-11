@@ -38,26 +38,26 @@ body {
 // }
 
 @include iphone6 {
-  h3 {font-size: 4.5em; font-weight: 600;}
-  h5 {font-size: 3em; font-weight: 500;}
+  h3 {font-size: 5em; font-weight: 500;}
+  h5 {font-size: 4em; font-weight: 500;}
   h6 {font-size: 2.5em; font-weight:500;}
 }
 
 @include iphone6-plus {
-  h3 {font-size: 4.5em; font-weight: 600;}
-  h5 {font-size: 3em; font-weight: 500;}
+  h3 {font-size: 5em; font-weight: 500;}
+  h5 {font-size: 4em; font-weight: 500;}
   h6 {font-size: 2.5em; font-weight:500;}
 }
 
 @include iphone4 {
-  h3 {font-size: 4.5em; font-weight: 600;}
-  h5 {font-size: 3em; font-weight: 500;}
+  h3 {font-size: 5em; font-weight: 500;}
+  h5 {font-size: 4em; font-weight: 500;}
   h6 {font-size: 2.5em; font-weight:500;}
 }
 
 @include iphone5 {
-  h3 {font-size: 4.5em; font-weight: 600;}
-  h5 {font-size: 3em; font-weight: 500;}
+  h3 {font-size: 5em; font-weight: 500;}
+  h5 {font-size: 4em; font-weight: 500;}
   h6 {font-size: 2.5em; font-weight:500;}
 }
 
