@@ -2,7 +2,7 @@ require File.expand_path('../boot', __FILE__)
 
 
 require 'rails/all'
-
+require 'themoviedb'
 Tmdb::Api.key("41955a0f09fdcad5028264d83e9c9af6")
 
 
