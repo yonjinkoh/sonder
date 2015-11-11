@@ -31,9 +31,9 @@ body {
   color: #33333;
 }
 
-@media (max-width: 992px)  {
-  h3 {font-size: 3em;}
-  h6 {font-size: 1.5em;}
+@include iphone6 {
+  h3 {font-size: 4em;}
+  h6 {font-size: 2.5em;}
 }
 
 
