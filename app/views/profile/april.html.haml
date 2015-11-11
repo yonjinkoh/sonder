@@ -1,7 +1,7 @@
 
 .container-fluid.beneath-nav
   .row
-    .sidebar.col-md-3
+    .sidebar.col-md-2
       .sidebar-content.text-center.center-block
         = image_tag("aprilk.png", class: "img-circle center-block", alt: "April Koh profile picture")
         %h3 April Koh
@@ -12,14 +12,14 @@
           %i.fa.fa-pinterest
     .visible-xs.visible-sm
       .top-buffer
-    .simplists.col-md-9.col-md-offset-3
+    .simplists.col-md-10.col-md-offset-2
       .simplist
         %h5
           Top Movies
           .pull-right.carousel-next
             %i.fa.fa-long-arrow-right
         .container-fluid
-          .row.no-gutter.slick-carousel
+          .row.slick-carousel
             .movie
               = image_tag("content/movie1.jpg", class: "content", alt: "Favorite Movie")
             .movie

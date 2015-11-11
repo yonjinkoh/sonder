@@ -7,13 +7,7 @@
   padding-left: 10%;
 }
 
-  .logo {
-    padding: 10px 15px;
-    width: 275px;
-    img {
-      max-width: 100%;
-    }
-  }
+
 
   .beneath-nav {
     margin-top: 100px
@@ -24,17 +18,17 @@
   }
 
   #main-nav {
-    color: black;
-    a {color: black;}
+    color: #cdcdcd;
+    a {color: #cdcdcd;}
   }
 
   .celeb-icon {
-    padding: 15px;
+    padding-right: 15px;
     // width: 100px;
   }
 
   .socials {
-    i {font-size: 20px;padding: 10px;}
+    i {font-size: 1em; padding: .5em;}
   }
 
   .fa-long-arrow-right {
@@ -45,11 +39,18 @@
   .sidebar-content {
     width: 70%;
     img {
-      width: 50%;
+      width: 65%;
     }
   }
 
-
+@media (min-width:995px) {
+  .sidebar-content {
+    width: 70%;
+    img {
+      width: 80%;
+    }
+  }
+}
 
 .select2-result-movie__poster {
   width: 20%;
@@ -70,16 +71,23 @@
 
 @media (min-width: 992px)  {
 
+  .beneath-nav {
+    margin-top: 0px;
+  }
+
   .sidebar {
     position: -webkit-sticky;
     position: sticky;
     position: fixed;
     border-right: .75px #dddddd solid;
-    padding-top: 20px;
+    padding-top: 120px;
+    // background-color: black;
+    height: 100%;
   }
 
   .simplists {
-    padding-left: 0;
+    padding-left: 0em;
+    padding-top: 100px;
     padding-right: 0;
   }
 
