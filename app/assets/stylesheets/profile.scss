@@ -51,21 +51,33 @@
   }
 }
 
-.select2-result-movie__poster {
-  width: 20%;
-  img {width:100%;}
-  float: left;
-}
+// .select2-result-movie__poster {
+//   width: 20%;
+//   img {width:100%;}
+//   float: left;
+// }
 
-.select2-result-movie__meta {
-  display: inline-block;
-  float: left;
-  padding: 0px 10px;
-  max-width: 75%;
-}
+// .select2-result-movie__meta {
+//   display: inline-block;
+//   float: left;
+//   padding: 0px 10px;
+//   max-width: 75%;
+// }
 
 .select2-selection {
   height: 200px;
+}
+
+.select2-dropdown {
+  width:185px;
+}
+
+.select2-search {
+margin-top: -30px;
+}
+
+select {
+  width: 185px;
 }
 
 @media (min-width: 992px)  {

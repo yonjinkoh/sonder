@@ -175,7 +175,7 @@ function formatMovie (movie) {
       "<div class='select2-result-movie__meta'>" +
         "<div class='select2-result-movie__title'><strong>" + movie.title + "</strong> (" + movie.release_date + ")"+ "</div>";
 
-    return markup;
+    // return markup;
   }
 
 };
@@ -190,6 +190,7 @@ $("select").select2({
     url: "http://api.themoviedb.org/3/search/movie",
     dataType: 'json',
     delay: 250,
+    inputTooShort: false,
     data: function (params) {
       return {
         query: params.term, // search term

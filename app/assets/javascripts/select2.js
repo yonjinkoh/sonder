@@ -3672,18 +3672,18 @@ S2.define('select2/data/minimumInputLength',[
   MinimumInputLength.prototype.query = function (decorated, params, callback) {
     params.term = params.term || '';
 
-    if (params.term.length < this.minimumInputLength) {
-      this.trigger('results:message', {
-        message: 'inputTooShort',
-        args: {
-          minimum: this.minimumInputLength,
-          input: params.term,
-          params: params
-        }
-      });
-
-      return;
-    }
+    // if (params.term.length < this.minimumInputLength) {
+    //   this.trigger('results:message', {
+    //     message: 'inputTooShort',
+    //     args: {
+    //       minimum: this.minimumInputLength,
+    //       input: params.term,
+    //       params: params
+    //     }
+    //   });
+    //
+    //   return;
+    // }
 
     decorated.call(this, params, callback);
   };
@@ -5261,7 +5261,7 @@ S2.define('select2/core',[
       'select': 'selecting',
       'unselect': 'unselecting'
     };
-    
+
     if (args === undefined) {
       args = {};
     }

@@ -1,3 +1,13 @@
 // Place all the styles related to the Movies controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.box {
+  width: 185px;
+  height: 278px;
+  overflow: hidden;
+  background-color: black;
+  img {
+    width:100%;
+  }
+}
