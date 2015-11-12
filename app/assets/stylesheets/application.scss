@@ -16,13 +16,14 @@
  @import "media-queries";
  @import 'slick';
  @import 'slick-theme';
+ @import "select2";
  @import "bootstrap-sprockets";
  @import "bootstrap";
  @import "profile";
  @import "font-awesome";
- @import "select2";
  @import "movies";
 
+:focus {outline:none !important;}
 
 body {
   font-family: 'Source Sans Pro', sans-serif;

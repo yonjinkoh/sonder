@@ -8,7 +8,10 @@
         - @list.errors.full_messages.each do |message|
           %li= message
   = f.text_field :name
-  - if @list.category.name == "Movie"
-    = render 'movie list form'
+  -# the below should be in an ajax request:
+  -# basically the 
+  - if @list.category
+    - if @list.category.name == "Movie"
+      = render 'movie list form'
   .actions
     = f.submit
