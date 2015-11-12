@@ -9,7 +9,7 @@
           %li= message
   = f.text_field :name
   -# the below should be in an ajax request:
-  -# basically the 
+  -# basically after you click the link, it shoud
   - if @list.category
     - if @list.category.name == "Movie"
       = render 'movie list form'

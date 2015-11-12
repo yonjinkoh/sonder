@@ -11,3 +11,41 @@
     width:100%;
   }
 }
+
+.movie-form {
+
+  .select2-selection {
+    height: 200px;
+  }
+
+  .select2-dropdown {
+    width:185px;
+    border: none;
+    border-radius: none;
+    background-color: transparent;
+  }
+
+  .select2-search {
+    margin-top: -30px;
+    border: none;
+  }
+
+  .select2-container--default .select2-search--dropdown .select2-search__field {
+    border: none;
+  }
+
+  .select2-container--default {
+    // border-bottom: 1px solid #aaa;
+  }
+
+  .select2-selection.select2-selection--single {
+    border: none;
+    background-color: transparent;
+    border-radius: 0px;
+  }
+
+  select {
+    width: 185px;
+  }
+
+}
