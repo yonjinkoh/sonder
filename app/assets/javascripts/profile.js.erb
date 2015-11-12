@@ -152,7 +152,10 @@ $(document).ready(function(){
   ]
   });
 
-
+function insertMovie (html) {
+  $('.box').html(html);
+  alert("yes");
+}
 
 function formatMovie (movie) {
 
@@ -162,7 +165,9 @@ function formatMovie (movie) {
       "<div class='select2-result-movie__meta'>" +
         "<div class='select2-result-movie__title'><strong>" + movie.title + "</strong> (" + movie.release_date + ")"+ "</div>";
 
-    return markup;
+    var html = "<img src='https://image.tmdb.org/t/p/w185" + movie.poster_path + "' />"
+    insertMovie(html);
+    // return markup;
   }
   else {
     var markup = "<div class='select2-result-movie clearfix'>" +

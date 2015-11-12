@@ -1,0 +1,14 @@
+= form_for(@movie) do |f|
+  - if @movie.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@movie.errors.count, "error")
+        prohibited this movie from being saved:
+      %ul
+        - @movie.errors.full_messages.each do |message|
+          %li= message
+
+  %select{style: "width: 50%"}
+
+  .actions
+    = f.submit

@@ -8,5 +8,7 @@
         - @list.errors.full_messages.each do |message|
           %li= message
   = f.text_field :name
+  - if @list.category.name == "Movie"
+    = render 'movie list form'
   .actions
     = f.submit
