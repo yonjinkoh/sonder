@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :categories
+  resources :movies
   resources :users
   resources :lists
   get 'aprilkoh' => 'profile#april'
