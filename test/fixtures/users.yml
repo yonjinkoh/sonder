@@ -2,12 +2,14 @@
 
 one:
   first_name: MyString
+  last_name: MyString
+  username: MyString
   description: MyText
-  facebook: MyString
-  profile_picture: MyString
+  picture: MyString
 
 two:
   first_name: MyString
+  last_name: MyString
+  username: MyString
   description: MyText
-  facebook: MyString
-  profile_picture: MyString
+  picture: MyString

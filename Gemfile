@@ -12,16 +12,21 @@ gem "jquery-slick-rails"
 # gem "select2-rails"
 # Select2 is a jQuery based replacement for select boxes. It supports searching, remote data sets, and infinite scrolling of results.
 
+
 gem 'themoviedb'
+# API for movies and TV shows
+
+gem 'carrierwave'
+# use for picture uploads
 
 gem 'haml'
 #use haml for easy html
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
+# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 
-# Use postgres
 gem 'pg'
+# Use postgres
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'

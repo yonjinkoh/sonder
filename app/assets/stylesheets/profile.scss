@@ -7,41 +7,40 @@
   padding-left: 10%;
 }
 
+.rank {
+  color:#cdcdcd;
+  font-style: italic
+}
+
+.beneath-nav {
+  margin-top: 100px
+}
+
+.content {
+  width: 100%;
+}
 
 
-  .beneath-nav {
-    margin-top: 100px
+.celeb-icon {
+  padding-right: 15px;
+  // width: 100px;
+}
+
+.socials {
+  i {font-size: 1em; padding: .5em;}
+}
+
+.fa-long-arrow-right {
+  color: #D93010;
+  margin-right: 10px;
+}
+
+.sidebar-content {
+  width: 70%;
+  img {
+    width: 65%;
   }
-
-  .content {
-    width: 100%;
-  }
-
-  #main-nav {
-    color: #cdcdcd;
-    a {color: #cdcdcd;}
-  }
-
-  .celeb-icon {
-    padding-right: 15px;
-    // width: 100px;
-  }
-
-  .socials {
-    i {font-size: 1em; padding: .5em;}
-  }
-
-  .fa-long-arrow-right {
-    color: #D93010;
-    margin-right: 10px;
-  }
-
-  .sidebar-content {
-    width: 70%;
-    img {
-      width: 65%;
-    }
-  }
+}
 
 @media (min-width:995px) {
   .sidebar-content {
