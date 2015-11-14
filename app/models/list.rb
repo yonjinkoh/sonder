@@ -1,4 +1,4 @@
 class List < ActiveRecord::Base
-has_one :category
+# has_one :category
 
 end

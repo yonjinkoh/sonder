@@ -3,7 +3,6 @@ class CreateLists < ActiveRecord::Migration
     create_table :lists do |t|
       t.string :name
       t.text :description
-      t.string :picture
       t.timestamps null: false
     end
   end

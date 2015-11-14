@@ -12,9 +12,6 @@
   font-style: italic
 }
 
-.beneath-nav {
-  margin-top: 100px
-}
 
 .content {
   width: 100%;
@@ -39,15 +36,6 @@
   width: 70%;
   img {
     width: 65%;
-  }
-}
-
-@media (min-width:995px) {
-  .sidebar-content {
-    width: 70%;
-    img {
-      width: 80%;
-    }
   }
 }
 
@@ -101,6 +89,13 @@ select {
 
 @media (min-width: 992px)  {
 
+  .sidebar-content {
+    width: 70%;
+    img {
+      width: 80%;
+    }
+  }
+
   .beneath-nav {
     margin-top: 0px;
   }
@@ -110,14 +105,14 @@ select {
     position: sticky;
     position: fixed;
     border-right: .75px #dddddd solid;
-    padding-top: 120px;
+    padding-top: 70px;
     // background-color: black;
     height: 100%;
   }
 
   .simplists {
     padding-left: 0em;
-    padding-top: 100px;
+    padding-top: 50px;
     padding-right: 0;
   }
 

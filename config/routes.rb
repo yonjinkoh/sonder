@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :movies
   resources :users
   resources :lists
+  
   get 'aprilkoh' => 'profile#april'
   get 'dianekim' => 'profile#diane'
   get 'aprilkoh/edit' => 'profile#edit'

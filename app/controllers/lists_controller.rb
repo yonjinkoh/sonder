@@ -1,28 +1,29 @@
 class ListsController < ApplicationController
   before_action :set_list, only: [:show, :edit, :update, :destroy]
+  # respond_to :js
 
-  # GET /lists
-  # GET /lists.json
+  # GET /Lists
+  # GET /Lists.json
   def index
     @lists = List.all
   end
 
-  # GET /lists/1
-  # GET /lists/1.json
+  # GET /Lists/1
+  # GET /Lists/1.json
   def show
   end
 
-  # GET /lists/new
+  # GET /Lists/new
   def new
     @list = List.new
   end
 
-  # GET /lists/1/edit
+  # GET /Lists/1/edit
   def edit
   end
 
-  # POST /lists
-  # POST /lists.json
+  # POST /Lists
+  # POST /Lists.json
   def create
     @list = List.new(list_params)
 
@@ -30,15 +31,18 @@ class ListsController < ApplicationController
       if @list.save
         format.html { redirect_to @list, notice: 'List was successfully created.' }
         format.json { render :show, status: :created, location: @list }
+        format.js
+      # elsif @list.save && @list.
       else
         format.html { render :new }
         format.json { render json: @list.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
 
-  # PATCH/PUT /lists/1
-  # PATCH/PUT /lists/1.json
+  # PATCH/PUT /Lists/1
+  # PATCH/PUT /Lists/1.json
   def update
     respond_to do |format|
       if @list.update(list_params)
@@ -51,8 +55,8 @@ class ListsController < ApplicationController
     end
   end
 
-  # DELETE /lists/1
-  # DELETE /lists/1.json
+  # DELETE /Lists/1
+  # DELETE /Lists/1.json
   def destroy
     @list.destroy
     respond_to do |format|
@@ -69,6 +73,6 @@ class ListsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def list_params
-      params.require(:list).permit(:name, :picture)
+      params[:list].permit(:name)
     end
 end

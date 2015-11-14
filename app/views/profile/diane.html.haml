@@ -1,128 +1,126 @@
-
-.container-fluid.beneath-nav
-  .row
-    .sidebar.col-md-2
-      .sidebar-content.text-center.center-block
-        = image_tag("dianek.png", class: "img-circle center-block", alt: "April Koh profile picture")
-        %h3 Diane Kim
-        %h6 Senior at Yale University studying Political Science
-        .socials
-          %i.fa.fa-facebook
-          %i.fa.fa-twitter
-          %i.fa.fa-pinterest
-    .visible-xs.visible-sm
-      .top-buffer
-    .simplists.col-md-10.col-md-offset-2
-      .simplist
+.row
+  .sidebar.col-md-2
+    .sidebar-content.text-center.center-block
+      = image_tag("dianek.png", class: "img-circle center-block", alt: "April Koh profile picture")
+      %h3 Diane Kim
+      %h6 Senior at Yale University studying Political Science
+      .socials
+        %i.fa.fa-facebook
+        %i.fa.fa-twitter
+        %i.fa.fa-pinterest
+  .visible-xs.visible-sm
+    .top-buffer
+  .simplists.col-md-10.col-md-offset-2
+    .simplist
+      %h5
+        Top Movies
+        .pull-right.carousel-next
+          %i.fa.fa-long-arrow-right
+      .container-fluid
+        .row.no-gutter.slick-carousel
+          .movie
+            = image_tag("content/dmovie1.jpg", class: "content", alt: "Favorite Movie")
+          .movie
+            = image_tag("content/dmovie2.jpg", class: "content", alt: "Favorite Movie")
+          .movie
+            = image_tag("content/dmovie3.jpg", class: "content", alt: "Favorite Movie")
+          .movie
+            = image_tag("content/dmovie4.jpg", class: "content", alt: "Favorite Movie")
+          .movie
+            = image_tag("content/dmovie5.jpg", class: "content", alt: "Favorite Movie")
+          .movie
+            = image_tag("content/dmovie6.jpg", class: "content", alt: "Favorite Movie")
+          .movie
+            = image_tag("content/dmovie7.jpg", class: "content", alt: "Favorite Movie")
+          .movie
+            = image_tag("content/dmovie8.jpg", class: "content", alt: "Favorite Movie")
+          .movie
+            = image_tag("content/dmovie9.jpg", class: "content", alt: "Favorite Movie")
+          -# .movie
+            -# = image_tag("content/dmovie10.jpg", class: "content", alt: "Favorite Movie")
+      .simplist.top-buffer.text-list
         %h5
-          Top Movies
-          .pull-right.carousel-next
+          Top Foods
+          -# .pull-right
+          -#   %i.fa.fa-long-arrow-right
+        .container-fluid
+          .row.no-gutter
+            .col-md-6
+              .text-item Crunchwrap Supreme
+              .text-item Vegetable Drunken Noodles
+              .text-item In N Out Animal-Style Burgers
+              .text-item Dominos Cheesy Stuffed Pizza
+              .text-item Hot Cheetohs Lime Flavored
+            .col-md-6
+              .text-item Green Tea Ice Cream
+              .text-item Nachos
+              .text-item Korean Seafood Mild Tofu Soup
+              .text-item Pistachios
+              .text-item Wagyu steak
+      .simplist.top-buffer
+        %h5
+          Top TV Shows
+          .pull-right.carousel-next-2
             %i.fa.fa-long-arrow-right
         .container-fluid
-          .row.no-gutter.slick-carousel
+          .row.no-gutter.slick-carousel-2
             .movie
-              = image_tag("content/dmovie1.jpg", class: "content", alt: "Favorite Movie")
+              = image_tag("content/dtv.jpg", class: "content", alt: "Favorite TV")
             .movie
-              = image_tag("content/dmovie2.jpg", class: "content", alt: "Favorite Movie")
+              = image_tag("content/dtv2.jpg", class: "content", alt: "Favorite TV")
             .movie
-              = image_tag("content/dmovie3.jpg", class: "content", alt: "Favorite Movie")
+              = image_tag("content/dtv3.jpg", class: "content", alt: "Favorite TV")
             .movie
-              = image_tag("content/dmovie4.jpg", class: "content", alt: "Favorite Movie")
+              = image_tag("content/dtv4.jpg", class: "content", alt: "Favorite TV")
             .movie
-              = image_tag("content/dmovie5.jpg", class: "content", alt: "Favorite Movie")
+              = image_tag("content/dtv5.jpg", class: "content", alt: "Favorite TV")
             .movie
-              = image_tag("content/dmovie6.jpg", class: "content", alt: "Favorite Movie")
+              = image_tag("content/dtv6.jpg", class: "content", alt: "Favorite TV")
             .movie
-              = image_tag("content/dmovie7.jpg", class: "content", alt: "Favorite Movie")
+              = image_tag("content/dtv7.jpg", class: "content", alt: "Favorite TV")
             .movie
-              = image_tag("content/dmovie8.jpg", class: "content", alt: "Favorite Movie")
+              = image_tag("content/dtv8.jpg", class: "content", alt: "Favorite TV")
             .movie
-              = image_tag("content/dmovie9.jpg", class: "content", alt: "Favorite Movie")
+              = image_tag("content/dtv9.jpg", class: "content", alt: "Favorite TV")
             -# .movie
               -# = image_tag("content/dmovie10.jpg", class: "content", alt: "Favorite Movie")
-        .simplist.top-buffer.text-list
-          %h5
-            Top Foods
-            -# .pull-right
-            -#   %i.fa.fa-long-arrow-right
-          .container-fluid
-            .row.no-gutter
-              .col-md-6
-                .text-item Crunchwrap Supreme
-                .text-item Vegetable Drunken Noodles
-                .text-item In N Out Animal-Style Burgers
-                .text-item Dominos Cheesy Stuffed Pizza
-                .text-item Hot Cheetohs Lime Flavored
-              .col-md-6
-                .text-item Green Tea Ice Cream
-                .text-item Nachos
-                .text-item Korean Seafood Mild Tofu Soup
-                .text-item Pistachios
-                .text-item Wagyu steak
-        .simplist.top-buffer
-          %h5
-            Top TV Shows
-            .pull-right.carousel-next-2
-              %i.fa.fa-long-arrow-right
-          .container-fluid
-            .row.no-gutter.slick-carousel-2
-              .movie
-                = image_tag("content/dtv.jpg", class: "content", alt: "Favorite TV")
-              .movie
-                = image_tag("content/dtv2.jpg", class: "content", alt: "Favorite TV")
-              .movie
-                = image_tag("content/dtv3.jpg", class: "content", alt: "Favorite TV")
-              .movie
-                = image_tag("content/dtv4.jpg", class: "content", alt: "Favorite TV")
-              .movie
-                = image_tag("content/dtv5.jpg", class: "content", alt: "Favorite TV")
-              .movie
-                = image_tag("content/dtv6.jpg", class: "content", alt: "Favorite TV")
-              .movie
-                = image_tag("content/dtv7.jpg", class: "content", alt: "Favorite TV")
-              .movie
-                = image_tag("content/dtv8.jpg", class: "content", alt: "Favorite TV")
-              .movie
-                = image_tag("content/dtv9.jpg", class: "content", alt: "Favorite TV")
-              -# .movie
-                -# = image_tag("content/dmovie10.jpg", class: "content", alt: "Favorite Movie")
-        .simplist.top-buffer
-          %h5
-            Top Icons
-            .pull-right.carousel-next-3
-              %i.fa.fa-long-arrow-right
-          .container-fluid
-            .row.no-gutter.slick-carousel-3
-              .celeb-icon
-                = image_tag("content/dicon1.jpg", class: "content", alt: "Favorite Icon")
-              .celeb-icon
-                = image_tag("content/dicon2.jpg", class: "content", alt: "Favorite Icon")
-              .celeb-icon
-                = image_tag("content/dicon3.jpg", class: "content", alt: "Favorite Icon")
-              .celeb-icon
-                = image_tag("content/dicon4.jpg", class: "content", alt: "Favorite Icon")
-              .celeb-icon
-                = image_tag("content/dicon5.jpg", class: "content", alt: "Favorite Icon")
-              -# .celeb-icon
-                -# = image_tag("content/dicon6.jpg", class: "content", alt: "Favorite Icon")
-              -# .celeb-icon
-                -# = image_tag("content/dicon7.jpg", class: "content", alt: "Favorite Icon")
-        .simplist.top-buffer.text-list
-          %h5
-            Top Brands
-            -# .pull-right.carousel-next-4
-            -#   %i.fa.fa-long-arrow-right
-          .container-fluid
-            .row.no-gutter
-              .col-md-6
-                .text-item Madewell
-                .text-item Zara
-                .text-item MAC
-                .text-item Michael Kors
-                .text-item Doc Martens
-              .col-md-6
-                .text-item MeUndies
-                .text-item Moroccan Oil
-                .text-item Apple
-                .text-item Canon
-                .text-item BaeTea
+      .simplist.top-buffer
+        %h5
+          Top Icons
+          .pull-right.carousel-next-3
+            %i.fa.fa-long-arrow-right
+        .container-fluid
+          .row.no-gutter.slick-carousel-3
+            .celeb-icon
+              = image_tag("content/dicon1.jpg", class: "content", alt: "Favorite Icon")
+            .celeb-icon
+              = image_tag("content/dicon2.jpg", class: "content", alt: "Favorite Icon")
+            .celeb-icon
+              = image_tag("content/dicon3.jpg", class: "content", alt: "Favorite Icon")
+            .celeb-icon
+              = image_tag("content/dicon4.jpg", class: "content", alt: "Favorite Icon")
+            .celeb-icon
+              = image_tag("content/dicon5.jpg", class: "content", alt: "Favorite Icon")
+            -# .celeb-icon
+              -# = image_tag("content/dicon6.jpg", class: "content", alt: "Favorite Icon")
+            -# .celeb-icon
+              -# = image_tag("content/dicon7.jpg", class: "content", alt: "Favorite Icon")
+      .simplist.top-buffer.text-list
+        %h5
+          Top Brands
+          -# .pull-right.carousel-next-4
+          -#   %i.fa.fa-long-arrow-right
+        .container-fluid
+          .row.no-gutter
+            .col-md-6
+              .text-item Madewell
+              .text-item Zara
+              .text-item MAC
+              .text-item Michael Kors
+              .text-item Doc Martens
+            .col-md-6
+              .text-item MeUndies
+              .text-item Moroccan Oil
+              .text-item Apple
+              .text-item Canon
+              .text-item BaeTea

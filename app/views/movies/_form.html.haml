@@ -1,5 +1,5 @@
 .movie-form
-  = form_for(@movie) do |f|
+  = form_for(@movie, remote: true) do |f|
     - if @movie.errors.any?
       #error_explanation
         %h2
@@ -10,6 +10,6 @@
             %li= message
 
     %select
-
+    = f.text_field :name
     .actions
       = f.submit
