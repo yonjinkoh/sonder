@@ -1,2 +1,73 @@
 $('#movie-list-form').html("<%= j (render 'movie_list_form') %>");
 $('#movie-list-form').slideDown(350);
+
+
+$(document).ready(function(){
+
+  function insertMovie (html) {
+    $('.box').html(html);
+  }
+
+  function formatMovie (movie) {
+
+    if (movie.poster_path) {
+      var markup = "<div class='select2-result-movie clearfix'>" +
+        "<div class='select2-result-movie__poster'><img src='https://image.tmdb.org/t/p/w185" + movie.poster_path + "' /></div>" +
+        "<div class='select2-result-movie__meta'>" +
+          "<div class='select2-result-movie__title'><strong>" + movie.title + "</strong> (" + movie.release_date + ")"+ "</div>";
+
+      var html = "<img src='https://image.tmdb.org/t/p/w185" + movie.poster_path + "' />"
+      insertMovie(html);
+      // return markup;
+    }
+    else {
+      var markup = "<div class='select2-result-movie clearfix'>" +
+        "<div class='select2-result-movie__poster'></div>" +
+        "<div class='select2-result-movie__meta'>" +
+          "<div class='select2-result-movie__title'><strong>" + movie.title + "</strong> (" + movie.release_date + ")"+ "</div>";
+
+      // return markup;
+    }
+
+  };
+
+  function formatSelection (movie) {
+
+  }
+
+
+  $("select").select2({
+    ajax: {
+      url: "http://api.themoviedb.org/3/search/movie",
+      dataType: 'json',
+      delay: 250,
+      // inputTooShort: false,
+      data: function (params) {
+        return {
+          query: params.term, // search term
+          api_key: "41955a0f09fdcad5028264d83e9c9af6",
+          sort_by: "popularity.desc"
+        };
+      },
+      processResults: function (data, params) {
+        // parse the results into the format expected by Select2
+        // since we are using custom formatting functions we do not need to
+        // alter the remote JSON data, except to indicate that infinite
+        // scrolling can be used
+        params.page = params.page || 1;
+
+        return {
+          results: data.results,
+          pagination: {
+            more: (params.page * 30) < data.total_count
+          }
+        };
+      },
+      cache: true
+    },
+    escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
+    minimumInputLength: 1,
+    templateResult: formatMovie,
+    templateSelection: formatSelection,
+  });
+});
