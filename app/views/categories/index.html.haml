@@ -9,6 +9,7 @@
   %tbody
     - @categories.each do |category|
       %tr
+        %td= category.id
         %td= category.name
         %td= category.api
         %td= link_to 'Show', category

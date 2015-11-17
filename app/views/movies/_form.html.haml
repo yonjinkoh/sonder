@@ -1,6 +1,6 @@
 .movie-form{style: "display: inline-block;"}
   .box
-  = form_for(@movie, remote: true) do |f|
+  = form_for(@movie) do |f|
     - if @movie.errors.any?
       #error_explanation
         %h2
@@ -10,7 +10,8 @@
           - @movie.errors.full_messages.each do |message|
             %li= message
 
-    %select
-    -# = f.text_field :name
+    %select.select-movie
+    = f.text_field :name
     .actions
       = f.submit
+  .other-options
