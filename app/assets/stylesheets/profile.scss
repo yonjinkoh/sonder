@@ -41,13 +41,15 @@
 
 .categories {
   text-align: center;
-  height: 30px;
+  height: 40px;
   border-bottom: 1px solid lightgray;
   // margin-bottom: 20px;
   color: gray;
   .category {
     font-weight: 600;
-    height: 33px;
+    height: 43px;
+    display: inline-block;
+    // padding: 0px 30px;
   }
   .category.active {
     border-bottom: 4px solid black;
@@ -55,6 +57,8 @@
   }
 
 }
+
+
 
 // .select2-result-movie__poster {
 //   width: 20%;
@@ -129,6 +133,27 @@ select {
   .simplists {
     padding-left: 0em;
     padding-right: 0;
+    h1 {
+      font-family: 'jayadhira';
+      padding: 0px 30px 0px 20px;
+      margin: 0;
+    }
+    .simplist {
+      border-bottom: 1px solid whitesmoke ;
+      padding: 40px 0px;
+    }
+    .book-simplist {
+      height: 260px;
+      .book-image {
+        width: 120px;
+        margin-right: 20px;
+      }
+      .book-info {
+        .book-title {
+          font-weight: 600;
+        }
+      }
+    }
   }
 
 }

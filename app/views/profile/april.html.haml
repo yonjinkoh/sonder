@@ -10,106 +10,53 @@
         %i.fa.fa-pinterest
   .top-buffer
   .categories.container-fluid
-    .row.slick-carousel
+    .row.slider-nav
       .category.active Books
       .category Songs
       .category Movies
       .category Quotes
   .top-buffer
-  .simplists
-    .simplist
-      %h5
-        Top Movies
-        .pull-right.carousel-next
-          %i.fa.fa-long-arrow-right
-      .container-fluid
-        .row.slick-carousel
-          .movie
-            = image_tag("content/movie1.jpg", class: "content", alt: "Favorite Movie")
-            .rank #1
-          .movie
-            = image_tag("content/movie2.jpg", class: "content", alt: "Favorite Movie")
-            .rank #2
-          .movie
-            = image_tag("content/movie3.jpg", class: "content", alt: "Favorite Movie")
-            .rank #3
-          .movie
-            = image_tag("content/movie4.jpg", class: "content", alt: "Favorite Movie")
-            .rank #4
-          .movie
-            = image_tag("content/movie5.jpg", class: "content", alt: "Favorite Movie")
-          .movie
-            = image_tag("content/movie6.jpg", class: "content", alt: "Favorite Movie")
-          .movie
-            = image_tag("content/movie7.jpg", class: "content", alt: "Favorite Movie")
-          .movie
-            = image_tag("content/movie8.jpg", class: "content", alt: "Favorite Movie")
-          .movie
-            = image_tag("content/movie9.jpg", class: "content", alt: "Favorite Movie")
-          .movie
-            = image_tag("content/movie10.jpg", class: "content", alt: "Favorite Movie")
-      .simplist.top-buffer
-        %h5
-          Top Songs
-          .pull-right.carousel-next-2
-            %i.fa.fa-long-arrow-right
-        .container-fluid
-          .row.no-gutter.slick-carousel-2
-            .song
-              = image_tag("content/song1.jpg", class: "content", alt: "Favorite Song")
-            .song
-              = image_tag("content/song2.jpg", class: "content", alt: "Favorite Song")
-            .song
-              = image_tag("content/song3.jpg", class: "content", alt: "Favorite Song")
-            .song
-              = image_tag("content/song4.jpg", class: "content", alt: "Favorite Song")
-            .song
-              = image_tag("content/song5.jpg", class: "content", alt: "Favorite Song")
-            .song
-              = image_tag("content/song6.jpg", class: "content", alt: "Favorite Song")
-            .song
-              = image_tag("content/song7.jpg", class: "content", alt: "Favorite Song")
-            .song
-              = image_tag("content/song8.jpg", class: "content", alt: "Favorite Song")
-            .song
-              = image_tag("content/song9.jpg", class: "content", alt: "Favorite Song")
-            .song
-              = image_tag("content/song10.jpg", class: "content", alt: "Favorite Song")
-      .simplist.top-buffer
-        %h5
-          Top Icons
-          .pull-right.carousel-next-3
-            %i.fa.fa-long-arrow-right
-        .container-fluid
-          .row.no-gutter.slick-carousel-3
-            .celeb-icon
-              = image_tag("content/icon1.jpg", class: "content", alt: "Favorite Icon")
-            .celeb-icon
-              = image_tag("content/icon2.jpg", class: "content", alt: "Favorite Icon")
-            .celeb-icon
-              = image_tag("content/icon3.jpg", class: "content", alt: "Favorite Icon")
-            -# .celeb-icon
-              -# = image_tag("content/icon4.jpg", class: "content", alt: "Favorite Icon")
-            .celeb-icon
-              = image_tag("content/icon5.jpg", class: "content", alt: "Favorite Icon")
-            .celeb-icon
-              = image_tag("content/icon6.jpg", class: "content", alt: "Favorite Icon")
-            .celeb-icon
-              = image_tag("content/icon7.jpg", class: "content", alt: "Favorite Icon")
-      .simplist.top-buffer
-        %h5
-          Top Books
-          .pull-right.carousel-next-4
-            %i.fa.fa-long-arrow-right
-        .container-fluid
-          .row.no-gutter.slick-carousel-4
-            .book
-              = image_tag("content/book1.jpg", class: "content", alt: "Favorite Book")
-            .book
-              = image_tag("content/book2.jpg", class: "content", alt: "Favorite Book")
-            .book
-              = image_tag("content/book3.jpg", class: "content", alt: "Favorite Book")
-            .book
-              = image_tag("content/book4.jpg", class: "content", alt: "Favorite Book")
-            .book
-              = image_tag("content/book5.jpg", class: "content", alt: "Favorite Book")
+  .slider-for
+    .simplists
+      .simplist.book-simplist
+        %h1.pull-left 1
+        .simplist-image.book-image.pull-left
+          = image_tag("content/book1.jpg", class: "content", alt: "Favorite Movie")
+        .book-info.pull-left
+          .book-title East of Eden (1978)
+          .book-author John Steinbeck
+      .simplist.book-simplist
+        %h1.pull-left 2
+        .simplist-image.book-image.pull-left
+          = image_tag("content/book2.jpg", class: "content", alt: "Favorite Movie")
+        .book-info.pull-left
+          .book-title Speak Memory
+          .book-author Vladimir Nabokov
+      .simplist.book-simplist
+        %h1.pull-left 3
+        .simplist-image.book-image.pull-left
+          = image_tag("content/book3.jpg", class: "content", alt: "Favorite Movie")
+        .book-info.pull-left
+          .book-title East of Eden (1978)
+          .book-author John Steinbeck
+      .simplist.book-simplist
+        %h1.pull-left 4
+        .simplist-image.book-image.pull-left
+          = image_tag("content/book4.jpg", class: "content", alt: "Favorite Movie")
+        .book-info.pull-left
+          .book-title East of Eden (1978)
+          .book-author John Steinbeck
+      .simplist.book-simplist
+        %h1.pull-left 5
+        .simplist-image.book-image.pull-left
+          = image_tag("content/book5.jpg", class: "content", alt: "Favorite Movie")
+        .book-info.pull-left
+          .book-title East of Eden (1978)
+          .book-author John Steinbeck
+      .simplist.book-simplist
+        %h1.pull-left 6
+        .simplist-image.book-image.pull-left
+          = image_tag("content/book6.jpg", class: "content", alt: "Favorite Movie")
+        .book-info.pull-left
+          .book-title East of Eden (1978)
+          .book-author John Steinbeck
