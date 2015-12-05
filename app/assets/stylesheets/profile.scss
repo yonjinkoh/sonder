@@ -136,16 +136,41 @@ select {
     padding-right: 0;
     h1 {
       font-family: 'jayadhira';
-      padding: 0px 30px 0px 20px;
+      padding: 0px 40px 0px 20px;
       margin: 0;
+      width:90px;
     }
     .simplist {
       border-bottom: 1px solid whitesmoke ;
       padding: 50px 0px;
+      min-height:300px;
+      .quote{
+        .quote-text{font-weight:100;
+          font-size: 30px;
+          width:500px;
+        }
+        .quote-author {
+          font-size:20px;
+          font-weight: 600;
+        }
+      }
     }
+
+    .song-simplist {
+      min-height: 200px;
+      .simplist-image {
+        width: 120px;
+        margin-right: 30px;
+      }
+      .song-info {
+        .song-title {
+          font-weight: 600;
+        }
+      }
+    }
+
     .book-simplist {
-      height: 300px;
-      .book-or-movie-image {
+      .simplist-image {
         width: 120px;
         margin-right: 30px;
       }
