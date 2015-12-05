@@ -32,11 +32,28 @@
   margin-right: 10px;
 }
 
-.sidebar-content {
-  width: 70%;
+.header-content {
+  width: 30%;
   img {
     width: 65%;
   }
+}
+
+.categories {
+  text-align: center;
+  height: 30px;
+  border-bottom: 1px solid lightgray;
+  // margin-bottom: 20px;
+  color: gray;
+  .category {
+    font-weight: 600;
+    height: 33px;
+  }
+  .category.active {
+    border-bottom: 4px solid black;
+    color: black;
+  }
+
 }
 
 // .select2-result-movie__poster {
@@ -87,12 +104,14 @@ select {
   width: 185px;
 }
 
+
+
+
 @media (min-width: 992px)  {
 
-  .sidebar-content {
-    width: 70%;
+  .header-content {
     img {
-      width: 80%;
+      // width: 80%;
     }
   }
 
@@ -100,19 +119,15 @@ select {
     margin-top: 0px;
   }
 
-  .sidebar {
+  .header {
     position: -webkit-sticky;
-    position: sticky;
-    position: fixed;
     border-right: .75px #dddddd solid;
     padding-top: 70px;
     // background-color: black;
-    height: 100%;
   }
 
   .simplists {
     padding-left: 0em;
-    padding-top: 50px;
     padding-right: 0;
   }
 

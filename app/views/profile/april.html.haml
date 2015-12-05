@@ -1,6 +1,6 @@
 .row
-  .sidebar.col-md-2
-    .sidebar-content.text-center.center-block
+  .header
+    .header-content.text-center.center-block
       = image_tag("aprilk.png", class: "img-circle center-block", alt: "April Koh profile picture")
       %h3 April Koh
       %h6 I like cottage cheese and cheese cottages
@@ -8,9 +8,15 @@
         %i.fa.fa-facebook
         %i.fa.fa-twitter
         %i.fa.fa-pinterest
-  .visible-xs.visible-sm
-    .top-buffer
-  .simplists.col-md-10.col-md-offset-2
+  .top-buffer
+  .categories.container-fluid
+    .row.slick-carousel
+      .category.active Books
+      .category Songs
+      .category Movies
+      .category Quotes
+  .top-buffer
+  .simplists
     .simplist
       %h5
         Top Movies

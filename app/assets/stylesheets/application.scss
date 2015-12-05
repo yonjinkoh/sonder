@@ -34,9 +34,21 @@ body {
   color: #333333;
 }
 
-.beneath-nav {
-  margin-top: 50px;
+.navbar-brand {
+  padding: 30px 40px;
 }
+
+.navbar-nav > li > a {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.beneath-nav {
+  margin-top: 80px;
+  width: 600px;
+}
+
+
 
 .logo {
   // padding: 10px 15px;
@@ -48,7 +60,12 @@ body {
 
 #main-nav {
   color: #cdcdcd;
-  a {color: #cdcdcd;}
+  a {color: #cdcdcd;};
+  height: 100px;
+  form {
+    padding: 30px 30px;
+    margin: 0px;
+  }
 }
 
 // @media (max-width: 751px) {
@@ -86,7 +103,7 @@ body {
 
 .top-buffer { margin-top:50px; }
 
-.navbar-fixed-top {background-color: white;}
+// .navbar-fixed-top {background-color: white;}
 
 .form-control {
   border-radius: 0;

@@ -36,7 +36,7 @@ $(document).ready(function(){
   }
 
 
-  $("select").select2({
+  $(".select-movie").select2({
     ajax: {
       url: "http://api.themoviedb.org/3/search/movie",
       dataType: 'json',
@@ -46,7 +46,7 @@ $(document).ready(function(){
         return {
           query: params.term, // search term
           api_key: "41955a0f09fdcad5028264d83e9c9af6",
-          sort_by: "popularity.desc"
+          sort_by: "popularity.desc",
         };
       },
       processResults: function (data, params) {

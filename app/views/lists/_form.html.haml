@@ -8,14 +8,9 @@
   -#       - @list.errors.full_messages.each do |message|
   -#         %li= message
   -# = f.text_field :name
-  = f.collection_select :category_id, Category.order(:name),:id,:name, include_blank: true
+  = f.collection_select :category_id, Category.order(:name),:id,:name, include_blank: false
 
   = f.submit
--# %select#category{:name => "category_id"}
--#   %option{value: "1"} Top Movies
--#   %option{value: "2"} TV
--#   %option{value: "3"} Books
--#   %option{value: "4"} Icons
--#   %option{value: "5"} Songs
+
 
 #movie-list-form{style:"display:none"}
