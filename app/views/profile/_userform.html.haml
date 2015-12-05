@@ -1,0 +1,15 @@
+= form_for(@user) do |f|
+  .header
+    .header-content.text-center.center-block
+      .blank-image
+        .plus-sign.absolute-center +
+      .field
+        %h3
+          = f.text_field :first_name, :placeholder => "Add Your Name"
+      .field
+        %h6
+          = f.text_field :description, :onfocus => "this.placeholder = ''", :placeholder => "Click to add a short bio."
+      .socials
+        %i.fa.fa-facebook
+        %i.fa.fa-twitter
+        %i.fa.fa-pinterest

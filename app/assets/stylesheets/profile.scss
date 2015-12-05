@@ -33,10 +33,31 @@
 }
 
 .header-content {
-  width: 30%;
+  // width: 30%;
   img {
-    width: 65%;
+    width: 110px;
+    height: 110px;
   }
+  padding: 0px 30px;
+  text-align: center;
+  h3 {
+    input {
+      text-align: center;
+      line-height: 40px;
+      // border-bottom: 1px solid black;
+      // border-top: none;
+      // border-right: none;
+      // border-left: none;
+    }
+  }
+  h6 {
+    input {
+      width: 100%;
+      border: none;
+      text-align: center;
+    }
+  }
+
 }
 
 .categories {
@@ -113,19 +134,12 @@ select {
 
 
 
-  .header-content {
-    img {
-      // width: 80%;
-    }
-  }
-
   .beneath-nav {
     margin-top: 0px;
   }
 
   .header {
     position: -webkit-sticky;
-    border-right: .75px #dddddd solid;
     padding-top: 70px;
     // background-color: black;
   }
@@ -180,3 +194,30 @@ select {
       }
     }
   }
+
+
+// BELOW: CODE FOR THE EDIT/NEW PAGE
+.edit-banner {
+  background-color: black;
+  height: 30px;
+  color: white;
+  text-align: center;
+  width:100%;
+  line-height: 30px;
+}
+
+.blank-image {
+  border-radius: 50%;
+  background-color: lightgray;
+  height: 110px;
+  width: 110px;
+  margin: 0 auto;
+  font-size: 60px;
+  color: white;
+  position: relative;
+  .plus-sign {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+  }
+}

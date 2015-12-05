@@ -1,12 +1,15 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :categories
   resources :movies
   resources :users
   resources :lists
-  
+
   get 'aprilkoh' => 'profile#april'
   get 'dianekim' => 'profile#diane'
   get 'aprilkoh/edit' => 'profile#edit'
+  root to: "profile#april"
+  resources :profile
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

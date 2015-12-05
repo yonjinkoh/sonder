@@ -1,13 +1,9 @@
+- content_for(:nav) do
+  .edit-banner
+    Welcome to your profile on Simplist! Click to change things.
+
 .row
-  .header
-    .header-content.text-center.center-block
-      = image_tag("aprilk.png", class: "img-circle center-block", alt: "April Koh profile picture")
-      %h3 April Koh
-      %h6 I like cottage cheese and cheese cottages
-      .socials
-        %i.fa.fa-facebook
-        %i.fa.fa-twitter
-        %i.fa.fa-pinterest
+  = render partial: "userform"
   .top-buffer
   .categories.container-fluid
     .row.slider-nav

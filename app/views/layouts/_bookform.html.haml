@@ -1,0 +1,16 @@
+= form_for(@booklist, remote: true)  do |f|
+  -# - if @list.errors.any?
+  -#   #error_explanation
+  -#     %h2
+  -#       = pluralize(@list.errors.count, "error")
+  -#       prohibited this list from being saved:
+  -#     %ul
+  -#       - @list.errors.full_messages.each do |message|
+  -#         %li= message
+  -# = f.text_field :name
+  = f.collection_select :category_id, Category.order(:name),:id,:name, include_blank: false
+
+  = f.submit
+
+
+#movie-list-form{style:"display:none"}

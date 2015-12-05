@@ -1,12 +1,12 @@
 %p#notice= notice
 %h1 Listing Categories
-%table
+%table.table
   %thead
     %tr
       %th Name
       %th Api
       %th{:colspan => "3"}
-  %tbody
+  %tbody.table-striped
     - @categories.each do |category|
       %tr
         %td= category.id

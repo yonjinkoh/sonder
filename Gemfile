@@ -13,6 +13,10 @@ gem "jquery-slick-rails"
 # Select2 is a jQuery based replacement for select boxes. It supports searching, remote data sets, and infinite scrolling of results.
 
 
+gem 'devise'
+# use devise for secure user registration
+
+
 gem 'themoviedb'
 # API for movies and TV shows
 
@@ -27,6 +31,8 @@ gem 'rails', '4.2.4'
 
 gem 'pg'
 # Use postgres
+
+
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -63,6 +69,12 @@ end
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
+
+  gem 'quiet_assets'
+  # suppresses distracting messages in the log
+
+  gem 'better_errors'
+  # better debugging
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
