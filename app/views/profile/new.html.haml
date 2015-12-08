@@ -7,10 +7,9 @@
   .top-buffer
   .categories.container-fluid
     .row.slider-nav
-      .category.active Books
-      .category Movies
-      .category Quotes
-      .category Songs
+      -# = raise
+      - @lists.each do |category|
+        .category= category.name
   .top-buffer
   .slider-for
     .simplists
@@ -153,3 +152,9 @@
         .book-info.pull-left
           .book-title East of Eden (1978)
           .book-author John Steinbeck
+
+:javascript
+
+  $(function() {
+    $('.category').first().addClass('active');
+  });

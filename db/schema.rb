@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151205163032) do
+ActiveRecord::Schema.define(version: 20151206054604) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20151205163032) do
     t.string   "api"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "list_id"
   end
 
   create_table "lists", force: :cascade do |t|
@@ -35,6 +36,14 @@ ActiveRecord::Schema.define(version: 20151205163032) do
     t.datetime "updated_at",  null: false
     t.integer  "category_id"
   end
+
+  create_table "lists_categories", force: :cascade do |t|
+    t.integer "list_id"
+    t.integer "part_id"
+  end
+
+  add_index "lists_categories", ["list_id"], name: "index_lists_categories_on_list_id", using: :btree
+  add_index "lists_categories", ["part_id"], name: "index_lists_categories_on_part_id", using: :btree
 
   create_table "movies", force: :cascade do |t|
     t.string   "name"
@@ -62,6 +71,7 @@ ActiveRecord::Schema.define(version: 20151205163032) do
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
+    t.integer  "list_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

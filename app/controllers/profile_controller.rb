@@ -1,8 +1,6 @@
 
 class ProfileController < ApplicationController
 
-
-
   def april
     # @april = Tmdb::Movie.find("batman")
     # @search = Tmdb::Search.new
@@ -22,13 +20,15 @@ class ProfileController < ApplicationController
   end
 
   def search
-
-
   end
 
   def new
     @user = User.new
     @booklist = List.new(category_id: '1')
+    @movielist = List.new(category_id: '2')
+    @quoteslist = List.new(category_id: '3')
+    @songlist = List.new(category_id: '4')
+    @lists = Category.all
   end
 
 
