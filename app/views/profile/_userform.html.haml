@@ -18,14 +18,14 @@
         %i.fa.fa-twitter
         %i.fa.fa-pinterest
       .actions.hidden
-        = f.submit
+        = f.submit :class=>"submit"
 
 :javascript
   $(document).ready(
     function() {
       $('.submit-form').focusout(function(){
-      $(this).css('border', 'none');
-       $(".submit").trigger("click");
+        $(this).css('border', 'none');
+        $('.submit').click();
       });
       $('.submit-form').focusin(function(){
         $(this).css('border', '1px solid lightgray');
