@@ -3,11 +3,10 @@
     Welcome to your profile on Simplist! Click to change things.
 
 .row
-  = render partial: "userform"
+  .userform= render partial: "userform"
   .top-buffer
   .categories.container-fluid
     .row.slider-nav
-      -# = raise
       - @lists.each do |category|
         .category= category.name
   .top-buffer

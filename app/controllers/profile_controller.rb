@@ -1,5 +1,5 @@
-
 class ProfileController < ApplicationController
+  before_action :authenticate_user!
 
   def april
     # @april = Tmdb::Movie.find("batman")
@@ -12,7 +12,6 @@ class ProfileController < ApplicationController
   end
 
   def edit
-
     @thekey = "41955a0f09fdcad5028264d83e9c9af6"
   end
 
@@ -23,7 +22,7 @@ class ProfileController < ApplicationController
   end
 
   def new
-    @user = User.new
+    current_user ? @user = current_user : @user = User.new
     @booklist = List.new(category_id: '1')
     @movielist = List.new(category_id: '2')
     @quoteslist = List.new(category_id: '3')

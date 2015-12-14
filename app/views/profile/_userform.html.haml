@@ -1,15 +1,36 @@
-= form_for(@user) do |f|
+-# this is calling a new user. So we need to instead call the user tthat is logged in.
+= form_for(@user, remote: true) do |f|
   .header
     .header-content.text-center.center-block
       .blank-image
-        .plus-sign.absolute-center +
+        = image_tag(@user.picture.url)
+        .plus-sign.absolute-center
+          %a{:href=>"javascript:void(0);", :id => "plus-sign-link", :style=>"color: white"} +
+        %input{:type=>"file", :name => "user[picture]", :class=>"hidden", :id=>"upload-photo"}
       .field
         %h3
-          = f.text_field :first_name, :placeholder => "Add Your Name"
+          = f.text_field :first_name, :class => "submit-form", :placeholder => "Add Your Name"
       .field
         %h6
-          = f.text_field :description, :onfocus => "this.placeholder = ''", :placeholder => "Click to add a short bio."
+          = f.text_field :description, :class => "submit-form", :onfocus => "this.placeholder = ''", :placeholder => "Click to add a short bio."
       .socials
         %i.fa.fa-facebook
         %i.fa.fa-twitter
         %i.fa.fa-pinterest
+      .actions.hidden
+        = f.submit
+
+:javascript
+  $(document).ready(
+    function() {
+      $('.submit-form').focusout(function(){
+      $(this).css('border', 'none');
+       $(".submit").trigger("click");
+      });
+      $('.submit-form').focusin(function(){
+        $(this).css('border', '1px solid lightgray');
+      });
+      $('#plus-sign-link').on('click', function() {
+        $('#upload-photo').trigger('click');
+      })
+  });

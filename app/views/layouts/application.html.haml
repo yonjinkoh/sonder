@@ -35,21 +35,35 @@
           .form-group.hidden
             %input.form-control{:placeholder => "Search", :type => "text"}/
 
+
+
         %ul.nav.navbar-nav.navbar-right.active.hidden-md-down
-          %li.dropdown
-            %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-              Hi April!
-              %span.caret
-            %ul.dropdown-menu
-              %li
-                %a{:href => "#"} Action
-              %li
-                %a{:href => "#"} Another action
-              %li
-                %a{:href => "#"} Something else here
-              %li.divider{:role => "separator"}
-              %li
-                %a{:href => "#"} Separated link
+          - if user_signed_in?
+            %li.dropdown
+              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                = current_user.first_name
+                %span.caret
+              %ul.dropdown-menu{:role => "menu"}
+                %li= link_to 'Profile', edit_user_registration_path
+                %li= link_to 'Log out', destroy_user_session_path, method: :delete
+          - else
+            %li= link_to 'Log In', new_user_session_path
+            %li= link_to 'Sign Up', new_user_registration_path
+          -#
+          -# %li.dropdown
+          -#   %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+          -#     Hi April!
+          -#     %span.caret
+          -#   %ul.dropdown-menu
+          -#     %li
+          -#       %a{:href => "#"} Action
+          -#     %li
+          -#       %a{:href => "#"} Another action
+          -#     %li
+          -#       %a{:href => "#"} Something else here
+          -#     %li.divider{:role => "separator"}
+          -#     %li
+          -#       %a{:href => "#"} Separated link
     = yield(:nav)
 
 .container-fluid.beneath-nav

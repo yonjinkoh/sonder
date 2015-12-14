@@ -44,6 +44,8 @@
     input {
       text-align: center;
       line-height: 40px;
+      width: 80%;
+      border: none;
       // border-bottom: 1px solid black;
       // border-top: none;
       // border-right: none;
@@ -52,7 +54,7 @@
   }
   h6 {
     input {
-      width: 100%;
+      width: 80%;
       border: none;
       text-align: center;
     }
@@ -208,6 +210,7 @@ select {
 
 .blank-image {
   border-radius: 50%;
+  overflow: hidden;
   background-color: lightgray;
   height: 110px;
   width: 110px;

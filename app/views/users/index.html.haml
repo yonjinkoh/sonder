@@ -9,14 +9,14 @@
       %th Description
       %th Picture
       %th{:colspan => "3"}
-  %tbody
+  %tbody.table-hover
     - @users.each do |user|
       %tr
         %td= user.first_name
         %td= user.last_name
         %td= user.username
         %td= user.description
-        %td= user.picture
+        %td{style: "max-width: 100px; overflow: hidden"}= user.picture
         %td= link_to 'Show', user
         %td= link_to 'Edit', edit_user_path(user)
         %td= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }
