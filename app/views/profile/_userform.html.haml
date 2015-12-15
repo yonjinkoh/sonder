@@ -6,7 +6,7 @@
         = image_tag(@user.picture.url)
         .plus-sign.absolute-center
           %a{:href=>"javascript:void(0);", :id => "plus-sign-link", :style=>"color: white"} +
-        %input{:type=>"file", :name => "user[picture]", :class=>"hidden", :id=>"upload-photo"}
+        = f.file_field :picture,:class=>"hidden", :id => "upload-photo"
       .field
         %h3
           = f.text_field :first_name, :class => "submit-form", :placeholder => "Add Your Name"
@@ -32,5 +32,8 @@
       });
       $('#plus-sign-link').on('click', function() {
         $('#upload-photo').trigger('click');
-      })
+      });
+      $("#upload-photo").change(function(){
+         $('.submit').click();
+      });
   });
