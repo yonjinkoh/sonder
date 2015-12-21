@@ -46,6 +46,15 @@ body {
   h6 {font-size: 1em; font-weight: 200}
   h5 {font-weight: 600;}
   color: #333333;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+}
+
+* {
+  -webkit-border-radius: 0 !important;
+     -moz-border-radius: 0 !important;
+          border-radius: 0 !important;
 }
 
 .navbar-brand {

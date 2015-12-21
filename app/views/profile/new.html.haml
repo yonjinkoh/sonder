@@ -14,11 +14,7 @@
     .simplists
       .simplist.book-simplist
         %h1.pull-left 1
-        .simplist-image.book-or-movie-image.pull-left
-          = image_tag("content/book1.jpg", class: "content", alt: "Favorite Movie")
-        .book-info.pull-left
-          .book-title East of Eden (1978)
-          .book-author John Steinbeck
+        = render partial: "movies/form"
       .simplist.book-simplist
         %h1.pull-left 2
         .simplist-image.book-or-movie-image.pull-left

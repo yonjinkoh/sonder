@@ -4,32 +4,25 @@ $(document).ready(function(){
     $('.box').html(html);
   }
 
+
   function formatMovie (movie) {
+      if (movie.loading) return movie.name;
 
-    if (movie.poster_path) {
       var markup = "<div class='select2-result-movie clearfix'>" +
-        "<div class='select2-result-movie__poster'><img src='https://image.tmdb.org/t/p/w185" + movie.poster_path + "' /></div>" +
+        "<div class='select2-result-movie__poster'><img src='https://image.tmdb.org/t/p/w92" + movie.poster_path + "' /></div>" +
         "<div class='select2-result-movie__meta'>" +
-          "<div class='select2-result-movie__title'><strong>" + movie.title + "</strong> (" + movie.release_date + ")"+ "</div>";
+          "<div class='select2-result-movie__title'>" + movie.title + "</div>";
 
-      var html = "<img src='https://image.tmdb.org/t/p/w185" + movie.poster_path + "' />"
-      insertMovie(html);
-      // return markup;
-    }
-    else {
-      var markup = "<div class='select2-result-movie clearfix'>" +
-        "<div class='select2-result-movie__poster'></div>" +
-        "<div class='select2-result-movie__meta'>" +
-          "<div class='select2-result-movie__title'><strong>" + movie.title + "</strong> (" + movie.release_date + ")"+ "</div>";
-
-      // return markup;
+      if (movie.description) {
+        markup += "<div class='select2-result-movie__description'>" + movie.description + "</div>";
+      }
+      return markup;
     }
 
-  };
-
-  function formatSelection (movie) {
-
+  function formatMovieSelection (movie) {
+    return movie.name || movie.title;
   }
+
 
 
   $(".select-movie").select2({
@@ -42,7 +35,7 @@ $(document).ready(function(){
         return {
           query: params.term, // search term
           api_key: "41955a0f09fdcad5028264d83e9c9af6",
-          sort_by: "popularity.desc"
+          sort_by: "popularity.desc",
         };
       },
       processResults: function (data, params) {
@@ -64,6 +57,8 @@ $(document).ready(function(){
     escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
     minimumInputLength: 1,
     templateResult: formatMovie,
-    templateSelection: formatSelection,
+    placeholder: "What's your #1 movie?",
+    templateSelection: formatMovieSelection,
   });
+
 });

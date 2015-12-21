@@ -28,6 +28,7 @@ class ProfileController < ApplicationController
     @quoteslist = List.new(category_id: '3')
     @songlist = List.new(category_id: '4')
     @lists = Category.all
+    @movie = Movie.new
   end
 
 

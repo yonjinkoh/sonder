@@ -3,54 +3,130 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .box {
-  // width: 185px;
-  // height: 278px;
+  width: 30%;
+  height: 278px;
+  background-color: gray;
   overflow: hidden;
-  background-color: black;
+  padding: 0;
+  margin: 0;
+
+
+  // background-color: black;
   img {
     width:100%;
     min-height: 100%;
   }
 }
+//
+// .new_movie {
+//   float: right;
+// }
+//
+// #movie_name {
+//   // display: none;
+// }
+//
+// .movie-form {
+//
+//   .select2-selection {
+//     // height: 200px;
+//   }
+//
+//   .select2-dropdown {
+//     width:185px;
+//     border: none;
+//     border-radius: none;
+//     background-color: transparent;
+//   }
+//
+//   .select2-search {
+//     margin-top: -30px;
+//     border: none;
+//   }
+//
+//   .select2-container--default .select2-search--dropdown .select2-search__field {
+//     border: none;
+//   }
+//
+//   .select2-container--default {
+//     // border-bottom: 1px solid #aaa;
+//   }
+//
+//   .select2-selection.select2-selection--single {
+//     border: none;
+//     background-color: transparent;
+//     border-radius: 0px;
+//   }
+//
+//   select {
+//     width: 185px;
+//   }
+//
+// }
 
-#movie_name {
-  // display: none;
+
+//*********
+// .select2-selection {
+//   height: 200px;
+// }
+//
+.select2-dropdown {
+  // width:400px;
+  // border: none;
+  // border-radius: none;
+  // background-color: transparent;
+}
+//
+// .select2-search {
+//   margin-top: -30px;
+//   border: none;
+// }
+//
+// .select2-container--default .select2-search--dropdown .select2-search__field {
+//   border: none;
+// }
+//
+// .select2-container--default {
+//   // border-bottom: 1px solid #aaa;
+// }
+//
+// .select2-selection.select2-selection--single {
+//   border: none;
+//   background-color: transparent;
+//   border-radius: 0px;
+// }
+//
+//
+select {
+  img{width: 100px;}
+  width: 300px;
+}
+
+.select2 {
+  float: right;
 }
 
 .movie-form {
+  width: 100%;
+}
 
-  .select2-selection {
-    // height: 200px;
-  }
+.new_movie {
+  float: left;
+  width: 70%;
+}
 
-  .select2-dropdown {
-    width:185px;
-    border: none;
-    border-radius: none;
-    background-color: transparent;
-  }
+// .selection {
+//   img {width: 100px;}
+// }
 
-  .select2-search {
-    margin-top: -30px;
-    border: none;
-  }
+.select2-result-movie__poster {
+  // width: 40%;
+  float: left;
+}
 
-  .select2-container--default .select2-search--dropdown .select2-search__field {
-    border: none;
-  }
-
-  .select2-container--default {
-    // border-bottom: 1px solid #aaa;
-  }
-
-  .select2-selection.select2-selection--single {
-    border: none;
-    background-color: transparent;
-    border-radius: 0px;
-  }
-
-  select {
-    width: 185px;
-  }
-
+.select2-result-movie__title {
+  // width: 60%;
+  float: left;
+  max-width: 60%;
+  padding: 0px 5px;
 }
