@@ -1,6 +1,14 @@
 %p#notice= notice
 %div{:style => "margin-top:100px"}
   = @list.name
-  = link_to 'Edit', edit_list_path(@list)
+  = @list.category_id
+  - @list.movies.each do |m|
+    .simplist
+      %h1.pull-left 2
+      .simplist-image.book-or-movie-image.pull-left
+        %img{src: "https://image.tmdb.org/t/p/w92" + m.picture}
+      .book-info.pull-left
+        .book-title= m.name
+        .book-author= m.year
 
   \#{link_to 'Back', lists_path}

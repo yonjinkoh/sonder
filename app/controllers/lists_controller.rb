@@ -77,6 +77,6 @@ class ListsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def list_params
-      params.require(:list).permit(:name, :user_id, category_attributes: [:id, :name], movies_attributes: [:id, :name, :picture])
+      params.require(:list).permit(:name, :user_id, category_attributes: [:id, :name], movies_attributes: [:id, :name, :picture, :year])
     end
 end

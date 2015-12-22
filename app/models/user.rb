@@ -38,4 +38,10 @@ mount_uploader :picture, PictureUploader
 has_many :lists
 has_one :picture
 
+
+def create_default_lists
+  movielist = lists.find_or_create_by(category_id: "2", name: "Movies")
+  booklist = lists.find_or_create_by(category_id: "1")
+end
+
 end

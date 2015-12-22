@@ -1,6 +1,6 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-# before_filter :configure_sign_up_params, only: [:create]
-# before_filter :configure_account_update_params, only: [:update]
+before_filter :configure_sign_up_params, only: [:create]
+before_filter :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
   # def new
@@ -10,12 +10,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
 
-    @user = User.new
+    @user = User.new(sign_up_params)
 
     respond_to do |format|
       if @user.save
+        @user.create_default_lists
         format.js
-        format.html{redirect_to @user, notice: 'User was successfully created.'}
+        format.html{redirect_to '/profile/new', notice: 'User was successfully created.'}
       else
         format.html { render :new }
         format.js
@@ -54,11 +55,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # protected
+  protected
 
   # If you have extra params to permit, append them to the sanitizer.
-  # def configure_sign_up_params
-  #   devise_parameter_sanitizer.for(:sign_up) << :attribute
+  def configure_sign_up_params
+    devise_parameter_sanitizer.for(:sign_up) << [:email, :first_name, :last_name, :password, :password_confirmation, :username, :description, :picture]
+  end
+
+  # def user_params
+  #   params.require(:user).permit(:first_name, :email, :password, :last_name, :username, :list_id, :description, :picture)
   # end
 
   # If you have extra params to permit, append them to the sanitizer.
@@ -67,9 +72,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # The path used after sign up.
-  # def after_sign_up_path_for(resource)
-  #   super(resource)
-  # end
+  def after_sign_up_path_for(resource)
+    '/profile/new'
+  end
 
   # The path used after sign up for inactive accounts.
   # def after_inactive_sign_up_path_for(resource)

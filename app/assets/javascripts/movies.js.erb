@@ -1,9 +1,10 @@
 $(document).ready(function(){
 
-  function insertMovie (html, movieImage, movieId) {
+  function insertMovie (html, movieImage, movieId, releaseDate) {
     $('.select2-container--open').siblings('.box').html(html);
-    // $('#list_movie_name').val(movieId);
-    // $('input#list_movie_picture').val(movieImage);
+    $('.select2-container--open').siblings('input').first().val(movieId);
+    $('.select2-container--open').siblings('input').first().next().val(movieImage);
+    $('.select2-container--open').siblings('input').first().next().next().val(releaseDate);
   }
 
   function formatMovie (movie) {
@@ -19,11 +20,13 @@ $(document).ready(function(){
         "<div class='select2-result-movie__meta'>" +
           "<div class='select2-result-movie__title'>" + movie.title + "</div>";
     } else {
-
     }
 
     if (movie.tagline) {
       markup += "<div class='select2-result-movie__description'>" + movie.tagline + "</div>";
+    }
+    if (movie.primary_release_year) {
+      markup += "<div class='select2-result-movie__year'>" + movie.year + "</div>";
     }
     return markup;
     }
@@ -34,15 +37,16 @@ $(document).ready(function(){
     }
 
     var movieImage = movie.poster_path;
-    var movieId = movie.id;
-    insertMovie(html, movieImage, movieId);
-
-    return movie.name || movie.title;
+    var movieId = movie.title;
+    var releaseDate = movie.release_date;
+    insertMovie(html, movieImage, movieId, releaseDate);
+    return movie.title;
   }
 
 
 
   $(".select-movie").select2({
+    placeholder: "What's your #1 movie?",
     ajax: {
       url: "http://api.themoviedb.org/3/search/movie",
       dataType: 'json',
@@ -52,7 +56,6 @@ $(document).ready(function(){
         return {
           query: params.term, // search term
           api_key: "41955a0f09fdcad5028264d83e9c9af6",
-          sort_by: "popularity.desc",
         };
       },
       processResults: function (data, params) {
@@ -73,7 +76,6 @@ $(document).ready(function(){
     },
     escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
     minimumInputLength: 1,
-    placeholder: "What's your #1 movie?",
     templateResult: formatMovie,
     templateSelection: formatMovieSelection,
   });

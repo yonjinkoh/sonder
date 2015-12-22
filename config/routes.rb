@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   get 'aprilkoh' => 'profile#april'
   get 'dianekim' => 'profile#diane'
   get 'aprilkoh/edit' => 'profile#edit'
-  root to: "profile#april"
+  root to: "profile#new"
   resources :profile
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -42,10 +42,9 @@ Rails.application.routes.draw do
   #   end
 
   # Example resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
+    resources :users do
+      resources :lists
+    end
 
   # Example resource route with more complex sub-resources:
   #   resources :products do

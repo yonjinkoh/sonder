@@ -24,13 +24,13 @@ class ProfileController < ApplicationController
   def new
     current_user ? @user = current_user : @user = User.new
     @movielist = current_user.lists.new(category_id: '2')
-    10.times do
+    5.times do
       movie = @movielist.movies.build
     end
 
     @booklist = current_user.lists.new(category_id: '1')
-    10.times do
-      movie = @booklist.books.build
+    5.times do
+      book = @booklist.books.build
     end
 
     @quotelist = current_user.lists.new(category_id: '3')

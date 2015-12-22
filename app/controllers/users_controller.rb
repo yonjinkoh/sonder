@@ -17,9 +17,9 @@ class UsersController < ApplicationController
   end
 
   # # GET /users/new
-  # def new
-  #   @user = User.new
-  # end
+  def new
+    @user = User.new
+  end
   #
   # # GET /users/1/edit
   # def edit
@@ -32,7 +32,8 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        @user.create_default_lists
+        format.html { redirect_to 'profile/new', notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
         format.js
       else
@@ -77,6 +78,6 @@ class UsersController < ApplicationController
   #
   #   # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :username, :list_id, :description, :picture)
+      params.require(:user).permit(:first_name, :email, :password, :password_confirmation, :last_name, :username, :list_id, :description, :picture)
     end
 end

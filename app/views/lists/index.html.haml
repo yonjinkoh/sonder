@@ -1,12 +1,13 @@
 %p#notice= notice
 %h1 Listing Lists
-%table
+%table.table
   %thead
     %tr
       %th{:colspan => "3"}
-  %tbody
+  %tbody.table-hover
     - @lists.each do |list|
       %tr
+        %td= list.category_id
         %td= link_to 'Show', list
         %td= link_to 'Edit', edit_list_path(list)
         %td= link_to 'Destroy', list, method: :delete, data: { confirm: 'Are you sure?' }
