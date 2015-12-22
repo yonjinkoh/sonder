@@ -1,25 +1,42 @@
 $(document).ready(function(){
 
-  function insertMovie (html) {
-    $('.box').html(html);
+  function insertMovie (html, movieImage, movieId) {
+    $('.select2-container--open').siblings('.box').html(html);
+    // $('#list_movie_name').val(movieId);
+    // $('input#list_movie_picture').val(movieImage);
   }
 
-
   function formatMovie (movie) {
-      if (movie.loading) return movie.name;
 
+    if (movie.poster_path) {
       var markup = "<div class='select2-result-movie clearfix'>" +
         "<div class='select2-result-movie__poster'><img src='https://image.tmdb.org/t/p/w92" + movie.poster_path + "' /></div>" +
         "<div class='select2-result-movie__meta'>" +
           "<div class='select2-result-movie__title'>" + movie.title + "</div>";
+    } else if (movie.title) {
+      var markup = "<div class='select2-result-movie clearfix'>" +
+        "<div class='select2-result-movie__poster'><img src='" + "<%= image_path('filmfill.jpg') %>" + "' /></div>" +
+        "<div class='select2-result-movie__meta'>" +
+          "<div class='select2-result-movie__title'>" + movie.title + "</div>";
+    } else {
 
-      if (movie.description) {
-        markup += "<div class='select2-result-movie__description'>" + movie.description + "</div>";
-      }
-      return markup;
+    }
+
+    if (movie.tagline) {
+      markup += "<div class='select2-result-movie__description'>" + movie.tagline + "</div>";
+    }
+    return markup;
     }
 
   function formatMovieSelection (movie) {
+    if (movie.poster_path) {
+      var html = "<img src='https://image.tmdb.org/t/p/w185" + movie.poster_path + "' />"
+    }
+
+    var movieImage = movie.poster_path;
+    var movieId = movie.id;
+    insertMovie(html, movieImage, movieId);
+
     return movie.name || movie.title;
   }
 
@@ -56,8 +73,8 @@ $(document).ready(function(){
     },
     escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
     minimumInputLength: 1,
-    templateResult: formatMovie,
     placeholder: "What's your #1 movie?",
+    templateResult: formatMovie,
     templateSelection: formatMovieSelection,
   });
 

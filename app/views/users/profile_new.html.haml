@@ -20,7 +20,7 @@
         .category Songs
     .top-buffer
     .slider-for
-      .simplists
+      = form_for(@list, remote: true, class: "simplists") do |f|
         .simplist.book-simplist
           %h1.pull-left 1
           .simplist-image.book-or-movie-image.pull-left

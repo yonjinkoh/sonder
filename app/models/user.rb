@@ -35,7 +35,7 @@ devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
 mount_uploader :picture, PictureUploader
-has_many :lists, through: :categories
+has_many :lists
 has_one :picture
 
 end

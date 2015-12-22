@@ -3,8 +3,8 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .box {
-  width: 30%;
-  height: 278px;
+  width: 25%;
+  height: 190px;
   background-color: gray;
   overflow: hidden;
   padding: 0;
@@ -75,6 +75,8 @@
   // border: none;
   // border-radius: none;
   // background-color: transparent;
+  // left: -3px !important;
+  z-index: 100;
 }
 //
 // .select2-search {
@@ -99,11 +101,10 @@
 //
 select {
   img{width: 100px;}
-  width: 300px;
 }
 
-.select2 {
-  float: right;
+.new_list {
+  width: 100%;
 }
 
 .movie-form {
@@ -111,7 +112,7 @@ select {
 }
 
 .new_movie {
-  float: left;
+  float: right;
   width: 70%;
 }
 
@@ -120,13 +121,18 @@ select {
 // }
 
 .select2-result-movie__poster {
-  // width: 40%;
   float: left;
+  img {
+  width: 92px;}
 }
 
 .select2-result-movie__title {
-  // width: 60%;
   float: left;
   max-width: 60%;
   padding: 0px 5px;
+}
+
+.select2 {
+  width: 70% !important;
+  float: right;
 }

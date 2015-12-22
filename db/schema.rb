@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151216035708) do
+ActiveRecord::Schema.define(version: 20151222042300) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,16 @@ ActiveRecord::Schema.define(version: 20151216035708) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "books", force: :cascade do |t|
+    t.string   "name"
+    t.string   "picture"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "list_id"
+  end
+
+  add_index "books", ["list_id"], name: "index_books_on_list_id", using: :btree
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -36,7 +46,10 @@ ActiveRecord::Schema.define(version: 20151216035708) do
     t.datetime "updated_at",   null: false
     t.integer  "category_id"
     t.string   "movie_number"
+    t.integer  "user_id"
   end
+
+  add_index "lists", ["user_id"], name: "index_lists_on_user_id", using: :btree
 
   create_table "lists_categories", force: :cascade do |t|
     t.integer "list_id"
@@ -52,7 +65,10 @@ ActiveRecord::Schema.define(version: 20151216035708) do
     t.string   "picture"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "list_id"
   end
+
+  add_index "movies", ["list_id"], name: "index_movies_on_list_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "first_name"
@@ -79,4 +95,7 @@ ActiveRecord::Schema.define(version: 20151216035708) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "books", "lists"
+  add_foreign_key "lists", "users"
+  add_foreign_key "movies", "lists"
 end

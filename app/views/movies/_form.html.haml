@@ -1,17 +1,4 @@
 .movie-form{style: "display: inline-block;"}
   .box.pull-left
-  = form_for(@movie) do |f|
-    - if @movie.errors.any?
-      #error_explanation
-        %h2
-          = pluralize(@movie.errors.count, "error")
-          prohibited this movie from being saved:
-        %ul
-          - @movie.errors.full_messages.each do |message|
-            %li= message
-
+  = f.fields_for(@movie, :remote=>true) do |f|
     %select.select-movie
-    -# = f.text_field :name
-    -# .actions
-    -#   = f.submit
-  .other-options

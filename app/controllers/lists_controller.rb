@@ -16,6 +16,10 @@ class ListsController < ApplicationController
   # GET /Lists/new
   def new
     @list = List.new
+    3.times do
+      movie = @list.movies.build
+    end
+    # @list.category.build
   end
 
   # GET /Lists/1/edit
@@ -26,7 +30,7 @@ class ListsController < ApplicationController
   # POST /Lists.json
   def create
     @list = List.new(list_params)
-    @movie = Movie.new
+    # @movie = Movie.new
 
     respond_to do |format|
       if @list.save
@@ -73,6 +77,6 @@ class ListsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def list_params
-      params.require(:list).permit(:name, :category_id)
+      params.require(:list).permit(:name, :user_id, category_attributes: [:id, :name], movies_attributes: [:id, :name, :picture])
     end
 end

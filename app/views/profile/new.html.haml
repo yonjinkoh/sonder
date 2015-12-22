@@ -11,88 +11,30 @@
         .category= category.name
   .top-buffer
   .slider-for
-    .simplists
-      .simplist.book-simplist
-        %h1.pull-left 1
-        = render partial: "movies/form"
-      .simplist.book-simplist
-        %h1.pull-left 2
-        .simplist-image.book-or-movie-image.pull-left
-          = image_tag("content/book2.jpg", class: "content", alt: "Favorite Movie")
-        .book-info.pull-left
-          .book-title Speak Memory
-          .book-author Vladimir Nabokov
-      .simplist.book-simplist
-        %h1.pull-left 3
-        .simplist-image.book-or-movie-image.pull-left
-          = image_tag("content/book3.jpg", class: "content", alt: "Favorite Movie")
-        .book-info.pull-left
-          .book-title East of Eden (1978)
-          .book-author John Steinbeck
-      .simplist.book-simplist
-        %h1.pull-left 4
-        .simplist-image.book-or-movie-image.pull-left
-          = image_tag("content/book4.jpg", class: "content", alt: "Favorite Movie")
-        .book-info.pull-left
-          .book-title East of Eden (1978)
-          .book-author John Steinbeck
-      .simplist.book-simplist
-        %h1.pull-left 5
-        .simplist-image.book-or-movie-image.pull-left
-          = image_tag("content/book5.jpg", class: "content", alt: "Favorite Movie")
-        .book-info.pull-left
-          .book-title East of Eden (1978)
-          .book-author John Steinbeck
-      .simplist.book-simplist
-        %h1.pull-left 6
-        .simplist-image.book-or-movie-image.pull-left
-          = image_tag("content/book6.jpg", class: "content", alt: "Favorite Movie")
-        .book-info.pull-left
-          .book-title East of Eden (1978)
-          .book-author John Steinbeck
-    .simplists
-      .simplist.book-simplist
-        %h1.pull-left 1
-        .simplist-image.book-or-movie-image.pull-left
-          = image_tag("content/movie1.jpg", class: "content", alt: "Favorite Movie")
-        .book-info.pull-left
-          .book-title The Parent Trap (1998)
-          .book-author Nancy Meyers
-      .simplist.book-simplist
-        %h1.pull-left 2
-        .simplist-image.book-or-movie-image.pull-left
-          = image_tag("content/movie2.jpg", class: "content", alt: "Favorite Movie")
-        .book-info.pull-left
-          .book-title Breathless (1960)
-          .book-author Jean-Luc Godard
-      .simplist.book-simplist
-        %h1.pull-left 3
-        .simplist-image.book-or-movie-image.pull-left
-          = image_tag("content/movie3.jpg", class: "content", alt: "Favorite Movie")
-        .book-info.pull-left
-          .book-title East of Eden (1978)
-          .book-author John Steinbeck
-      .simplist.book-simplist
-        %h1.pull-left 4
-        .simplist-image.book-or-movie-image.pull-left
-          = image_tag("content/movie4.jpg", class: "content", alt: "Favorite Movie")
-        .book-info.pull-left
-          .book-title East of Eden (1978)
-          .book-author John Steinbeck
-      .simplist.book-simplist
-        %h1.pull-left 5
-        .simplist-image.book-or-movie-image.pull-left
-          = image_tag("content/movie5.jpg", class: "content", alt: "Favorite Movie")
-        .book-info.pull-left
-          .book-title East of Eden (1978)
-          .book-author John Steinbeck
-      .simplist.book-simplist
-        %h1.pull-left 6
-        .simplist-image.book-or-movie-image.pull-left
-          = image_tag("content/movie6.jpg", class: "content", alt: "Favorite Movie")
-        .book-info.pull-left
-          .book-title East of Eden (1978)
-          .book-author John Steinbeck
+    = form_for(@movielist) do |f|
+      .simplists
+        = f.fields_for(:movies) do |movie_form|
+          .simplist.book-simplist
+            %h1.pull-left #{movie_form.index+1}
+            .enter-new-movie
+              .movie-form{style: "display: inline-block;"}
+                .box.pull-left
+                %select.select-movie
+                = movie_form.text_field :name
+                = movie_form.text_field :picture
+      = f.submit
+    = form_for(@movielist) do |f|
+      .simplists
+        = f.fields_for(:movies) do |movie_form|
+          .simplist.book-simplist
+            %h1.pull-left #{movie_form.index+1}
+            .enter-new-movie
+              .movie-form{style: "display: inline-block;"}
+                .box.pull-left
+                %select.select-movie
+                = movie_form.text_field :name
+                = movie_form.text_field :picture
+      = f.submit
     .simplists
       .simplist
         %h1.pull-left 1
@@ -104,49 +46,6 @@
         .quote.pull-left
           .quote-text It takes 20 years to build a reputation and five minutes to ruin it. If you think about that, you’ll do things differently.
           .quote-author Warren Buffett
-    .simplists
-      .simplist.song-simplist
-        %h1.pull-left 1
-        .simplist-image.song-image.pull-left
-          = image_tag("content/song1.jpg", class: "content", alt: "Favorite Movie")
-        .song-info.pull-left
-          .song-title The Parent Trap (1998)
-          .song-author Nancy Meyers
-      .simplist.song-simplist
-        %h1.pull-left 2
-        .simplist-image.book-or-movie-image.pull-left
-          = image_tag("content/song2.jpg", class: "content", alt: "Favorite Movie")
-        .book-info.pull-left
-          .book-title Breathless (1960)
-          .book-author Jean-Luc Godard
-      .simplist.song-simplist
-        %h1.pull-left 3
-        .simplist-image.book-or-movie-image.pull-left
-          = image_tag("content/song3.jpg", class: "content", alt: "Favorite Movie")
-        .book-info.pull-left
-          .book-title East of Eden (1978)
-          .book-author John Steinbeck
-      .simplist.song-simplist
-        %h1.pull-left 4
-        .simplist-image.book-or-movie-image.pull-left
-          = image_tag("content/song4.jpg", class: "content", alt: "Favorite Movie")
-        .book-info.pull-left
-          .book-title East of Eden (1978)
-          .book-author John Steinbeck
-      .simplist.song-simplist
-        %h1.pull-left 5
-        .simplist-image.song-image.pull-left
-          = image_tag("content/song5.jpg", class: "content", alt: "Favorite Movie")
-        .book-info.pull-left
-          .book-title East of Eden (1978)
-          .book-author John Steinbeck
-      .simplist.song-simplist
-        %h1.pull-left 6
-        .simplist-image.song-image.pull-left
-          = image_tag("content/song6.jpg", class: "content", alt: "Favorite Movie")
-        .book-info.pull-left
-          .book-title East of Eden (1978)
-          .book-author John Steinbeck
 
 :javascript
 
