@@ -1,57 +1,64 @@
 $(document).ready(function(){
 
-function textFormatResult(text) {
-  var markup = "<table class='text-result'><tr>";
+  function textFormatResult(text) {
+    var markup = "<table class='text-result'><tr>";
 
-  if (text.volumeInfo) {
-
-        if (text.volumeInfo.imageLinks.smallThumbnail !== undefined) {
-            markup += "<td class='text-image'><img src='" + text.volumeInfo.imageLinks.smallThumbnail + "'/></td>";
-        }
-        if (text.volumeInfo.title !== undefined) {
-            markup += "<td class='text-info'><div class='movie-title'> Title: " + text.volumeInfo.title + "</div>";
-        }
-        if (text.volumeInfo.authors !== undefined) {
-            markup += "<div class='text-author'> Author: " + text.volumeInfo.authors + "</div>";
-        }
-        if (text.volumeInfo.publisher !== undefined) {
-            markup += "<div class='text-publisher'> Publisher: " + text.volumeInfo.publisher + "</div>";
-        }
-        if (text.volumeInfo.publishedDate !== undefined) {
-            markup += "<div class='text-published'> Published: " + text.volumeInfo.publishedDate + "</div></td>";
-        }
-        markup += "</td></tr></table>"
-        return markup;
-  }
-}
-
-//jquery
-function textFormatSelection(text) {
-    // $('#cover').attr('src', text.volumeInfo.imageLinks.thumbnail);
-    // $('#outset').css({"border-style" : "outset", "visibility" : "visible"});
-    // $('#preview').attr('href', text.volumeInfo.previewLink);
-    // $('#previewLink').css('visibility', 'visible');
-    // $('#cover').attr('title', text.volumeInfo.description);
-    // $("#title").val(text.volumeInfo.title);
-    // $("#author").val(text.volumeInfo.authors);
-    // $("#publisher").val(text.volumeInfo.publisher);
-    // $("#published").val(text.volumeInfo.publishedDate);
-    // $("#picURL").val(text.volumeInfo.imageLinks.thumbnail);
-    // $("#preURL").val(text.volumeInfo.previewLink);
-    // $("#isbn10").val(text.volumeInfo.industryIdentifiers[0].identifier);
-    // $("#isbn13").val(text.volumeInfo.industryIdentifiers[1].identifier);
-    if (text.volumeInfo) {
-      return text.volumeInfo.title;
+    console.log(text);
+    if (text.volumeInfo !== undefined) {
+          if (text.volumeInfo.imageLinks !== undefined) {
+              markup += "<td class='text-image'><img src='" + text.volumeInfo.imageLinks.smallThumbnail + "'/></td>";
+          }
+          if (text.volumeInfo.title !== undefined) {
+              markup += "<td class='text-info'><div class='movie-title'> Title: " + text.volumeInfo.title + "</div>";
+          }
+          if (text.volumeInfo.authors !== undefined) {
+              markup += "<div class='text-author'> Author: " + text.volumeInfo.authors + "</div>";
+          }
+          if (text.volumeInfo.publisher !== undefined) {
+              markup += "<div class='text-publisher'> Publisher: " + text.volumeInfo.publisher + "</div>";
+          }
+          if (text.volumeInfo.publishedDate !== undefined) {
+              markup += "<div class='text-published'> Published: " + text.volumeInfo.publishedDate + "</div></td>";
+          }
+          markup += "</td></tr></table>"
+          return markup;
     }
-}
+  }
+
+  //jquery
+  function textFormatSelection(text) {
+      // $('#cover').attr('src', text.volumeInfo.imageLinks.thumbnail);
+      // $('#outset').css({"border-style" : "outset", "visibility" : "visible"});
+      // $('#preview').attr('href', text.volumeInfo.previewLink);
+      // $('#previewLink').css('visibility', 'visible');
+      // $('#cover').attr('title', text.volumeInfo.description);
+      // $("#title").val(text.volumeInfo.title);
+      // $("#author").val(text.volumeInfo.authors);
+      // $("#publisher").val(text.volumeInfo.publisher);
+      // $("#published").val(text.volumeInfo.publishedDate);
+      // $("#picURL").val(text.volumeInfo.imageLinks.thumbnail);
+      // $("#preURL").val(text.volumeInfo.previewLink);
+      // $("#isbn10").val(text.volumeInfo.industryIdentifiers[0].identifier);
+      // $("#isbn13").val(text.volumeInfo.industryIdentifiers[1].identifier);
+      if (text.volumeInfo) {
+        return text.volumeInfo.title;
+      }
+  }
+
+
+    function fooCallback(json) {
+        return json;
+    }
 
     $(".select-book").select2({
         placeholder: "Click to Search for a Text",
         minimumInputLength: 3,
         ajax: {
-            cache: true,
+            cache: false,
+            jsonp: "callback",
+            jsonpCallback: 'fooCallback',
             url: "https://www.googleapis.com/books/v1/volumes",
-            dataType: 'jsonp',
+            dataType: 'json',
             delay: 250,
             data: function (params, page) { // page is the one-based page number tracked by Select2
                 return {
@@ -62,20 +69,17 @@ function textFormatSelection(text) {
                     key: "AIzaSyCALnnPrGEdIXTlhFvgA5BSFDL6D2VfzNY"
                 };
             },
-            processResults: function (data, params) {
-              params.page = params.page || 1;
-              return {
-                results: data.items,
-                pagination: {
-                  more: (params.page * 30) < data.total_count
-                }
-              };
+            processResults: function (data, page) {
+              var more = (page * 10) < data.more; // whether or not there are more results available
+
+                                // notice we return the value of more so Select2 knows if more results can be loaded
+
+              return { results: data.items, more: more };
             },
         },
         escapeMarkup: function (m) { return m; }, // we do not want to escape markup since we are displaying html in results
         templateResult: textFormatResult,
         templateSelection: textFormatSelection,
-        // dropdownCssClass: "bigdrop", // apply css that makes the dropdown taller
     });
 
 });
