@@ -6,7 +6,7 @@
         = image_tag(@user.picture.url)
         .plus-sign.absolute-center
           %a{:href=>"javascript:void(0);", :id => "plus-sign-link", :style=>"color: white"} +
-        = f.file_field :picture,:class=>"hidden", :id => "upload-photo"
+        = f.file_field :picture,:class=>"hidden", :id => "upload-photo", remote: true
       .field
         %h3
           = f.text_field :first_name, :class => "submit-form", :placeholder => "Add Your Name"

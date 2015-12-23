@@ -35,27 +35,21 @@
             .enter-new-movie
               .movie-form{style: "display: inline-block;"}
                 .box.pull-left
+                  %img#cover{:rel => "tooltip", :src => "", :title => ""}/
                 %select.select-book.bigdrop{:style => "width: 450px", :type => "hidden"}
-                  %option                .movie-year
+                  %option
                 = book_form.text_field :name, class: "hidden"
                 = book_form.text_field :picture, class: "hidden"
                 .pull-right{:style => "font-size:smaller;"} Recommended: Search by ISBN, Author, or Title
-              -# %div{:style => "padding-left: 3em; font-size: 18px"}
-              -#   %section#left
-              -#     %br/
-              -#     %label.labelSize Book Title
-              -#     %input#title{:name => "title", :required => "required", :style => "width: 435px", :type => "text"}/
-              -#     %br/
-              -#     %section{:style => "float: right; padding-right: 15%"}
-              -#       %br/
+                %div.pull-right{:style => "padding-left: 3em; font-size: 18px"}
+                  %input.hidden#title{:name => "title", :required => "required", :type => "text"}
+                  %input.hidden#author{:name => "author", :required => "required", :type => "text"}
               -#       #outset{:style => "visibility: hidden"}
-              -#         %img#cover{:rel => "tooltip", :src => "", :title => ""}/
               -#       #previewLink{:style => "visibility: hidden"}
               -#         %a#preview{:href => "#", :name => "PreviewURL", :style => "padding-left: .7em", :target => "_blank"} Preview Text
               -#       %input#picURL{:name => "PictureURL", :type => "hidden", :value => ""}/
               -#       %input#preURL{:name => "PreviewURL", :type => "hidden", :value => ""}/
               -#     %label.labelSize Author
-              -#     %input#author{:name => "author", :required => "required", :type => "text"}/
               -#     %br/
               -#     %label.labelSize Publisher
               -#     %input#publisher{:name => "publisher", :required => "required", :type => "text"}/
