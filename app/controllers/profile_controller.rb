@@ -25,29 +25,15 @@ class ProfileController < ApplicationController
     current_user ? @user = current_user : @user = User.new
     @lists = current_user.lists
 
-
     # MOVE BELOW INTO USER MODEL
     @movielist = @lists.where(name:"Movies").first
-    5.times do
-      movie = @movielist.movies.build
-    end
 
     @booklist = @lists.where(name:"Books").first
-    5.times do
-      book = @booklist.books.build
-    end
 
     @quotelist = @lists.where(name:"Quotes").first
-    5.times do
-      quote = @quotelist.quotes.build
-    end
 
     @songlist = @lists.where(name:"Songs").first
-    # 5.times do
-    #   song = @songlist.songs.build
-    # end
 
-    # @movie = @movielist.movies.new
   end
 
 

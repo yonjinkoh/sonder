@@ -41,12 +41,30 @@ has_one :picture, dependent: :destroy
 
 def create_default_lists
   movielist = lists.find_or_create_by(name: "Movies", category_id: "2")
+  5.times do
+    movie = movielist.movies.build
+    movie.save
+  end
 
   booklist = lists.find_or_create_by(name: "Books", category_id: "1")
+  5.times do
+    book = booklist.books.build
+    book.save
+  end
+
 
   quotelist = lists.find_or_create_by(name: "Quotes", category_id: "3")
+  5.times do
+    quote = quotelist.quotes.build
+    quote.save
+  end
+
 
   songlist = lists.find_or_create_by(name: "Songs", category_id: "4")
+  5.times do
+    song = songlist.songs.build
+    song.save
+  end
 
 end
 

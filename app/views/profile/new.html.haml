@@ -44,24 +44,6 @@
                 %div.pull-right{:style => "padding-left: 3em; font-size: 18px"}
                   %input.hidden#title{:name => "title", :required => "required", :type => "text"}
                   %input.hidden#author{:name => "author", :required => "required", :type => "text"}
-              -#       #outset{:style => "visibility: hidden"}
-              -#       #previewLink{:style => "visibility: hidden"}
-              -#         %a#preview{:href => "#", :name => "PreviewURL", :style => "padding-left: .7em", :target => "_blank"} Preview Text
-              -#       %input#picURL{:name => "PictureURL", :type => "hidden", :value => ""}/
-              -#       %input#preURL{:name => "PreviewURL", :type => "hidden", :value => ""}/
-              -#     %label.labelSize Author
-              -#     %br/
-              -#     %label.labelSize Publisher
-              -#     %input#publisher{:name => "publisher", :required => "required", :type => "text"}/
-              -#     %br/
-              -#     %label.labelSize Publish Date
-              -#     %input#published{:name => "publishdate", :required => "required", :type => "text"}/
-              -#     %br/
-              -#     %label.labelSize ISBN 10
-              -#     %input#isbn10{:name => "isbn10", :required => "required", :type => "text"}/
-              -#     %br/
-              -#     %label.labelSize ISBN 13
-              -#     %input#isbn13{:name => "isbn13", :required => "required", :type => "text"}/
       %center= f.submit
     = form_for(@quotelist) do |f|
       .simplists
@@ -74,17 +56,17 @@
               .quote-author
                 = quote_form.text_field :source
       %center= f.submit
-    .simplists
-      .simplist
-        %h1.pull-left 1
-        .quote.pull-left
-          .quote-text We have to remember what’s important in life: friends, waffles, and work. But work has to come third.
-          .quote-author Leslie Knope
-      .simplist
-        %h1.pull-left 2
-        .quote.pull-left
-          .quote-text It takes 20 years to build a reputation and five minutes to ruin it. If you think about that, you’ll do things differently.
-          .quote-author Warren Buffett
+    = form_for(@songlist) do |f|
+      .simplists
+        = f.fields_for(:songs) do |song_form|
+          .simplist.song-simplist
+            %h1.pull-left #{song_form.index+1}
+            .simplist-image.song-image.pull-left
+              = image_tag("content/song1.jpg", class: "content", alt: "Favorite Movie")
+            .song-info.pull-left
+              .song-title The Parent Trap (1998)
+              .song-author Nancy Meyers
+
 
 :javascript
 
