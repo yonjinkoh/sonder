@@ -1,10 +1,10 @@
 $(document).ready(function(){
 
-  function insertMovie (html, movieImage, movieId, releaseDate) {
+  function insertSong (html, songImage, songTitle, songArtist) {
     $('.select2-container--open').siblings('.box').html(html);
-    $('.select2-container--open').siblings('input').first().val(movieId);
-    $('.select2-container--open').siblings('input').first().next().val(movieImage);
-    $('.select2-container--open').siblings('input').first().next().next().val(releaseDate);
+    $('.select2-container--open').siblings('input').first().val(songTitle);
+    $('.select2-container--open').siblings('input').first().next().val(songImage);
+    $('.select2-container--open').siblings('input').first().next().next().val(songArtist);
   }
 
   function formatSong (song) {
@@ -15,11 +15,19 @@ $(document).ready(function(){
           "<div class='select2-result-song__title'>" + song.trackName + "</div>";
     }
     return markup;
-
   }
 
   function formatSongSelection (song) {
-    return song.trackName;
+    if (song.artworkUrl100) {
+      var html = "<img src='" + song.artworkUrl100 + "'>"
+    }
+
+    var songImage = song.artworkUrl100;
+    var songTitle = song.trackName;
+    var songArtist = song.artist;
+    insertSong(html, songImage, songTitle, songArtist);
+
+    return song.trackName + " - " + song.artistName;
   }
 
 
@@ -29,6 +37,7 @@ $(document).ready(function(){
     ajax: {
       url: "https://itunes.apple.com/search",
       dataType: 'jsonp',
+      jsonpCallback: 'fooCallback',
       delay: 250,
       jsonp: "callback",
       // inputTooShort: false,
@@ -37,12 +46,22 @@ $(document).ready(function(){
           term: params.term, // search term
         };
       },
-      processResults: function (data, page) {
-        var more = (page * 10) < data.more; // whether or not there are more results available
+      processResults: function (data, params) {
+        params.page = params.page || 1;
 
-                          // notice we return the value of more so Select2 knows if more results can be loaded
+        var select2Data = $.map(data.results, function (obj) {
+                            obj.id = obj.trackId;
+                            obj.text = obj.trackName;
+                            return obj;
+        });
 
-        return { results: data.results, more: more };
+
+        return {
+          results: select2Data,
+          pagination: {
+            more: (params.page * 30) < data.total_count
+          }
+        };
       },
       cache: true
     },

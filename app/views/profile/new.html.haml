@@ -67,9 +67,11 @@
                   -# = image_tag("content/song1.jpg", class: "content", alt: "Favorite Movie")
                   %img#cover{:rel => "tooltip", :src => "", :title => ""}
                 %select.select-song
+                  %option
                 .song-info.pull-left
-                  .song-title The Parent Trap (1998)
-                  .song-author Nancy Meyers
+                = song_form.text_field :name, class: "hidden"
+                = song_form.text_field :picture, class: "hidden"
+                = song_form.text_field :artist, class: "hidden"
 
 
 
