@@ -35,7 +35,14 @@ class ProfileController < ApplicationController
     end
 
     @quotelist = @lists.where(name:"Quotes").first
+    5.times do
+      quote = @quotelist.quotes.build
+    end
+
     @songlist = @lists.where(name:"Songs").first
+    # 5.times do
+    #   song = @songlist.songs.build
+    # end
 
     # @movie = @movielist.movies.new
   end
