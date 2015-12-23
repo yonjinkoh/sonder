@@ -24,6 +24,9 @@ class ProfileController < ApplicationController
   def new
     current_user ? @user = current_user : @user = User.new
     @lists = current_user.lists
+
+
+    # MOVE BELOW INTO USER MODEL
     @movielist = @lists.where(name:"Movies").first
     5.times do
       movie = @movielist.movies.build
