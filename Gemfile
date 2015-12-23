@@ -13,6 +13,8 @@ gem "jquery-slick-rails"
 # Select2 is a jQuery based replacement for select boxes. It supports searching, remote data sets, and infinite scrolling of results.
 
 
+gem 'immigrant'
+
 gem 'devise'
 # use devise for secure user registration
 

@@ -23,20 +23,20 @@ class ProfileController < ApplicationController
 
   def new
     current_user ? @user = current_user : @user = User.new
-    @movielist = current_user.lists.new(category_id: '2')
+    @lists = current_user.lists
+    @movielist = @lists.where(name:"Movies").first
     5.times do
       movie = @movielist.movies.build
     end
 
-    @booklist = current_user.lists.new(category_id: '1')
+    @booklist = @lists.where(name:"Books").first
     5.times do
       book = @booklist.books.build
     end
 
-    @quotelist = current_user.lists.new(category_id: '3')
-    @songlist = current_user.lists.new(category_id: '4')
+    @quotelist = @lists.where(name:"Quotes").first
+    @songlist = @lists.where(name:"Songs").first
 
-    @lists = Category.all
     # @movie = @movielist.movies.new
   end
 

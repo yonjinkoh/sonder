@@ -7,10 +7,26 @@
   .top-buffer
   .categories.container-fluid
     .row.slider-nav
-      - @lists.each do |category|
-        .category= category.name
+      - @lists.each do |list|
+        .category= list.name
   .top-buffer
   .slider-for
+    = form_for(@movielist) do |f|
+      .simplists
+        = f.fields_for(:movies) do |movie_form|
+          .simplist
+            %h1.pull-left #{movie_form.index+1}
+            .enter-new-movie
+              .movie-form{style: "display: inline-block;"}
+                .box.pull-left
+                  - if movie_form.object.picture
+                    %img{:src => "https://image.tmdb.org/t/p/w154#{movie_form.object.picture}"}
+                %select.select-movie
+                  %option
+                = movie_form.text_field :name, class: "hidden"
+                = movie_form.text_field :picture, class: "hidden"
+                = movie_form.text_field :year, class: "hidden"
+      %center= f.submit(class: "btn")
     = form_for(@booklist) do |f|
       .simplists
         = f.fields_for(:movies) do |movie_form|
@@ -23,20 +39,7 @@
                 .movie-year
                 = movie_form.text_field :name
                 = movie_form.text_field :picture
-      = f.submit
-    = form_for(@movielist) do |f|
-      .simplists
-        = f.fields_for(:movies) do |movie_form|
-          .simplist
-            %h1.pull-left #{movie_form.index+1}
-            .enter-new-movie
-              .movie-form{style: "display: inline-block;"}
-                .box.pull-left
-                %select.select-movie
-                = movie_form.text_field :name, class: "hidden"
-                = movie_form.text_field :picture, class: "hidden"
-                = movie_form.text_field :year, class: "hidden"
-      = f.submit
+      %center= f.submit
     .simplists
       .simplist
         %h1.pull-left 1
@@ -64,4 +67,17 @@
 
   $(function() {
     $('.category').first().addClass('active');
+  });
+
+  $(function() {
+
+    function insertPlaceholder(placeholder) {
+      var moviename = $(placeholder).parents('.select2').siblings('input').first().val();
+      $(placeholder).html(moviename);
+    };
+
+    $( ".select2-selection__placeholder" ).each(function(){
+      insertPlaceholder(this);
+    });
+
   });

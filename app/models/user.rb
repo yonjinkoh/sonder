@@ -35,13 +35,19 @@ devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
 mount_uploader :picture, PictureUploader
-has_many :lists
-has_one :picture
+has_many :lists, dependent: :destroy
+has_one :picture, dependent: :destroy
 
 
 def create_default_lists
-  movielist = lists.find_or_create_by(category_id: "2", name: "Movies")
-  booklist = lists.find_or_create_by(category_id: "1")
+  movielist = lists.find_or_create_by(name: "Movies", category_id: "2")
+
+  booklist = lists.find_or_create_by(name: "Books", category_id: "1")
+
+  quotelist = lists.find_or_create_by(name: "Quotes", category_id: "3")
+
+  songlist = lists.find_or_create_by(name: "Songs", category_id: "4")
+
 end
 
 end
