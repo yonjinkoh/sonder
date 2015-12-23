@@ -35,15 +35,15 @@
             .enter-new-movie
               .movie-form{style: "display: inline-block;"}
                 .box.pull-left
-                  %img#cover{:rel => "tooltip", :src => "", :title => ""}/
-                %select.select-book.bigdrop{:style => "width: 450px", :type => "hidden"}
+                  - if book_form.object.picture
+                    %img{:src => "#{book_form.object.picture}"}
+                %select.select-book
                   %option
                 = book_form.text_field :name, class: "hidden"
                 = book_form.text_field :picture, class: "hidden"
+                = book_form.text_field :published, class: "hidden"
                 .pull-right{:style => "font-size:smaller;"} Recommended: Search by ISBN, Author, or Title
                 %div.pull-right{:style => "padding-left: 3em; font-size: 18px"}
-                  %input.hidden#title{:name => "title", :required => "required", :type => "text"}
-                  %input.hidden#author{:name => "author", :required => "required", :type => "text"}
       %center= f.submit
     = form_for(@quotelist) do |f|
       .simplists
@@ -64,7 +64,8 @@
             .enter-new-movie
               .movie-form{style: "display: inline-block;"}
                 .simplist-image.song-image.pull-left
-                  -# = image_tag("content/song1.jpg", class: "content", alt: "Favorite Movie")
+                  - if song_form.object.picture
+                    %img{:src => "#{song_form.object.picture}"}
                   %img#cover{:rel => "tooltip", :src => "", :title => ""}
                 %select.select-song
                   %option
@@ -72,6 +73,7 @@
                 = song_form.text_field :name, class: "hidden"
                 = song_form.text_field :picture, class: "hidden"
                 = song_form.text_field :artist, class: "hidden"
+      %center= f.submit
 
 
 

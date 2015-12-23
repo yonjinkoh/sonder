@@ -120,19 +120,26 @@ select {
 //   img {width: 100px;}
 // }
 
-.select2-result-movie__poster {
+.select2-result-thing__poster {
   float: left;
   img {
   width: 92px;}
 }
 
-.select2-result-movie__title {
+.select2-result-thing__meta {
   float: left;
   max-width: 60%;
   padding: 0px 5px;
+  .select2-result-thing__title {
+    font-weight:600;
+  }
 }
 
 .select2 {
   width: 70% !important;
   float: right;
+}
+
+.select2-result-thing__description {
+
 }

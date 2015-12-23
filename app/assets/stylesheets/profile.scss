@@ -2,10 +2,22 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
+.text-image {
+  width:75px;
+  overflow:hidden;
+  img {width:100%;}
+}
+
 .song-image {
   width:120px;
   height:120px;
+  overflow: hidden;
   background-color: lightgray;
+  img {
+    width:100%;
+
+  }
 }
 
 .enter-new-movie {
