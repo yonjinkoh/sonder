@@ -1,0 +1,55 @@
+$(document).ready(function(){
+
+  function insertMovie (html, movieImage, movieId, releaseDate) {
+    $('.select2-container--open').siblings('.box').html(html);
+    $('.select2-container--open').siblings('input').first().val(movieId);
+    $('.select2-container--open').siblings('input').first().next().val(movieImage);
+    $('.select2-container--open').siblings('input').first().next().next().val(releaseDate);
+  }
+
+  function formatSong (song) {
+    if (song.artworkUrl100) {
+      var markup = "<div class='select2-result-song clearfix'>" +
+        "<div class='select2-result-song__artwork pull-left'><img src='" + song.artworkUrl100 + "' /></div>" +
+        "<div class='select2-result-song__meta pull-left'>" +
+          "<div class='select2-result-song__title'>" + song.trackName + "</div>";
+    }
+    return markup;
+
+  }
+
+  function formatSongSelection (song) {
+    return song.trackName;
+  }
+
+
+
+  $(".select-song").select2({
+    placeholder: "What's your #1 movie?",
+    ajax: {
+      url: "https://itunes.apple.com/search",
+      dataType: 'jsonp',
+      delay: 250,
+      jsonp: "callback",
+      // inputTooShort: false,
+      data: function (params) {
+        return {
+          term: params.term, // search term
+        };
+      },
+      processResults: function (data, page) {
+        var more = (page * 10) < data.more; // whether or not there are more results available
+
+                          // notice we return the value of more so Select2 knows if more results can be loaded
+
+        return { results: data.results, more: more };
+      },
+      cache: true
+    },
+    escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
+    minimumInputLength: 1,
+    templateResult: formatSong,
+    templateSelection: formatSongSelection,
+  });
+
+});

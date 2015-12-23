@@ -61,11 +61,16 @@
         = f.fields_for(:songs) do |song_form|
           .simplist.song-simplist
             %h1.pull-left #{song_form.index+1}
-            .simplist-image.song-image.pull-left
-              = image_tag("content/song1.jpg", class: "content", alt: "Favorite Movie")
-            .song-info.pull-left
-              .song-title The Parent Trap (1998)
-              .song-author Nancy Meyers
+            .enter-new-movie
+              .movie-form{style: "display: inline-block;"}
+                .simplist-image.song-image.pull-left
+                  -# = image_tag("content/song1.jpg", class: "content", alt: "Favorite Movie")
+                  %img#cover{:rel => "tooltip", :src => "", :title => ""}
+                %select.select-song
+                .song-info.pull-left
+                  .song-title The Parent Trap (1998)
+                  .song-author Nancy Meyers
+
 
 
 :javascript
