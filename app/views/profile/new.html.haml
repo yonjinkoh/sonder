@@ -2,7 +2,7 @@
   .edit-banner
     Welcome to your profile on Simplist! Click to change things.
 
-.row.hidden
+.row
   .userform= render partial: "userform"
   .top-buffer
   .categories.container-fluid
@@ -87,8 +87,9 @@
 :javascript
 
   $(function() {
-    $('.row.hidden').css('visibility','visible').hide().fadeIn().removeClass('hidden');
     $('.category').first().addClass('active');
+    sr = new ScrollReveal();
+    sr.reveal('.simplist', {reset: true});
   });
 
 
