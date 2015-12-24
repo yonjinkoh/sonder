@@ -31,7 +31,7 @@ class ProfileController < ApplicationController
     @booklist = @lists.where(name:"Books").first
 
     @quotelist = @lists.where(name:"Quotes").first
-
+    @quotes = @quotelist.quotes.sort
     @songlist = @lists.where(name:"Songs").first
 
   end

@@ -185,6 +185,24 @@
         .quote-text{font-weight:100;
           font-size: 30px;
           width:500px;
+          textarea {
+            width: 100%;
+            &:-webkit-input-placeholder {
+               font-style: italic;
+            }
+
+            &:-moz-placeholder { /* Firefox 18- */
+               font-style:italic;
+            }
+
+            &:-moz-placeholder {  /* Firefox 19+ */
+              font-style:italic;
+            }
+
+            &:-ms-input-placeholder {
+              font-style:italic;
+            }
+          }
         }
         .quote-author {
           font-size:20px;

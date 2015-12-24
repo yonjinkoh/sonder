@@ -27,7 +27,7 @@
                 = movie_form.text_field :picture, class: "hidden"
                 = movie_form.text_field :year, class: "hidden"
       %center= f.submit(class: "btn hidden submit-movielist-btn")
-    = form_for(@booklist) do |f|
+    = form_for(@booklist, remote: true) do |f|
       .simplists
         = f.fields_for(:books) do |book_form|
           .simplist
@@ -44,19 +44,26 @@
                 = book_form.text_field :published, class: "hidden"
                 .pull-right{:style => "font-size:smaller;"} Recommended: Search by ISBN, Author, or Title
                 %div.pull-right{:style => "padding-left: 3em; font-size: 18px"}
-      %center= f.submit(class: "main-link")
-    = form_for(@quotelist) do |f|
+      %center= f.submit(class: "btn hidden submit-booklist-btn")
+    = form_for(@quotelist, remote: true) do |f|
       .simplists
-        = f.fields_for(:quotes) do |quote_form|
+        = f.fields_for(:quotes, @quotes) do |quote_form|
           .simplist
             %h1.pull-left #{quote_form.index+1}
             .quote.pull-left
               .quote-text
+                -# - if quote_form.index == 0
+                  = quote_form.text_area :content, placeholder: "EX: 'I WILL SLEEP WHEN I'M DEAD.'"
+                -# - else
                 = quote_form.text_area :content
               .quote-author
+                -# - if quote_form.index == 0
+                  = quote_form.text_field :source, placeholder: "EX: Warren Zevon"
+                -# - else
                 = quote_form.text_field :source
-      %center= f.submit
-    = form_for(@songlist) do |f|
+
+      %center= f.submit(class: "btn hidden submit-quotelist-btn")
+    = form_for(@songlist, remote: true) do |f|
       .simplists
         = f.fields_for(:songs) do |song_form|
           .simplist.song-simplist
@@ -73,7 +80,7 @@
                 = song_form.text_field :name, class: "hidden"
                 = song_form.text_field :picture, class: "hidden"
                 = song_form.text_field :artist, class: "hidden"
-      %center= f.submit
+      %center= f.submit(class: "hidden submit-songlist-btn btn")
 
 
 
@@ -88,6 +95,18 @@
 
     $(".select-movie").on("change", function (e) {
       $( ".submit-movielist-btn" ).trigger( "click" );
+    });
+
+    $(".select-song").on("change", function (e) {
+      $( ".submit-songlist-btn" ).trigger( "click" );
+    });
+
+    $(".quote").on("change", function (e) {
+      $( ".submit-quotelist-btn" ).trigger( "click" );
+    });
+
+    $(".select-book").on("change", function (e) {
+      $( ".submit-booklist-btn" ).trigger( "click" );
     });
 
     function insertPlaceholder(placeholder) {
