@@ -52,15 +52,15 @@
             %h1.pull-left #{quote_form.index+1}
             .quote.pull-left
               .quote-text
-                -# - if quote_form.index == 0
+                - if quote_form.index == 0
                   = quote_form.text_area :content, placeholder: "EX: 'I WILL SLEEP WHEN I'M DEAD.'"
-                -# - else
-                = quote_form.text_area :content
+                - else
+                  = quote_form.text_area :content
               .quote-author
-                -# - if quote_form.index == 0
+                - if quote_form.index == 0
                   = quote_form.text_field :source, placeholder: "EX: Warren Zevon"
-                -# - else
-                = quote_form.text_field :source
+                - else
+                  = quote_form.text_field :source
 
       %center= f.submit(class: "btn hidden submit-quotelist-btn")
     = form_for(@songlist, remote: true) do |f|
