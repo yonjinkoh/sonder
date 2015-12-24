@@ -93,6 +93,10 @@
 
   $(function() {
 
+    window.sr = ScrollReveal();
+    sr.reveal('.categories');
+    sr.reveal('.simplist');
+
     $(".select-movie").on("change", function (e) {
       $( ".submit-movielist-btn" ).trigger( "click" );
     });
