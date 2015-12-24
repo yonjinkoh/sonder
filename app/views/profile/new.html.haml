@@ -19,7 +19,7 @@
             .enter-new-movie
               .movie-form{style: "display: inline-block;"}
                 .box.pull-left
-                  - if movie_form.object.picture
+                  - if movie_form.object.picture.empty? != true
                     %img{:src => "https://image.tmdb.org/t/p/w154#{movie_form.object.picture}"}
                 %select.select-movie
                   %option

@@ -9,10 +9,10 @@ $(document).ready(function(){
 
   function formatSong (song) {
     if (song.artworkUrl100) {
-      var markup = "<div class='select2-result-song clearfix'>" +
-        "<div class='select2-result-song__artwork pull-left'><img src='" + song.artworkUrl100 + "' /></div>" +
-        "<div class='select2-result-song__meta pull-left'>" +
-          "<div class='select2-result-song__title'>" + song.trackName + "</div>";
+      var markup = "<div class='select2-result-thing clearfix'>" +
+        "<div class='select2-result-thing__artwork pull-left'><img src='" + song.artworkUrl100 + "' /></div>" +
+        "<div class='select2-result-thing__meta pull-left'>" +
+          "<div class='select2-result-thing__title'>" + song.trackName + "</div>";
     }
     return markup;
   }
