@@ -21,19 +21,24 @@ class ProfileController < ApplicationController
   def search
   end
 
-  def new
+  def show
     current_user ? @user = current_user : @user = User.new
     @lists = current_user.lists
-
-    # MOVE BELOW INTO USER MODEL
     @movielist = @lists.where(name:"Movies").first
-
     @booklist = @lists.where(name:"Books").first
-
     @quotelist = @lists.where(name:"Quotes").first
     @quotes = @quotelist.quotes.sort
     @songlist = @lists.where(name:"Songs").first
+  end
 
+  def new
+    current_user ? @user = current_user : @user = User.new
+    @lists = current_user.lists
+    @movielist = @lists.where(name:"Movies").first
+    @booklist = @lists.where(name:"Books").first
+    @quotelist = @lists.where(name:"Quotes").first
+    @quotes = @quotelist.quotes.sort
+    @songlist = @lists.where(name:"Songs").first
   end
 
 
