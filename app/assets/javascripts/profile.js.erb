@@ -1,6 +1,8 @@
 $(document).ready(function(){
 
-  $('.slider-for').on('afterChange', function(event, slick, direction){
+  sr = new ScrollReveal();
+  sr.reveal('.simplist', {reset: true});
+  $('.slider-for').on('beforeChange', function(slick, currentSlide, nextSlide){
 
   });
 

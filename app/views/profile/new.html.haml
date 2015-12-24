@@ -2,7 +2,7 @@
   .edit-banner
     Welcome to your profile on Simplist! Click to change things.
 
-.row
+.row.hidden
   .userform= render partial: "userform"
   .top-buffer
   .categories.container-fluid
@@ -87,17 +87,12 @@
 :javascript
 
   $(function() {
+    $('.row.hidden').css('visibility','visible').hide().fadeIn().removeClass('hidden');
     $('.category').first().addClass('active');
   });
 
 
   $(function() {
-
-
-    window.sr = ScrollReveal();
-    sr.reveal('.userform');
-    sr.reveal('.categories');
-    sr.reveal('.simplist',{reset: true});
 
     $(".select-movie").on("change", function (e) {
       $( ".submit-movielist-btn" ).trigger( "click" );
