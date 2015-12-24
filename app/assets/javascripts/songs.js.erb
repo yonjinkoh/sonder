@@ -13,7 +13,7 @@ $(document).ready(function(){
         "<div class='select2-result-thing__artwork pull-left'><img src='" + song.artworkUrl100 + "' /></div>" +
         "<div class='select2-result-thing__meta pull-left'>" +
           "<div class='select2-result-thing__title'>" + song.trackName + "</div>";
-    }
+    } else { markup = " "}
     return markup;
   }
 
@@ -27,8 +27,10 @@ $(document).ready(function(){
     var songTitle = song.trackName;
     var songArtist = song.artistName;
     insertSong(html, songImage, songTitle, songArtist);
-
-    return song.trackName + " - " + song.artistName;
+    var markup = "<strong>" + song.trackName + "</strong><em>"+ "<br>" + song.artistName + "</em>";
+    if (song.trackName && song.artistName) {
+      return markup;
+    } else { return ""}
   }
 
 

@@ -39,6 +39,7 @@
 
 :focus {outline:none !important;}
 
+
 body {
   font-family: 'Source Sans Pro', sans-serif;
   // font-family: 'Helvetica Neue';
@@ -152,4 +153,10 @@ body {
  .no-gutter > [class*='col-'] {
      padding-right:0;
      padding-left:0;
+ }
+
+ .btn {
+   background-color: white;
+   color: black;
+   border: 1px solid black;
  }

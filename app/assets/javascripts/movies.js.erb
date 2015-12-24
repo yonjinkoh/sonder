@@ -1,5 +1,7 @@
 $(document).ready(function(){
 
+
+
   function insertMovie (html, movieImage, movieId, releaseDate) {
     $('.select2-container--open').siblings('.box').html(html);
     $('.select2-container--open').siblings('input').first().val(movieId);
@@ -20,6 +22,7 @@ $(document).ready(function(){
         "<div class='select2-result-thing__meta'>" +
           "<div class='select2-result-thing__title'>" + movie.title + "</div>";
     } else {
+      return " ";
     }
 
     if (movie.tagline) {
@@ -41,6 +44,9 @@ $(document).ready(function(){
     var releaseDate = movie.release_date;
     insertMovie(html, movieImage, movieId, releaseDate);
     return movie.title;
+    if (movie.title !== 'undefined') {
+      return movie.title;
+    } else { return "" }
   }
 
 

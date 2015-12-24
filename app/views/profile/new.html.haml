@@ -19,14 +19,14 @@
             .enter-new-movie
               .movie-form{style: "display: inline-block;"}
                 .box.pull-left
-                  - if movie_form.object.picture.empty? != true
+                  - if movie_form.object.picture && movie_form.object.picture.empty? != true
                     %img{:src => "https://image.tmdb.org/t/p/w154#{movie_form.object.picture}"}
                 %select.select-movie
                   %option
                 = movie_form.text_field :name, class: "hidden"
                 = movie_form.text_field :picture, class: "hidden"
                 = movie_form.text_field :year, class: "hidden"
-      %center= f.submit(class: "btn")
+      %center= f.submit(class: "btn hidden submit-movielist-btn")
     = form_for(@booklist) do |f|
       .simplists
         = f.fields_for(:books) do |book_form|
@@ -44,7 +44,7 @@
                 = book_form.text_field :published, class: "hidden"
                 .pull-right{:style => "font-size:smaller;"} Recommended: Search by ISBN, Author, or Title
                 %div.pull-right{:style => "padding-left: 3em; font-size: 18px"}
-      %center= f.submit
+      %center= f.submit(class: "main-link")
     = form_for(@quotelist) do |f|
       .simplists
         = f.fields_for(:quotes) do |quote_form|
@@ -83,12 +83,18 @@
     $('.category').first().addClass('active');
   });
 
+
   $(function() {
+
+    $(".select-movie").on("change", function (e) {
+      $( ".submit-movielist-btn" ).trigger( "click" );
+    });
 
     function insertPlaceholder(placeholder) {
       var moviename = $(placeholder).parents('.select2').siblings('input').first().val();
       $(placeholder).html(moviename);
     };
+
 
     $( ".select2-selection__placeholder" ).each(function(){
       insertPlaceholder(this);
