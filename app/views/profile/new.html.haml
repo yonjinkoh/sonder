@@ -11,7 +11,7 @@
         .category= list.name
   .top-buffer
   .slider-for
-    = form_for(@movielist) do |f|
+    = form_for(@movielist, remote: true) do |f|
       .simplists
         = f.fields_for(:movies) do |movie_form|
           .simplist

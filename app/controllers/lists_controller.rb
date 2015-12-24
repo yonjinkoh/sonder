@@ -52,6 +52,7 @@ class ListsController < ApplicationController
       if @list.update(list_params)
         format.html { redirect_to '/profile/new', notice: 'List was successfully updated.' }
         format.json { render :show, status: :ok, location: @list }
+        format.js
       else
         format.html { render :edit }
         format.json { render json: @list.errors, status: :unprocessable_entity }
