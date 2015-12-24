@@ -93,9 +93,11 @@
 
   $(function() {
 
+
     window.sr = ScrollReveal();
+    sr.reveal('.userform');
     sr.reveal('.categories');
-    sr.reveal('.simplist');
+    sr.reveal('.simplist',{reset: true});
 
     $(".select-movie").on("change", function (e) {
       $( ".submit-movielist-btn" ).trigger( "click" );
