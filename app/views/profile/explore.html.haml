@@ -2,11 +2,11 @@
   .top-buffer
     .row
       %h1
-        %center EXPLORE OTHER SIMPLISTS
+        %center.explore-header Explore
   .top-buffer
   .row
     - @profiles.each do |profile|
-      .col-md-4
+      .col-md-3
         = link_to user_profile_index_path(profile) do
           .profile-card
             .blank-image
@@ -15,4 +15,7 @@
               - else
                 = image_tag(profile.picture)
             .profile-info
-              = profile.first_name
+              .profile-name
+                %h3
+                  %strong= profile.first_name
+              .profile-description= profile.description
