@@ -1,9 +1,19 @@
-- content_for(:nav) do
-  .edit-banner
-    Welcome to your profile on Simplist! Click to change things.
-
+- if @user == current_user
+  - content_for(:nav) do
+    .edit-banner
+      This is what others will see.
+      %em= link_to "Edit this page", edit_user_profile_path(1, @user.id)
 .row
-  .userform= render partial: "userform"
+  .header
+    .header-content.text-center.center-block
+      - unless @user.picture.url.nil?
+        = image_tag(@user.picture)
+      %h3= @user.first_name
+      %h6= @user.description
+      .socials
+        %i.fa.fa-facebook
+        %i.fa.fa-twitter
+        %i.fa.fa-pinterest
   .top-buffer
   .categories.container-fluid
     .row.slider-nav
@@ -11,78 +21,52 @@
         .category= list.name
   .top-buffer
   .slider-for
-    = form_for(@movielist, remote: true) do |f|
-      .simplists
-        = f.fields_for(:movies) do |movie_form|
-          .simplist
-            %h1.pull-left #{movie_form.index+1}
-            .enter-new-movie
-              .movie-form{style: "display: inline-block;"}
-                .box.pull-left
-                  - if movie_form.object.picture && movie_form.object.picture.empty? != true
-                    %img{:src => "https://image.tmdb.org/t/p/w154#{movie_form.object.picture}"}
-                %select.select-movie
-                  %option
-                = movie_form.text_field :name, class: "hidden"
-                = movie_form.text_field :picture, class: "hidden"
-                = movie_form.text_field :year, class: "hidden"
-      %center= f.submit(class: "btn hidden submit-movielist-btn")
-    = form_for(@booklist, remote: true) do |f|
-      .simplists
-        = f.fields_for(:books) do |book_form|
-          .simplist
-            %h1.pull-left #{book_form.index+1}
-            .enter-new-movie
-              .movie-form{style: "display: inline-block;"}
-                .box.pull-left
-                  - if book_form.object.picture
-                    %img{:src => "#{book_form.object.picture}"}
-                %select.select-book
-                  %option
-                = book_form.text_field :name, class: "hidden"
-                = book_form.text_field :picture, class: "hidden"
-                = book_form.text_field :published, class: "hidden"
-                .pull-right{:style => "font-size:smaller;"} Recommended: Search by ISBN, Author, or Title
-                %div.pull-right{:style => "padding-left: 3em; font-size: 18px"}
-      %center= f.submit(class: "btn hidden submit-booklist-btn")
-    = form_for(@quotelist, remote: true) do |f|
-      .simplists
-        = f.fields_for(:quotes, @quotes) do |quote_form|
-          .simplist
-            %h1.pull-left #{quote_form.index+1}
-            .quote.pull-left
-              .quote-text
-                - if quote_form.index == 0
-                  = quote_form.text_area :content, placeholder: "EX: 'I WILL SLEEP WHEN I'M DEAD.'"
-                - else
-                  = quote_form.text_area :content
-              .quote-author
-                - if quote_form.index == 0
-                  = quote_form.text_field :source, placeholder: "EX: Warren Zevon"
-                - else
-                  = quote_form.text_field :source
-
-      %center= f.submit(class: "btn hidden submit-quotelist-btn")
-    = form_for(@songlist, remote: true) do |f|
-      .simplists
-        = f.fields_for(:songs) do |song_form|
-          .simplist.song-simplist
-            %h1.pull-left #{song_form.index+1}
-            .enter-new-movie
-              .movie-form{style: "display: inline-block;"}
-                .simplist-image.song-image.pull-left
-                  - if song_form.object.picture
-                    %img{:src => "#{song_form.object.picture}"}
-                  %img#cover{:rel => "tooltip", :src => "", :title => ""}
-                %select.select-song
-                  %option
-                .song-info.pull-left
-                = song_form.text_field :name, class: "hidden"
-                = song_form.text_field :picture, class: "hidden"
-                = song_form.text_field :artist, class: "hidden"
-      %center= f.submit(class: "hidden submit-songlist-btn btn")
-
-
+    .simplists
+      - @movies.each do |movie|
+        .simplist
+          %h1.pull-left #{@movies.index(movie)+1}
+          .enter-new-movie
+            .movie-form{style: "display: inline-block;"}
+              .box.pull-left
+                - if movie.picture && movie.picture.empty? != true
+                  %img{:src => "https://image.tmdb.org/t/p/w154#{movie.picture}"}
+              .item-info.pull-right
+                .item-title= movie.name
+                .item-author= movie.year[0,4]
+      -# %center= f.submit(class: "btn hidden submit-movielist-btn")
+    .simplists
+      - @books.each do |book|
+        .simplist
+          %h1.pull-left #{@books.index(book)+1}
+          .enter-new-movie
+            .movie-form{style: "display: inline-block;"}
+              .box.pull-left
+                - if book.picture
+                  %img{:src => "#{book.picture}"}
+              .item-info.pull-right
+                .item-title= book.name
+                .item-author= book.author
+                .item-published= book.published
+    .simplists
+      - @quotes.each do |quote|
+        .simplist
+          %h1.pull-left #{@quotes.index(quote)+1}
+          .quote.pull-left
+            .quote-text= quote.content
+            .quote-author= quote.source
+    .simplists
+      - @songs.each do |song|
+        .simplist.song-simplist
+          %h1.pull-left #{@songs.index(song)+1}
+          .enter-new-movie
+            .movie-form{style: "display: inline-block;"}
+              .simplist-image.song-image.pull-left
+                - if song.picture
+                  %img{:src => "#{song.picture}"}
+                %img#cover{:rel => "tooltip", :src => "", :title => ""}
+              .item-info.pull-left
+                .item-title= song.name
+                .item-author= song.artist
 
 :javascript
 

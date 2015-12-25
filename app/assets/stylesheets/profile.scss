@@ -3,6 +3,14 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
+.item-info{
+  width:70% !important;
+  float: right;
+  .item-title {
+    font-weight: 600;
+  }
+}
+
 .text-image {
   width:75px;
   overflow:hidden;
@@ -30,7 +38,7 @@
 }
 
 .rank {
-  color:#cdcdcd;
+  color: #cdcdcd;
   font-style: italic
 }
 

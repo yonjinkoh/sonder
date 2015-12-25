@@ -10,11 +10,19 @@ Rails.application.routes.draw do
   resources :users
   resources :lists
 
+# correlate user profiles with username
+
   get 'aprilkoh' => 'profile#april'
   get 'dianekim' => 'profile#diane'
   get 'aprilkoh/edit' => 'profile#edit'
-  root to: "profile#new"
-  resources :profile
+  root to: "profile#show"
+
+  resources :users do
+    resources :lists
+    resources :profile do
+      get 'edit', on: :collection
+    end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -44,9 +52,6 @@ Rails.application.routes.draw do
   #   end
 
   # Example resource route with sub-resources:
-    resources :users do
-      resources :lists
-    end
 
   # Example resource route with more complex sub-resources:
   #   resources :products do

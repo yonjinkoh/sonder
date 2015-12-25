@@ -33,7 +33,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         @user.create_default_lists
-        format.html { redirect_to 'profile/new', notice: 'User was successfully created.' }
+        format.html { redirect_to 'users/:id/profile_edit', notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
         format.js
       else
@@ -49,7 +49,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to '/profile/new', notice: 'User was successfully updated.' }
+        format.html { redirect_to '/profile/edit', notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
         format.js
       else
@@ -70,6 +70,27 @@ class UsersController < ApplicationController
     end
   end
   #
+
+  def profile
+    current_user ? @user = current_user : @user = User.new
+    @lists = current_user.lists
+    @movielist = @lists.where(name:"Movies").first
+    @booklist = @lists.where(name:"Books").first
+    @quotelist = @lists.where(name:"Quotes").first
+    @quotes = @quotelist.quotes.sort
+    @songlist = @lists.where(name:"Songs").first
+  end
+
+  def profile_edit
+    current_user ? @user = current_user : @user = User.new
+    @lists = current_user.lists
+    @movielist = @lists.where(name:"Movies").first
+    @booklist = @lists.where(name:"Books").first
+    @quotelist = @lists.where(name:"Quotes").first
+    @quotes = @quotelist.quotes.sort
+    @songlist = @lists.where(name:"Songs").first
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user

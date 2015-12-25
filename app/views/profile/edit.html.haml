@@ -1,162 +1,128 @@
-.edit-banner
-  Welcome to your profile on Simplist! Click to change things. 
-.container-fluid.beneath-nav
-  .row
-    .header{style: "padding-top: 0px; "}
-      .header-content.text-center.center-block
-        = image_tag("aprilk.png", class: "img-circle center-block", alt: "April Koh profile picture")
-        %h3 April Koh
-        %h6 I like cottage cheese and cheese cottages
-        .socials
-          %i.fa.fa-facebook
-          %i.fa.fa-twitter
-          %i.fa.fa-pinterest
-    .top-buffer
-    .categories.container-fluid
-      .row.slider-nav
-        .category.active Books
-        .category Movies
-        .category Quotes
-        .category Songs
-    .top-buffer
-    .slider-for
+- content_for(:nav) do
+  .edit-banner
+    Welcome to your profile on Simplist! Click to change things.
+
+-# THIS IS THE EDIT PAGE
+
+
+.row
+  .userform= render partial: "userform"
+  .top-buffer
+  .categories.container-fluid
+    .row.slider-nav
+      - @lists.each do |list|
+        .category= list.name
+  .top-buffer
+  .slider-for
+    = form_for(@movielist, remote: true) do |f|
       .simplists
-        .simplist.book-simplist
-          %h1.pull-left 1
-          .simplist-image.book-or-movie-image.pull-left
-            = image_tag("content/book1.jpg", class: "content", alt: "Favorite Movie")
-          .book-info.pull-left
-            .book-title East of Eden (1978)
-            .book-author John Steinbeck
-        .simplist.book-simplist
-          %h1.pull-left 2
-          .simplist-image.book-or-movie-image.pull-left
-            = image_tag("content/book2.jpg", class: "content", alt: "Favorite Movie")
-          .book-info.pull-left
-            .book-title Speak Memory
-            .book-author Vladimir Nabokov
-        .simplist.book-simplist
-          %h1.pull-left 3
-          .simplist-image.book-or-movie-image.pull-left
-            = image_tag("content/book3.jpg", class: "content", alt: "Favorite Movie")
-          .book-info.pull-left
-            .book-title East of Eden (1978)
-            .book-author John Steinbeck
-        .simplist.book-simplist
-          %h1.pull-left 4
-          .simplist-image.book-or-movie-image.pull-left
-            = image_tag("content/book4.jpg", class: "content", alt: "Favorite Movie")
-          .book-info.pull-left
-            .book-title East of Eden (1978)
-            .book-author John Steinbeck
-        .simplist.book-simplist
-          %h1.pull-left 5
-          .simplist-image.book-or-movie-image.pull-left
-            = image_tag("content/book5.jpg", class: "content", alt: "Favorite Movie")
-          .book-info.pull-left
-            .book-title East of Eden (1978)
-            .book-author John Steinbeck
-        .simplist.book-simplist
-          %h1.pull-left 6
-          .simplist-image.book-or-movie-image.pull-left
-            = image_tag("content/book6.jpg", class: "content", alt: "Favorite Movie")
-          .book-info.pull-left
-            .book-title East of Eden (1978)
-            .book-author John Steinbeck
+        = f.fields_for(:movies, @movies) do |movie_form|
+          .simplist
+            %h1.pull-left #{movie_form.index+1}
+            .enter-new-movie
+              .movie-form{style: "display: inline-block;"}
+                .box.pull-left
+                  - if movie_form.object.picture && movie_form.object.picture.empty? != true
+                    %img{:src => "https://image.tmdb.org/t/p/w154#{movie_form.object.picture}"}
+                %select.select-movie
+                  %option
+                = movie_form.text_field :name, class: "hidden"
+                = movie_form.text_field :picture, class: "hidden"
+                = movie_form.text_field :year, class: "hidden"
+      %center= f.submit(class: "btn hidden submit-movielist-btn")
+    = form_for(@booklist, remote: true) do |f|
       .simplists
-        .simplist.book-simplist
-          %h1.pull-left 1
-          .simplist-image.book-or-movie-image.pull-left
-            = image_tag("content/movie1.jpg", class: "content", alt: "Favorite Movie")
-          .book-info.pull-left
-            .book-title The Parent Trap (1998)
-            .book-author Nancy Meyers
-        .simplist.book-simplist
-          %h1.pull-left 2
-          .simplist-image.book-or-movie-image.pull-left
-            = image_tag("content/movie2.jpg", class: "content", alt: "Favorite Movie")
-          .book-info.pull-left
-            .book-title Breathless (1960)
-            .book-author Jean-Luc Godard
-        .simplist.book-simplist
-          %h1.pull-left 3
-          .simplist-image.book-or-movie-image.pull-left
-            = image_tag("content/movie3.jpg", class: "content", alt: "Favorite Movie")
-          .book-info.pull-left
-            .book-title East of Eden (1978)
-            .book-author John Steinbeck
-        .simplist.book-simplist
-          %h1.pull-left 4
-          .simplist-image.book-or-movie-image.pull-left
-            = image_tag("content/movie4.jpg", class: "content", alt: "Favorite Movie")
-          .book-info.pull-left
-            .book-title East of Eden (1978)
-            .book-author John Steinbeck
-        .simplist.book-simplist
-          %h1.pull-left 5
-          .simplist-image.book-or-movie-image.pull-left
-            = image_tag("content/movie5.jpg", class: "content", alt: "Favorite Movie")
-          .book-info.pull-left
-            .book-title East of Eden (1978)
-            .book-author John Steinbeck
-        .simplist.book-simplist
-          %h1.pull-left 6
-          .simplist-image.book-or-movie-image.pull-left
-            = image_tag("content/movie6.jpg", class: "content", alt: "Favorite Movie")
-          .book-info.pull-left
-            .book-title East of Eden (1978)
-            .book-author John Steinbeck
+        = f.fields_for(:books, @books) do |book_form|
+          .simplist
+            %h1.pull-left #{book_form.index+1}
+            .enter-new-movie
+              .movie-form{style: "display: inline-block;"}
+                .box.pull-left
+                  - if book_form.object.picture
+                    %img{:src => "#{book_form.object.picture}"}
+                %select.select-book
+                  %option
+                = book_form.text_field :name, class: "hidden"
+                = book_form.text_field :picture, class: "hidden"
+                = book_form.text_field :published, class: "hidden"
+                = book_form.text_field :author, class: "hidden"
+                .pull-right{:style => "font-size:smaller;"} Recommended: Search by ISBN, Author, or Title
+                %div.pull-right{:style => "padding-left: 3em; font-size: 18px"}
+      %center= f.submit(class: "btn hidden submit-booklist-btn")
+    = form_for(@quotelist, remote: true) do |f|
       .simplists
-        .simplist
-          %h1.pull-left 1
-          .quote.pull-left
-            .quote-text We have to remember what’s important in life: friends, waffles, and work. But work has to come third.
-            .quote-author Leslie Knope
-        .simplist
-          %h1.pull-left 2
-          .quote.pull-left
-            .quote-text It takes 20 years to build a reputation and five minutes to ruin it. If you think about that, you’ll do things differently.
-            .quote-author Warren Buffett
+        = f.fields_for(:quotes, @quotes) do |quote_form|
+          .simplist
+            %h1.pull-left #{quote_form.index+1}
+            .quote.pull-left
+              .quote-text
+                - if quote_form.index == 0
+                  = quote_form.text_area :content, placeholder: "EX: 'I WILL SLEEP WHEN I'M DEAD.'"
+                - else
+                  = quote_form.text_area :content
+              .quote-author
+                - if quote_form.index == 0
+                  = quote_form.text_field :source, placeholder: "EX: Warren Zevon"
+                - else
+                  = quote_form.text_field :source
+
+      %center= f.submit(class: "btn hidden submit-quotelist-btn")
+    = form_for(@songlist, remote: true) do |f|
       .simplists
-        .simplist.song-simplist
-          %h1.pull-left 1
-          .simplist-image.song-image.pull-left
-            = image_tag("content/song1.jpg", class: "content", alt: "Favorite Movie")
-          .song-info.pull-left
-            .song-title The Parent Trap (1998)
-            .song-author Nancy Meyers
-        .simplist.song-simplist
-          %h1.pull-left 2
-          .simplist-image.book-or-movie-image.pull-left
-            = image_tag("content/song2.jpg", class: "content", alt: "Favorite Movie")
-          .book-info.pull-left
-            .book-title Breathless (1960)
-            .book-author Jean-Luc Godard
-        .simplist.song-simplist
-          %h1.pull-left 3
-          .simplist-image.book-or-movie-image.pull-left
-            = image_tag("content/song3.jpg", class: "content", alt: "Favorite Movie")
-          .book-info.pull-left
-            .book-title East of Eden (1978)
-            .book-author John Steinbeck
-        .simplist.song-simplist
-          %h1.pull-left 4
-          .simplist-image.book-or-movie-image.pull-left
-            = image_tag("content/song4.jpg", class: "content", alt: "Favorite Movie")
-          .book-info.pull-left
-            .book-title East of Eden (1978)
-            .book-author John Steinbeck
-        .simplist.song-simplist
-          %h1.pull-left 5
-          .simplist-image.song-image.pull-left
-            = image_tag("content/song5.jpg", class: "content", alt: "Favorite Movie")
-          .book-info.pull-left
-            .book-title East of Eden (1978)
-            .book-author John Steinbeck
-        .simplist.song-simplist
-          %h1.pull-left 6
-          .simplist-image.song-image.pull-left
-            = image_tag("content/song6.jpg", class: "content", alt: "Favorite Movie")
-          .book-info.pull-left
-            .book-title East of Eden (1978)
-            .book-author John Steinbeck
+        = f.fields_for(:songs, @songs) do |song_form|
+          .simplist.song-simplist
+            %h1.pull-left #{song_form.index+1}
+            .enter-new-movie
+              .movie-form{style: "display: inline-block;"}
+                .simplist-image.song-image.pull-left
+                  - if song_form.object.picture
+                    %img{:src => "#{song_form.object.picture}"}
+                  %img#cover{:rel => "tooltip", :src => "", :title => ""}
+                %select.select-song
+                  %option
+                .song-info.pull-left
+                = song_form.text_field :name, class: "hidden"
+                = song_form.text_field :picture, class: "hidden"
+                = song_form.text_field :artist, class: "hidden"
+      %center= f.submit(class: "hidden submit-songlist-btn btn")
+
+%center= link_to "View Your Public Profile", user_profile_path(1,@user)
+
+:javascript
+
+  $(function() {
+    $('.category').first().addClass('active');
+    sr = new ScrollReveal();
+    sr.reveal('.simplist', {reset: true});
+  });
+
+
+  $(function() {
+
+    $(".select-movie").on("change", function (e) {
+      $( ".submit-movielist-btn" ).trigger( "click" );
+    });
+
+    $(".select-song").on("change", function (e) {
+      $( ".submit-songlist-btn" ).trigger( "click" );
+    });
+
+    $(".quote").on("change", function (e) {
+      $( ".submit-quotelist-btn" ).trigger( "click" );
+    });
+
+    $(".select-book").on("change", function (e) {
+      $( ".submit-booklist-btn" ).trigger( "click" );
+    });
+
+    function insertPlaceholder(placeholder) {
+      var moviename = $(placeholder).parents('.select2').siblings('input').first().val();
+      $(placeholder).html(moviename);
+    };
+
+
+    $( ".select2-selection__placeholder" ).each(function(){
+      insertPlaceholder(this);
+    });
+
+  });

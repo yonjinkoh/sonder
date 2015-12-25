@@ -1,10 +1,11 @@
 $(document).ready(function(){
 
-  function insertBook (html, bookImage, bookId, bookPublished) {
+  function insertBook (html, bookImage, bookId, bookPublished, bookAuthor) {
     $('.select2-container--open').siblings('.box').html(html);
     $('.select2-container--open').siblings('input').first().val(bookId);
     $('.select2-container--open').siblings('input').first().next().val(bookImage);
     $('.select2-container--open').siblings('input').first().next().next().val(bookPublished);
+    $('.select2-container--open').siblings('input').last().val(bookAuthor);
   }
 
 
@@ -51,7 +52,8 @@ $(document).ready(function(){
         var bookImage = text.volumeInfo.imageLinks.thumbnail;
         var bookId = text.volumeInfo.title;
         var bookPublished = text.volumeInfo.publishedDate;
-        insertBook(html, bookImage, bookId, bookPublished);
+        var bookAuthor = text.volumeInfo.authors
+        insertBook(html, bookImage, bookId, bookPublished, bookAuthor);
         return text.volumeInfo.title + " (" + text.volumeInfo.authors + ")";
       }
   }

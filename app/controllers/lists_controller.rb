@@ -50,7 +50,7 @@ class ListsController < ApplicationController
   def update
     respond_to do |format|
       if @list.update(list_params)
-        format.html { redirect_to '/profile/new', notice: 'List was successfully updated.' }
+        format.html { redirect_to '/profile/edit', notice: 'List was successfully updated.' }
         format.json { render :show, status: :ok, location: @list }
         format.js
       else
@@ -78,6 +78,6 @@ class ListsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def list_params
-      params.require(:list).permit(:name, :user_id, category_attributes: [:id, :name], songs_attributes: [:id, :name, :picture, :artist], movies_attributes: [:id, :name, :picture, :year], books_attributes: [:id, :name, :picture, :published],  quotes_attributes: [:id, :content, :source])
+      params.require(:list).permit(:name, :user_id, category_attributes: [:id, :name], songs_attributes: [:id, :name, :picture, :artist], movies_attributes: [:id, :name, :picture, :year], books_attributes: [:id, :name, :picture, :published, :author],  quotes_attributes: [:id, :content, :source])
     end
 end
