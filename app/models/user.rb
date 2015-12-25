@@ -34,10 +34,9 @@ class User < ActiveRecord::Base
 devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-mount_uploader :picture, PictureUploader
+mount_uploader :picture, PictureUploader, dependent: :destroy
 has_many :lists, dependent: :destroy
-has_one :picture, dependent: :destroy
-# 
+#
 # def to_param
 #   username
 # end
