@@ -4,7 +4,7 @@
       This is your public profile!
       %span.edit-it{style: 'padding: 0 10px'}= link_to "EDIT IT", edit_user_profile_index_path(@user)
       |
-      %span.share-it{"data-toggle":"tooltip", "data-placement":"bottom", "title":"mysimplist.com/#{@user.username}", style: 'padding: 0 10px; color: darkgray'}
+      %span.share-it{"data-toggle"=>"tooltip", "data-placement"=>"bottom", "title"=>"mysimplist.com/#{@user.username}", style: 'padding: 0 10px; color: darkgray'}
         %a SHARE IT
 .row
   .header
@@ -26,7 +26,9 @@
   .slider-for
     .simplists
       - if @movies.empty?
-        .simplist.center None yet!
+        .simplist
+          %center
+            %em None yet!
       - else
         - @movies.each do |movie|
           .simplist
