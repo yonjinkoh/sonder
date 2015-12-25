@@ -1,23 +1,16 @@
 class ProfileController < ApplicationController
-  before_action :authenticate_user!, :except => [:show]
+  before_action :authenticate_user!, :except => [:show, :explore]
 
-  def april
-    # @april = Tmdb::Movie.find("batman")
-    # @search = Tmdb::Search.new
-    # @search.resource('person')
-    # @query = @search.query('adele')
-    # @result = @search.fetch
-    @thekey = "41955a0f09fdcad5028264d83e9c9af6"
-  end
-
-
-  def diane
-  end
 
   def new
   end
 
   def search
+  end
+
+  def explore
+    @profiles = User.where.not(first_name: "")
+
   end
 
   def show

@@ -30,8 +30,7 @@
       #main-nav.collapse.navbar-collapse
         %ul.nav.navbar-nav.text-uppercase.active.hidden-md-down
           %li
-            %a{:href => "#"}
-              Explore
+            = link_to "Explore", explore_path
           %li
             = current_user ? link_to("Profile", user_profile_index_path(current_user)) : link_to('Profile', new_user_session_path)
         %form.navbar-form.navbar-right{:role => "search"}

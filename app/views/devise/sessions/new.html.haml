@@ -1,20 +1,21 @@
-%h2
-	%center Log in
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-	.field
-		= f.label :email
+.profile-container
+	%h2
+		%center Log in
+	= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+		.field
+			= f.label :email
+			%br
+			= f.email_field :email, class: "form-control", autofocus: true
 		%br
-		= f.email_field :email, class: "form-control", autofocus: true
+			.field
+			= f.label :password
+			%br
+			= f.password_field :password,class: 'form-control', autocomplete: "off"
+		- if devise_mapping.rememberable?
+			.field
+				= f.check_box :remember_me
+				= f.label :remember_me
+		%center.actions
+			= f.submit "Log in →", class: "btn"
 	%br
-		.field
-		= f.label :password
-		%br
-		= f.password_field :password,class: 'form-control', autocomplete: "off"
-	- if devise_mapping.rememberable?
-		.field
-			= f.check_box :remember_me
-			= f.label :remember_me
-	%center.actions
-		= f.submit "Log in →", class: "btn"
-%br
-%center= render "devise/shared/links"
+	%center= render "devise/shared/links"

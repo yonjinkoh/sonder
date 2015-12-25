@@ -11,9 +11,7 @@ Rails.application.routes.draw do
   resources :lists
 
 # correlate user profiles with username
-
-  get 'aprilkoh' => 'profile#april'
-  get 'dianekim' => 'profile#diane'
+  get 'explore' => 'profile#explore'
   get 'aprilkoh/edit' => 'profile#edit'
   root to: "profile#show"
 

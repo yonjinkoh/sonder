@@ -1,0 +1,18 @@
+.explore.container-fluid
+  .top-buffer
+    .row
+      %h1
+        %center EXPLORE OTHER SIMPLISTS
+  .top-buffer
+  .row
+    - @profiles.each do |profile|
+      .col-md-4
+        = link_to user_profile_index_path(profile) do
+          .profile-card
+            .blank-image
+              - if profile.picture.url.nil?
+                = image_tag("default.png")
+              - else
+                = image_tag(profile.picture)
+            .profile-info
+              = profile.first_name
