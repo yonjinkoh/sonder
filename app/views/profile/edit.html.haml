@@ -1,6 +1,7 @@
 - content_for(:nav) do
   .edit-banner
-    Welcome to your profile on Simplist! Click on the stuff you'd like to change.
+    Welcome to Simplist! Click on the stuff you'd like to change, and then
+    %span= link_to "view your profile →", user_profile_index_path(@user)
 
 -# THIS IS THE EDIT PAGE
 
