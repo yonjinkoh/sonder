@@ -50,7 +50,7 @@ class ListsController < ApplicationController
   def update
     respond_to do |format|
       if @list.update(list_params)
-        format.html { redirect_to '/profile/edit', notice: 'List was successfully updated.' }
+        format.html { redirect_to edit_user_profile_index, notice: 'List was successfully updated.' }
         format.json { render :show, status: :ok, location: @list }
         format.js
       else

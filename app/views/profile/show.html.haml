@@ -1,10 +1,10 @@
 - if @user == current_user
   - content_for(:nav) do
     .edit-banner
-      This is what others will see.
-      %em= link_to "Edit it", edit_user_profile_index_path
-      or
-      %em Share it
+      This is your public profile!
+      %em{style: 'padding: 0 10px'}= link_to "EDIT IT", edit_user_profile_index_path
+      |
+      %em{style: 'padding: 0 10px'} SHARE IT
 .row
   .header
     .header-content.text-center.center-block
