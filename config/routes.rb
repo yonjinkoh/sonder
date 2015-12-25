@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     resources :lists
     resources :profile do
       get 'edit', on: :collection
+      get 'show', on: :collection
     end
   end
 

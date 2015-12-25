@@ -2,7 +2,9 @@
   - content_for(:nav) do
     .edit-banner
       This is what others will see.
-      %em= link_to "Edit this page", edit_user_profile_path(1, @user.id)
+      %em= link_to "Edit it", edit_user_profile_index_path
+      or
+      %em Share it
 .row
   .header
     .header-content.text-center.center-block
@@ -31,8 +33,8 @@
                 - if movie.picture && movie.picture.empty? != true
                   %img{:src => "https://image.tmdb.org/t/p/w154#{movie.picture}"}
               .item-info.pull-right
-                .item-title= movie.name
-                .item-author= movie.year[0,4]
+                %strong.item-title= movie.name
+                %span.item-author= "(" + movie.year[0,4] + ")"
       -# %center= f.submit(class: "btn hidden submit-movielist-btn")
     .simplists
       - @books.each do |book|

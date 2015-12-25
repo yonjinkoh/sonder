@@ -1,6 +1,6 @@
 - content_for(:nav) do
   .edit-banner
-    Welcome to your profile on Simplist! Click to change things.
+    Welcome to your profile on Simplist! Click on the stuff you'd like to change.
 
 -# THIS IS THE EDIT PAGE
 
@@ -86,7 +86,7 @@
                 = song_form.text_field :artist, class: "hidden"
       %center= f.submit(class: "hidden submit-songlist-btn btn")
 
-%center= link_to "View Your Public Profile", user_profile_path(1,@user)
+%center{style: "margin-bottom: 5em"}= link_to "View Your Public Profile →", user_profile_index_path(@user)
 
 :javascript
 
@@ -119,7 +119,6 @@
       var moviename = $(placeholder).parents('.select2').siblings('input').first().val();
       $(placeholder).html(moviename);
     };
-
 
     $( ".select2-selection__placeholder" ).each(function(){
       insertPlaceholder(this);

@@ -41,6 +41,10 @@
 
 
 body {
+  a {color: darkgray;
+  }
+  a:hover { color: black;
+  }
   font-family: 'Source Sans Pro', sans-serif;
   // font-family: 'Helvetica Neue';
   h3 {font-size: 2em;}
