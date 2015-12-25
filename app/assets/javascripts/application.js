@@ -16,4 +16,7 @@
 //= require bootstrap-sprockets
 //= require jquery.slick
 //= require select2
+//= require tether
+//= require drop
+//= require tooltip
 //= require_tree .

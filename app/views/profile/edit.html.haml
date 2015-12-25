@@ -86,7 +86,7 @@
                 = song_form.text_field :artist, class: "hidden"
       %center= f.submit(class: "hidden submit-songlist-btn btn")
 
-%center{style: "margin-bottom: 5em"}= link_to "View Your Public Profile →", user_profile_index_path(@user)
+%center.view-public-profile{style: "margin-bottom: 5em"}= link_to "View Your Public Profile →", user_profile_index_path(@user)
 
 :javascript
 
@@ -94,6 +94,7 @@
     $('.category').first().addClass('active');
     sr = new ScrollReveal();
     sr.reveal('.simplist', {reset: true});
+    sr.reveal('.view-public-profile', {delay: 300});
   });
 
 

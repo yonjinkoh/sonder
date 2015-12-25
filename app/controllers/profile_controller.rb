@@ -21,7 +21,12 @@ class ProfileController < ApplicationController
   end
 
   def show
-    params[:user_id] ? @user = User.find(params[:user_id]) : @user = current_user
+    if params[:username]
+      @user = User.find_by(username: params[:username])
+    elsif params[:user_id]
+       @user = User.find(params[:user_id])
+    else @user = current_user
+    end
     @lists = @user.lists
     # below: filters out empty items
     @movielist = @lists.where(name:"Movies").first

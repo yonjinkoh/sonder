@@ -2,6 +2,24 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.tooltip-inner {
+  background-color: #707070 !important;
+}
+
+.edit-it a:hover {
+  color: white;
+}
+
+.tooltip-arrow {
+  border-bottom-color: #707070 !important;
+}
+
+.share-it a:hover {
+  color:white;
+}
+.share-it {
+  cursor: pointer;
+}
 
 .item-info{
   width:70% !important;

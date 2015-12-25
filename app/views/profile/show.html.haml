@@ -2,9 +2,10 @@
   - content_for(:nav) do
     .edit-banner
       This is your public profile!
-      %em{style: 'padding: 0 10px'}= link_to "EDIT IT", edit_user_profile_index_path
+      %span.edit-it{style: 'padding: 0 10px'}= link_to "EDIT IT", edit_user_profile_index_path(@user)
       |
-      %em{style: 'padding: 0 10px'} SHARE IT
+      %span.share-it{"data-toggle":"tooltip", "data-placement":"bottom", "title":"mysimplist.com/#{@user.username}", style: 'padding: 0 10px; color: darkgray'}
+        %a SHARE IT
 .row
   .header
     .header-content.text-center.center-block
@@ -24,55 +25,76 @@
   .top-buffer
   .slider-for
     .simplists
-      - @movies.each do |movie|
-        .simplist
-          %h1.pull-left #{@movies.index(movie)+1}
-          .enter-new-movie
-            .movie-form{style: "display: inline-block;"}
-              .box.pull-left
-                - if movie.picture && movie.picture.empty? != true
-                  %img{:src => "https://image.tmdb.org/t/p/w154#{movie.picture}"}
-              .item-info.pull-right
-                %strong.item-title= movie.name
-                %span.item-author= "(" + movie.year[0,4] + ")"
+      - if @movies.empty?
+        .simplist.center None yet!
+      - else
+        - @movies.each do |movie|
+          .simplist
+            %h1.pull-left #{@movies.index(movie)+1}
+            .enter-new-movie
+              .movie-form{style: "display: inline-block;"}
+                .box.pull-left
+                  - if movie.picture && movie.picture.empty? != true
+                    %img{:src => "https://image.tmdb.org/t/p/w154#{movie.picture}"}
+                .item-info.pull-right
+                  %strong.item-title= movie.name
+                  %span.item-author= "(" + movie.year[0,4] + ")"
       -# %center= f.submit(class: "btn hidden submit-movielist-btn")
     .simplists
-      - @books.each do |book|
+      - if @books.empty?
         .simplist
-          %h1.pull-left #{@books.index(book)+1}
-          .enter-new-movie
-            .movie-form{style: "display: inline-block;"}
-              .box.pull-left
-                - if book.picture
-                  %img{:src => "#{book.picture}"}
-              .item-info.pull-right
-                .item-title= book.name
-                .item-author= book.author
-                .item-published= book.published
+          %center
+            %em None yet!
+      - else
+        - @books.each do |book|
+          .simplist
+            %h1.pull-left #{@books.index(book)+1}
+            .enter-new-movie
+              .movie-form{style: "display: inline-block;"}
+                .box.pull-left
+                  - if book.picture
+                    %img{:src => "#{book.picture}"}
+                .item-info.pull-right
+                  .item-title= book.name
+                  .item-author= book.author
+                  .item-published= book.published
     .simplists
-      - @quotes.each do |quote|
+      - if @quotes.empty?
         .simplist
-          %h1.pull-left #{@quotes.index(quote)+1}
-          .quote.pull-left
-            .quote-text= quote.content
-            .quote-author= quote.source
+          %center
+            %em None yet!
+      - else
+        - @quotes.each do |quote|
+          .simplist
+            %h1.pull-left #{@quotes.index(quote)+1}
+            .quote.pull-left
+              .quote-text= quote.content
+              .quote-author= quote.source
     .simplists
-      - @songs.each do |song|
-        .simplist.song-simplist
-          %h1.pull-left #{@songs.index(song)+1}
-          .enter-new-movie
-            .movie-form{style: "display: inline-block;"}
-              .simplist-image.song-image.pull-left
-                - if song.picture
-                  %img{:src => "#{song.picture}"}
-                %img#cover{:rel => "tooltip", :src => "", :title => ""}
-              .item-info.pull-left
-                .item-title= song.name
-                .item-author= song.artist
+      - if @quotes.empty?
+        .simplist
+          %center
+            %em None yet!
+      - else
+        - @songs.each do |song|
+          .simplist.song-simplist
+            %h1.pull-left #{@songs.index(song)+1}
+            .enter-new-movie
+              .movie-form{style: "display: inline-block;"}
+                .simplist-image.song-image.pull-left
+                  - if song.picture
+                    %img{:src => "#{song.picture}"}
+                  %img#cover{:rel => "tooltip", :src => "", :title => ""}
+                .item-info.pull-left
+                  .item-title= song.name
+                  .item-author= song.artist
 
 :javascript
 
+
   $(function() {
+    $('.share-it').tooltip({trigger: 'click'});
+
     $('.category').first().addClass('active');
     sr = new ScrollReveal();
     sr.reveal('.simplist', {reset: true});

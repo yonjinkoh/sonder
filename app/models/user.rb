@@ -37,7 +37,10 @@ devise :database_authenticatable, :registerable,
 mount_uploader :picture, PictureUploader
 has_many :lists, dependent: :destroy
 has_one :picture, dependent: :destroy
-
+# 
+# def to_param
+#   username
+# end
 
 def create_default_lists
   movielist = lists.find_or_create_by(name: "Movies", category_id: "2")

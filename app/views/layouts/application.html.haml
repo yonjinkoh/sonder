@@ -31,17 +31,13 @@
         %ul.nav.navbar-nav.text-uppercase.active.hidden-md-down
           %li
             %a{:href => "#"}
-              %strong Explore
+              Explore
           %li
-            %a{:href => "#"}
-              %strong Profile
+            = current_user ? link_to("Profile", user_profile_index_path(current_user)) : link_to('Profile', new_user_session_path)
         %form.navbar-form.navbar-right{:role => "search"}
           %i.fa.fa-search
           .form-group.hidden
-            %input.form-control{:placeholder => "Search", :type => "text"}/
-
-
-
+            %input.form-control{:placeholder => "Search", :type => "text"}
         %ul.nav.navbar-nav.navbar-right.active.hidden-md-down
           - if user_signed_in?
             %li.dropdown

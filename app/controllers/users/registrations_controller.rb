@@ -16,7 +16,7 @@ before_filter :configure_account_update_params, only: [:update]
       if @user.save
         @user.create_default_lists
         format.js
-        format.html{redirect_to edit_user_profile_index, notice: 'User was successfully created.'}
+        format.html{redirect_to edit_user_profile_index_path(@user.id), notice: 'User was successfully created.'}
       else
         format.html { render :new }
         format.js
