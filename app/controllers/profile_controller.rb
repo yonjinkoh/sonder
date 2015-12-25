@@ -25,18 +25,23 @@ class ProfileController < ApplicationController
       @user = User.find_by(username: params[:username])
     elsif params[:user_id]
        @user = User.find(params[:user_id])
-    else @user = current_user
+    elsif current_user
+      @user = current_user
+    else redirect_to new_user_session_path
     end
-    @lists = @user.lists
-    # below: filters out empty items
-    @movielist = @lists.where(name:"Movies").first
-    @movies = @movielist.movies.where.not(name: "").sort
-    @booklist = @lists.where(name:"Books").first
-    @books = @booklist.books.where.not(name: "").sort
-    @quotelist = @lists.where(name:"Quotes").first
-    @quotes = @quotelist.quotes.where.not(content: "").sort
-    @songlist = @lists.where(name:"Songs").first
-    @songs = @songlist.songs.where.not(name: "").sort
+
+    if @user
+      @lists = @user.lists
+      # below: filters out empty items
+      @movielist = @lists.where(name:"Movies").first
+      @movies = @movielist.movies.where.not(name: "").sort
+      @booklist = @lists.where(name:"Books").first
+      @books = @booklist.books.where.not(name: "").sort
+      @quotelist = @lists.where(name:"Quotes").first
+      @quotes = @quotelist.quotes.where.not(content: "").sort
+      @songlist = @lists.where(name:"Songs").first
+      @songs = @songlist.songs.where.not(name: "").sort
+    end
   end
 
   def edit
