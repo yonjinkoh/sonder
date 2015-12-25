@@ -9,8 +9,11 @@
 .row
   .header
     .header-content.text-center.center-block
-      - unless @user.picture.url.nil?
-        = image_tag(@user.picture)
+      .blank-image
+        - if @user.picture.url.nil?
+          = image_tag("default.png")
+        - else
+          = image_tag(@user.picture)
       %h3= @user.first_name
       %h6= @user.description
       .socials
