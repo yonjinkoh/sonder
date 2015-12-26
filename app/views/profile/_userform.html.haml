@@ -3,10 +3,10 @@
   .header
     .header-content.text-center.center-block
       .blank-image
-        = image_tag(@user.picture.url)
+        = image_tag(@user.avatar)
         .plus-sign.absolute-center
           %a{:href=>"javascript:void(0);", :id => "plus-sign-link", :style=>"color: white"} +
-        = f.file_field :picture,:class=>"hidden", :id => "upload-photo", remote: true
+      = f.file_field :avatar,:class=>"hidden", :id => "upload-photo", remote: true
       .field
         %h3
           = f.text_field :first_name, :class => "submit-form", :placeholder => "Add Your Name"
@@ -33,7 +33,7 @@
       $('#plus-sign-link').on('click', function() {
         $('#upload-photo').trigger('click');
       });
-      $("#upload-photo").change(function(){
+      $(".progress").change(function(){
          $('.submit').click();
       });
   });

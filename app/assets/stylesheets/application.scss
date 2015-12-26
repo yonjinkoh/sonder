@@ -172,12 +172,16 @@ body {
 // PROGRESS BAR
 
 .progress {
-  max-width: 600px;
-  margin:    0.2em 0 0.2em 0;
+  max-width: 300px;
+  margin: 10px auto -10px;
+  background-color: #ffffff;
+  box-shadow: none !important;
+  -webkit-box-shadow: white !important;
+  height: 3px !important;
 }
 
 .progress .bar {
-  height:  1.2em;
+  // height:  1.2em;
   padding-left: 0.2em;
   color:   white;
   display: none;

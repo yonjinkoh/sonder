@@ -23,6 +23,11 @@
 
 
 $(function() {
+  $('.directUpload').bind('done', function(e,data) {
+    $('.submit').click();
+  });
+
+
   $('.directUpload').find("input:file").each(function(i, elem) {
     var fileInput    = $(elem);
     var form         = $(fileInput.parents('form:first'));
@@ -47,22 +52,36 @@ $(function() {
         submitButton.prop('disabled', true);
 
         progressBar.
-          css('background', 'green').
+          css('background', 'black').
           css('display', 'block').
           css('width', '0%').
           text("Loading...");
       },
       done: function(e, data) {
-        submitButton.prop('disabled', false);
-        progressBar.text("Uploading done");
+          submitButton.prop('disabled', false);
+          progressBar.text("Uploading done");
 
-        // extract key and generate URL from response
-        var key   = $(data.jqXHR.responseXML).find("Key").text();
-        var url   = '//' + form.data('host') + '/' + key;
+          // extract key and generate URL from response
+          var key   = $(data.jqXHR.responseXML).find("Key").text();
+          var url   = '//' + form.data('host') + '/' + key;
 
-        // create hidden field
-        var input = $("<input />", { type:'hidden', name: fileInput.attr('name'), value: url })
-        form.append(input);
+          // create hidden field
+          var input = $("<input />", { class: 'hidden-url', type:'hidden', name: fileInput.attr('name'), value: url })
+          form.append(input);
+
+          var submit = function (input, callback) {
+            form.append(input);
+          }
+
+          var submitForm = function () {
+            $('.submit').click();
+          }
+
+          submit(input, submitForm());
+
+
+        // HOW DO I ADD A CALLBACK FUNCTION HERE?
+
       },
       fail: function(e, data) {
         submitButton.prop('disabled', false);
