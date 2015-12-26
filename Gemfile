@@ -19,6 +19,11 @@ gem 'immigrant'
 gem 'devise'
 # use devise for secure user registration
 
+gem 'puma'
+# use puma as the web server
+
+gem 'aws-sdk', '~> 2'
+# using the Amazon Ruby SDK for interacting with S3.
 
 gem 'themoviedb'
 # API for movies and TV shows
