@@ -59,6 +59,18 @@ body {
   border-radius: 0px;
 }
 
+.force-hide {
+    display: none !important;
+}
+
+.italic {
+  font-style: italic !important;
+}
+
+.select2-drop {
+  font-style: italic;
+}
+
 * {
   -webkit-border-radius: 0 !important;
      -moz-border-radius: 0 !important;

@@ -3689,9 +3689,19 @@ define('select2/i18n/en',[],function () {
     inputTooShort: function (args) {
       var remainingChars = args.minimum - args.input.length;
 
-      var message = 'Please enter ' + remainingChars + ' or more characters';
+      var message = 'Start typing...';
 
-      return message;
+      // function addItalicToDirective (callback) {
+        // $(".select2-search--dropdown ").addClass('force-hide');
+
+      // }
+
+      // function callback (message){
+        return message;
+        // alert("?");
+      // }
+
+      // addItalicToDirective(callback(message));
     },
     loadingMore: function () {
       return 'Loading more results…';
@@ -3706,7 +3716,7 @@ define('select2/i18n/en',[],function () {
       return message;
     },
     noResults: function () {
-      return 'No results found';
+      return "Oops! We couldn't find that. Try again?";
     },
     searching: function () {
       return 'Searching…';
