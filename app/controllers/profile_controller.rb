@@ -38,7 +38,7 @@ class ProfileController < ApplicationController
   end
 
   def edit
-    current_user == params[:user_id] ? @user = current_user : @user = User.find(params[:user_id])
+    current_user.id.to_s == params[:user_id] ? @user = current_user : nil
     @lists = current_user.lists
     @movielist = @lists.where(name:"Movies").first
     @movies = @movielist.movies.sort

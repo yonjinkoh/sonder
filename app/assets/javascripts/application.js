@@ -52,7 +52,7 @@ $(function() {
         submitButton.prop('disabled', true);
 
         progressBar.
-          css('background', 'black').
+          css('background', 'darkgray').
           css('display', 'block').
           css('width', '0%').
           text("Loading...");
