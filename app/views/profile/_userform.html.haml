@@ -1,5 +1,5 @@
 -# this is calling a new user. So we need to instead call the user tthat is logged in.
-= form_for(@user, remote: true) do |f|
+= form_for(@user, remote: true, html: { class: 'directUpload', data: { 'form-data' => (@s3_direct_post.fields), 'url' => @s3_direct_post.url, 'host' => URI.parse(@s3_direct_post.url).host } }) do |f|
   .header
     .header-content.text-center.center-block
       .blank-image
