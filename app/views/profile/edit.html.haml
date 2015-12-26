@@ -30,6 +30,7 @@
                 = movie_form.text_field :name, class: "hidden"
                 = movie_form.text_field :picture, class: "hidden"
                 = movie_form.text_field :year, class: "hidden"
+            .clearfix
       %center= f.submit(class: "btn hidden submit-movielist-btn")
     = form_for(@booklist, remote: true) do |f|
       .simplists
@@ -49,6 +50,7 @@
                 = book_form.text_field :author, class: "hidden"
                 .pull-right{:style => "font-size:smaller;"} Recommended: Search by ISBN, Author, or Title
                 %div.pull-right{:style => "padding-left: 3em; font-size: 18px"}
+            .clearfix
       %center= f.submit(class: "btn hidden submit-booklist-btn")
     = form_for(@quotelist, remote: true) do |f|
       .simplists
@@ -66,7 +68,7 @@
                   = quote_form.text_field :source, placeholder: "EX: Warren Zevon"
                 - else
                   = quote_form.text_field :source
-
+            .clearfix
       %center= f.submit(class: "btn hidden submit-quotelist-btn")
     = form_for(@songlist, remote: true) do |f|
       .simplists
@@ -85,6 +87,7 @@
                 = song_form.text_field :name, class: "hidden"
                 = song_form.text_field :picture, class: "hidden"
                 = song_form.text_field :artist, class: "hidden"
+            .clearfix
       %center= f.submit(class: "hidden submit-songlist-btn btn")
 
 %center.view-public-profile{style: "margin-bottom: 5em"}= link_to "View Your Public Profile →", user_profile_index_path(@user)

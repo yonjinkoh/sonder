@@ -44,6 +44,7 @@
                 .item-info.pull-right
                   %strong.item-title= movie.name
                   %span.item-author= "(" + movie.year[0,4] + ")"
+            .clearfix
       -# %center= f.submit(class: "btn hidden submit-movielist-btn")
     .simplists
       - if @books.empty?
@@ -63,6 +64,7 @@
                   .item-title= book.name
                   .item-author= book.author
                   .item-published= book.published
+            .clearfix
     .simplists
       - if @quotes.empty?
         .simplist
@@ -75,6 +77,7 @@
             .quote.pull-left
               .quote-text= quote.content
               .quote-author= quote.source
+            .clearfix
     .simplists
       - if @songs.empty?
         .simplist
@@ -93,6 +96,7 @@
                 .item-info.pull-left
                   .item-title= song.name
                   .item-author= song.artist
+            .clearfix
 
 :javascript
 
