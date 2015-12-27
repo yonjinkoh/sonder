@@ -9,19 +9,9 @@ before_filter :configure_account_update_params, only: [:update]
 
   # POST /resource
   def create
+    super
+    resource.create_default_lists
 
-    @user = User.new(sign_up_params)
-
-    respond_to do |format|
-      if @user.save
-        @user.create_default_lists
-        format.js
-        format.html{redirect_to edit_user_profile_index_path(@user.id), notice: 'User was successfully created.'}
-      else
-        format.html { render :new }
-        format.js
-      end
-    end
   end
 
   # GET /resource/edit
@@ -72,9 +62,9 @@ before_filter :configure_account_update_params, only: [:update]
   # end
 
   # The path used after sign up.
-  # def after_sign_up_path_for(resource)
-  #   super(resource)
-  # end
+  def after_sign_up_path_for(resource)
+    edit_user_profile_index_path(resource.id)
+  end
 
   # The path used after sign up for inactive accounts.
   # def after_inactive_sign_up_path_for(resource)
