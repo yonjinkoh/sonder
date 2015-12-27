@@ -3,6 +3,18 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
+.submit-form {
+  border: 1px solid white;
+}
+
+.social-form {
+  // border:none;
+  border-bottom: 1px solid lightgray;
+  width: 170px;
+  display: inline-block;
+}
+
+
 .product-wrapper {
   width: 80%;
   .product-picture{
@@ -102,8 +114,16 @@
   // width: 100px;
 }
 
-.socials {
-  i {font-size: 1em; padding: .5em;}
+.socials, .pre-socials {
+  i {font-size: 1em; padding: .5em;color: black; cursor: pointer}
+}
+
+.pre-socials {
+  cursor:pointer;
+}
+
+.socials i.inactive {
+  color: gray;
 }
 
 .fa-long-arrow-right {
@@ -123,17 +143,11 @@
       text-align: center;
       line-height: 40px;
       width: 80%;
-      border: none;
-      // border-bottom: 1px solid black;
-      // border-top: none;
-      // border-right: none;
-      // border-left: none;
     }
   }
   h6 {
     input {
       width: 80%;
-      border: none;
       text-align: center;
     }
   }

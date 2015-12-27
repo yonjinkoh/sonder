@@ -9,23 +9,35 @@
       = f.file_field :avatar,:class=>"hidden", :id => "upload-photo", remote: true
       .field
         %h3
-          = f.text_field :first_name, :class => "submit-form", :placeholder => "Add Your Name"
+          = f.text_field :first_name, :class => "submit-form", :autocomplete=>"off",  :placeholder => "Add Your Name"
+          .confirm-save.pull-right.hidden
+            %i.fa.fa-check
       .field
         %h6
-          = f.text_field :description, :class => "submit-form", :onfocus => "this.placeholder = ''", :placeholder => "Click to add a short bio."
-      .socials
+          = f.text_field :description, :class => "submit-form", :onfocus => "this.placeholder = ''", :autocomplete=>"off", :placeholder => "Click to add a short bio."
+      .pre-socials
         %i.fa.fa-facebook
         %i.fa.fa-twitter
         %i.fa.fa-pinterest
+      .socials.hidden
+        %i.fa.fa-facebook.inactive
+        = f.text_field :facebook, :class => "submit-form facebook-form social-form", :onfocus => "this.placeholder = ''",:autocomplete=>"off", :placeholder => "Add your Facebook handle"
+        %br
+        %i.fa.fa-twitter.inactive
+        = f.text_field :twitter, :class => "submit-form twitter-form social-form", :onfocus => "this.placeholder = ''", :autocomplete=>"off",:placeholder => "Add your Twitter handle"
+        %br
+        %i.fa.fa-pinterest.inactive
+        = f.text_field :pinterest, :class => "submit-form pinterest-form social-form", :onfocus => "this.placeholder = ''",:autocomplete=>"off", :placeholder => "Add your Pinterest handle"
       .actions.hidden
         = f.submit :class=>"submit"
 
 :javascript
   $(document).ready(
     function() {
+
       $('.submit-form').focusout(function(){
-        $(this).css('border', 'none');
-        $('.submit').click();
+        $(this).css('border', '1px solid white');
+        $(".submit").click();
       });
       $('.submit-form').focusin(function(){
         $(this).css('border', '1px solid lightgray');
@@ -36,4 +48,23 @@
       $(".progress").change(function(){
          $('.submit').click();
       });
+
+      $('.pre-socials').on('click', function() {
+        $(this).hide();
+        $('.socials').removeClass('hidden');
+        $('.socials').hide();
+        $('.socials').fadeIn();
+        if ($(".facebook-form").val()!=="") {
+        $(".fa-facebook").removeClass('inactive');
+        };
+        if ($(".twitter-form").val()!=="") {
+        $(".fa-twitter").removeClass('inactive');
+        };
+        if ($(".pinterest-form").val()!=="") {
+        $(".fa-pinterest").removeClass('inactive');
+        };
+      })
+
+
+
   });

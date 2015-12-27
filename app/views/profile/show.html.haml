@@ -20,9 +20,12 @@
           .verified-stamp= image_tag("verified.png")
       %h6= @user.description
       .socials
-        %i.fa.fa-facebook
-        %i.fa.fa-twitter
-        %i.fa.fa-pinterest
+        - if @user.facebook?
+          %i.fa.fa-facebook{"data-toggle"=>"tooltip", "data-placement"=>"bottom", "title"=>"#{@user.facebook}"}
+        - if @user.twitter?
+          %i.fa.fa-twitter{"data-toggle"=>"tooltip", "data-placement"=>"bottom", "title"=>"#{@user.twitter}"}
+        - if @user.pinterest?
+          %i.fa.fa-pinterest{"data-toggle"=>"tooltip", "data-placement"=>"bottom", "title"=>"#{@user.pinterest}"}
   .top-buffer
   .categories.container-fluid
     .row.slider-nav
@@ -128,6 +131,7 @@
 
   $(function() {
     $('.share-it').tooltip({trigger: 'click'});
+    $('.fa').tooltip({trigger:'click'});
 
     $('.category').first().addClass('active');
     sr = new ScrollReveal();
@@ -157,7 +161,16 @@
       var moviename = $(placeholder).parents('.select2').siblings('input').first().val();
       $(placeholder).html(moviename);
     };
-
+    
+    $('body').on('click', function (e) {
+        $('[data-toggle="tooltip"]').each(function () {
+            //the 'is' for buttons that trigger popups
+            //the 'has' for icons within a button that triggers a popup
+            if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.tooltip').has(e.target).length === 0) {
+                $(this).tooltip('hide');
+            }
+        });
+    });
 
     $( ".select2-selection__placeholder" ).each(function(){
       insertPlaceholder(this);
