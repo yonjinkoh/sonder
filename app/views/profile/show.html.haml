@@ -114,6 +114,7 @@
                 %center
                   .product-picture
                     = image_tag(product.picture)
+                  %br
                   .product-name
                     - if product.link
                       = link_to "#{product.name}", product.link
