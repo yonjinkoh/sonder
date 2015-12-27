@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :books
   devise_for :users,
     :controllers => {:registrations => "users/registrations"}
-
+  devise_for :admins
   resources :categories
   resources :movies
   resources :users

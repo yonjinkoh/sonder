@@ -65,7 +65,8 @@
     = yield(:nav)
 
 .container-fluid.beneath-nav
-  - if alert
-    %p.notice= notice
-    %p.alert= alert
+  %center
+    - if alert
+      %p.notice= notice
+      %p.alert= alert
   = yield

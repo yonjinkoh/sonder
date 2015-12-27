@@ -1,23 +1,29 @@
 .profile-container
-  %p#notice= notice
-  %h1 Listing Users
+  %center
+    %p#notice= notice
+  %h1
+    %center Listing Users
   %table.table
     %thead
       %tr
+        %th ID
         %th First name
-        %th Last name
-        %th Username
+        %th Verified?
+        -# %th Last name
+        -# %th Username
         %th Description
-        %th Picture
+        %th Avatar
         %th{:colspan => "3"}
     %tbody.table-hover
       - @users.each do |user|
         %tr
+          %td= user.id
           %td= user.first_name
-          %td= user.last_name
+          %td= check_box_tag user.verified?
+          -# %td= user.last_name
           %td= user.username
           %td= user.description
-          %td{style: "max-width: 100px; overflow: hidden"}= user.picture
+          %td{style: "max-width: 100px; overflow: hidden"}= user.avatar
           %td= link_to 'Show', user
           %td= link_to 'Edit', edit_user_path(user)
           %td= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }
