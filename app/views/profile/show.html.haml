@@ -114,6 +114,11 @@
                 %center
                   .product-picture
                     = image_tag(product.picture)
+                  .product-name
+                    - if product.link
+                      = link_to "#{product.name}", product.link
+                    - else
+                      = product.name
               .clearfix
 
 
