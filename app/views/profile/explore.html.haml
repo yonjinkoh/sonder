@@ -18,4 +18,6 @@
               .profile-name
                 %h3
                   %strong= profile.first_name
+                  - if profile.verified?
+                    .verified-stamp= image_tag("verified.png")
               .profile-description= profile.description
