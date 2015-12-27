@@ -3184,14 +3184,14 @@ define('select2/data/minimumInputLength',[
     params.term = params.term || '';
 
     if (params.term.length < this.minimumInputLength) {
-      this.trigger('results:message', {
-        message: 'inputTooShort',
-        args: {
-          minimum: this.minimumInputLength,
-          input: params.term,
-          params: params
-        }
-      });
+      // this.trigger('results:message', {
+      //   message: 'inputTooShort',
+      //   args: {
+      //     minimum: this.minimumInputLength,
+      //     input: params.term,
+      //     params: params
+      //   }
+      // });
 
       return;
     }
