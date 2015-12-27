@@ -12,7 +12,7 @@ $(document).ready(function(){
       var markup = "<div class='select2-result-thing clearfix'>" +
         "<div class='select2-result-thing__artwork pull-left'><img src='" + song.artworkUrl100 + "' /></div>" +
         "<div class='select2-result-thing__meta pull-left'>" +
-          "<div class='select2-result-thing__title'>" + song.trackName + "</div>";
+          "<div class='select2-result-thing__title'>" + song.trackName + " " + "<span class='select2-result-thing__artist'>" + "- " + song.artistName + "</span>"+ "</div>";
     } else { markup = " "}
     return markup;
   }
