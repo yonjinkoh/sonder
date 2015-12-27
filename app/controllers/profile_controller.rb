@@ -44,6 +44,7 @@ class ProfileController < ApplicationController
   def edit
     current_user.id.to_s == params[:user_id] ? @user = current_user : nil
     @lists = current_user.lists
+    @sortedlists = @lists.sort
     @movielist = @lists.where(name:"Movies").first
     @movies = @movielist.movies.sort
     @booklist = @lists.where(name:"Books").first
