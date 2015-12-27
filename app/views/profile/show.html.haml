@@ -14,7 +14,10 @@
           = image_tag("default.png")
         - else
           = image_tag(@user.avatar)
-      %h3= @user.first_name
+      %h3
+        %span= @user.first_name
+        - if @user.verified?
+          .verified-stamp= image_tag("verified.png")
       %h6= @user.description
       .socials
         %i.fa.fa-facebook

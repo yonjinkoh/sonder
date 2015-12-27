@@ -4,11 +4,14 @@ Rails.application.routes.draw do
   resources :books
   devise_for :users,
     :controllers => {:registrations => "users/registrations"}
-  devise_for :admins
+  devise_for :admins, controllers: {
+        sessions: 'admin/sessions'
+  }
   resources :categories
   resources :movies
   resources :users
   resources :lists
+  resources :admin
 
 # correlate user profiles with username
   get 'explore' => 'profile#explore'

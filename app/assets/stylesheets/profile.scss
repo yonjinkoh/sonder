@@ -3,7 +3,17 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
-
+.verified-stamp {
+  height: 22px;
+  width: 22px;
+  margin: 0px 5px;
+  display: inline-block;
+  img {
+    height: 100%;
+    margin-top: -5px;
+    width: 100%;
+  }
+}
 
 .tooltip-inner {
   background-color: #707070 !important;

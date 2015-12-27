@@ -15,9 +15,6 @@ class UsersController < ApplicationController
   def show
   end
 
-  def profile_new
-  end
-
   # # GET /users/new
   def new
     @user = User.new
@@ -106,6 +103,6 @@ class UsersController < ApplicationController
   #
   #   # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:first_name, :email, :avatar, :password, :password_confirmation, :last_name, :username, :list_id, :description, :picture)
+      params.require(:user).permit(:first_name, :email, :avatar, :verified, :password, :password_confirmation, :last_name, :username, :list_id, :description, :picture)
     end
 end
