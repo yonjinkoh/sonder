@@ -34,6 +34,10 @@ class ProfileController < ApplicationController
       @quotes = @quotelist.quotes.where.not(content: "").sort
       @songlist = @lists.where(name:"Songs").first
       @songs = @songlist.songs.where.not(name: "").sort
+      if @lists.where(name:"Products").first
+        @productlist = @lists.where(name: "Products").first
+        @products = @productlist.products.where.not(name:"").sort
+      end
     end
   end
 
@@ -48,6 +52,10 @@ class ProfileController < ApplicationController
     @quotes = @quotelist.quotes.sort
     @songlist = @lists.where(name:"Songs").first
     @songs = @songlist.songs.sort
+    if @lists.where(name:"Products").first
+      @productlist = @lists.where(name: "Products").first
+      @products = @productlist.products.sort
+    end
   end
 
   private

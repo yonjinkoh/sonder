@@ -89,6 +89,21 @@
                 = song_form.text_field :artist, class: "hidden"
             .clearfix
       %center= f.submit(class: "hidden submit-songlist-btn btn")
+    - if @productlist
+      = form_for(@productlist, remote: true) do |f|
+        .simplists
+          = f.fields_for(:products, @products) do |product_form|
+            .simplist
+              %h1.pull-left #{product_form.index+1}
+              .product-form
+                = product_form.label :picture
+                = product_form.text_field :picture
+                %br
+                = product_form.label :name
+                = product_form.text_field :name
+        %center= f.submit(class: "hidden submit-productlist-btn btn")
+
+
 
 %center.view-public-profile{style: "margin-bottom: 5em"}= link_to "View Your Public Profile →", user_profile_index_path(@user)
 
@@ -114,6 +129,10 @@
 
     $(".quote").on("change", function (e) {
       $( ".submit-quotelist-btn" ).trigger( "click" );
+    });
+
+    $(".product-form").on("change", function(e) {
+      $( ".submit-productlist-btn").trigger("click");
     });
 
     $(".select-book").on("change", function (e) {

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151227004400) do
+ActiveRecord::Schema.define(version: 20151227023032) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,8 +68,10 @@ ActiveRecord::Schema.define(version: 20151227004400) do
     t.integer  "category_id"
     t.string   "movie_number"
     t.integer  "user_id"
+    t.integer  "list_id"
   end
 
+  add_index "lists", ["list_id"], name: "index_lists_on_list_id", using: :btree
   add_index "lists", ["user_id"], name: "index_lists_on_user_id", using: :btree
 
   create_table "lists_categories", force: :cascade do |t|
@@ -90,6 +92,18 @@ ActiveRecord::Schema.define(version: 20151227004400) do
   end
 
   add_index "movies", ["list_id"], name: "index_movies_on_list_id", using: :btree
+
+  create_table "products", force: :cascade do |t|
+    t.string   "picture"
+    t.string   "link"
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "list_id"
+  end
+
+  add_index "products", ["list_id"], name: "index_products_on_list_id", using: :btree
 
   create_table "quotes", force: :cascade do |t|
     t.string   "source"
@@ -141,8 +155,10 @@ ActiveRecord::Schema.define(version: 20151227004400) do
 
   add_foreign_key "books", "lists"
   add_foreign_key "categories", "lists", name: "categories_list_id_fk"
+  add_foreign_key "lists", "lists"
   add_foreign_key "lists", "users"
   add_foreign_key "movies", "lists"
+  add_foreign_key "products", "lists"
   add_foreign_key "quotes", "lists"
   add_foreign_key "songs", "lists"
 end

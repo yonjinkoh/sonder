@@ -4,7 +4,8 @@ has_many :movies, dependent: :destroy
 has_many :quotes, dependent: :destroy
 has_many :books, dependent: :destroy
 has_many :songs, dependent: :destroy
+has_many :products, dependent: :destroy
 belongs_to :user
-accepts_nested_attributes_for :movies, :books, :quotes, :songs
+accepts_nested_attributes_for :movies, :books, :quotes, :songs, :products
 
 end

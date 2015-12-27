@@ -100,6 +100,22 @@
                   .item-title= song.name
                   .item-author= song.artist
             .clearfix
+    - if @productlist
+      .simplists
+        - if @products.empty?
+          .simplist
+            %center
+              %em None yet!
+        - else
+          - @products.each do |product|
+            .simplist
+              %h1.pull-left #{@products.index(product)+1}
+              .product-wrapper.pull-left
+                %center
+                  .product-picture
+                    = image_tag(product.picture)
+              .clearfix
+
 
 :javascript
 

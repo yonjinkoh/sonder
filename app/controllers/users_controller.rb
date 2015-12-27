@@ -48,6 +48,9 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
+        if @user.verified? == true
+          @user.add_product_list
+        end
         format.html { redirect_to edit_user_profile_index_path(@user.id), notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
         format.js
@@ -69,26 +72,7 @@ class UsersController < ApplicationController
     end
   end
   #
-
-  def profile
-    current_user ? @user = current_user : @user = User.new
-    @lists = current_user.lists
-    @movielist = @lists.where(name:"Movies").first
-    @booklist = @lists.where(name:"Books").first
-    @quotelist = @lists.where(name:"Quotes").first
-    @quotes = @quotelist.quotes.sort
-    @songlist = @lists.where(name:"Songs").first
-  end
-
-  def profile_edit
-    current_user ? @user = current_user : @user = User.new
-    @lists = current_user.lists
-    @movielist = @lists.where(name:"Movies").first
-    @booklist = @lists.where(name:"Books").first
-    @quotelist = @lists.where(name:"Quotes").first
-    @quotes = @quotelist.quotes.sort
-    @songlist = @lists.where(name:"Songs").first
-  end
+  
 
   private
 

@@ -3,6 +3,14 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
+.product-wrapper {
+  width: 80%;
+  .product-picture{
+    width: 60%;
+    img {width:100%;}
+  }
+}
+
 .verified-stamp {
   height: 22px;
   width: 22px;
@@ -45,6 +53,7 @@
   .item-title {
     font-weight: 600;
   }
+
 }
 
 .text-image {

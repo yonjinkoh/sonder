@@ -41,6 +41,14 @@ has_many :lists, dependent: :destroy
 #   username
 # end
 
+def add_product_list
+  productlist = lists.find_or_create_by(name: "Products")
+  5.times do
+    product = productlist.products.build
+    product.save
+  end
+end
+
 def create_default_lists
   movielist = lists.find_or_create_by(name: "Movies", category_id: "2")
   5.times do
@@ -67,6 +75,7 @@ def create_default_lists
     song = songlist.songs.build
     song.save
   end
+
 
 end
 
