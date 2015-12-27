@@ -25,6 +25,7 @@ class ProfileController < ApplicationController
 
     if @user
       @lists = @user.lists
+      @sortedlists = @lists.sort
       # below: filters out empty items
       @movielist = @lists.where(name:"Movies").first
       @movies = @movielist.movies.where.not(name: "").sort
