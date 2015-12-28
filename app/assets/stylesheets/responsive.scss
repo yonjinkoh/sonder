@@ -25,20 +25,20 @@ and (max-device-width : 667px) {
     .remember-me {display: none !important}
     .btn {
       width: 100% !important;
-      height: 100px !important;
+      height: 120px !important;
       font-size: 3em !important;
       margin-bottom: 100px;
     }
   }
   .custom-form-control, .username-field {
-    height: 100px !important;
+    height: 120px !important;
     font-size: 3em !important;
     border: 1px solid #ccc !important;
   }
 
   .small-span-form-control {
     width: 640px !important;
-    height: 100px !important;
+    height: 120px !important;
     font-size: 1em !important;
   }
 
@@ -81,15 +81,15 @@ and (max-device-width : 667px) {
 
   .category {
     font-size: 3em !important;
-    height:100px !important;
+    height:103px !important;
   }
   .categories {
     margin-top: 150px !important;
     height: 100px !important;
   }
 
-  .categories.slick-current {
-    border-bottom: 6px solid black !important;
+  .slick-current {
+    border-bottom: 8px solid black !important;
   }
 
   .quote-text {
@@ -248,10 +248,13 @@ and (max-device-width : 667px) {
   }
   .profile-description {
     font-size: 2em !important;
+    font-weight: 300 !important;
+    line-height: 1em !important;
   }
 
   .profile-name {
     font-size: 3em !important;
+    line-height: 1em !important;
   }
 
 }
