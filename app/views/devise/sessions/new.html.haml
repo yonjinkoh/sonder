@@ -1,4 +1,4 @@
-.profile-container
+.profile-container{style: "display:none"}
 	.top-buffer
 	%center.logo-header
 		=image_tag("logo.png")
@@ -44,3 +44,7 @@
 				%br
 				%center.actions
 					= f.submit "Sign up →", class: "btn"
+
+	:javascript
+
+		$('.profile-container').fadeIn(500);
