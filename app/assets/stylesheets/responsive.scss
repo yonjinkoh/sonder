@@ -2,6 +2,50 @@
 @media only screen
 and (min-device-width : 375px)
 and (max-device-width : 667px) {
+
+  .profile-container{
+    width:100% !important;
+  }
+
+  .more-margin{
+    margin-top: 550px !important;
+  }
+
+  .blank-image {
+    height: 200px;
+    width: 200px;
+  }
+
+  .enter-new-movie {
+    width: 800px;
+    height: 350px;
+    font-size: 2.75em !important;
+    .box {width: 30%; height: 350px;}
+  }
+
+  .item-info{
+    width: 60% !important;
+  }
+
+  h1 { font-size: 8em !important}
+
+  h3 {
+    font-size: 5em !important
+  }
+
+  h6 {
+    font-size: 3em !important;
+  }
+
+  .category {
+    font-size: 3em !important;
+    height:100px !important;
+  }
+  .categories {
+    margin-top: 100px !important;
+    height: 100px !important;
+  }
+
   #main-nav {
     display: none !important;
   }
@@ -12,9 +56,7 @@ and (max-device-width : 667px) {
     width:100%;
     background-color: black;
     // height: 350px;
-    position: absolute;
-    top: 200px;
-    left: 0px;
+
     .explore-link, .profile-link {
       color:white;
       padding: 30px;
@@ -29,10 +71,11 @@ and (max-device-width : 667px) {
   .edit-banner {display: none !important}
 
   .beneath-nav {
-    margin-top: 550px !important;
+    margin-top: 200px !important;
   }
 
   .logo-iphone {
+    text-align: center;
     display: block;
     position:relative;
     margin: 0 auto !important;
@@ -40,6 +83,6 @@ and (max-device-width : 667px) {
     padding: 60px !important;
     height: 200px !important;
     width: 100% !important;
-    img{width:50% !important}
+    img{margin-left: 80px; width:50% !important}
   }
 }

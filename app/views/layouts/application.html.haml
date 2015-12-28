@@ -17,9 +17,6 @@
       / Brand and toggle get grouped for better mobile display
       .logo-iphone
         = image_tag("logo.png", id: "logo", alt: "Simplist Logo")
-        .responsive-dropdown
-          .explore-link= link_to "Explore", explore_path
-          .profile-link= current_user ? link_to("Profile", user_profile_index_path(current_user)) : link_to('Profile', new_user_session_path)
       .navbar-header
         %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
           %span.sr-only Toggle navigation
@@ -69,9 +66,21 @@
           -#       %a{:href => "#"} Separated link
     = yield(:nav)
 
-.container-fluid.beneath-nav
+.container-fluid.beneath-nav.all-content
+  .responsive-dropdown{style:"display:none"}
+    .explore-link= link_to "Explore", explore_path
+    - if current_user
+      .profile-link= link_to("Profile", user_profile_index_path(current_user))
+    - else
+      .login-link= link_to('Log In', new_user_session_path)
   %center
     - if alert
       %p.notice= notice
       %p.alert= alert
   = yield
+
+  :javascript
+
+    $('.logo-iphone').on('click', function(){
+      $('.responsive-dropdown').slideToggle();
+    })
