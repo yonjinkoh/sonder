@@ -259,12 +259,23 @@ and (max-device-width : 667px) {
   }
 
   .profile-card {
-    height: 400px;
-    margin-bottom: 100px;
+    height: 200px !important;
+    margin-bottom: 1em;
+    text-align: left !important;
+    border-bottom: 1px solid whitesmoke;
+    .profile-info, .blank-image {
+      float: left !important;
+    }
+
+    .profile-info {
+      margin: 0 0 0 3em !important ;
+    }
   }
+
+
   .profile-description {
     font-size: 2em !important;
-    font-weight: 300 !important;
+    font-weight: 400 !important;
     line-height: 1em !important;
   }
 
@@ -272,5 +283,7 @@ and (max-device-width : 667px) {
     font-size: 3em !important;
     line-height: 1em !important;
   }
+
+
 
 }
