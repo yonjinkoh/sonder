@@ -34,6 +34,9 @@ class User < ActiveRecord::Base
 devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+# validates_confirmation_of    :password, :on=>:create
+
+
 mount_uploader :picture, PictureUploader, dependent: :destroy
 has_many :lists, dependent: :destroy
 #

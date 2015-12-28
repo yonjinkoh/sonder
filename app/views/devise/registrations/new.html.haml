@@ -1,17 +1,17 @@
 .profile-container
   %h2
     %center Sign up
-  = form_for(resource, class: "form-control", as: resource_name, url: registration_path(resource_name)) do |f|
+  = form_for(resource, class: "custom-form-control", as: resource_name, url: registration_path(resource_name)) do |f|
     = devise_error_messages!
     .field
       = f.label :email
       %br/
-      = f.email_field :email, class: "form-control", autofocus: true
+      = f.email_field :email,placeholder: "email", class: "custom-form-control", autofocus: true
     %br
     .field
-      = f.label :username
-      %br
-      = f.text_field :username, class: "form-control"
+      %div= f.label :username
+      %span mysimplist.com/
+      %span= f.text_field :username, class: "span-form-control"
     %br
     .field
       = f.label :password
@@ -19,28 +19,12 @@
         %em
           (#{@minimum_password_length} characters minimum)
       %br/
-      = f.password_field :password, class: "form-control", autocomplete: "off"
+      = f.password_field :password, class: "custom-form-control", autocomplete: "off"
     %br
     .field
       = f.label :password_confirmation
       %br
-      = f.password_field :password_confirmation, class: "form-control", autocomplete: "off"
-    -# .field
-    -#   = f.label :first_name
-    -#   %br
-    -#   = f.text_field :first_name
-    -# .field
-    -#   = f.label :last_name
-    -#   %br
-    -#   = f.text_field :last_name
-    -# .field
-    -#   = f.label :description
-    -#   %br
-    -#   = f.text_area :description
-    -# .field
-    -#   = f.label :picture
-    -#   %br
-    -#   = f.file_field :picture
+      = f.password_field :password_confirmation, class: "custom-form-control", autocomplete: "off"
     %br
     %center.actions
       = f.submit "Sign up →", class: "btn"
@@ -48,3 +32,5 @@
     %center
       Have an account?
       = render "devise/shared/links"
+
+:javascript

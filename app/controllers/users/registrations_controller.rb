@@ -11,7 +11,6 @@ before_filter :configure_account_update_params, only: [:update]
   def create
     super
     resource.create_default_lists
-
   end
 
   # GET /resource/edit

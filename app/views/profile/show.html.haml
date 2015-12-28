@@ -145,6 +145,9 @@
       $( ".submit-movielist-btn" ).trigger( "click" );
     });
 
+    $( ".edit-banner" ).hide().delay( 800 ).fadeIn( 500 );
+
+
     $(".select-song").on("change", function (e) {
       $( ".submit-songlist-btn" ).trigger( "click" );
     });
@@ -161,7 +164,7 @@
       var moviename = $(placeholder).parents('.select2').siblings('input').first().val();
       $(placeholder).html(moviename);
     };
-    
+
     $('body').on('click', function (e) {
         $('[data-toggle="tooltip"]').each(function () {
             //the 'is' for buttons that trigger popups
