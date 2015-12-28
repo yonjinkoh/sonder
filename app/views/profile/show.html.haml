@@ -1,6 +1,6 @@
 - if @user == current_user
   - content_for(:nav) do
-    .edit-banner
+    .edit-banner{style: "display:none"}
       This is your public profile!
       %span.edit-it{style: 'padding: 0 10px'}= link_to "EDIT IT", edit_user_profile_index_path(@user)
       |
@@ -145,7 +145,7 @@
       $( ".submit-movielist-btn" ).trigger( "click" );
     });
 
-    $( ".edit-banner" ).hide().delay( 800 ).fadeIn( 500 );
+    $( ".edit-banner" ).delay( 800 ).fadeIn( 500 );
 
 
     $(".select-song").on("change", function (e) {

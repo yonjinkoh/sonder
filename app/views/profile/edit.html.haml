@@ -1,5 +1,5 @@
 - content_for(:nav) do
-  .edit-banner
+  .edit-banner{style: "display:none"}
     Welcome to Simplist! Click on the stuff you'd like to change, and then
     %span= link_to "view your profile →", user_profile_index_path(@user)
 
@@ -117,7 +117,7 @@
     sr.reveal('.simplist', {reset: true});
     sr.reveal('.view-public-profile', {delay: 300});
 
-    $( ".edit-banner" ).hide().delay( 800 ).fadeIn( 500 );
+    $( ".edit-banner" ).delay( 800 ).fadeIn( 500 );
   });
 
 
