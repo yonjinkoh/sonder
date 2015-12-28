@@ -12,10 +12,14 @@
     = csrf_meta_tags
   %body
 
-
   %nav.navbar.navbar-fixed-top
     .container-fluid
       / Brand and toggle get grouped for better mobile display
+      .logo-iphone
+        = image_tag("logo.png", id: "logo", alt: "Simplist Logo")
+        .responsive-dropdown
+          .explore-link= link_to "Explore", explore_path
+          .profile-link= current_user ? link_to("Profile", user_profile_index_path(current_user)) : link_to('Profile', new_user_session_path)
       .navbar-header
         %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
           %span.sr-only Toggle navigation
