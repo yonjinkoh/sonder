@@ -21,9 +21,9 @@ $(document).ready(function(){
     if (song.artworkUrl100) {
       var biggerImage = song.artworkUrl100.replace("100x100", "225x225");
       var html = "<img src='" + biggerImage + "'>"
+      var songImage = song.artworkUrl100.replace("100x100", "225x225");
     }
 
-    var songImage = song.artworkUrl100;
     var songTitle = song.trackName;
     var songArtist = song.artistName;
     insertSong(html, songImage, songTitle, songArtist);
