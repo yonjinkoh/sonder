@@ -33,13 +33,29 @@ and (max-device-width : 667px) {
   .custom-form-control, .username-field {
     height: 120px !important;
     font-size: 3em !important;
+  }
+
+  .custom-form-control {
     border: 1px solid #ccc !important;
+    -webkit-appearance: none;
+    box-shadow: none !important;
   }
 
   .small-span-form-control {
     width: 640px !important;
     height: 120px !important;
     font-size: 1em !important;
+    -webkit-appearance: none;
+    box-shadow: none !important;
+  }
+
+  .submit-form {
+    box-shadow: none !important;
+    -webkit-appearance: none;
+  }
+
+  .custom-form-control:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset !important;
   }
 
 
@@ -88,7 +104,7 @@ and (max-device-width : 667px) {
     height: 100px !important;
   }
 
-  .slick-current {
+  .category.slick-current {
     border-bottom: 8px solid black !important;
   }
 
