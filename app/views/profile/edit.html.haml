@@ -22,7 +22,7 @@
             %h1.pull-left #{movie_form.index+1}
             .enter-new-movie
               .movie-form{style: "display: inline-block;"}
-                .box.pull-left
+                .box.pull-left.box-edit
                   - if movie_form.object.picture && movie_form.object.picture.empty? != true
                     %img{:src => "https://image.tmdb.org/t/p/w154#{movie_form.object.picture}"}
                 %select.select-movie
@@ -39,7 +39,7 @@
             %h1.pull-left #{book_form.index+1}
             .enter-new-movie
               .movie-form{style: "display: inline-block;"}
-                .box.pull-left
+                .box.pull-left.box-edit
                   - if book_form.object.picture
                     %img{:src => "#{book_form.object.picture}"}
                 %select.select-book

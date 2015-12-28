@@ -6,7 +6,7 @@
   .top-buffer
   .row
     - @profiles.each do |profile|
-      .col-md-3.col-sm-3
+      .col-md-3.col-sm-4
         = link_to user_profile_index_path(profile) do
           .profile-card
             .blank-image
@@ -16,8 +16,10 @@
                 = image_tag(profile.avatar)
             .profile-info
               .profile-name
-                %h3
-                  %strong= profile.first_name
-                  - if profile.verified?
-                    .verified-stamp= image_tag("verified.png")
+                %strong= profile.first_name
+                - if profile.verified?
+                  .verified-stamp= image_tag("verified.png")
               .profile-description= profile.description
+
+
+:javascript

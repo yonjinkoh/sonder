@@ -1,4 +1,4 @@
-.profile-container{style: "display:none"}
+.profile-container.login-container{style: "display:none"}
 	.top-buffer
 	%center.logo-header
 		=image_tag("logo.png")
@@ -15,7 +15,7 @@
 					.field
 					= f.password_field :password,placeholder: "password", class: 'custom-form-control', autocomplete: "off"
 				- if devise_mapping.rememberable?
-					.field
+					.field.remember-me
 						= f.check_box :remember_me
 						= f.label :remember_me
 				%br
@@ -29,7 +29,7 @@
 				.field
 					= f.email_field :email, placeholder: "email", class: "custom-form-control", autofocus: true
 				%br
-				.field
+				.field.username-field
 					%span mysimplist.com/
 					%span= f.text_field :username,placeholder:"username", class: "small-span-form-control"
 				%br
