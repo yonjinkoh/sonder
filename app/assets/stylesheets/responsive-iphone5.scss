@@ -1,0 +1,290 @@
+// iphone5
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 568px) {
+
+
+    .logo-header {
+      img {display: none !important}
+      .tagline {
+        margin-top: 3.5em !important;
+        margin-bottom: 3.5em !important;
+        font-size: 4em;
+        width: 70% !important;
+      }
+    }
+
+    .login-container {
+      // font-size: 2em;
+    }
+
+
+    .new_user {
+      // font-size: 2.5em !important;
+      margin-top: 2em !important;
+      .remember-me {display: none !important}
+      .btn {
+        width: 100% !important;
+        height: 120px !important;
+        font-size: 3em !important;
+        margin-bottom: 100px;
+      }
+    }
+    .custom-form-control, .username-field {
+      height: 120px !important;
+      font-size: 3em !important;
+    }
+
+    .custom-form-control {
+      border: 1px solid #ccc !important;
+      -webkit-appearance: none;
+      box-shadow: none !important;
+    }
+
+    .small-span-form-control {
+      width: 640px !important;
+      height: 120px !important;
+      font-size: 1em !important;
+      -webkit-appearance: none;
+      box-shadow: none !important;
+    }
+
+    .submit-form {
+      box-shadow: none !important;
+      -webkit-appearance: none;
+    }
+
+    .custom-form-control:-webkit-autofill {
+      -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+    }
+
+
+    .profile-container{
+      width:100% !important;
+    }
+
+    .more-margin{
+      margin-top: 550px !important;
+    }
+
+    .blank-image {
+      height: 200px;
+      width: 200px;
+    }
+
+    .enter-new-movie {
+      width: 800px;
+      // height: 550px;
+      font-size: 2.75em !important;
+      .box {width: 30%; height: 350px;}
+    }
+
+    .item-info{
+      width: 60% !important;
+    }
+
+    h1 { font-size: 8em !important}
+
+    h2 { font-size: 5em !important}
+
+    h3 {
+      font-size: 5em !important
+    }
+
+    h6 {
+      font-size: 3em !important;
+    }
+
+    .category {
+      font-size: 3em !important;
+      height:103px !important;
+    }
+    .categories {
+      margin-top: 150px !important;
+      height: 100px !important;
+    }
+
+    .category.slick-current {
+      border-bottom: 8px solid black !important;
+    }
+
+    .quote-text {
+      font-size: 90px !important;
+      width: 850px !important;
+      padding-left: 50px !important;
+      textarea {
+        height: 450px !important;
+      }
+    }
+
+    .quote-author {
+      font-size: 40px !important;
+      padding-left: 50px !important;
+    }
+
+    .song-image {
+      width: 250px !important;
+      height: 250px !important;
+    }
+
+    #main-nav {
+      display: none !important;
+    }
+
+    .simplist {
+      padding: 100px 0px !important;
+    }
+
+    .navbar-header {display: none !important}
+
+    .responsive-dropdown {
+      width:100%;
+      background-color: white;;
+      // height: 350px;
+
+      .explore-link, .edit-link, .profile-link, .logout-link, .login-link {
+        color:white;
+        padding: 30px;
+        border-bottom: 1px solid lightgray;
+        font-size:5em;
+        text-align: center;
+        font-weight: bold;
+      }
+
+    }
+
+
+    .navbar-fixed-top {
+      position: inherit !important;
+    }
+
+    .select2 {
+      width: 100% !important;
+      margin-top: 50px;
+    }
+
+  .select2-selection__rendered {
+    height: 100px;
+  }
+
+  .select2-container--default .select2-selection--single {
+    height: 100px !important;
+    font-size: 2em;
+    line-height:2em;
+  }
+
+  .select2-container--default .select2-selection--single .select2-selection__rendered {
+      color: #444;
+      line-height: 100px;
+    }
+
+    .edit_list {
+      .clearfix {
+        margin-bottom: 50px;
+      }
+    }
+
+    .select2-search .select2-search--dropdown {
+      padding: 10px;
+      font-size:2em !important;
+    }
+
+    .select2-search__field {
+      height:90px !important;
+      font-size:2em !important;
+    }
+
+    .select2-results {
+      background-color: white !important;
+    }
+
+    .select2-container--default .select2-results > .select2-results__options {
+      max-height: 500px;
+      overflow-y: auto;
+      font-size: 2em;
+    }
+
+    .select2-result-thing__poster img {
+      width: 150px;
+      margin-right: 20px;
+    }
+
+    .box-edit {
+      width: 40% !important;
+      height: 450px !important;
+    }
+
+  .select2-dropdown {
+    height: 100px !important;
+    font-size: 2em;
+  }
+
+    i.fa {
+      display: none !important;
+    }
+
+    .edit-banner {display: none !important}
+
+    .beneath-nav {
+      margin-top: 0px !important;
+    }
+
+    .fa-navicon {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      color: black;
+      font-size: 100px;
+    }
+
+    .logo-iphone {
+      text-align: center;
+      display: block;
+      position:relative;
+      margin: 0 auto !important;
+      float: none;
+      padding: 60px !important;
+      height: 200px !important;
+      width: 100% !important;
+      img{margin-left: 80px; width:50% !important}
+    }
+
+    .explore-header {
+      font-family: "Source Sans Pro" !important;
+      text-transform: lowercase;
+      color: lightgray;
+      letter-spacing: 5px;
+      font-size: 1em;
+      margin-bottom: 0.5em;
+    }
+
+    .profile-card {
+      height: 200px !important;
+      margin-bottom: 1em;
+      text-align: left !important;
+      border-bottom: 1px solid whitesmoke;
+      .profile-info, .blank-image {
+        float: left !important;
+      }
+
+      .profile-info {
+        margin: 0 0 0 3em !important ;
+      }
+    }
+
+
+    .profile-description {
+      max-width: 680px !important;
+      font-size: 2.75em !important;
+      font-weight: 400 !important;
+      line-height: 1em !important;
+    }
+
+    .profile-name {
+      font-size: 3em !important;
+      line-height: 1em !important;
+    }
+
+
+
+}
