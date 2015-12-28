@@ -33,6 +33,7 @@ and (max-device-width : 667px) {
   .custom-form-control, .username-field {
     height: 100px !important;
     font-size: 3em !important;
+    border: 1px solid #ccc !important;
   }
 
   .small-span-form-control {
@@ -122,13 +123,13 @@ and (max-device-width : 667px) {
 
   .responsive-dropdown {
     width:100%;
-    background-color: black;
+    background-color: white;;
     // height: 350px;
 
-    .explore-link, .profile-link, .login-link {
+    .explore-link, .edit-link, .profile-link, .logout-link, .login-link {
       color:white;
       padding: 30px;
-      border-bottom: 1px solid gray;
+      border-bottom: 1px solid lightgray;
       font-size:5em;
       text-align: center;
       font-weight: bold;
