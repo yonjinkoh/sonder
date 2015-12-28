@@ -2,11 +2,11 @@ Rails.application.routes.draw do
   resources :songs
   resources :quotes
   resources :books
-  devise_for :admins, controllers: {
-    sessions: 'admin/sessions'
-  }
+  devise_for :admins,
+    :controllers => {:sessions => 'admin/sessions', :registrations => 'admin/registrations'}
   devise_for :users,
     :controllers => {:registrations => "users/registrations"}
+  resources :registrations
   resources :categories
   resources :movies
   resources :users
