@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :admin
 
 # correlate user profiles with username
+  get 'about' => 'application#about'
   get 'explore' => 'profile#explore'
   get 'aprilkoh/edit' => 'profile#edit'
   root to: "profile#show"

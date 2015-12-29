@@ -1,0 +1,48 @@
+.about-page {
+  padding: 0px 50px !important;
+  font-size: 18px;
+  font-weight: 200;
+  text-align: center;
+  .about {
+    color: lightgray;
+    letter-spacing: 2px;
+  }
+  .about-content {
+  }
+
+  .email-us {
+    font-weight: 400;
+    font-size: 15px;
+    font-color: lightgray;
+  }
+
+  .signature {
+    margin:30px auto;
+    font-size: 18px;
+    width: 70%;
+    font-weight: 200;
+    text-align: center;
+    .diane, .april {
+
+      text-align: left;
+      margin-top: 50px;
+      width: 40%;
+      font-weight: 400;
+
+      .sig {
+        font-family: 'jayadhira';
+        font-size: 45px;
+      }
+    }
+  }
+}
+
+
+@media only screen
+and (min-device-width : 375px)
+and (max-device-width : 667px) {
+  .signature {
+  width: 90% !important;
+  .info { font-size: 40px;}}
+}
+// ADD RESPONSIVE CODE HERE
