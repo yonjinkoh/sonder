@@ -61,6 +61,9 @@ and (max-device-width : 568px) {
 
     .profile-container{
       width:100% !important;
+      i.fa {
+        display: none !important;
+      }
     }
 
     .more-margin{
@@ -219,9 +222,7 @@ and (max-device-width : 568px) {
     font-size: 2em;
   }
 
-    i.fa {
-      display: none !important;
-    }
+
 
     .edit-banner {display: none !important}
 

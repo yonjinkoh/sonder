@@ -21,6 +21,11 @@ class MoviesController < ApplicationController
   def edit
   end
 
+  def add
+    @user = current_user
+    render :layout => false
+  end
+
   # POST /movies
   # POST /movies.json
   def create

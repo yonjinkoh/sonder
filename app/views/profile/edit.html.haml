@@ -6,7 +6,7 @@
 -# THIS IS THE EDIT PAGE
 
 
-.row.profile-container
+.row.profile-container.profile-edit
   .userform= render partial: "userform"
   .top-buffer
   .categories.container-fluid
@@ -18,6 +18,16 @@
     = form_for(@movielist, remote: true) do |f|
       .simplists
         = f.fields_for(:movies, @movies) do |movie_form|
+          .simplist-mobile
+            %h1 #{movie_form.index+1}
+            .enter-new-movie-mobile
+              - if movie_form.index == 0
+                .prompt What's your all-time favorite movie?
+              - else
+                .prompt What's your ##{movie_form.index+1} movie?
+              = link_to movies_add_path do
+                .btn-add Add It Now
+          -# simplist is hidden on mobile
           .simplist
             %h1.pull-left #{movie_form.index+1}
             .enter-new-movie

@@ -1,9 +1,131 @@
 .logo-iphone { display: none}
-
+.simplist-mobile { display: none}
 // iphone6
 @media only screen
 and (min-device-width : 375px)
 and (max-device-width : 667px) {
+
+
+
+  .movie-add-mobile {
+    font-size: 45px;
+
+    i.fa.fa-search {
+      position: absolute;
+      bottom: -120px;
+      left: 30px;
+      font-size: 75px;
+      z-index: 1000;
+      color: lightgray;
+    }
+    .selected-title {
+      background: none !important;
+      font-size: 1.5em !important;
+      line-height: 2em !important;
+    }
+    .selectize-input:after {
+      content: '' !important;
+    }
+    .selectize-input.items.not-full:after {
+      content: '' !important;
+    }
+    .selectize-dropdown-content {
+      max-height: none !important;
+      font-size: 45px;
+      .movie {
+        padding: 1em;
+        .image {
+          width: 25%;
+          height: 300px;
+          background-color: gray;
+          display: inline-block;
+          margin-right: 50px;
+        }
+        .title {
+          display: inline-block;
+          vertical-align: top;
+          width: 60%;
+          line-height: 1.5em;
+          .name {margin: 0 auto !important;
+          }
+        }
+
+        img {
+          width: 25%;
+          display:inline-block;
+          margin-right: 50px;
+        }
+      }
+    }
+    .selectize-input {
+      height: 150px !important;
+      font-size: 1em;
+      padding-left: 120px !important;
+      box-shadow: none !important;
+      border-color: #ffffff !important;
+      background-color: #ffffff !important;
+      background-image: none !important;
+      input {
+        font-size: 1.5em;
+        color: darkgray;
+        vertical-align: middle;
+        line-height: 2em !important;
+      }
+      .selectize-dropdown {
+        height: 500px !important;
+      }
+
+
+
+
+    }
+
+    .header {
+      position: relative;
+      font-size: 1em;
+      background-color: whitesmoke;
+      height: 150px;
+      font-weight: 200;
+      padding: 1em;
+      .close {
+        img {width: 60px;}
+      }
+    }
+
+    .search-box {
+      // height: 500px;
+      width: 100% !important;
+      border-bottom: 1px solid gray;
+    }
+  }
+
+  .profile-edit {
+    .simplist {
+      display: none !important;
+    }
+    .simplist-mobile {
+      display: block !important;
+    }
+    .enter-new-movie-mobile {
+      font-size: 70px;
+      font-weight: 200;
+      color: gray;
+      width:700px;
+      margin: 0 auto;
+      text-align: center;
+      height: 500px;
+      .btn-add {
+        border: 1px solid gray;
+        border-radius: 20px !important;
+        text-transform: uppercase;
+        font-weight: 400;
+        font-size: 50px;
+        margin-top: 30px;
+        padding: 15px;
+      }
+    }
+  }
+
 
 
   .logo-header {
@@ -63,6 +185,9 @@ and (max-device-width : 667px) {
 
   .profile-container{
     width:100% !important;
+    i.fa {
+      display: none !important;
+    }
   }
 
   .more-margin{
@@ -221,9 +346,7 @@ and (max-device-width : 667px) {
   font-size: 2em;
 }
 
-  i.fa {
-    display: none !important;
-  }
+
 
   .edit-banner {display: none !important}
 

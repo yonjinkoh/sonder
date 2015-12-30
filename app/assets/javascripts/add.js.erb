@@ -1,0 +1,49 @@
+$(document).ready(function(){
+  $('#select-movie-mobile').selectize({
+      maxItems: '1',
+      valueField: 'title',
+      labelField: 'title',
+      searchField: 'title',
+      options: [],
+      onItemAdd: function(value, $item){
+        // alert;
+      },
+      create: false,
+      render: {
+          option: function(item, escape) {
+
+              if (item.poster_path) {
+                return "<div class='movie'>" +
+                    "<img src='https://image.tmdb.org/t/p/w92" + item.poster_path + "' />" +
+                    '<div class="title">' +
+                         escape(item.title) +
+                    "</div>" +
+                '</div>';
+              } else {
+                return "<div class='movie'>" + "<div class='image'></div>" + '<div class="title">' +
+                    '<span class="name">' + escape(item.title) + '</span>' +
+                "</div>" + '</div>';
+              }
+          }
+      },
+      load: function(query, callback) {
+          if (!query.length) return callback();
+          $.ajax({
+              url: 'https://api.themoviedb.org/3/search/movie',
+              type: 'GET',
+              dataType: 'jsonp',
+              data: {
+                query: query, // search term
+                api_key: "41955a0f09fdcad5028264d83e9c9af6",
+              },
+              error: function() {
+                  callback();
+              },
+              success: function(res) {
+                  callback(res.results);
+              }
+          });
+      }
+  });
+
+});

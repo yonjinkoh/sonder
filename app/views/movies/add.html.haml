@@ -1,0 +1,20 @@
+!!!
+%html
+  %head
+    %title Simplist
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = favicon_link_tag 'myicon.ico'
+    %link{:href => "https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,300,200", :rel => "stylesheet", :type => "text/css"}
+    %script{:src => "//cdnjs.cloudflare.com/ajax/libs/json2/20121008/json2.min.js"}
+    %script{:src => "https://cdn.jsdelivr.net/scrollreveal.js/3.0.3/scrollreveal.min.js"}
+
+    = csrf_meta_tags
+.movie-add-mobile
+  .header
+    %i.fa.fa-search
+    .text.pull-left Add your #1 movie
+    .close.pull-right
+      = link_to edit_user_profile_index_path(@user.id) do
+        = image_tag('big-close.png')
+  %select.search-box#select-movie-mobile{placeholder: "Start typing here..."}

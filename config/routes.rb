@@ -7,6 +7,7 @@ Rails.application.routes.draw do
    devise_for :users,
     :controllers => {:registrations => "users/registrations"}
   resources :categories
+  get "/movies/add" => "movies#add"
   resources :movies
   resources :users
   resources :lists

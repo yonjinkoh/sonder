@@ -10,17 +10,16 @@ class ProfileController < ApplicationController
 
   def explore
     @profiles = User.where.not(first_name: "")
-
   end
 
   def show
     if params[:username]
-      @user = User.find_by(username: params[:username])
-    elsif params[:user_id]
-       @user = User.find(params[:user_id])
-    elsif current_user
-      @user = current_user
-    else redirect_to new_user_session_path
+        @user = User.find_by(username: params[:username])
+      elsif params[:user_id]
+         @user = User.find(params[:user_id])
+      elsif current_user
+        @user = current_user
+      else redirect_to new_user_session_path
     end
 
     if @user
