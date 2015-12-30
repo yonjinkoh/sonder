@@ -21,6 +21,12 @@ class BooksController < ApplicationController
   def edit
   end
 
+  def add
+    @user = current_user
+    @book = Book.find(params[:id])
+    render :layout => false
+  end
+
   # POST /books
   # POST /books.json
   def create
@@ -28,7 +34,7 @@ class BooksController < ApplicationController
 
     respond_to do |format|
       if @book.save
-        format.html { redirect_to @book, notice: 'Book was successfully created.' }
+        format.html { redirect_to @book, notice: 'Movie was successfully created.' }
         format.json { render :show, status: :created, location: @book }
       else
         format.html { render :new }
@@ -42,7 +48,7 @@ class BooksController < ApplicationController
   def update
     respond_to do |format|
       if @book.update(book_params)
-        format.html { redirect_to @book, notice: 'Book was successfully updated.' }
+        format.html { redirect_to edit_user_profile_index_path(List.find(@book.list_id).user) }
         format.json { render :show, status: :ok, location: @book }
       else
         format.html { render :edit }

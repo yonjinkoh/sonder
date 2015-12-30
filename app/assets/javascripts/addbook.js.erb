@@ -1,0 +1,99 @@
+$(document).ready(function(){
+
+
+    function insertBook (bookImage, bookAuthors, bookTitle, published, callback) {
+      $('input.name').first().val(bookTitle);
+      $('input.picture').val(bookImage);
+      $('input.year').val(published);
+      $('input.author').val(bookAuthors);
+
+    }
+
+    function fooCallback(json) {
+        return json;
+    }
+
+  $('#select-book-mobile').selectize({
+      maxItems: '1',
+      valueField: "id",
+      labelField: "title",
+      searchField: ["title","authors"],
+      options: [],
+      create: false,
+      render: {
+
+          item: function (item, escape) {
+
+            var bookAuthors = item.authors;
+            var bookTitle = item.title;
+            var bookImage = item.thumbnail;
+            var published = item.published;
+
+            function clickSubmit() {
+              $('.submit-btn').click();
+            }
+            insertBook(bookImage, bookAuthors, bookTitle, published, clickSubmit());
+
+          },
+
+          option: function(item, escape) {
+
+              if (item.thumbnail !== undefined) {
+                var markup = "<div class='movie'>" +
+                    "<img src='" + escape(item.thumbnail) + "' />" +
+                    '<div class="title"><strong>' +
+                         escape(item.title) +
+                    "</strong><div class='author'>" + escape(item.authors) + "</div>" + "</div>" + 
+                '</div>';
+              } else {
+                var markup = "<div class='movie'>" + "<div class='image'></div>" + '<div class="title">' +
+                    '<span class="name">' + escape(item.title) + '</span>' +
+                "</div>" + '</div>';
+              }
+          return markup;
+        }
+      },
+      load: function(query, callback) {
+          if (!query.length) return callback();
+          $.ajax({
+              url: "https://www.googleapis.com/books/v1/volumes",
+              type: 'GET',
+              dataType: 'json',
+              jsonp: "callback",
+              data: {
+                q: query, // search term
+                maxResults: 40,
+                page_limit: 10,
+                key: "AIzaSyCALnnPrGEdIXTlhFvgA5BSFDL6D2VfzNY"
+              },
+              error: function() {
+                  callback();
+              },
+              success: function(res) {
+                var theJson = {};
+                theJson = res;
+                callback(theJson.items.map(function(item){
+                  if (item.volumeInfo.imageLinks) {
+                    return {
+                      id: item.id,
+                      title: item.volumeInfo.title,
+                      authors: item.volumeInfo.authors,
+                      thumbnail: item.volumeInfo.imageLinks.smallThumbnail || "none",
+                      published: item.volumeInfo.publishedDate
+                    }
+                  } else {
+                    return {
+                      id: item.id,
+                      title: item.volumeInfo.title,
+                      authors: item.volumeInfo.authors,
+                      thumbnail: "none",
+                      published: item.volumeInfo.publishedDate
+                    }
+                  }
+                }));
+              }
+          });
+      }
+  });
+
+});

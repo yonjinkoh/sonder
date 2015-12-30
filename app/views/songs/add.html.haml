@@ -13,13 +13,13 @@
 .movie-add-mobile
   .header
     %i.fa.fa-search
-    .text.pull-left Add your #1 movie
+    .text.pull-left Add a favorite song
     .close.pull-right
       = link_to edit_user_profile_index_path(@user.id) do
         = image_tag('big-close.png')
-  %select.search-box#select-movie-mobile{placeholder: "Start typing here..."}
-  = form_for (@movie) do |f|
+  %select.search-box#select-song-mobile{placeholder: "Start typing here..."}
+  = form_for (@song) do |f|
     = f.text_field :name, class: "name hidden"
     = f.text_field :picture, class: "picture hidden"
-    = f.text_field :year, class: "year hidden"
+    = f.text_field :artist, class: "artist hidden"
     = f.submit(class: "hidden submit-btn")

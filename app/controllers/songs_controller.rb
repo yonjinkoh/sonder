@@ -17,6 +17,12 @@ class SongsController < ApplicationController
     @song = Song.new
   end
 
+  def add
+    @user = current_user
+    @song = Song.find(params[:id])
+    render :layout => false
+  end
+
   # GET /songs/1/edit
   def edit
   end
@@ -42,7 +48,7 @@ class SongsController < ApplicationController
   def update
     respond_to do |format|
       if @song.update(song_params)
-        format.html { redirect_to @song, notice: 'Song was successfully updated.' }
+        format.html { redirect_to edit_user_profile_index_path(List.find(@song.list_id).user) }
         format.json { render :show, status: :ok, location: @song }
       else
         format.html { render :edit }

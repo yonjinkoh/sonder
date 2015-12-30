@@ -1,4 +1,12 @@
 $(document).ready(function(){
+
+
+    function insertMovie (html, movieImage, movieId, releaseDate, callback) {
+      $('input.name').first().val(movieId);
+      $('input.picture').val(movieImage);
+      $('input.year').val(releaseDate);
+    }
+
   $('#select-movie-mobile').selectize({
       maxItems: '1',
       valueField: 'title',
@@ -6,22 +14,38 @@ $(document).ready(function(){
       searchField: 'title',
       options: [],
       onItemAdd: function(value, $item){
-        // alert;
+        // $('')
       },
       create: false,
       render: {
+
+          item: function (item, escape) {
+
+            if (item.poster_path) {
+              var html = "<img src='https://image.tmdb.org/t/p/w185" + item.poster_path + "' />"
+            }
+
+            var movieImage = item.poster_path;
+            var movieId = item.title;
+            var releaseDate = item.release_date;
+            function clickSubmit() {
+              $('.submit-btn').click();
+            }
+            insertMovie(html, movieImage, movieId, releaseDate, clickSubmit());
+
+          },
           option: function(item, escape) {
 
               if (item.poster_path) {
                 return "<div class='movie'>" +
-                    "<img src='https://image.tmdb.org/t/p/w92" + item.poster_path + "' />" +
+                    "<img src='https://image.tmdb.org/t/p/w92" + escape(item.poster_path) + "' />" +
                     '<div class="title">' +
-                         escape(item.title) +
+                         escape(item.title) + "<span class='year'> (" + escape(item.release_date.substring(0,4)) + ")</span>" +
                     "</div>" +
                 '</div>';
               } else {
                 return "<div class='movie'>" + "<div class='image'></div>" + '<div class="title">' +
-                    '<span class="name">' + escape(item.title) + '</span>' +
+                   escape(item.title) + "<span class='year'> (" + escape(item.release_date.substring(0,4)) + ")</span>" +
                 "</div>" + '</div>';
               }
           }

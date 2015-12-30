@@ -18,49 +18,118 @@
     = form_for(@movielist, remote: true) do |f|
       .simplists
         = f.fields_for(:movies, @movies) do |movie_form|
-          .simplist-mobile
-            %h1 #{movie_form.index+1}
-            .enter-new-movie-mobile
-              - if movie_form.index == 0
-                .prompt What's your all-time favorite movie?
-              - else
-                .prompt What's your ##{movie_form.index+1} movie?
-              = link_to movies_add_path do
-                .btn-add Add It Now
-          -# simplist is hidden on mobile
-          .simplist
-            %h1.pull-left #{movie_form.index+1}
-            .enter-new-movie
-              .movie-form{style: "display: inline-block;"}
-                .box.pull-left.box-edit
-                  - if movie_form.object.picture && movie_form.object.picture.empty? != true
-                    %img{:src => "https://image.tmdb.org/t/p/w154#{movie_form.object.picture}"}
-                %select.select-movie
-                  %option
-                = movie_form.text_field :name, class: "hidden"
-                = movie_form.text_field :picture, class: "hidden"
-                = movie_form.text_field :year, class: "hidden"
-            .clearfix
+          - unless movie_form.object.name?
+            .simplist
+              %h1.pull-left #{movie_form.index+1}
+              .enter-new-movie
+                .movie-form{style: "display: inline-block;"}
+                  .box.pull-left.box-edit
+                    - if movie_form.object.picture && movie_form.object.picture.empty? != true
+                      %img{:src => "https://image.tmdb.org/t/p/w154#{movie_form.object.picture}"}
+                  %select.select-movie
+                    %option
+                  = movie_form.text_field :name, class: "hidden"
+                  = movie_form.text_field :picture, class: "hidden"
+                  = movie_form.text_field :year, class: "hidden"
+              .clearfix
+            .simplist-mobile
+              %h1 #{movie_form.index+1}
+              .enter-new-movie-mobile
+                - if movie_form.index == 0
+                  .prompt What's your all-time favorite movie?
+                - else
+                  .prompt What's your ##{movie_form.index+1} movie?
+                = link_to add_movie_path(movie_form.object.id) do
+                  .btn-add Add It Now
+              .clearfix
+          - else
+            .simplist
+              %h1.pull-left #{movie_form.index+1}
+              .enter-new-movie
+                .movie-form{style: "display: inline-block;"}
+                  .box.pull-left.box-edit
+                    - if movie_form.object.picture && movie_form.object.picture.empty? != true
+                      %img{:src => "https://image.tmdb.org/t/p/w154#{movie_form.object.picture}"}
+                  %select.select-movie
+                    %option
+                  = movie_form.text_field :name, class: "hidden"
+                  = movie_form.text_field :picture, class: "hidden"
+                  = movie_form.text_field :year, class: "hidden"
+              .clearfix
+            .update-existing
+              %h1.pull-left #{movie_form.index+1}
+              .enter-new-movie
+                .movie-form{style: "display: inline-block;"}
+                  .box.pull-left
+                    - if movie_form.object.picture && movie_form.object.picture.empty? != true
+                      %img{:src => "https://image.tmdb.org/t/p/w154#{movie_form.object.picture}"}
+                  .item-info.pull-right
+                    %strong.item-title= movie_form.object.name
+                    %span.item-author= "(" + movie_form.object.year[0,4] + ")"
+                = link_to add_movie_path(movie_form.object.id) do
+                  .btn-add Change
+              .clearfix
       %center= f.submit(class: "btn hidden submit-movielist-btn")
     = form_for(@booklist, remote: true) do |f|
       .simplists
         = f.fields_for(:books, @books) do |book_form|
-          .simplist
-            %h1.pull-left #{book_form.index+1}
-            .enter-new-movie
-              .movie-form{style: "display: inline-block;"}
-                .box.pull-left.box-edit
-                  - if book_form.object.picture
-                    %img{:src => "#{book_form.object.picture}"}
-                %select.select-book
-                  %option
-                = book_form.text_field :name, class: "hidden"
-                = book_form.text_field :picture, class: "hidden"
-                = book_form.text_field :published, class: "hidden"
-                = book_form.text_field :author, class: "hidden"
-                .pull-right{:style => "font-size:smaller;"} Recommended: Search by ISBN, Author, or Title
-                %div.pull-right{:style => "padding-left: 3em; font-size: 18px"}
-            .clearfix
+          - unless book_form.object.name?
+            .simplist
+              %h1.pull-left #{book_form.index+1}
+              .enter-new-movie
+                .movie-form{style: "display: inline-block;"}
+                  .box.pull-left.box-edit
+                    - if book_form.object.picture
+                      %img{:src => "#{book_form.object.picture}"}
+                  %select.select-book
+                    %option
+                  = book_form.text_field :name, class: "hidden"
+                  = book_form.text_field :picture, class: "hidden"
+                  = book_form.text_field :published, class: "hidden"
+                  = book_form.text_field :author, class: "hidden"
+                  .pull-right{:style => "font-size:smaller;"} Recommended: Search by ISBN, Author, or Title
+                  %div.pull-right{:style => "padding-left: 3em; font-size: 18px"}
+              .clearfix
+            .simplist-mobile
+              %h1 #{book_form.index+1}
+              .enter-new-movie-mobile
+                - if book_form.index == 0
+                  .prompt What's your all-time favorite book?
+                - else
+                  .prompt What's your ##{book_form.index+1} book?
+                = link_to add_book_path(book_form.object.id) do
+                  .btn-add Add It Now
+              .clearfix
+          - else
+            .simplist
+              %h1.pull-left #{book_form.index+1}
+              .enter-new-movie
+                .movie-form{style: "display: inline-block;"}
+                  .box.pull-left.box-edit
+                    - if book_form.object.picture
+                      %img{:src => "#{book_form.object.picture}"}
+                  %select.select-book
+                    %option
+                  = book_form.text_field :name, class: "hidden"
+                  = book_form.text_field :picture, class: "hidden"
+                  = book_form.text_field :published, class: "hidden"
+                  = book_form.text_field :author, class: "hidden"
+                  .pull-right{:style => "font-size:smaller;"} Recommended: Search by ISBN, Author, or Title
+                  %div.pull-right{:style => "padding-left: 3em; font-size: 18px"}
+              .clearfix
+            .update-existing
+              %h1.pull-left #{book_form.index+1}
+              .enter-new-movie
+                .movie-form{style: "display: inline-block;"}
+                  .box.pull-left
+                    - if book_form.object.picture && book_form.object.picture.empty? != true
+                      %img{:src => "#{book_form.object.picture}"}
+                  .item-info.pull-right
+                    %strong.item-title= book_form.object.name
+                    .item-author= book_form.object.author
+                = link_to add_book_path(book_form.object.id) do
+                  .btn-add Change
+              .clearfix
       %center= f.submit(class: "btn hidden submit-booklist-btn")
     = form_for(@quotelist, remote: true) do |f|
       .simplists
@@ -83,21 +152,61 @@
     = form_for(@songlist, remote: true) do |f|
       .simplists
         = f.fields_for(:songs, @songs) do |song_form|
-          .simplist.song-simplist
-            %h1.pull-left #{song_form.index+1}
-            .enter-new-movie
-              .movie-form{style: "display: inline-block;"}
-                .simplist-image.song-image.pull-left
-                  - if song_form.object.picture
-                    %img{:src => "#{song_form.object.picture}"}
-                  %img#cover{:rel => "tooltip", :src => "", :title => ""}
-                %select.select-song
-                  %option
-                .song-info.pull-left
-                = song_form.text_field :name, class: "hidden"
-                = song_form.text_field :picture, class: "hidden"
-                = song_form.text_field :artist, class: "hidden"
-            .clearfix
+          - unless song_form.object.name?
+            .simplist.song-simplist
+              %h1.pull-left #{song_form.index+1}
+              .enter-new-movie
+                .movie-form{style: "display: inline-block;"}
+                  .simplist-image.song-image.pull-left
+                    - if song_form.object.picture
+                      %img{:src => "#{song_form.object.picture}"}
+                    %img#cover{:rel => "tooltip", :src => "", :title => ""}
+                  %select.select-song
+                    %option
+                  .song-info.pull-left
+                  = song_form.text_field :name, class: "hidden"
+                  = song_form.text_field :picture, class: "hidden"
+                  = song_form.text_field :artist, class: "hidden"
+              .clearfix
+            .simplist-mobile
+              %h1 #{song_form.index+1}
+              .enter-new-movie-mobile
+                - if song_form.index == 0
+                  .prompt What's your all-time favorite song?
+                - else
+                  .prompt What's your ##{song_form.index+1} song?
+                = link_to add_song_path(song_form.object.id) do
+                  .btn-add Add It Now
+              .clearfix
+          - else
+            .simplist.song-simplist
+              %h1.pull-left #{song_form.index+1}
+              .enter-new-movie
+                .movie-form{style: "display: inline-block;"}
+                  .simplist-image.song-image.pull-left
+                    - if song_form.object.picture
+                      %img{:src => "#{song_form.object.picture}"}
+                    %img#cover{:rel => "tooltip", :src => "", :title => ""}
+                  %select.select-song
+                    %option
+                  .song-info.pull-left
+                  = song_form.text_field :name, class: "hidden"
+                  = song_form.text_field :picture, class: "hidden"
+                  = song_form.text_field :artist, class: "hidden"
+              .clearfix
+            .update-existing
+              %h1.pull-left #{song_form.index+1}
+              .enter-new-movie
+                .movie-form{style: "display: inline-block;"}
+                  .simplist-image.song-image.pull-left
+                    - if song_form.object.picture && song_form.object.picture.empty? != true
+                      %img{:src => "#{song_form.object.picture}"}
+                  .item-info.pull-right
+                    %strong.item-title= song_form.object.name
+                    .item-author= song_form.object.artist
+                = link_to add_song_path(song_form.object.id) do
+                  .btn-add Change
+              .clearfix
       %center= f.submit(class: "hidden submit-songlist-btn btn")
     - if @productlist
       = form_for(@productlist, remote: true) do |f|

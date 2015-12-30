@@ -1,14 +1,19 @@
 Rails.application.routes.draw do
-  resources :songs
+  resources :songs do
+    get 'add', on: :member
+  end
   resources :quotes
-  resources :books
+  resources :books do
+    get 'add', on: :member
+  end
   devise_for :admins, :controllers =>
   { sessions: 'admin/sessions' }
    devise_for :users,
     :controllers => {:registrations => "users/registrations"}
   resources :categories
-  get "/movies/add" => "movies#add"
-  resources :movies
+  resources :movies do
+    get 'add', on: :member
+  end
   resources :users
   resources :lists
   resources :admin

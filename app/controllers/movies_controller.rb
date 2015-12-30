@@ -23,6 +23,7 @@ class MoviesController < ApplicationController
 
   def add
     @user = current_user
+    @movie = Movie.find(params[:id])
     render :layout => false
   end
 
@@ -49,7 +50,7 @@ class MoviesController < ApplicationController
   def update
     respond_to do |format|
       if @movie.update(movie_params)
-        format.html { redirect_to @movie, notice: 'Movie was successfully updated.' }
+        format.html { redirect_to edit_user_profile_index_path(List.find(@movie.list_id).user)}
         format.json { render :show, status: :ok, location: @movie }
       else
         format.html { render :edit }

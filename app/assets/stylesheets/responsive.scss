@@ -1,11 +1,20 @@
 .logo-iphone { display: none}
 .simplist-mobile { display: none}
+.update-existing {display: none}
 // iphone6
 @media only screen
 and (min-device-width : 375px)
 and (max-device-width : 667px) {
 
+  .verified-stamp {
+    height: 50px !important;
+    width: 50px !important;
+  }
 
+  .product-wrapper {
+    font-size: 3em; 
+    .product-picture img {max-height: 500px;}
+  }
 
   .movie-add-mobile {
     font-size: 45px;
@@ -99,12 +108,36 @@ and (max-device-width : 667px) {
     }
   }
 
+  .view-public-profile {a {font-size: 50px !important;} }
+
   .profile-edit {
+
+    .update-existing {
+      padding: 100px 0px !important;
+      display: block !important;
+      // border-bottom: 1px solid lightgray !important;
+
+      .btn-add {
+        width: 85%;
+        margin-top: 1em;
+      }
+    }
+
     .simplist {
       display: none !important;
     }
     .simplist-mobile {
       display: block !important;
+    }
+    .btn-add {
+      border: 1px solid gray;
+      border-radius: 20px !important;
+      text-transform: uppercase;
+      font-weight: 400;
+      font-size: 50px;
+      margin-top: 30px;
+      text-align: center;
+      padding: 15px;
     }
     .enter-new-movie-mobile {
       font-size: 70px;
@@ -114,15 +147,7 @@ and (max-device-width : 667px) {
       margin: 0 auto;
       text-align: center;
       height: 500px;
-      .btn-add {
-        border: 1px solid gray;
-        border-radius: 20px !important;
-        text-transform: uppercase;
-        font-weight: 400;
-        font-size: 50px;
-        margin-top: 30px;
-        padding: 15px;
-      }
+      // border-bottom: 1px solid lightgray !important;
     }
   }
 
@@ -396,6 +421,8 @@ and (max-device-width : 667px) {
       margin: 0 0 0 3em !important ;
     }
   }
+
+
 
 
   .profile-description {

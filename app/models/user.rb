@@ -37,7 +37,7 @@ devise :database_authenticatable, :registerable,
 # validates_confirmation_of    :password, :on=>:create
 
 
-mount_uploader :picture, PictureUploader, dependent: :destroy
+# mount_uploader :picture, PictureUploader, dependent: :destroy
 has_many :lists, dependent: :destroy
 #
 # def to_param
