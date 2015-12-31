@@ -6,13 +6,17 @@
 and (min-device-width : 375px)
 and (max-device-width : 667px) {
 
+  .submit-btn {
+    cursor: pointer;
+  }
+
   .verified-stamp {
     height: 50px !important;
     width: 50px !important;
   }
 
   .product-wrapper {
-    font-size: 3em; 
+    font-size: 3em;
     .product-picture img {max-height: 500px;}
   }
 
