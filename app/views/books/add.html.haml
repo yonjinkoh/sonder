@@ -19,8 +19,8 @@
         = image_tag('big-close.png')
   %select.search-box#select-book-mobile{placeholder: "Start typing here..."}
   = form_for (@book) do |f|
-    = f.text_field :name, class: "name", type: "hidden"
-    = f.text_field :picture, class: "picture", type: "hidden"
-    = f.text_field :published, class: "year", type: "hidden"
-    = f.text_field :author, class: "author", type: "hidden"
-    = f.submit(class: "submit-btn", type: "hidden")
+    = f.hidden_field :name, class: "name"
+    = f.hidden_field :picture, class: "picture"
+    = f.hidden_field :published, class: "year"
+    = f.hidden_field :author, class: "author"
+    = f.submit(class: "submit-btn hidden")

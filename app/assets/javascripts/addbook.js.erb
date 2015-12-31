@@ -1,11 +1,15 @@
 $(document).ready(function(){
 
+    function clickSubmit() {
+      $('.submit-btn').click();
+    }
 
-    function insertBook (bookImage, bookAuthors, bookTitle, published, callback) {
-      $('input.name').first().val(bookTitle);
+    function insertBook (bookImage, bookAuthors, bookTitle, published) {
+      $('input.name').val(bookTitle);
       $('input.picture').val(bookImage);
       $('input.year').val(published);
       $('input.author').val(bookAuthors);
+      $('input.author').on('change',clickSubmit());
 
     }
 
@@ -24,15 +28,15 @@ $(document).ready(function(){
 
           item: function (item, escape) {
 
-            var bookAuthors = item.authors;
+            var bookAuthors = item.authors[0];
             var bookTitle = item.title;
             var bookImage = item.thumbnail;
             var published = item.published;
 
-            function clickSubmit() {
-              $('.submit-btn').click();
-            }
-            insertBook(bookImage, bookAuthors, bookTitle, published, clickSubmit());
+            var test = [bookAuthors, bookTitle, bookImage, published]
+
+            console.log(item.authors[0], item.title, item.thumbnail, item.published);
+            insertBook (bookImage, bookAuthors, bookTitle, published);
 
           },
 
@@ -43,7 +47,7 @@ $(document).ready(function(){
                     "<img src='" + escape(item.thumbnail) + "' />" +
                     '<div class="title"><strong>' +
                          escape(item.title) +
-                    "</strong><div class='author'>" + escape(item.authors) + "</div>" + "</div>" + 
+                    "</strong><div class='author'>" + escape(item.authors) + "</div>" + "</div>" +
                 '</div>';
               } else {
                 var markup = "<div class='movie'>" + "<div class='image'></div>" + '<div class="title">' +
