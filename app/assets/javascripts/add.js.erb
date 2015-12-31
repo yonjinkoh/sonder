@@ -4,10 +4,11 @@ $(document).ready(function(){
     $('.submit-btn').click();
   };
 
-  function insertMovie (html, movieImage, movieId, releaseDate, callback) {
+  function insertMovie (html, movieImage, movieId, releaseDate) {
     $('input.name').val(movieId);
     $('input.picture').val(movieImage);
     $('input.year').val(releaseDate);
+    $('input.name').change(clickSubmit());
   };
 
   $('#select-movie-mobile').selectize({
@@ -31,7 +32,7 @@ $(document).ready(function(){
             var movieImage = item.poster_path;
             var movieId = item.title;
             var releaseDate = item.release_date;
-            insertMovie(html, movieImage, movieId, releaseDate, clickSubmit());
+            insertMovie(html, movieImage, movieId, releaseDate);
 
           },
           option: function(item, escape) {
