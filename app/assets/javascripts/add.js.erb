@@ -1,11 +1,14 @@
 $(document).ready(function(){
 
+  function clickSubmit() {
+    $('.submit-btn').click();
+  };
 
-    function insertMovie (html, movieImage, movieId, releaseDate, callback) {
-      $('input.name').val(movieId);
-      $('input.picture').val(movieImage);
-      $('input.year').val(releaseDate);
-    }
+  function insertMovie (html, movieImage, movieId, releaseDate, callback) {
+    $('input.name').val(movieId);
+    $('input.picture').val(movieImage);
+    $('input.year').val(releaseDate);
+  };
 
   $('#select-movie-mobile').selectize({
       maxItems: '1',
@@ -28,9 +31,6 @@ $(document).ready(function(){
             var movieImage = item.poster_path;
             var movieId = item.title;
             var releaseDate = item.release_date;
-            function clickSubmit() {
-              $('.submit-btn').click();
-            }
             insertMovie(html, movieImage, movieId, releaseDate, clickSubmit());
 
           },
