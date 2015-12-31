@@ -134,21 +134,57 @@
     = form_for(@quotelist, remote: true) do |f|
       .simplists
         = f.fields_for(:quotes, @quotes) do |quote_form|
-          .simplist
-            %h1.pull-left #{quote_form.index+1}
-            .quote.pull-left
-              .quote-text
+          - unless quote_form.object.content?
+            .simplist
+              %h1.pull-left #{quote_form.index+1}
+              .quote.pull-left
+                .quote-text
+                  - if quote_form.index == 0
+                    = quote_form.text_area :content, placeholder: "EX: 'I WILL SLEEP WHEN I'M DEAD.'"
+                  - else
+                    = quote_form.text_area :content
+                .quote-author
+                  - if quote_form.index == 0
+                    = quote_form.text_field :source, placeholder: "EX: Warren Zevon"
+                  - else
+                    = quote_form.text_field :source
+              .clearfix
+              %center= f.submit(class: "btn hidden submit-quotelist-btn")
+            .simplist-mobile
+              %h1 #{quote_form.index+1}
+              .enter-new-movie-mobile
                 - if quote_form.index == 0
-                  = quote_form.text_area :content, placeholder: "EX: 'I WILL SLEEP WHEN I'M DEAD.'"
+                  .prompt What's your all-time favorite quote?
                 - else
-                  = quote_form.text_area :content
-              .quote-author
-                - if quote_form.index == 0
-                  = quote_form.text_field :source, placeholder: "EX: Warren Zevon"
-                - else
-                  = quote_form.text_field :source
-            .clearfix
-      %center= f.submit(class: "btn hidden submit-quotelist-btn")
+                  .prompt What's your ##{quote_form.index+1} quote?
+                = link_to add_quote_path(quote_form.object.id) do
+                  .btn-add Add It Now
+              .clearfix
+          - else
+            .simplist
+              %h1.pull-left #{quote_form.index+1}
+              .quote.pull-left
+                .quote-text
+                  - if quote_form.index == 0
+                    = quote_form.text_area :content, placeholder: "EX: 'I WILL SLEEP WHEN I'M DEAD.'"
+                  - else
+                    = quote_form.text_area :content
+                .quote-author
+                  - if quote_form.index == 0
+                    = quote_form.text_field :source, placeholder: "EX: Warren Zevon"
+                  - else
+                    = quote_form.text_field :source
+              .clearfix
+              %center= f.submit(class: "btn hidden submit-quotelist-btn")
+            .update-existing
+              %h1.pull-left #{quote_form.index+1}
+              .quote.pull-left
+                .quote-text= quote_form.object.content
+                .quote-author= quote_form.object.source
+                = link_to add_quote_path(quote_form.object.id) do
+                  .btn-add Change
+              .clearfix
+
     = form_for(@songlist, remote: true) do |f|
       .simplists
         = f.fields_for(:songs, @songs) do |song_form|

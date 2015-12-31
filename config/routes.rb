@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   resources :songs do
     get 'add', on: :member
   end
-  resources :quotes
+  resources :quotes do
+    get 'add', on: :member
+  end
   resources :books do
     get 'add', on: :member
   end

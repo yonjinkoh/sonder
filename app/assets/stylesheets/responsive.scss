@@ -6,6 +6,35 @@
 and (min-device-width : 375px)
 and (max-device-width : 667px) {
 
+  .edit_quote {
+    height: 1320px;
+    width: 100%;
+    .content {
+      font-size: 80px;
+      font-weight: 200;
+      height: 90%;
+      border: none !important;
+      -webkit-appearance: none !important;
+      padding: 20px;
+    }
+    .source {
+      font-size: 60px;
+      background-color: whitesmoke;
+      width: 100%;
+      border: none !important;
+      padding: 25px 20px;
+    }
+  }
+  .submit-quote {
+    width: 100%;
+    background-color: black;
+    color: white;
+    padding: 45px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+
   .submit-btn {
     cursor: pointer !important;
   }

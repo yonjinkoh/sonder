@@ -1,0 +1,23 @@
+!!!
+%html
+  %head
+    %title Simplist
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = favicon_link_tag 'myicon.ico'
+    %link{:href => "https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,300,200", :rel => "stylesheet", :type => "text/css"}
+    %script{:src => "//cdnjs.cloudflare.com/ajax/libs/json2/20121008/json2.min.js"}
+    %script{:src => "https://cdn.jsdelivr.net/scrollreveal.js/3.0.3/scrollreveal.min.js"}
+
+    = csrf_meta_tags
+
+.movie-add-mobile
+  .header
+    .text.pull-left Add a favorite quote
+    .close.pull-right
+      = link_to edit_user_profile_index_path(@user.id) do
+        = image_tag('big-close.png')
+  = form_for(@quote) do |f|
+    = f.text_area :content,placeholder: "EX: I will sleep when I am dead.", class: "content"
+    = f.text_field :source,placeholder: "EX: Warren Zevon", class: "source"
+    = f.submit "Add Quote", class: "submit-quote"

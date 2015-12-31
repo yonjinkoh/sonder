@@ -250,38 +250,38 @@
       border-bottom: 1px solid whitesmoke ;
       padding: 50px 0px;
       // min-height:300px;
-      .quote{
-        .quote-text{font-weight:100;
-          font-size: 30px;
-          width:500px;
-          textarea {
-            width: 100%;
-            height: 150px;
-            border: 1px solid lightgray;
-            padding: 0.5em;
-            &:-webkit-input-placeholder {
-               font-style: italic;
-            }
+    }
+    .quote{
+      .quote-text{font-weight:100;
+        font-size: 30px;
+        width:500px;
+        textarea {
+          width: 100%;
+          height: 150px;
+          border: 1px solid lightgray;
+          padding: 0.5em;
+          &:-webkit-input-placeholder {
+            font-style: italic;
+          }
 
-            &:-moz-placeholder { /* Firefox 18- */
-               font-style:italic;
-            }
+          &:-moz-placeholder { /* Firefox 18- */
+            font-style:italic;
+          }
 
-            &:-moz-placeholder {  /* Firefox 19+ */
-              font-style:italic;
-            }
+          &:-moz-placeholder {  /* Firefox 19+ */
+            font-style:italic;
+          }
 
-            &:-ms-input-placeholder {
-              font-style:italic;
-            }
+          &:-ms-input-placeholder {
+            font-style:italic;
           }
         }
-        .quote-author {
-          font-size:20px;
-          font-weight: 600;
-          input {
-            padding: 0 0.5em ;
-          }
+      }
+      .quote-author {
+        font-size:20px;
+        font-weight: 600;
+        input {
+          padding: 0 0.5em ;
         }
       }
     }

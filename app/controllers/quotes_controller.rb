@@ -17,6 +17,13 @@ class QuotesController < ApplicationController
     @quote = Quote.new
   end
 
+
+  def add
+    @user = current_user
+    @quote = Quote.find(params[:id])
+    render :layout => false
+  end
+
   # GET /quotes/1/edit
   def edit
   end
@@ -42,7 +49,7 @@ class QuotesController < ApplicationController
   def update
     respond_to do |format|
       if @quote.update(quote_params)
-        format.html { redirect_to @quote, notice: 'Quote was successfully updated.' }
+        format.html { redirect_to edit_user_profile_index_path(List.find(@quote.list_id).user) }
         format.json { render :show, status: :ok, location: @quote }
       else
         format.html { render :edit }
