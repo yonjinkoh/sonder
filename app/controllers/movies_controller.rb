@@ -12,6 +12,34 @@ class MoviesController < ApplicationController
   def show
   end
 
+  def like
+    @movie = Movie.find(params[:id])
+    @movie.like_by current_user
+    respond_to do |format|
+      format.js
+    end
+  end
+
+
+  def comment
+    @movie = Movie.find(params[:id])
+    @comment = @movie.root_comments.new
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def add_comment
+    @movie = Movie.find(params[:id])
+    @comment = Comment.build_from(@movie, current_user.id, params[:body])
+    @comment.save
+    respond_to do |format|
+      format.js{render "movies/add_comment", :locals => {:movie => @movie}}
+    end
+  end
+
+
+
   # GET /movies/new
   def new
     @movie = Movie.new

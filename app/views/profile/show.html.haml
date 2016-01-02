@@ -44,6 +44,15 @@
             %h1.pull-left #{@movies.index(movie)+1}
             .enter-new-movie
               .movie-form{style: "display: inline-block;"}
+                - if current_user
+                  .like-comment
+                    = link_to like_movie_path(movie), id: "heart-movie-#{movie.id}", method: :put, remote: true do
+                      - if current_user.voted_for? movie
+                        %i.fa.fa-heart.liked #{movie.votes_for.size}
+                      - else
+                        %i.fa.fa-heart #{movie.votes_for.size}
+                    = link_to comment_movie_path(movie), id: "comment-movie-#{movie.id}", remote: true, method: :put do
+                      %i.fa.fa-comment #{movie.root_comments.size}
                 .box.pull-left
                   - if movie.picture && movie.picture.empty? != true
                     %img{:src => "https://image.tmdb.org/t/p/w154#{movie.picture}"}
@@ -52,7 +61,8 @@
                   %span.item-author= "(" + movie.year[0,4] + ")"
                   .item-overview= movie.overview
             .clearfix
-      -# %center= f.submit(class: "btn hidden submit-movielist-btn")
+          - if current_user
+            = render partial: "movies/comments", locals: {:movie => movie}
     .simplists
       - if @books.empty?
         .simplist

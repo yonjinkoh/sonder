@@ -1,18 +1,18 @@
-.comments-window{:id => "simplist-book-#{book.id}"}
+.comments-window{:id => "simplist-movie-#{movie.id}"}
   %center COMMENTS
   .add-comment
     - if current_user
       .user-avatar=image_tag(current_user.avatar)
-    = form_tag(add_comment_book_path(book), remote: true) do
-      = text_field_tag :body, nil, autofocus: true, placeholder: "Thoughts?"
+    = form_tag(add_comment_movie_path(movie), remote: true) do
+      = text_field_tag :body, nil, placeholder: "Thoughts?"
       = submit_tag "Post comment", class: "hidden"
     .clearfix
   .all-comments
-    - book.root_comments.each do |comment|
+    - movie.root_comments.each do |comment|
       .comment-wrapper
         .user-avatar=image_tag(comment.user.avatar)
         .comment
           = comment.body
-          - if (comment.user_id == current_user.id) || (List.find(book.list_id).user.id == comment.user_id)
+          - if (comment.user_id == current_user.id) || (List.find(movie.list_id).user.id == comment.user_id)
             = link_to "x", comment, method: :delete, class: "delete-comment", remote: true
         .clearfix

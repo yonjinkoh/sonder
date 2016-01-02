@@ -17,14 +17,14 @@
   // height: 200px;
   display: none;
   padding: 30px 50px 10px 50px;
-  background-color: whitesmoke;
+  // background-color: whitesmoke;
   .all-comments {
     margin-top: 20px;
     // border-top: 1px solid lightgray;
   }
   .comment-wrapper {
     margin: 15px 0px;
-    .comment {margin-left: 16px;float:left;  background-color: white;    font-size: 12px;
+    .comment {margin-left: 16px;float:left;  background-color: black; color: white;   font-size: 12px;
         font-weight: 400;     padding: 10px;position: relative;}
   }
   input {background-color: white;

@@ -26,6 +26,11 @@ Rails.application.routes.draw do
   resources :categories
   resources :movies do
     get 'add', on: :member
+    member do
+      put "like", to: "movies#like"
+      put "comment", to: "movies#comment"
+      post "add_comment", to: "movies#add_comment"
+    end
   end
   resources :users
   resources :lists
