@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
+  resources :comments
   resources :songs do
     get 'add', on: :member
+    member do
+      put "like", to: "songs#like"
+      put "comment", to: "songs#comment"
+      post "add_comment", to: "songs#add_comment"
+    end
   end
   resources :quotes do
     get 'add', on: :member

@@ -39,6 +39,7 @@ devise :database_authenticatable, :registerable,
 
 # mount_uploader :picture, PictureUploader, dependent: :destroy
 has_many :lists, dependent: :destroy
+acts_as_voter
 #
 # def to_param
 #   username

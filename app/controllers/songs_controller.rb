@@ -7,6 +7,32 @@ class SongsController < ApplicationController
     @songs = Song.all
   end
 
+  def like
+    @song = Song.find(params[:id])
+    @song.like_by current_user
+    @like_count = @song.votes_for.size
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def comment
+    @song = Song.find(params[:id])
+    @comment = @song.root_comments.new
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def add_comment
+    @song = Song.find(params[:id])
+    @comment = Comment.build_from(@song, current_user.id, params[:body])
+    @comment.save
+    respond_to do |format|
+      format.js{render "add_comment", :locals => {:song => @song}}
+    end
+  end
+
   # GET /songs/1
   # GET /songs/1.json
   def show
@@ -75,6 +101,6 @@ class SongsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def song_params
-      params.require(:song).permit(:name, :link, :artist, :album, :picture, :list_id)
+      params.require(:song).permit(:comment, :name, :link, :artist, :album, :picture, :list_id)
     end
 end
