@@ -12,6 +12,33 @@ class BooksController < ApplicationController
   def show
   end
 
+
+  def like
+    @book = Book.find(params[:id])
+    @book.like_by current_user
+    respond_to do |format|
+      format.js
+    end
+  end
+
+
+  def comment
+    @book = Book.find(params[:id])
+    @comment = @book.root_comments.new
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def add_comment
+    @book = Book.find(params[:id])
+    @comment = Comment.build_from(@book, current_user.id, params[:body])
+    @comment.save
+    respond_to do |format|
+      format.js{render "books/add_comment", :locals => {:book => @book}}
+    end
+  end
+
   # GET /books/new
   def new
     @book = Book.new

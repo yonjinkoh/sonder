@@ -10,7 +10,6 @@ class SongsController < ApplicationController
   def like
     @song = Song.find(params[:id])
     @song.like_by current_user
-    @like_count = @song.votes_for.size
     respond_to do |format|
       format.js
     end

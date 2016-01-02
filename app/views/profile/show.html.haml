@@ -64,6 +64,15 @@
             %h1.pull-left #{@books.index(book)+1}
             .enter-new-movie
               .movie-form{style: "display: inline-block;"}
+                - if current_user
+                  .like-comment
+                    = link_to like_book_path(book), id: "heart-book-#{book.id}", method: :put, remote: true do
+                      - if current_user.voted_for? book
+                        %i.fa.fa-heart.liked #{book.votes_for.size}
+                      - else
+                        %i.fa.fa-heart #{book.votes_for.size}
+                    = link_to comment_book_path(book), id: "comment-book-#{book.id}", remote: true, method: :put do
+                      %i.fa.fa-comment #{book.root_comments.size}
                 .box.pull-left
                   - if book.picture
                     %img{:src => "#{book.picture}"}
@@ -81,6 +90,8 @@
                     .item-published= book.published[0,4]
                     .item-overview.truncate= book.description
             .clearfix
+          - if current_user
+            = render partial: "books/comments", locals: {:book => book}
     .simplists
       - if @quotes.empty?
         .simplist
@@ -112,7 +123,7 @@
                         %i.fa.fa-heart.liked #{song.votes_for.size}
                       - else
                         %i.fa.fa-heart #{song.votes_for.size}
-                    = link_to comment_song_path(song), remote: true, method: :put do
+                    = link_to comment_song_path(song),id: "comment-song-#{song.id}", remote: true, method: :put do
                       %i.fa.fa-comment #{song.root_comments.size}
                 .simplist-image.song-image.pull-left
                   - if song.picture
@@ -124,7 +135,7 @@
                   .item-overview= song.album
             .clearfix
           - if current_user
-            = render partial: "comments", locals: {:song => song}
+            = render partial: "songs/comments", locals: {:song => song}
     - if @productlist
       .simplists
         - if @products.empty?

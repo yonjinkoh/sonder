@@ -1,4 +1,7 @@
 .comment-wrapper
   .user-avatar=image_tag(@comment.user.avatar)
-  .comment= @comment.body
+  .comment
+    = @comment.body
+    - if (@comment.user_id == current_user.id) || (List.find(book.list_id).user.id == @comment.user_id)
+      = link_to "x", @comment, method: :delete, class: "delete-comment", remote: true
   .clearfix

@@ -1,0 +1,2 @@
+var theheart = "#heart-book-" + "<%= j @book.id.to_s %>";
+$(theheart).find('i').html("<%= j @book.votes_for.size.to_s %>");
