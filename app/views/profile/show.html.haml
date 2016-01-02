@@ -105,14 +105,15 @@
             %h1.pull-left #{@songs.index(song)+1}
             .enter-new-movie
               .movie-form{style: "display: inline-block;"}
-                .like-comment
-                  = link_to like_song_path(song), id: "heart-song-#{song.id}", method: :put, remote: true do
-                    - if current_user.voted_for? song
-                      %i.fa.fa-heart.liked #{song.votes_for.size}
-                    - else
-                      %i.fa.fa-heart #{song.votes_for.size}
-                  = link_to comment_song_path(song), remote: true, method: :put do
-                    %i.fa.fa-comment #{song.root_comments.size}
+                - if current_user
+                  .like-comment
+                    = link_to like_song_path(song), id: "heart-song-#{song.id}", method: :put, remote: true do
+                      - if current_user.voted_for? song
+                        %i.fa.fa-heart.liked #{song.votes_for.size}
+                      - else
+                        %i.fa.fa-heart #{song.votes_for.size}
+                    = link_to comment_song_path(song), remote: true, method: :put do
+                      %i.fa.fa-comment #{song.root_comments.size}
                 .simplist-image.song-image.pull-left
                   - if song.picture
                     %img{:src => "#{song.picture}"}
@@ -122,7 +123,8 @@
                   .item-author= song.artist
                   .item-overview= song.album
             .clearfix
-          = render partial: "comments", locals: {:song => song}
+          - if current_user
+            = render partial: "comments", locals: {:song => song}
     - if @productlist
       .simplists
         - if @products.empty?
