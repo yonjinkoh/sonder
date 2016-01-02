@@ -1,10 +1,12 @@
 $(document).ready(function(){
 
-  function insertMovie (html, movieImage, movieId, releaseDate) {
+  function insertMovie (html, movieImage, movieId, releaseDate, movieOverview) {
     $('.select2-container--open').siblings('.box').html(html);
     $('.select2-container--open').siblings('input').first().val(movieId);
     $('.select2-container--open').siblings('input').first().next().val(movieImage);
     $('.select2-container--open').siblings('input').first().next().next().val(releaseDate);
+    $('.select2-container--open').siblings('input').first().next().next().next().val(movieOverview);
+
   }
 
   function formatMovie (movie) {
@@ -29,6 +31,7 @@ $(document).ready(function(){
     if (movie.primary_release_year) {
       markup += "<div class='select2-result-movie__year'>" + movie.year + "</div>";
     }
+    // console.log(movie.imdb_id);
     return markup;
     }
 
@@ -39,8 +42,9 @@ $(document).ready(function(){
 
     var movieImage = movie.poster_path;
     var movieId = movie.title;
+    var movieOverview = movie.overview;
     var releaseDate = movie.release_date;
-    insertMovie(html, movieImage, movieId, releaseDate);
+    insertMovie(html, movieImage, movieId, releaseDate, movieOverview);
     return movie.title;
     if (movie.title !== 'undefined') {
       return movie.title;
