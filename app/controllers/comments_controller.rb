@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+before_action :set_comment
 
   def new
   end
@@ -13,6 +14,7 @@ class CommentsController < ApplicationController
   end
 
   def destroy
+    @comment.destroy
     respond_to do |format|
       format.js
     end
@@ -20,5 +22,10 @@ class CommentsController < ApplicationController
 
   def index
   end
+
+private
+def set_comment
+  @comment = Comment.find(params[:id])
+end
 
 end
