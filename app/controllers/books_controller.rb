@@ -19,6 +19,10 @@ class BooksController < ApplicationController
 
   # GET /books/1/edit
   def edit
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def add
@@ -75,6 +79,6 @@ class BooksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def book_params
-      params.require(:book).permit(:name, :picture, :list_id, :author, :published)
+      params.require(:book).permit(:name, :link, :description, :picture, :list_id, :author, :published)
     end
 end

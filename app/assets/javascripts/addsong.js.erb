@@ -3,10 +3,11 @@ $(document).ready(function(){
     function clickSubmit() {
       $('.submit-btn').click();
     }
-    function insertSong (html, songImage, songTitle, songArtist) {
+    function insertSong (html, songImage, songTitle, songArtist, songAlbum) {
       $('input.name').val(songTitle);
       $('input.picture').val(songImage);
       $('input.artist').val(songArtist);
+      $('input.album').val(songAlbum);
       $('input.name').change(clickSubmit());
     }
 
@@ -32,8 +33,9 @@ $(document).ready(function(){
 
             var songTitle = song.trackName;
             var songArtist = song.artistName;
+            var songAlbum = song.collectionName;
 
-            insertSong(html, songImage, songTitle, songArtist);
+            insertSong(html, songImage, songTitle, songArtist, songAlbum);
 
           },
           option: function(item, escape) {

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151229052215) do
+ActiveRecord::Schema.define(version: 20160102061436) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,11 +43,13 @@ ActiveRecord::Schema.define(version: 20151229052215) do
   create_table "books", force: :cascade do |t|
     t.string   "name"
     t.string   "picture"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.integer  "list_id"
     t.string   "published"
     t.string   "author"
+    t.string   "link"
+    t.string   "description"
   end
 
   add_index "books", ["list_id"], name: "index_books_on_list_id", using: :btree
@@ -59,6 +61,23 @@ ActiveRecord::Schema.define(version: 20151229052215) do
     t.datetime "updated_at", null: false
     t.integer  "list_id"
   end
+
+  create_table "comments", force: :cascade do |t|
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+    t.string   "title"
+    t.text     "body"
+    t.string   "subject"
+    t.integer  "user_id",          null: false
+    t.integer  "parent_id"
+    t.integer  "lft"
+    t.integer  "rgt"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comments", ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "lists", force: :cascade do |t|
     t.string   "name"
@@ -89,6 +108,7 @@ ActiveRecord::Schema.define(version: 20151229052215) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "list_id"
+    t.string   "overview"
   end
 
   add_index "movies", ["list_id"], name: "index_movies_on_list_id", using: :btree
@@ -123,6 +143,7 @@ ActiveRecord::Schema.define(version: 20151229052215) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "list_id"
+    t.string   "link"
   end
 
   add_index "songs", ["list_id"], name: "index_songs_on_list_id", using: :btree

@@ -2,22 +2,7 @@
   .simplists
     = f.fields_for(:books, @books) do |book_form|
       - unless book_form.object.name?
-        .simplist
-          %h1.pull-left #{book_form.index+1}
-          .enter-new-movie
-            .movie-form{style: "display: inline-block;"}
-              .box.pull-left.box-edit
-                - if book_form.object.picture
-                  %img{:src => "#{book_form.object.picture}"}
-              %select.select-book
-                %option
-              = book_form.text_field :name, class: "hidden"
-              = book_form.text_field :picture, class: "hidden"
-              = book_form.text_field :published, class: "hidden"
-              = book_form.text_field :author, class: "hidden"
-              .pull-right{:style => "font-size:smaller;"} Recommended: Search by ISBN, Author, or Title
-              %div.pull-right{:style => "padding-left: 3em; font-size: 18px"}
-          .clearfix
+        = render partial: "edit_book", :locals => {:book_form => book_form}
         .simplist-mobile
           %h1 #{book_form.index+1}
           .enter-new-movie-mobile
@@ -29,22 +14,7 @@
               .btn-add Add It Now
           .clearfix
       - else
-        .simplist
-          %h1.pull-left #{book_form.index+1}
-          .enter-new-movie
-            .movie-form{style: "display: inline-block;"}
-              .box.pull-left.box-edit
-                - if book_form.object.picture
-                  %img{:src => "#{book_form.object.picture}"}
-              %select.select-book
-                %option
-              = book_form.text_field :name, class: "hidden"
-              = book_form.text_field :picture, class: "hidden"
-              = book_form.text_field :published, class: "hidden"
-              = book_form.text_field :author, class: "hidden"
-              .pull-right{:style => "font-size:smaller;"} Recommended: Search by ISBN, Author, or Title
-              %div.pull-right{:style => "padding-left: 3em; font-size: 18px"}
-          .clearfix
+        = render partial: "edit_book", :locals => {:book_form => book_form}
         .update-existing
           %h1.pull-left #{book_form.index+1}
           .enter-new-movie
@@ -59,3 +29,6 @@
               .btn-add Change
           .clearfix
   %center= f.submit(class: "btn hidden submit-booklist-btn")
+
+
+  :javascript

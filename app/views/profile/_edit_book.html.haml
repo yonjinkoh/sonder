@@ -1,0 +1,42 @@
+.simplist
+  %h1.pull-left #{book_form.index+1}
+  .enter-new-movie
+    .movie-form{style: "display: inline-block;"}
+      .saved SAVED
+      .edit-options
+        %i.fa.fa-close CLEAR
+      .box.pull-left.box-edit
+        - if book_form.object.picture
+          %img{:src => "#{book_form.object.picture}"}
+      %select.select-book
+        %option
+      = book_form.text_field :name, class: "hidden"
+      = book_form.text_field :picture, class: "hidden"
+      = book_form.text_field :published, class: "hidden"
+      = book_form.text_field :author, class: "hidden"
+      = book_form.text_field :description, class: "hidden"
+      = book_form.text_field :link, class: "hidden"
+      -# .pull-right{:style => "font-size:smaller;"} Recommended: Search by ISBN, Author, or Title
+      %div.pull-right{:style => "padding-left: 3em; font-size: 18px"}
+  .clearfix
+
+
+:javascript
+
+    $(function() {
+
+
+      function clickButton (){
+        $('.submit-booklist-btn').trigger("click");
+      }
+
+      function insertPlaceholder(placeholder) {
+        var moviename = $(placeholder).parents('.select2').siblings('input').first().val();
+        $(placeholder).html(moviename);
+      };
+
+      $( ".select2-selection__placeholder" ).each(function(){
+        insertPlaceholder(this);
+      });
+
+    });

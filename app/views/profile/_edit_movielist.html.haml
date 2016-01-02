@@ -6,6 +6,9 @@
           %h1.pull-left #{movie_form.index+1}
           .enter-new-movie
             .movie-form{style: "display: inline-block;"}
+              .saved SAVED
+              .edit-options
+                %i.fa.fa-close CLEAR
               .box.pull-left.box-edit
                 - if movie_form.object.picture && movie_form.object.picture.empty? != true
                   %img{:src => "https://image.tmdb.org/t/p/w154#{movie_form.object.picture}"}
@@ -31,6 +34,9 @@
           %h1.pull-left #{movie_form.index+1}
           .enter-new-movie
             .movie-form{style: "display: inline-block;"}
+              .saved SAVED
+              .edit-options
+                %i.fa.fa-close CLEAR
               .box.pull-left.box-edit
                 - if movie_form.object.picture && movie_form.object.picture.empty? != true
                   %img{:src => "https://image.tmdb.org/t/p/w154#{movie_form.object.picture}"}
@@ -39,6 +45,7 @@
               = movie_form.text_field :name, class: "hidden"
               = movie_form.text_field :picture, class: "hidden"
               = movie_form.text_field :year, class: "hidden"
+              = movie_form.text_field :overview, class: "hidden"
           .clearfix
         .update-existing
           %h1.pull-left #{movie_form.index+1}

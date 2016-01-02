@@ -111,6 +111,19 @@ select {
 
 .movie-form {
   width: 100%;
+  .item-overview {
+    opacity: 0;
+    color: black;
+    font-weight: 200;
+    transition: all 1s;
+  }
+}
+
+.movie-form:hover {
+  .item-overview {
+    opacity: 1.0;
+
+  }
 }
 
 .new_movie {

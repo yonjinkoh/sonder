@@ -4,13 +4,14 @@ $(document).ready(function(){
       $('.submit-btn').click();
     }
 
-    function insertBook (bookImage, bookAuthors, bookTitle, published) {
+    function insertBook (bookImage, bookAuthors, bookTitle, published, bookDescription, bookLink) {
       $('input.name').val(bookTitle);
       $('input.picture').val(bookImage);
       $('input.year').val(published);
       $('input.author').val(bookAuthors);
+      $('input.description').val(bookDescription);
+      $('input.link').val(bookLink);
       $('input.author').on('change',clickSubmit());
-
     }
 
     function fooCallback(json) {
@@ -32,11 +33,13 @@ $(document).ready(function(){
             var bookTitle = item.title;
             var bookImage = item.thumbnail;
             var published = item.published;
+            var bookDescription = item.description;
+            var bookLink = item.link;
 
-            var test = [bookAuthors, bookTitle, bookImage, published]
+            // var test = [bookAuthors, bookTitle, bookImage, published]
 
-            console.log(item.authors[0], item.title, item.thumbnail, item.published);
-            insertBook (bookImage, bookAuthors, bookTitle, published);
+            // console.log(item.authors[0], item.title, item.thumbnail, item.published);
+            insertBook (bookImage, bookAuthors, bookTitle, published, bookDescription, bookLink);
 
           },
 
@@ -83,7 +86,9 @@ $(document).ready(function(){
                       title: item.volumeInfo.title,
                       authors: item.volumeInfo.authors,
                       thumbnail: item.volumeInfo.imageLinks.smallThumbnail || "none",
-                      published: item.volumeInfo.publishedDate
+                      published: item.volumeInfo.publishedDate,
+                      link: item.volumeInfo.infoLink,
+                      description: item.volumeInfo.description
                     }
                   } else {
                     return {
@@ -91,7 +96,9 @@ $(document).ready(function(){
                       title: item.volumeInfo.title,
                       authors: item.volumeInfo.authors,
                       thumbnail: "none",
-                      published: item.volumeInfo.publishedDate
+                      published: item.volumeInfo.publishedDate,
+                      link: item.volumeInfo.infoLink,
+                      description: item.volumeInfo.description
                     }
                   }
                 }));

@@ -40,6 +40,8 @@ gem 'rails', '4.2.4'
 gem 'pg'
 # Use postgres
 
+gem 'acts_as_commentable_with_threading'
+
 
 
 # Use SCSS for stylesheets

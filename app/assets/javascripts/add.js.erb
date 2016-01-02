@@ -4,10 +4,11 @@ $(document).ready(function(){
     $('.submit-btn').click();
   };
 
-  function insertMovie (html, movieImage, movieId, releaseDate) {
+  function insertMovie (html, movieImage, movieId, releaseDate, movieOverview) {
     $('input.name').val(movieId);
     $('input.picture').val(movieImage);
     $('input.year').val(releaseDate);
+    $('input.overview').val(movieOverview);
     $('input.name').change(clickSubmit());
   };
 
@@ -32,8 +33,9 @@ $(document).ready(function(){
             var movieImage = item.poster_path;
             var movieId = item.title;
             var releaseDate = item.release_date;
+            var movieOverview = item.overview;
 
-            insertMovie(html, movieImage, movieId, releaseDate);
+            insertMovie(html, movieImage, movieId, releaseDate, movieOverview);
 
           },
           option: function(item, escape) {

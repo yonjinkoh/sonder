@@ -1,5 +1,5 @@
 class ProfileController < ApplicationController
-  before_action :authenticate_user!, :except => [:show, :explore]
+  before_action :authenticate_user!, :except => [:show, :edit, :explore]
   before_action :set_s3_direct_post, only: [:new, :edit, :create, :update]
 
   def new
@@ -11,6 +11,8 @@ class ProfileController < ApplicationController
   def explore
     @profiles = User.where.not(first_name: "")
   end
+
+
 
   def show
     if params[:username]
@@ -39,6 +41,7 @@ class ProfileController < ApplicationController
         @products = @productlist.products.where.not(name:"").sort
       end
     end
+
   end
 
   def edit
@@ -56,6 +59,10 @@ class ProfileController < ApplicationController
     if @lists.where(name:"Products").first
       @productlist = @lists.where(name: "Products").first
       @products = @productlist.products.sort
+    end
+    respond_to do |format|
+      format.html
+      format.js
     end
   end
 

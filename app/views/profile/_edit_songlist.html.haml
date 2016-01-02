@@ -1,0 +1,67 @@
+= form_for(@songlist, remote: true) do |f|
+  .simplists
+    = f.fields_for(:songs, @songs) do |song_form|
+      - unless song_form.object.name?
+        .simplist.song-simplist
+          %h1.pull-left #{song_form.index+1}
+          .enter-new-movie
+            .movie-form{style: "display: inline-block;"}
+              .edit-options
+                %i.fa.fa-close CLEAR
+              .saved SAVED
+              .simplist-image.song-image.pull-left
+                - if song_form.object.picture
+                  %img{:src => "#{song_form.object.picture}"}
+                %img#cover{:rel => "tooltip", :src => "", :title => ""}
+              %select.select-song
+                %option
+              .song-info.pull-left
+              = song_form.text_field :name, class: "hidden"
+              = song_form.text_field :picture, class: "hidden"
+              = song_form.text_field :artist, class: "hidden"
+              = song_form.text_field :album, class: "hidden"
+          .clearfix
+        .simplist-mobile
+          %h1 #{song_form.index+1}
+          .enter-new-movie-mobile
+            - if song_form.index == 0
+              .prompt What's your all-time favorite song?
+            - else
+              .prompt What's your ##{song_form.index+1} song?
+            = link_to add_song_path(song_form.object.id) do
+              .btn-add Add It Now
+          .clearfix
+      - else
+        .simplist.song-simplist
+          %h1.pull-left #{song_form.index+1}
+          .enter-new-movie
+            .movie-form{style: "display: inline-block;"}
+              .saved SAVED
+              .edit-options
+                %i.fa.fa-close CLEAR
+              .simplist-image.song-image.pull-left
+                - if song_form.object.picture
+                  %img{:src => "#{song_form.object.picture}"}
+                %img#cover{:rel => "tooltip", :src => "", :title => ""}
+              %select.select-song
+                %option
+              .song-info.pull-left
+              = song_form.text_field :name, class: "hidden"
+              = song_form.text_field :picture, class: "hidden"
+              = song_form.text_field :artist, class: "hidden"
+              = song_form.text_field :album, class: "hidden"
+          .clearfix
+        .update-existing
+          %h1.pull-left #{song_form.index+1}
+          .enter-new-movie
+            .movie-form{style: "display: inline-block;"}
+              .simplist-image.song-image.pull-left
+                - if song_form.object.picture && song_form.object.picture.empty? != true
+                  %img{:src => "#{song_form.object.picture}"}
+              .item-info.pull-right
+                %strong.item-title= song_form.object.name
+                .item-author= song_form.object.artist
+            = link_to add_song_path(song_form.object.id) do
+              .btn-add Change
+          .clearfix
+  %center= f.submit(class: "hidden submit-songlist-btn btn")

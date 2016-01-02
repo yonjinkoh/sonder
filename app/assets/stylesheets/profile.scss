@@ -2,6 +2,35 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.profile-edit{
+
+  .movie-form {
+    position: relative;
+    .saved {
+      display: none;
+      position: absolute;
+      bottom: -20px;
+      right: 0px;
+    }
+    .edit-options {
+      i::before {margin-right: 10px;}
+      i {margin-bottom:5px;}
+      opacity: 0;
+      position: absolute;
+      cursor: pointer;
+      color: gray;
+      font-size: 12px;
+      top: 40px;
+      right: 0px;
+      font-weight: 400;
+    }
+  }
+  .movie-form:hover {
+    .edit-options {
+      opacity: 1;
+    }
+  }
+}
 
 .submit-form {
   border: 1px solid white;
@@ -68,8 +97,9 @@
   .item-title {
     font-weight: 600;
   }
-
 }
+
+
 
 .text-image {
   width:75px;
@@ -173,60 +203,6 @@
 
 }
 
-
-
-// .select2-result-movie__poster {
-//   width: 20%;
-//   img {width:100%;}
-//   float: left;
-// }
-
-// .select2-result-movie__meta {
-//   display: inline-block;
-//   float: left;
-//   padding: 0px 10px;
-//   max-width: 75%;
-// }
-//
-// .select2-selection {
-//   height: 200px;
-// }
-//
-// .select2-dropdown {
-//   width:185px;
-//   border: none;
-//   border-radius: none;
-//   background-color: transparent;
-// }
-//
-// .select2-search {
-//   margin-top: -30px;
-//   border: none;
-// }
-//
-// .select2-container--default .select2-search--dropdown .select2-search__field {
-//   border: none;
-// }
-//
-// .select2-container--default {
-//   // border-bottom: 1px solid #aaa;
-// }
-//
-// .select2-selection.select2-selection--single {
-//   border: none;
-//   background-color: transparent;
-//   border-radius: 0px;
-// }
-//
-//
-// select {
-//   width: 185px;
-// }
-//
-//
-//
-
-
   .beneath-nav {
     margin-top: 0px;
   }
@@ -238,6 +214,10 @@
   }
 
   .simplists {
+    -moz-user-select: text;
+    cursor: auto !important;
+    -webkit-user-select: auto !important;
+    -moz-user-select: auto !important;
     padding-left: 0em;
     padding-right: 0;
     h1 {

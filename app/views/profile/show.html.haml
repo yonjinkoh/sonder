@@ -50,6 +50,7 @@
                 .item-info.pull-right
                   %strong.item-title= movie.name
                   %span.item-author= "(" + movie.year[0,4] + ")"
+                  .item-overview= movie.overview
             .clearfix
       -# %center= f.submit(class: "btn hidden submit-movielist-btn")
     .simplists
@@ -66,10 +67,19 @@
                 .box.pull-left
                   - if book.picture
                     %img{:src => "#{book.picture}"}
-                .item-info.pull-right
-                  .item-title= book.name
-                  .item-author= book.author
-                  .item-published= book.published[0,4]
+                - if book.link?
+                  = link_to "#{book.link}" do
+                    .item-info.pull-right
+                      .item-title= book.name
+                      .item-author= book.author
+                      .item-published= book.published[0,4]
+                      .item-overview= book.description
+                - else
+                  .item-info.pull-right
+                    .item-title= book.name
+                    .item-author= book.author
+                    .item-published= book.published[0,4]
+                    .item-overview= book.description
             .clearfix
     .simplists
       - if @quotes.empty?
@@ -102,6 +112,7 @@
                 .item-info.pull-left
                   .item-title= song.name
                   .item-author= song.artist
+                  .item-overview= song.album
             .clearfix
     - if @productlist
       .simplists

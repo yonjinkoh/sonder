@@ -1,10 +1,11 @@
 $(document).ready(function(){
 
-  function insertSong (html, songImage, songTitle, songArtist) {
+  function insertSong (html, songImage, songTitle, songArtist, songAlbum) {
     $('.select2-container--open').siblings('.song-image').html(html);
     $('.select2-container--open').siblings('input').first().val(songTitle);
     $('.select2-container--open').siblings('input').first().next().val(songImage);
     $('.select2-container--open').siblings('input').first().next().next().val(songArtist);
+    $('.select2-container--open').siblings('input').last().val(songAlbum);
   }
 
   function formatSong (song) {
@@ -25,9 +26,10 @@ $(document).ready(function(){
     }
 
     var songTitle = song.trackName;
+    var songAlbum = song.collectionName;
     var songArtist = song.artistName;
-    insertSong(html, songImage, songTitle, songArtist);
-    var markup = "<strong>" + song.trackName + "</strong><em>"+ "<br>" + song.artistName + "</em>";
+    insertSong(html, songImage, songTitle, songArtist, songAlbum);
+    var markup = "<strong>" + song.trackName + "</strong>"+ " - " + song.artistName;
     if (song.trackName && song.artistName) {
       return markup;
     } else { return ""}
