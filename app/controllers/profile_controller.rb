@@ -83,7 +83,7 @@ class ProfileController < ApplicationController
       @songlist = @lists.where(name:"Songs").first
       @songs = @songlist.songs.where.not(name: "").sort
       @showlist = @lists.where(name:"TV").first
-      @shows = @showlist.shows.sort
+      @shows = @showlist.shows.where.not(name: "").sort
       @sortedlists = [@currentlist, @movielist, @booklist, @quotelist, @songlist, @showlist]
 
       if @lists.where(name:"Products").first
