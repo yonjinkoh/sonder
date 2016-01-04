@@ -1,0 +1,77 @@
+= form_for(@showlist, remote: true) do |f|
+  .simplists
+    = f.fields_for(:shows) do |show_form|
+      - if List.find(show_form.object.list_id).name == "Now"
+        .enter-new-movie
+          .movie-form{style: "display: inline-block;"}
+            .saved SAVED
+            .edit-options
+              %i.fa.fa-close CLEAR
+            .box.pull-left.box-edit
+              - if show_form.object.picture && show_form.object.picture.empty? != true
+                %img{:src => "https://image.tmdb.org/t/p/w154#{show_form.object.picture}"}
+            %select.select-show
+              %option
+            = show_form.text_field :name, class: "hidden"
+            = show_form.text_field :picture, class: "hidden"
+            = show_form.text_field :description, class: "hidden"
+        .clearfix
+      - else
+        - unless show_form.object.name?
+          .simplist
+            %h1.pull-left #{show_form.index+1}
+            .enter-new-movie
+              .movie-form{style: "display: inline-block;"}
+                .saved SAVED
+                .edit-options
+                  %i.fa.fa-close CLEAR
+                .box.pull-left.box-edit
+                  - if show_form.object.picture && show_form.object.picture.empty? != true
+                    %img{:src => "https://image.tmdb.org/t/p/w154#{show_form.object.picture}"}
+                %select.select-show
+                  %option
+                = show_form.text_field :name, class: "hidden"
+                = show_form.text_field :picture, class: "hidden"
+                = show_form.text_field :description, class: "hidden"
+            .clearfix
+          .simplist-mobile
+            %h1 #{show_form.index+1}
+            .enter-new-movie-mobile
+              - if show_form.index == 0
+                .prompt What's your all-time favorite show?
+              - else
+                .prompt What's your ##{show_form.index+1} show?
+              = link_to add_show_path(show_form.object.id) do
+                .btn-add Add It Now
+            .clearfix
+        - else
+          .simplist
+            %h1.pull-left #{show_form.index+1}
+            .enter-new-movie
+              .movie-form{style: "display: inline-block;"}
+                .saved SAVED
+                .edit-options
+                  %i.fa.fa-close CLEAR
+                .box.pull-left.box-edit
+                  - if show_form.object.picture && show_form.object.picture.empty? != true
+                    %img{:src => "https://image.tmdb.org/t/p/w154#{show_form.object.picture}"}
+                %select.select-show
+                  %option
+                = show_form.text_field :name, class: "hidden"
+                = show_form.text_field :picture, class: "hidden"
+                = show_form.text_field :description, class: "hidden"
+            .clearfix
+          .update-existing
+            %h1.pull-left #{show_form.index+1}
+            .enter-new-movie
+              .movie-form{style: "display: inline-block;"}
+                .box.pull-left
+                  - if show_form.object.picture && show_form.object.picture.empty? != true
+                    %img{:src => "https://image.tmdb.org/t/p/w154#{show_form.object.picture}"}
+                .item-info.pull-right
+                  %strong.item-title= show_form.object.name
+              = link_to add_show_path(show_form.object.id) do
+                .btn-add Change
+            .clearfix
+
+  %center= f.submit(class: "btn hidden submit-showlist-btn")

@@ -1,0 +1,5 @@
+var show = "#simplist-show-" + "<%= j @show.id.to_s %>";
+$(show).find('.all-comments').prepend("<%= j render 'profile/new_comment', locals: {:comment => @comment } %>");
+$(show).find('input').val("");
+var thecomment = "#comment-show-" + "<%= j @show.id.to_s %>";
+$(thecomment).find('.fa-comment').html("<%= j @show.root_comments.size.to_s %>");

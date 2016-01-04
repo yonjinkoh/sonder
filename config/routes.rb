@@ -1,4 +1,15 @@
 Rails.application.routes.draw do
+  resources :shows do
+    get 'add', on: :member
+    member do
+      post 'add_to_current', to: "shows#create"
+      get 'add_to_current', to: "shows#add_to_current"
+      put "like", to: "shows#like"
+      put "comment", to: "shows#comment"
+      post "add_comment", to: "shows#add_comment"
+    end
+  end
+
   resources :comments
   resources :songs do
     get 'add', on: :member

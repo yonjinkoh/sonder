@@ -82,11 +82,15 @@ class ProfileController < ApplicationController
       @quotes = @quotelist.quotes.where.not(content: "").sort
       @songlist = @lists.where(name:"Songs").first
       @songs = @songlist.songs.where.not(name: "").sort
+      @showlist = @lists.where(name:"TV").first
+      @shows = @showlist.shows.sort
+      @sortedlists = [@currentlist, @movielist, @booklist, @quotelist, @songlist, @showlist]
+
       if @lists.where(name:"Products").first
         @productlist = @lists.where(name: "Products").first
         @products = @productlist.products.where.not(name:"").sort
+        @sortedlists << @productlist
       end
-      @sortedlists = [@currentlist, @movielist, @booklist, @quotelist, @songlist]
 
     end
 
@@ -129,12 +133,14 @@ class ProfileController < ApplicationController
     @quotes = @quotelist.quotes.sort
     @songlist = @lists.where(name:"Songs").first
     @songs = @songlist.songs.sort
+    @showlist = @lists.where(name:"TV").first
+    @shows = @showlist.shows.sort
     if @lists.where(name:"Products").first
       @productlist = @lists.where(name: "Products").first
       @products = @productlist.products.sort
     end
 
-    @sortedlists = [@currentlist, @movielist, @booklist, @quotelist, @songlist]
+    @sortedlists = [@currentlist, @movielist, @booklist, @quotelist, @songlist, @showlist]
 
     respond_to do |format|
       format.html

@@ -127,22 +127,8 @@
     = render partial: "edit_quotelist"
     = render partial: "edit_songlist"
     - if @productlist
-      = form_for(@productlist, remote: true) do |f|
-        .simplists
-          = f.fields_for(:products, @products) do |product_form|
-            .simplist
-              %h1.pull-left #{product_form.index+1}
-              .product-form
-                = product_form.label :picture
-                = product_form.text_field :picture
-                %br
-                = product_form.label :name
-                = product_form.text_field :name
-                = product_form.label :link
-                = product_form.text_field :link
-        %center= f.submit(class: "hidden submit-productlist-btn btn")
-
-
+      = render partial: "edit_productlist"
+    = render partial: "edit_showlist"
 
 %center.view-public-profile{style: "margin-bottom: 5em"}= link_to "View Your Public Profile →", user_profile_index_path(@user)
 
@@ -187,6 +173,11 @@
     $(".select-movie").on("change", function (e) {
       $(this).parents('.movie-form').find('.saved').fadeIn(2000);
       $( ".submit-movielist-btn" ).trigger( "click" );
+    });
+
+    $(".select-show").on("change", function (e) {
+      $(this).parents('.movie-form').find('.saved').fadeIn(2000);
+      $( ".submit-showlist-btn" ).trigger( "click" );
     });
 
     $(".select-song").on("change", function (e) {

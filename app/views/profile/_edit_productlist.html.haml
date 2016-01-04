@@ -1,0 +1,14 @@
+= form_for(@productlist, remote: true) do |f|
+  .simplists
+    = f.fields_for(:products, @products) do |product_form|
+      .simplist
+        %h1.pull-left #{product_form.index+1}
+        .product-form
+          = product_form.label :picture
+          = product_form.text_field :picture
+          %br
+          = product_form.label :name
+          = product_form.text_field :name
+          = product_form.label :link
+          = product_form.text_field :link
+  %center= f.submit(class: "hidden submit-productlist-btn btn")

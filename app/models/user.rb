@@ -53,6 +53,14 @@ def add_product_list
   end
 end
 
+def add_show_list
+  showlist = lists.find_or_create_by(name: "TV")
+  5.times do
+    show = showlist.shows.build
+    show.save
+  end
+end
+
 def add_current_list
   currentlist= lists.find_or_create_by(name: "Now", position: 1)
   if lists.find_by(name:"Movies")
@@ -98,6 +106,12 @@ def create_default_lists
   5.times do
     song = songlist.songs.build
     song.save
+  end
+
+  showlist = lists.find_or_create_by(name: "TV", position: 5)
+  5.times do
+    show = showlist.shows.build
+    show.save
   end
 
 

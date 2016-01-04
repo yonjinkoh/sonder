@@ -1,0 +1,76 @@
+$(document).ready(function(){
+
+  function clickSubmit() {
+    $('.submit-btn').click();
+  };
+
+  function insertShow (html, showImage, showId, showOverview) {
+    $('input.name').val(showId);
+    $('input.picture').val(showImage);
+    $('input.overview').val(showOverview);
+    $('input.name').change(clickSubmit());
+  };
+
+  $('#select-show-mobile').selectize({
+      maxItems: '1',
+      valueField: 'name',
+      labelField: 'name',
+      searchField: 'name',
+      options: [],
+      onItemAdd: function(value, $item){
+        // $('')
+      },
+      create: false,
+      render: {
+
+          item: function (item, escape) {
+
+            if (item.poster_path) {
+              var html = "<img src='https://image.tmdb.org/t/p/w185" + item.poster_path + "' />"
+            }
+
+            var showImage = item.poster_path;
+            var showId = item.name;
+            var showOverview = item.overview;
+
+            insertShow(html, showImage, showId, showOverview);
+
+          },
+
+          option: function(item, escape) {
+
+              if (item.poster_path) {
+                return "<div class='movie'>" +
+                    "<img src='https://image.tmdb.org/t/p/w92" + escape(item.poster_path) + "' />" +
+                    '<div class="title">' +
+                         escape(item.name) +
+                    "</div>" +
+                '</div>';
+              } else {
+                return "<div class='movie'>" + "<div class='image'></div>" + '<div class="title">' +
+                   escape(item.name)  +
+                "</div>" + '</div>';
+              }
+          }
+      },
+      load: function(query, callback) {
+          if (!query.length) return callback();
+          $.ajax({
+              url: 'https://api.themoviedb.org/3/search/tv',
+              type: 'GET',
+              dataType: 'jsonp',
+              data: {
+                query: query, // search term
+                api_key: "41955a0f09fdcad5028264d83e9c9af6",
+              },
+              error: function() {
+                  callback();
+              },
+              success: function(res) {
+                  callback(res.results);
+              }
+          });
+      }
+  });
+
+});
