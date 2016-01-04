@@ -29,12 +29,13 @@ $(document).ready(function(){
       slidesToScroll: 1,
       asNavFor: '.slider-for',
       dots: false,
-      // centerMode: true,
+      centerMode: false,
       focusOnSelect: true,
     });
     $('.slider-for').slick({
       slidesToShow: 1,
       slidesToScroll: 1,
+      adaptiveHeight: true, 
       arrows: false,
       swipe: false,
       fade: true,
