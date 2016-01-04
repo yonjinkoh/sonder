@@ -35,127 +35,131 @@
   .slider-for
     .simplists
       .current-list
-        - @rankings.each do |ranking|
-          %div{class: "simplists-#{ranking} simplists"}
-            - case ranking
-            - when 1
-              - thing = @number_1
-            - when 2
-              - thing = @number_2
-            - when 3
-              - thing = @number_3
-            - when 4
-              - thing = @number_4
-            - when 5
-              - thing = @number_5
-            - if thing.class == Movie
-              .simplist
-                %h1.pull-left #{ranking}
-                .enter-new-movie
-                  .movie-form{style: "display: inline-block;"}
-                    - if current_user
-                      .like-comment
-                        = link_to like_movie_path(thing), id: "heart-movie-#{thing.id}", method: :put, remote: true do
-                          - if current_user.voted_for? thing
-                            %i.fa.fa-heart.liked #{thing.votes_for.size}
-                          - else
-                            %i.fa.fa-heart #{thing.votes_for.size}
-                        = link_to comment_movie_path(thing), id: "comment-movie-#{thing.id}", remote: true, method: :put do
-                          %i.fa.fa-comment #{thing.root_comments.size}
-                    .box.pull-left
-                      - if thing.picture && thing.picture.empty? != true
-                        %img{:src => "https://image.tmdb.org/t/p/w154#{thing.picture}"}
-                    .item-info.pull-right
-                      %strong.item-title= thing.name
-                      %span.item-author= "(" + thing.year[0,4] + ")"
-                      .item-overview= thing.overview
-                .clearfix
-              - if current_user
-                = render partial: "movies/comments", locals: {:movie => thing}
-            - elsif thing.class == Song
-              .simplist.song-simplist
-                %h1.pull-left #{ranking}
-                .enter-new-movie
-                  .movie-form{style: "display: inline-block;"}
-                    - if current_user
-                      .like-comment
-                        = link_to like_song_path(thing), id: "heart-song-#{thing.id}", method: :put, remote: true do
-                          - if current_user.voted_for? thing
-                            %i.fa.fa-heart.liked #{thing.votes_for.size}
-                          - else
-                            %i.fa.fa-heart #{thing.votes_for.size}
-                        = link_to comment_song_path(thing), id: "comment-song-#{thing.id}", remote: true, method: :put do
-                          %i.fa.fa-comment #{thing.root_comments.size}
-                    .simplist-image.song-image.pull-left
-                      - if thing.picture
-                        %img{:src => "#{thing.picture}"}
-                      %img#cover{:rel => "tooltip", :src => "", :title => ""}
-                    .item-info.pull-left
-                      .item-title= thing.name
-                      .item-author= thing.artist
-                      .item-overview= thing.album
-                .clearfix
-              - if current_user
-                = render partial: "songs/comments", locals: {:song => thing}
-            - elsif thing.class == Book
-              .simplist
-                %h1.pull-left #{ranking}
-                .enter-new-movie
-                  .movie-form{style: "display: inline-block;"}
-                    - if current_user
-                      .like-comment
-                        = link_to like_book_path(thing), id: "heart-book-#{thing.id}", method: :put, remote: true do
-                          - if current_user.voted_for? thing
-                            %i.fa.fa-heart.liked #{thing.votes_for.size}
-                          - else
-                            %i.fa.fa-heart #{thing.votes_for.size}
-                        = link_to comment_book_path(thing), id: "comment-book-#{thing.id}", remote: true, method: :put do
-                          %i.fa.fa-comment #{thing.root_comments.size}
-                    .box.pull-left
-                      - if thing.picture
-                        %img{:src => "#{thing.picture}"}
-                    - if thing.link?
-                      = link_to "#{thing.link}" do
+        - if @currentlist_items.empty?
+          %center Nothing yet!
+        - else
+          - @rankings.each do |ranking|
+            %div{class: "simplists-#{ranking} simplists"}
+              - case ranking
+              - when 1
+                - thing = @number_1
+              - when 2
+                - thing = @number_2
+              - when 3
+                - thing = @number_3
+              - when 4
+                - thing = @number_4
+              - when 5
+                - thing = @number_5
+              - if thing.class == Movie
+                .simplist
+                  %h1.pull-left #{ranking}
+                  .enter-new-movie
+                    .movie-form{style: "display: inline-block;"}
+                      - if current_user
+                        .like-comment
+                          = link_to like_movie_path(thing), id: "heart-movie-#{thing.id}", method: :put, remote: true do
+                            - if current_user.voted_for? thing
+                              %i.fa.fa-heart.liked #{thing.votes_for.size}
+                            - else
+                              %i.fa.fa-heart #{thing.votes_for.size}
+                          = link_to comment_movie_path(thing), id: "comment-movie-#{thing.id}", remote: true, method: :put do
+                            %i.fa.fa-comment #{thing.root_comments.size}
+                      .box.pull-left
+                        - if thing.picture && thing.picture.empty? != true
+                          %img{:src => "https://image.tmdb.org/t/p/w154#{thing.picture}"}
+                      .item-info.pull-right
+                        %strong.item-title= thing.name
+                        %span.item-author= "(" + thing.year[0,4] + ")"
+                        .item-overview= thing.overview
+                  .clearfix
+                - if current_user
+                  = render partial: "movies/comments", locals: {:movie => thing}
+              - elsif thing.class == Song
+                .simplist.song-simplist
+                  %h1.pull-left #{ranking}
+                  .enter-new-movie
+                    .movie-form{style: "display: inline-block;"}
+                      - if current_user
+                        .like-comment
+                          = link_to like_song_path(thing), id: "heart-song-#{thing.id}", method: :put, remote: true do
+                            - if current_user.voted_for? thing
+                              %i.fa.fa-heart.liked #{thing.votes_for.size}
+                            - else
+                              %i.fa.fa-heart #{thing.votes_for.size}
+                          = link_to comment_song_path(thing), id: "comment-song-#{thing.id}", remote: true, method: :put do
+                            %i.fa.fa-comment #{thing.root_comments.size}
+                      .simplist-image.song-image.pull-left
+                        - if thing.picture
+                          %img{:src => "#{thing.picture}"}
+                        %img#cover{:rel => "tooltip", :src => "", :title => ""}
+                      .item-info.pull-left
+                        .item-title= thing.name
+                        .item-author= thing.artist
+                        .item-overview= thing.album
+                  .clearfix
+                - if current_user
+                  = render partial: "songs/comments", locals: {:song => thing}
+              - elsif thing.class == Book
+                .simplist
+                  %h1.pull-left #{ranking}
+                  .enter-new-movie
+                    .movie-form{style: "display: inline-block;"}
+                      - if current_user
+                        .like-comment
+                          = link_to like_book_path(thing), id: "heart-book-#{thing.id}", method: :put, remote: true do
+                            - if current_user.voted_for? thing
+                              %i.fa.fa-heart.liked #{thing.votes_for.size}
+                            - else
+                              %i.fa.fa-heart #{thing.votes_for.size}
+                          = link_to comment_book_path(thing), id: "comment-book-#{thing.id}", remote: true, method: :put do
+                            %i.fa.fa-comment #{thing.root_comments.size}
+                      .box.pull-left
+                        - if thing.picture
+                          %img{:src => "#{thing.picture}"}
+                      - if thing.link?
+                        = link_to "#{thing.link}" do
+                          .item-info.pull-right
+                            .item-title= thing.name
+                            .item-author= thing.author
+                            .item-published= thing.published[0,4]
+                            .item-overview.truncate= thing.description
+                      - else
                         .item-info.pull-right
                           .item-title= thing.name
                           .item-author= thing.author
                           .item-published= thing.published[0,4]
                           .item-overview.truncate= thing.description
-                    - else
-                      .item-info.pull-right
-                        .item-title= thing.name
-                        .item-author= thing.author
-                        .item-published= thing.published[0,4]
-                        .item-overview.truncate= thing.description
+                  .clearfix
+                - if current_user
+                  = render partial: "books/comments", locals: {:book => thing}
+              - elsif thing.class == Quote
+                .simplist
+                  %h1.pull-left #{ranking}
+                  .enter-new-movie
+                    .movie-form
+                      - if current_user
+                        .like-comment
+                          = link_to like_quote_path(thing), id: "heart-quote-#{thing.id}", method: :put, remote: true do
+                            - if current_user.voted_for? thing
+                              %i.fa.fa-heart.liked #{thing.votes_for.size}
+                            - else
+                              %i.fa.fa-heart #{thing.votes_for.size}
+                          = link_to comment_quote_path(thing), id: "comment-quote-#{thing.id}", remote: true, method: :put do
+                            %i.fa.fa-comment #{thing.root_comments.size}
+                      .quote.pull-left
+                        .quote-text= thing.content
+                        .quote-author= thing.source
+                        .clearfix
+                  .clearfix
+                - if current_user
+                  = render partial: "quotes/comments", locals: {:quote => thing}
+              - else
+                %h1.pull-left= ranking
+                .prompt-to-choose-category
+                  None yet!
+                .movie-form
                 .clearfix
-              - if current_user
-                = render partial: "books/comments", locals: {:book => thing}
-            - elsif thing.class == Quote
-              .simplist
-                %h1.pull-left #{ranking}
-                .enter-new-movie
-                  .movie-form
-                    - if current_user
-                      .like-comment
-                        = link_to like_quote_path(thing), id: "heart-quote-#{thing.id}", method: :put, remote: true do
-                          - if current_user.voted_for? thing
-                            %i.fa.fa-heart.liked #{thing.votes_for.size}
-                          - else
-                            %i.fa.fa-heart #{thing.votes_for.size}
-                        = link_to comment_quote_path(thing), id: "comment-quote-#{thing.id}", remote: true, method: :put do
-                          %i.fa.fa-comment #{thing.root_comments.size}
-                    .quote.pull-left
-                      .quote-text= thing.content
-                      .quote-author= thing.source
-                      .clearfix
-                .clearfix
-              - if current_user
-                = render partial: "quotes/comments", locals: {:quote => thing}
-            - else
-              %h1.pull-left= ranking
-              .prompt-to-choose-category
-                None yet!
-
     .simplists
       - if @movies.empty?
         .simplist

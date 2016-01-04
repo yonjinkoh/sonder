@@ -36,6 +36,21 @@ class ProfileController < ApplicationController
       @lists = @user.lists
       @rankings = [1,2,3,4,5]
       @currentlist = @lists.where(name: "Now").first
+      @currentlist_items = []
+
+      @currentlist.movies.each do |c|
+        @currentlist_items << c
+      end
+      @currentlist.songs.each do |c|
+        @currentlist_items << c
+      end
+      @currentlist.quotes.each do |c|
+        @currentlist_items << c
+      end
+      @currentlist.books.each do |c|
+        @currentlist_items << c
+      end
+
 
       @rankings.each do |ranking|
         @items_of_ranking = []
@@ -55,8 +70,9 @@ class ProfileController < ApplicationController
         @items_of_ranking.sort!{|a,b|a.updated_at <=> b.updated_at}
 
         self.instance_variable_set(var_name, @items_of_ranking.last)
+
       end
-      
+
       # below: filters out empty items
       @movielist = @lists.where(name:"Movies").first
       @movies = @movielist.movies.where.not(name: "").sort
