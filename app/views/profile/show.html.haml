@@ -302,8 +302,35 @@
                     - else
                       = product.name
               .clearfix
-
-  .row
+    .simplists
+      - if @shows.empty?
+        .simplist
+          %center
+            %em None yet!
+      - else
+        - @shows.each do |show|
+          .simplist
+            %h1.pull-left #{@shows.index(show)+1}
+            .enter-new-movie
+              .movie-form{style: "display: inline-block;"}
+                - if current_user
+                  .like-comment
+                    = link_to like_show_path(show), id: "heart-show-#{show.id}", method: :put, remote: true do
+                      - if current_user.voted_for? show
+                        %i.fa.fa-heart.liked #{show.votes_for.size}
+                      - else
+                        %i.fa.fa-heart #{show.votes_for.size}
+                    = link_to comment_show_path(show), id: "comment-show-#{show.id}", remote: true, method: :put do
+                      %i.fa.fa-comment #{show.root_comments.size}
+                .box.pull-left
+                  - if show.picture && show.picture.empty? != true
+                    %img{:src => "https://image.tmdb.org/t/p/w154#{show.picture}"}
+                .item-info.pull-right
+                  %strong.item-title= show.name
+                  .item-overview.truncate= show.description
+            .clearfix
+          - if current_user
+            = render partial: "shows/comments", locals: {:show => show}
 :javascript
 
 
