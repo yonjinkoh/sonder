@@ -155,11 +155,7 @@
                 - if current_user
                   = render partial: "quotes/comments", locals: {:quote => thing}
               - else
-                %h1.pull-left= ranking
-                .prompt-to-choose-category
-                  None yet!
-                .movie-form
-                .clearfix
+
     .simplists
       - if @movies.empty?
         .simplist
