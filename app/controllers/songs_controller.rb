@@ -15,6 +15,16 @@ class SongsController < ApplicationController
     end
   end
 
+  def add_to_current
+    @list = List.find(params[:id])
+    @new_song = @list.songs.new
+    @number = params[:number].to_s
+    respond_to do |format|
+      format.js{render "songs/add_to_current", :locals => {:song => @new_song, :number => @number}}
+    end
+  end
+
+
   def comment
     @song = Song.find(params[:id])
     @comment = @song.root_comments.new

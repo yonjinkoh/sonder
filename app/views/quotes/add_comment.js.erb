@@ -1,0 +1,5 @@
+var quote = "#simplist-quote-" + "<%= j @quote.id.to_s %>";
+$(quote).find('.all-comments').prepend("<%= j render 'profile/new_comment', locals: {:comment => @comment } %>");
+$(quote).find('input').val("");
+var thecomment = "#comment-quote-" + "<%= j @quote.id.to_s %>";
+$(thecomment).find('.fa-comment').html("<%= j @quote.root_comments.size.to_s %>");

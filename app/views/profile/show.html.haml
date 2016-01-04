@@ -34,6 +34,11 @@
   .top-buffer
   .slider-for
     .simplists
+      - if @currents.empty?
+        .simplist
+          %center
+            %em None yet!
+    .simplists
       - if @movies.empty?
         .simplist
           %center
@@ -114,7 +119,18 @@
             .quote.pull-left
               .quote-text= quote.content
               .quote-author= quote.source
+              - if current_user
+                .like-comment
+                  = link_to like_quote_path(quote), id: "heart-quote-#{quote.id}", method: :put, remote: true do
+                    - if current_user.voted_for? quote
+                      %i.fa.fa-heart.liked #{quote.votes_for.size}
+                    - else
+                      %i.fa.fa-heart #{quote.votes_for.size}
+                  = link_to comment_quote_path(quote), id: "comment-quote-#{quote.id}", remote: true, method: :put do
+                    %i.fa.fa-comment #{quote.root_comments.size}
             .clearfix
+          - if current_user
+            = render partial: "quotes/comments", locals: {:quote => quote}
     .simplists
       - if @songs.empty?
         .simplist

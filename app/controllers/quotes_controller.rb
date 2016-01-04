@@ -12,6 +12,34 @@ class QuotesController < ApplicationController
   def show
   end
 
+  def like
+    @quote = Quote.find(params[:id])
+    @quote.like_by current_user
+    respond_to do |format|
+      format.js
+    end
+  end
+
+
+  def comment
+    @quote = Quote.find(params[:id])
+    @comment = @quote.root_comments.new
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def add_comment
+    @quote = Quote.find(params[:id])
+    @comment = Comment.build_from(@quote, current_user.id, params[:body])
+    @comment.save
+    respond_to do |format|
+      format.js{render "quotes/add_comment", :locals => {:quote => @quote}}
+    end
+  end
+
+
+
   # GET /quotes/new
   def new
     @quote = Quote.new

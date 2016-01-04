@@ -20,6 +20,15 @@ class MoviesController < ApplicationController
     end
   end
 
+  def add_to_current
+    @list = List.find(params[:id])
+    @new_movie = @list.movies.new
+    @number = params[:number].to_s
+    respond_to do |format|
+      format.js{render "movies/add_to_current", :locals => {:movie => @new_movie, :number => @number}}
+    end
+  end
+
 
   def comment
     @movie = Movie.find(params[:id])

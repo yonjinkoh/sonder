@@ -21,6 +21,14 @@ class BooksController < ApplicationController
     end
   end
 
+  def add_to_current
+    @list = List.find(params[:id])
+    @new_book = @list.books.new
+    @number = params[:number].to_s
+    respond_to do |format|
+      format.js{render "books/add_to_current", :locals => {:book => @new_book, :number => @number}}
+    end
+  end
 
   def comment
     @book = Book.find(params[:id])

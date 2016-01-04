@@ -6,6 +6,7 @@ has_many :books, dependent: :destroy
 has_many :songs, dependent: :destroy
 has_many :products, dependent: :destroy
 belongs_to :user
+default_scope {order('lists.position')}
 accepts_nested_attributes_for :movies, :books, :quotes, :songs, :products
 
 end

@@ -15,11 +15,26 @@
         .category= list.name
   .top-buffer
   .slider-for
+    = form_for(@currentlist, remote: true) do |f|
+      .simplists
+        %h1.pull-left 1
+        .prompt-to-choose-category
+          Choose a category
+        .add-from-category.book
+          = link_to("Books", add_to_current_book_path(id: @currentlist, number: 1), remote: true)
+        .add-from-category.movie
+          = link_to("Movies", add_to_current_movie_path(id: @currentlist, number: 1), remote: true)
+          = link_to("Songs", add_to_current_movie_path(id: @currentlist, number: 1), remote: true)
+          = link_to("Quotes", add_to_current_quote_path(id: @currentlist, number: 1), remote: true)
+        .clearfix
+        .movie-form.add-list-item{id: "current-1"}
+        -# = render partial: "movies/form", locals: {:f => f}
+        -# = render partial: "books/form", locals: {:f => f}
+      %center= f.submit(class: "hidden submit-currentlist-btn btn")
     = render partial: "edit_movielist"
     = render partial: "edit_booklist"
     = render partial: "edit_quotelist"
     = render partial: "edit_songlist"
-
     - if @productlist
       = form_for(@productlist, remote: true) do |f|
         .simplists

@@ -2,6 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
+
+
 .fa-heart.liked {
   color: black;
 }
@@ -49,33 +52,55 @@
       width: 100%;
     }
   }
-  // .prompt-comment {
-  //   float: left;
-  //   height: 50px;
-  //   line-height: 50px;
-  //   font-size: 20px;
-  //   margin-left: 30px;
-  //   vertical-align: middle;
-  // }
 }
 .movie-form {
   position: relative;
 
-  .like-comment{
-    font-size: 12px;
-    position: absolute;
-    font-weight: 200;
-    i {padding: 8px};
-    i::before {margin-right: 5px;font-size: 20px;}
-    a:hover {
-      text-decoration: none;
-    }
-    bottom: -45px;
-    right: 0px;
+}
+.like-comment{
+  font-size: 12px;
+  position: absolute;
+  font-weight: 200;
+  i {padding: 8px};
+  i::before {margin-right: 5px;font-size: 20px;}
+  a:hover {
+    text-decoration: none;
   }
+  bottom: -45px;
+  right: 0px;
+}
+.quote{
+  position: relative;
 }
 
 .profile-edit{
+
+    .add-from-category{
+      border: 3px solid black;
+      padding: 5px 10px;
+      display: inline-block;
+      margin-right: 5px;
+      text-align: center;
+      a {color: black};
+      a:active {text-decoration: none !important;}
+    }
+    .add-from-category.chosen {
+      background-color: black;
+      a{color: white;}
+    }
+    .add-from-category:hover {
+      background-color: black;
+      a {color: white;
+        text-decoration: none !important;
+      }
+    }
+    .prompt-to-choose-category {
+      // height: 200px;
+      text-align: center;
+      margin: 10px;
+    }
+
+
 
   .movie-form {
     position: relative;
@@ -272,6 +297,10 @@
   .slick-current {
     border-bottom: 4px solid black;
     color: black;
+  }
+  .slick-current.category:first-child {
+    border-bottom: 4px solid red !important;
+    color: red !important;
   }
 
 }

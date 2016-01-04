@@ -1,4 +1,4 @@
-= form_for(:movie) do |f|
+= form_for(:book) do |f|
 
   .simplist
     .enter-new-movie
@@ -7,13 +7,20 @@
         .edit-options
           %i.fa.fa-close CLEAR
         .box.pull-left.box-edit
-        %select.select-movie
+          -# - if book.picture
+          -#   %img{:src => "#{f.object.picture}"}
+        %select.select-book
           %option
         = f.text_field :name, class: "hidden"
         = f.text_field :picture, class: "hidden"
-        = f.text_field :year, class: "hidden"
-        = f.text_field :overview, class: "hidden"
+        = f.text_field :published, class: "hidden"
+        = f.text_field :author, class: "hidden"
+        = f.text_field :description, class: "hidden"
+        = f.text_field :link, class: "hidden"
+        -# .pull-right{:style => "font-size:smaller;"} Recommended: Search by ISBN, Author, or Title
+        %div.pull-right{:style => "padding-left: 3em; font-size: 18px"}
     .clearfix
+
 
 :javascript
 
@@ -21,7 +28,7 @@
 
 
       function clickButton (){
-        $('.submit-currentlist-btn').trigger("click");
+        $('.submit-booklist-btn').trigger("click");
       }
 
       function insertPlaceholder(placeholder) {

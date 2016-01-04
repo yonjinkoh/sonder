@@ -10,10 +10,16 @@ Rails.application.routes.draw do
   end
   resources :quotes do
     get 'add', on: :member
+    member do
+      put "like", to: "quotes#like"
+      put "comment", to: "quotes#comment"
+      post "add_comment", to: "quotes#add_comment"
+    end
   end
   resources :books do
     get 'add', on: :member
     member do
+      get 'add_to_current', to: "books#add_to_current"
       put "like", to: "books#like"
       put "comment", to: "books#comment"
       post "add_comment", to: "books#add_comment"
@@ -27,6 +33,7 @@ Rails.application.routes.draw do
   resources :movies do
     get 'add', on: :member
     member do
+      get 'add_to_current', to: "movies#add_to_current"
       put "like", to: "movies#like"
       put "comment", to: "movies#comment"
       post "add_comment", to: "movies#add_comment"

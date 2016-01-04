@@ -53,28 +53,48 @@ def add_product_list
   end
 end
 
+def add_current_list
+  currentlist= lists.find_or_create_by(name: "Now", position: 1)
+  if lists.find_by(name:"Movies")
+    lists.find_by(name:"Movies").update_attribute(:position, 2)
+  end
+  if lists.find_by(name:"Books")
+    lists.find_by(name:"Books").update_attribute(:position, 3)
+  end
+  if lists.find_by(name:"Quotes")
+    lists.find_by(name:"Quotes").update_attribute(:position, 4)
+  end
+  if lists.find_by(name: "Songs")
+    lists.find_by(name:"Songs").update_attribute(:position, 5)
+  end
+end
+
+
 def create_default_lists
-  movielist = lists.find_or_create_by(name: "Movies", category_id: "2")
+
+  currentlist = lists.find_or_create_by(name: "Now", position: 1)
+
+  movielist = lists.find_or_create_by(name: "Movies", category_id: "2", position: 2)
   5.times do
     movie = movielist.movies.build
     movie.save
   end
 
-  booklist = lists.find_or_create_by(name: "Books", category_id: "1")
+  booklist = lists.find_or_create_by(name: "Books", category_id: "1", position: 3)
   5.times do
     book = booklist.books.build
     book.save
   end
 
 
-  quotelist = lists.find_or_create_by(name: "Quotes", category_id: "3")
+  quotelist = lists.find_or_create_by(name: "Quotes", category_id: "3", position: 4)
   5.times do
     quote = quotelist.quotes.build
     quote.save
   end
 
 
-  songlist = lists.find_or_create_by(name: "Songs", category_id: "4")
+  songlist = lists.find_or_create_by(name: "Songs", category_id: "4", position: 5)
   5.times do
     song = songlist.songs.build
     song.save

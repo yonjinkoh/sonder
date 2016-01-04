@@ -26,7 +26,12 @@ class ProfileController < ApplicationController
 
     if @user
       @lists = @user.lists
-      @sortedlists = @lists.sort
+      @currentlist = @lists.where(name: "Now").first
+      @currents = []
+      @currents << @currentlist.movies.each
+      @currents << @currentlist.books.each
+      @currents << @currentlist.songs.each
+      @currents << @currentlist.quotes.each
       # below: filters out empty items
       @movielist = @lists.where(name:"Movies").first
       @movies = @movielist.movies.where.not(name: "").sort
@@ -40,6 +45,8 @@ class ProfileController < ApplicationController
         @productlist = @lists.where(name: "Products").first
         @products = @productlist.products.where.not(name:"").sort
       end
+      @sortedlists = [@currentlist, @movielist, @booklist, @quotelist, @songlist]
+
     end
 
   end
@@ -47,7 +54,7 @@ class ProfileController < ApplicationController
   def edit
     current_user.id.to_s == params[:user_id] ? @user = current_user : nil
     @lists = current_user.lists
-    @sortedlists = @lists.sort
+    @currentlist = @lists.where(name: "Now").first
     @movielist = @lists.where(name:"Movies").first
     @movies = @movielist.movies.sort
     @booklist = @lists.where(name:"Books").first
@@ -60,6 +67,9 @@ class ProfileController < ApplicationController
       @productlist = @lists.where(name: "Products").first
       @products = @productlist.products.sort
     end
+
+    @sortedlists = [@currentlist, @movielist, @booklist, @quotelist, @songlist]
+
     respond_to do |format|
       format.html
       format.js
