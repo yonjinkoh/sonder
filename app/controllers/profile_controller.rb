@@ -95,8 +95,8 @@ class ProfileController < ApplicationController
   def edit
 
     @rankings = [1,2,3,4,5]
-
-    current_user.id.to_s == params[:user_id] ? @user = current_user : nil
+    @user = User.find(params[:user_id])
+    # current_user.id.to_s == params[:user_id] ? @user = current_user : nil
     @lists = current_user.lists
     @currentlist = @lists.where(name: "Now").first
 
