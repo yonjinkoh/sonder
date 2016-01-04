@@ -17,10 +17,10 @@ class SongsController < ApplicationController
 
   def add_to_current
     @list = List.find(params[:id])
-    @new_song = @list.songs.new
+    @song = @list.songs.new(position: params[:number], list_id: @list.id)
     @number = params[:number].to_s
     respond_to do |format|
-      format.js{render "songs/add_to_current", :locals => {:song => @new_song, :number => @number}}
+      format.js {render "songs/add_to_current", :locals => {:song => @song, :number => @number}}
     end
   end
 
@@ -69,8 +69,9 @@ class SongsController < ApplicationController
 
     respond_to do |format|
       if @song.save
-        format.html { redirect_to @song, notice: 'Song was successfully created.' }
+        format.html { redirect_to :back }
         format.json { render :show, status: :created, location: @song }
+        format.js {redirect_to :back }
       else
         format.html { render :new }
         format.json { render json: @song.errors, status: :unprocessable_entity }
@@ -110,6 +111,6 @@ class SongsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def song_params
-      params.require(:song).permit(:comment, :name, :link, :artist, :album, :picture, :list_id)
+      params.require(:song).permit(:comment, :name, :position, :link, :artist, :album, :picture, :list_id)
     end
 end

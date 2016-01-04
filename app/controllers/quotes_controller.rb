@@ -21,6 +21,15 @@ class QuotesController < ApplicationController
   end
 
 
+  def add_to_current
+    @list = List.find(params[:id])
+    @quote = @list.quotes.new(position: params[:number])
+    @number = params[:number].to_s
+    respond_to do |format|
+      format.js{render "quotes/add_to_current", :locals => {:quote => @quote, :number => @number}}
+    end
+  end
+
   def comment
     @quote = Quote.find(params[:id])
     @comment = @quote.root_comments.new
@@ -63,7 +72,7 @@ class QuotesController < ApplicationController
 
     respond_to do |format|
       if @quote.save
-        format.html { redirect_to @quote, notice: 'Quote was successfully created.' }
+        format.html { redirect_to :back }
         format.json { render :show, status: :created, location: @quote }
       else
         format.html { render :new }
@@ -104,6 +113,6 @@ class QuotesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def quote_params
-      params.require(:quote).permit(:id, :content, :list_id, :source)
+      params.require(:quote).permit(:id, :content, :position, :list_id, :source)
     end
 end

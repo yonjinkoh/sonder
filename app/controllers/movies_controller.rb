@@ -22,10 +22,10 @@ class MoviesController < ApplicationController
 
   def add_to_current
     @list = List.find(params[:id])
-    @new_movie = @list.movies.new
+    @movie = @list.movies.new(position: params[:number])
     @number = params[:number].to_s
     respond_to do |format|
-      format.js{render "movies/add_to_current", :locals => {:movie => @new_movie, :number => @number}}
+      format.js{render "movies/add_to_current", :locals => {:movie => @movie, :number => @number}}
     end
   end
 
@@ -67,11 +67,11 @@ class MoviesController < ApplicationController
   # POST /movies
   # POST /movies.json
   def create
-    @movie = @movielist.movies.new(movie_params)
+    @movie = Movie.new(movie_params)
 
     respond_to do |format|
       if @movie.save
-        format.html { redirect_to @movie, notice: 'Movie was successfully created.' }
+        format.html { redirect_to(:back) }
         format.json { render :show, status: :created, location: @movie }
         format.js
       else
@@ -114,6 +114,6 @@ class MoviesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def movie_params
-      params.require(:movie).permit(:id, :list_id, :name, :picture, :year, :overview)
+      params.require(:movie).permit(:id, :list_id, :name, :position, :picture, :year, :overview)
     end
 end

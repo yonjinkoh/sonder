@@ -1,12 +1,12 @@
 $(document).ready(function(){
 
-  function insertSong (html, songImage, songTitle, songArtist, songAlbum) {
-    $('.select2-container--open').siblings('.song-image').html(html);
-    $('.select2-container--open').siblings('input').first().val(songTitle);
-    $('.select2-container--open').siblings('input').first().next().val(songImage);
-    $('.select2-container--open').siblings('input').first().next().next().val(songArtist);
-    $('.select2-container--open').siblings('input').last().val(songAlbum);
-  }
+    function insertSong (html, songImage, songTitle, songArtist, songAlbum) {
+      $('.select2-container--open').siblings('.song-image').html(html);
+      $('.select2-container--open').siblings('input').first().val(songTitle);
+      $('.select2-container--open').siblings('input').first().next().val(songImage);
+      $('.select2-container--open').siblings('input').first().next().next().val(songArtist);
+      $('.select2-container--open').siblings('input').first().next().next().next().val(songAlbum);
+    }
 
   function formatSong (song) {
     if (song.artworkUrl100) {

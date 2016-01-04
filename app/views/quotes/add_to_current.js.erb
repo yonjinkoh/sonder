@@ -1,0 +1,4 @@
+var where = "#current-" + "<%= j @number %>";
+$(where).siblings('.chosen').removeClass('chosen');
+$(where).siblings('.quote').addClass('chosen');
+$(where).html('<%= j render "quotes/form", locals: {@quote => @new_quote} %>').hide().fadeIn(1000);

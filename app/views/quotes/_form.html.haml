@@ -1,0 +1,15 @@
+= form_for(@quote) do |f|
+  .simplist
+    .enter-new-movie
+      .movie-form{style: "display: inline-block;"}
+        .quote.pull-left
+          .quote-text
+            = f.text_area :content
+          .quote-author
+            = f.text_field :source
+        = f.hidden_field :list_id
+        = f.hidden_field :position
+        %center=f.submit(class: "submit-currentlist-btn btn", value: "PUBLISH")
+    .clearfix
+
+:javascript

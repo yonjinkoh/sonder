@@ -74,7 +74,32 @@
 }
 
 .profile-edit{
+    .current-list {
+      .change {
+        position: absolute;
+        z-index:2000;
+        right: 0;
+        letter-spacing: 1px;
+        font-family: 'Source Sans Pro';
+        i::before {
+          margin-right: 5px;
+        }
+      }
+      .simplists {
+        min-height: 200px;
+        margin-bottom: 25px;
+        .simplist {
 
+        }
+      }
+      .submit-currentlist-btn {
+        margin-top: 30px;
+      }
+    }
+
+    .all-options {
+      margin: 0 auto 10px;
+    }
     .add-from-category{
       border: 3px solid black;
       padding: 5px 10px;
@@ -96,8 +121,10 @@
     }
     .prompt-to-choose-category {
       // height: 200px;
-      text-align: center;
+      // text-align: center;
       margin: 10px;
+      color: lightgray;
+      text-transform: uppercase;
     }
 
 
@@ -290,6 +317,7 @@
   .category {
     font-weight: 600;
     height: 43px;
+    text-transform: uppercase;
     display: inline-block;
     cursor: pointer;
     // padding: 0px 30px;
@@ -298,10 +326,7 @@
     border-bottom: 4px solid black;
     color: black;
   }
-  .slick-current.category:first-child {
-    border-bottom: 4px solid red !important;
-    color: red !important;
-  }
+
 
 }
 

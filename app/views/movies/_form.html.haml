@@ -1,5 +1,4 @@
-= form_for(:movie) do |f|
-
+= form_for(@movie, authenticity_token: true) do |f|
   .simplist
     .enter-new-movie
       .movie-form{style: "display: inline-block;"}
@@ -9,16 +8,19 @@
         .box.pull-left.box-edit
         %select.select-movie
           %option
-        = f.text_field :name, class: "hidden"
-        = f.text_field :picture, class: "hidden"
-        = f.text_field :year, class: "hidden"
-        = f.text_field :overview, class: "hidden"
+        = f.hidden_field :name, class: "name"
+        = f.hidden_field :picture
+        = f.hidden_field :year
+        = f.hidden_field :overview
+        = f.hidden_field :list_id, class: "list"
+        = f.hidden_field :position, class: "position"
+      %center= f.submit(class: "submit-currentlist-btn btn", value: "PUBLISH")
     .clearfix
+.clearfix
 
 :javascript
 
     $(function() {
-
 
       function clickButton (){
         $('.submit-currentlist-btn').trigger("click");

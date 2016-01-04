@@ -1,0 +1,106 @@
+= form_for @song, authenticity_token: true do |f|
+  .simplist.song-simplist
+    .enter-new-movie
+      .movie-form{style: "display: inline-block;"}
+        .edit-options
+          %i.fa.fa-close CLEAR
+        .saved SAVED
+        .simplist-image.song-image.pull-left
+          %img#cover{:rel => "tooltip", :src => "", :title => ""}
+        %select.select-song
+          %option
+        .song-info.pull-left
+        = f.hidden_field :name, class: "name"
+        = f.hidden_field :picture, class: "picture"
+        = f.hidden_field :artist, class: "artist"
+        = f.hidden_field :album, class: "album"
+        = f.hidden_field :list_id, class: "list"
+        = f.hidden_field :position, class: "position"
+      %center= f.submit(class: "submit-currentlist-btn btn", value: "PUBLISH")
+    .clearfix
+
+
+:javascript
+
+
+    $(document).ready(function(){
+
+      function insertSong (html, songImage, songTitle, songArtist, songAlbum) {
+        $('.select2-container--open').siblings('.song-image').html(html);
+        $('.select2-container--open').siblings('input.name').val(songTitle);
+        $('.select2-container--open').siblings('input.picture').val(songImage);
+        $('.select2-container--open').siblings('input.artist').val(songArtist);
+        $('.select2-container--open').siblings('input#song_album').val(songAlbum);
+
+      }
+
+      function formatSong (song) {
+        if (song.artworkUrl100) {
+          var markup = "<div class='select2-result-thing clearfix'>" +
+            "<div class='select2-result-thing__artwork pull-left'><img src='" + song.artworkUrl100 + "' /></div>" +
+            "<div class='select2-result-thing__meta pull-left'>" +
+              "<div class='select2-result-thing__title'>" + song.trackName + " " + "<span class='select2-result-thing__artist'>" + "- " + song.artistName + "</span>"+ "</div>";
+        } else { markup = " "}
+        return markup;
+      }
+
+      function formatSongSelection (song) {
+        if (song.artworkUrl100) {
+          var biggerImage = song.artworkUrl100.replace("100x100", "225x225");
+          var html = "<img src='" + biggerImage + "'>"
+          var songImage = song.artworkUrl100.replace("100x100", "225x225");
+        }
+
+        var songTitle = song.trackName;
+        var songAlbum = song.collectionName;
+        var songArtist = song.artistName;
+        insertSong(html, songImage, songTitle, songArtist, songAlbum);
+        var markup = "<strong>" + song.trackName + "</strong>"+ " - " + song.artistName;
+        if (song.trackName && song.artistName) {
+          return markup;
+        } else { return ""}
+      }
+
+
+
+      $(".select-song").select2({
+        placeholder: "What's your #1 movie?",
+        ajax: {
+          url: "https://itunes.apple.com/search",
+          dataType: 'jsonp',
+          jsonpCallback: 'fooCallback',
+          delay: 250,
+          jsonp: "callback",
+          // inputTooShort: false,
+          data: function (params) {
+            return {
+              term: params.term, // search term
+            };
+          },
+          processResults: function (data, params) {
+            params.page = params.page || 1;
+
+            var select2Data = $.map(data.results, function (obj) {
+                                obj.id = obj.trackId;
+                                obj.text = obj.trackName;
+                                return obj;
+            });
+
+
+            return {
+              results: select2Data,
+              pagination: {
+                more: (params.page * 30) < data.total_count
+              }
+            };
+          },
+          cache: true
+        },
+        escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
+        minimumInputLength: 1,
+        inputTooShort: false,
+        templateResult: formatSong,
+        templateSelection: formatSongSelection,
+      });
+
+    });

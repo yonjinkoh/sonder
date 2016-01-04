@@ -12,6 +12,14 @@ class ProfileController < ApplicationController
     @profiles = User.where.not(first_name: "")
   end
 
+  def change_current
+    @lists = current_user.lists
+    @currentlist = @lists.where(name: "Now").first
+    @ranking = params[:ranking].to_s
+    respond_to do |format|
+      format.js
+    end
+  end
 
 
   def show
@@ -26,12 +34,29 @@ class ProfileController < ApplicationController
 
     if @user
       @lists = @user.lists
+      @rankings = [1,2,3,4,5]
       @currentlist = @lists.where(name: "Now").first
-      @currents = []
-      @currents << @currentlist.movies.each
-      @currents << @currentlist.books.each
-      @currents << @currentlist.songs.each
-      @currents << @currentlist.quotes.each
+
+      @rankings.each do |ranking|
+        @items_of_ranking = []
+        @currentlist.movies.where(position:ranking).each do |c|
+          @items_of_ranking << c
+        end
+        @currentlist.songs.where(position:ranking).each do |c|
+          @items_of_ranking << c
+        end
+        @currentlist.quotes.where(position:ranking).each do |c|
+          @items_of_ranking << c
+        end
+        @currentlist.books.where(position:ranking).each do |c|
+          @items_of_ranking << c
+        end
+        var_name = "@number_#{ranking.to_s}"
+        @items_of_ranking.sort!{|a,b|a.updated_at <=> b.updated_at}
+
+        self.instance_variable_set(var_name, @items_of_ranking.last)
+      end
+      
       # below: filters out empty items
       @movielist = @lists.where(name:"Movies").first
       @movies = @movielist.movies.where.not(name: "").sort
@@ -52,9 +77,34 @@ class ProfileController < ApplicationController
   end
 
   def edit
+
+    @rankings = [1,2,3,4,5]
+
     current_user.id.to_s == params[:user_id] ? @user = current_user : nil
     @lists = current_user.lists
     @currentlist = @lists.where(name: "Now").first
+
+    @rankings.each do |ranking|
+      @items_of_ranking = []
+      @currentlist.movies.where(position:ranking).each do |c|
+        @items_of_ranking << c
+      end
+      @currentlist.songs.where(position:ranking).each do |c|
+        @items_of_ranking << c
+      end
+      @currentlist.quotes.where(position:ranking).each do |c|
+        @items_of_ranking << c
+      end
+      @currentlist.books.where(position:ranking).each do |c|
+        @items_of_ranking << c
+      end
+      var_name = "@number_#{ranking.to_s}"
+      @items_of_ranking.sort!{|a,b|a.updated_at <=> b.updated_at}
+
+      self.instance_variable_set(var_name, @items_of_ranking.last)
+    end
+
+
     @movielist = @lists.where(name:"Movies").first
     @movies = @movielist.movies.sort
     @booklist = @lists.where(name:"Books").first

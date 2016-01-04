@@ -23,10 +23,10 @@ class BooksController < ApplicationController
 
   def add_to_current
     @list = List.find(params[:id])
-    @new_book = @list.books.new
+    @book = @list.books.new(position: params[:number])
     @number = params[:number].to_s
     respond_to do |format|
-      format.js{render "books/add_to_current", :locals => {:book => @new_book, :number => @number}}
+      format.js{render "books/add_to_current", :locals => {:book => @book, :number => @number}}
     end
   end
 
@@ -69,12 +69,13 @@ class BooksController < ApplicationController
   # POST /books
   # POST /books.json
   def create
-    @book = @booklist.books.new(book_params)
+    @book = Book.new(book_params)
 
     respond_to do |format|
       if @book.save
-        format.html { redirect_to @book, notice: 'Movie was successfully created.' }
+        format.html { redirect_to :back }
         format.json { render :show, status: :created, location: @book }
+        format.js
       else
         format.html { render :new }
         format.json { render json: @book.errors, status: :unprocessable_entity }
@@ -114,6 +115,6 @@ class BooksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def book_params
-      params.require(:book).permit(:name, :link, :description, :picture, :list_id, :author, :published)
+      params.require(:book).permit(:name, :link, :description, :picture, :position, :list_id, :author, :published)
     end
 end

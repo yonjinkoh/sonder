@@ -1,0 +1,4 @@
+var where = "#current-" + "<%= j @number %>";
+$(where).siblings('.chosen').removeClass('chosen');
+$(where).siblings('.song').addClass('chosen');
+$(where).html('<%= j render "songs/form", locals: {@song => @new_song} %>').hide().fadeIn(1000);

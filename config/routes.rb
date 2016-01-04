@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   resources :songs do
     get 'add', on: :member
     member do
+      post 'add_to_current', to: "songs#create"
+      get 'add_to_current', to: "songs#add_to_current"
       put "like", to: "songs#like"
       put "comment", to: "songs#comment"
       post "add_comment", to: "songs#add_comment"
@@ -11,6 +13,8 @@ Rails.application.routes.draw do
   resources :quotes do
     get 'add', on: :member
     member do
+      post 'add_to_current', to: "quotes#create"
+      get 'add_to_current', to: "quotes#add_to_current"
       put "like", to: "quotes#like"
       put "comment", to: "quotes#comment"
       post "add_comment", to: "quotes#add_comment"
@@ -19,6 +23,7 @@ Rails.application.routes.draw do
   resources :books do
     get 'add', on: :member
     member do
+      post 'add_to_current', to: "books#create"
       get 'add_to_current', to: "books#add_to_current"
       put "like", to: "books#like"
       put "comment", to: "books#comment"
@@ -33,6 +38,7 @@ Rails.application.routes.draw do
   resources :movies do
     get 'add', on: :member
     member do
+      post 'add_to_current', to: "movies#create"
       get 'add_to_current', to: "movies#add_to_current"
       put "like", to: "movies#like"
       put "comment", to: "movies#comment"
@@ -54,6 +60,7 @@ Rails.application.routes.draw do
     resources :profile do
       get 'edit', on: :collection
       get 'show', on: :collection
+      get 'change_current', on: :collection
     end
   end
 

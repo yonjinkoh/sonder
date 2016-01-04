@@ -50,7 +50,7 @@
 body {
   a {color: darkgray;
   }
-  a:hover { color: black;
+  a:hover { color: black; text-decoration: none;
   }
   a:active {text-decoration: none; color: black !important;}
   // a:visited {text-decoration: none;color: black}

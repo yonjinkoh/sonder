@@ -14,23 +14,113 @@
       - @sortedlists.each do |list|
         .category= list.name
   .top-buffer
-  .slider-for
-    = form_for(@currentlist, remote: true) do |f|
-      .simplists
-        %h1.pull-left 1
-        .prompt-to-choose-category
-          Choose a category
-        .add-from-category.book
-          = link_to("Books", add_to_current_book_path(id: @currentlist, number: 1), remote: true)
-        .add-from-category.movie
-          = link_to("Movies", add_to_current_movie_path(id: @currentlist, number: 1), remote: true)
-          = link_to("Songs", add_to_current_movie_path(id: @currentlist, number: 1), remote: true)
-          = link_to("Quotes", add_to_current_quote_path(id: @currentlist, number: 1), remote: true)
-        .clearfix
-        .movie-form.add-list-item{id: "current-1"}
-        -# = render partial: "movies/form", locals: {:f => f}
-        -# = render partial: "books/form", locals: {:f => f}
-      %center= f.submit(class: "hidden submit-currentlist-btn btn")
+  .slider-for.currentlist
+    .current-list
+      - @rankings.each do |ranking|
+        %div{class: "simplists-#{ranking} simplists"}
+          - case ranking
+          - when 1
+            - thing = @number_1
+          - when 2
+            - thing = @number_2
+          - when 3
+            - thing = @number_3
+          - when 4
+            - thing = @number_4
+          - when 5
+            - thing = @number_5
+          - if thing.class == Movie
+            .simplist
+              %h1.pull-left #{ranking}
+              .enter-new-movie
+                .change
+                  = link_to change_current_user_profile_index_path(ranking: ranking), remote: true do
+                    %i.fa.fa-pencil
+                    CHANGE
+                .movie-form{style: "display: inline-block;"}
+                  .box.pull-left
+                    - if thing.picture && thing.picture.empty? != true
+                      %img{:src => "https://image.tmdb.org/t/p/w154#{thing.picture}"}
+                  .item-info.pull-right
+                    %strong.item-title= thing.name
+                    %span.item-author= "(" + thing.year[0,4] + ")"
+                    .item-overview= thing.overview
+              .clearfix
+          - elsif thing.class == Song
+            .simplist.song-simplist
+              %h1.pull-left #{ranking}
+              .enter-new-movie
+                .change
+                  = link_to change_current_user_profile_index_path(ranking: ranking), remote: true do
+                    %i.fa.fa-pencil
+                    CHANGE
+                .movie-form{style: "display: inline-block;"}
+                  .simplist-image.song-image.pull-left
+                    - if thing.picture
+                      %img{:src => "#{thing.picture}"}
+                    %img#cover{:rel => "tooltip", :src => "", :title => ""}
+                  .item-info.pull-left
+                    .item-title= thing.name
+                    .item-author= thing.artist
+                    .item-overview= thing.album
+              .clearfix
+          - elsif thing.class == Book
+            .simplist
+              %h1.pull-left #{ranking}
+              .enter-new-movie
+                .change
+                  = link_to change_current_user_profile_index_path(ranking: ranking), remote: true do
+                    %i.fa.fa-pencil
+                    CHANGE
+                .movie-form{style: "display: inline-block;"}
+                  .box.pull-left
+                    - if thing.picture
+                      %img{:src => "#{thing.picture}"}
+                  - if thing.link?
+                    = link_to "#{thing.link}" do
+                      .item-info.pull-right
+                        .item-title= thing.name
+                        .item-author= thing.author
+                        .item-published= thing.published[0,4]
+                        .item-overview.truncate= thing.description
+                  - else
+                    .item-info.pull-right
+                      .item-title= thing.name
+                      .item-author= thing.author
+                      .item-published= thing.published[0,4]
+                      .item-overview.truncate= thing.description
+              .clearfix
+          - elsif thing.class == Quote
+            .simplist
+              .change
+                = link_to change_current_user_profile_index_path(ranking: ranking), remote: true do
+                  %i.fa.fa-pencil
+                  CHANGE
+              %h1.pull-left #{ranking}
+              .enter-new-movie
+                .movie-form
+                  .quote.pull-left
+                    .quote-text= thing.content
+                    .quote-author= thing.source
+                    .clearfix
+              .clearfix
+          - else
+            %h1.pull-left= ranking
+            .prompt-to-choose-category
+              Choose a category
+            .all-options
+              .add-from-category.book
+                = link_to("Book", add_to_current_book_path(id: @currentlist, number: ranking), remote: true)
+              .add-from-category.movie
+                = link_to("Movie", add_to_current_movie_path(id: @currentlist, number: ranking), remote: true)
+              .add-from-category.song
+                = link_to("Song", add_to_current_song_path(id: @currentlist, number: ranking), remote: true)
+              .add-from-category.quote
+                = link_to("Quote", add_to_current_quote_path(id: @currentlist, number: ranking), remote: true)
+            .clearfix
+            .movie-form.add-list-item{id: "current-#{ranking}"}
+
+      -# %center= f.submit(class: "hidden submit-currentlist-btn btn")
     = render partial: "edit_movielist"
     = render partial: "edit_booklist"
     = render partial: "edit_quotelist"
@@ -68,6 +158,9 @@
 
 
   $(function() {
+
+    $(".slick-current.category").css('color', 'darkred');
+    $('.slick-current.category').css('borderBottom', '4px solid darkred');
 
     $('.fa-close').on('click', function(){
       $this = this;

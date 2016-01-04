@@ -1,4 +1,4 @@
-= form_for(:book) do |f|
+= form_for(@book) do |f|
 
   .simplist
     .enter-new-movie
@@ -17,8 +17,11 @@
         = f.text_field :author, class: "hidden"
         = f.text_field :description, class: "hidden"
         = f.text_field :link, class: "hidden"
+        = f.hidden_field :position, class: "position"
+        = f.hidden_field :list_id, class: "list"
         -# .pull-right{:style => "font-size:smaller;"} Recommended: Search by ISBN, Author, or Title
         %div.pull-right{:style => "padding-left: 3em; font-size: 18px"}
+      %center=f.submit(class: "submit-currentlist-btn btn", value: "PUBLISH")
     .clearfix
 
 
@@ -28,7 +31,7 @@
 
 
       function clickButton (){
-        $('.submit-booklist-btn').trigger("click");
+        $('.submit-currentlist-btn').trigger("click");
       }
 
       function insertPlaceholder(placeholder) {
@@ -39,5 +42,94 @@
       $( ".select2-selection__placeholder" ).each(function(){
         insertPlaceholder(this);
       });
+
+    });
+
+    $(document).ready(function(){
+
+      function insertBook (html, bookImage, bookId, bookPublished, bookAuthor, bookDescription, bookLink) {
+        $('.select2-container--open').siblings('.box').html(html);
+        $('.select2-container--open').siblings('input').first().val(bookId);
+        $('.select2-container--open').siblings('input').first().next().val(bookImage);
+        $('.select2-container--open').siblings('input').first().next().next().val(bookPublished);
+        $('.select2-container--open').siblings('input').first().next().next().next().val(bookAuthor);
+        $('.select2-container--open').siblings('input').first().next().next().next().next().val(bookDescription);
+        $('.select2-container--open').siblings('input').first().next().next().next().next().next().val(bookLink);
+      }
+
+
+      function textFormatResult(text) {
+
+        if (text.volumeInfo !== undefined) {
+
+          if (text.volumeInfo.imageLinks !== undefined) {
+            var markup = "<div class='select2-result-thing clearfix'>" +
+            "<div class='select2-result-thing__poster'><img src='"+ text.volumeInfo.imageLinks.smallThumbnail + "' /></div>" +
+            "<div class='select2-result-thing__meta'>" +
+            "<div class='select2-result-thing__title'>" + text.volumeInfo.title + "</div>";
+          }
+          if (text.volumeInfo.authors) {
+            markup += "<div class='select2-result-thing__description'>" + text.volumeInfo.authors + "</div>";
+          }
+
+        } else {markup = " "}
+        return markup;
+      }
+
+      //jquery
+      function textFormatSelection(text) {
+
+          if (text.volumeInfo) {
+
+            if (text.volumeInfo && text.volumeInfo.imageLinks) {
+              var html = "<img src='" + text.volumeInfo.imageLinks.thumbnail + "' />"
+            }
+
+            var bookImage = text.volumeInfo.imageLinks.thumbnail;
+            var bookId = text.volumeInfo.title;
+            var bookPublished = text.volumeInfo.publishedDate;
+            var bookAuthor = text.volumeInfo.authors;
+            var bookDescription = text.volumeInfo.description;
+            var bookLink = text.volumeInfo.infoLink;
+            insertBook(html, bookImage, bookId, bookPublished, bookAuthor, bookDescription, bookLink);
+            return text.volumeInfo.title + " (" + text.volumeInfo.authors + ")";
+          }
+      }
+
+
+        function fooCallback(json) {
+            return json;
+        }
+
+        $(".select-book").select2({
+            placeholder: "Click to Search for a Text",
+            minimumInputLength: 3,
+            ajax: {
+                cache: false,
+                jsonp: "callback",
+                jsonpCallback: 'fooCallback',
+                url: "https://www.googleapis.com/books/v1/volumes",
+                dataType: 'json',
+                data: function (params, page) { // page is the one-based page number tracked by Select2
+                    return {
+                        q: params.term, //search term
+                        maxResults: 40,
+                        page_limit: 10, // page size
+                        page: page, // page number
+                        key: "AIzaSyCALnnPrGEdIXTlhFvgA5BSFDL6D2VfzNY"
+                    };
+                },
+                processResults: function (data, page) {
+                  var more = (page * 10) < data.more; // whether or not there are more results available
+
+                                    // notice we return the value of more so Select2 knows if more results can be loaded
+
+                  return { results: data.items, more: more };
+                },
+            },
+            escapeMarkup: function (m) { return m; }, // we do not want to escape markup since we are displaying html in results
+            templateResult: textFormatResult,
+            templateSelection: textFormatSelection,
+        });
 
     });
