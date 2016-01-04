@@ -12,7 +12,7 @@ and (max-device-width : 667px) {
 
   .movie-form:hover {
     .item-overview {
-      opacity: 0 !important;
+      display: none !important;
     }
   }
 
