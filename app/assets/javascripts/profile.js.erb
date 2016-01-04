@@ -4,9 +4,12 @@ $(document).ready(function(){
 
 
   if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+    $('.category.slick-current').css('color', 'darkred');
+    $('.category.slick-current').css('borderBottom', '8px solid darkred');
+
     $('.slider-nav').slick({
       slidesToShow: 3,
-      slidesToScroll: 2,
+      slidesToScroll: 1,
       asNavFor: '.slider-for',
       dots: false,
       // centerMode: true,

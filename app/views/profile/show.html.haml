@@ -38,6 +38,7 @@
         - if @currentlist_items.empty?
           %center Nothing yet!
         - else
+          .list-description THINGS ON MY MIND
           - @rankings.each do |ranking|
             %div{class: "simplists-#{ranking} simplists"}
               - case ranking

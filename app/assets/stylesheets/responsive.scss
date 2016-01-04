@@ -6,6 +6,17 @@
 and (min-device-width : 375px)
 and (max-device-width : 667px) {
 
+  .list-description {
+    font-size: 50px;
+  }
+
+  .movie-form:hover {
+    .item-overview {
+      opacity: 0 !important;
+    }
+  }
+
+
   .edit_quote {
     height: 1320px;
     width: 100%;
@@ -290,7 +301,7 @@ and (max-device-width : 667px) {
   }
 
   .category.slick-current {
-    border-bottom: 8px solid black !important;
+    border-bottom-width: 8px !important;
   }
 
   .quote-text {
