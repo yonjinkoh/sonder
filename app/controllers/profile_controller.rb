@@ -67,6 +67,9 @@ class ProfileController < ApplicationController
         end
       end
     end
+
+    @moviestodisplay = @topmovies.take(12)
+    @bookstodisplay = @topbooks.take(12)
   end
 
   def change_current
