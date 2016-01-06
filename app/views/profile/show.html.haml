@@ -33,11 +33,9 @@
         .category= list.name
   .top-buffer
   .slider-for
-    .simplists
-      .current-list
-        - if @currentlist_items.empty?
-          %center Nothing yet!
-        - else
+    - if @sortedlists.include? @currentlist
+      .simplists
+        .current-list
           .list-description THINGS ON MY MIND
           - @rankings.each do |ranking|
             %div{class: "simplists-#{ranking} simplists"}
@@ -140,13 +138,8 @@
                 - if current_user
                   = render partial: "comments", locals: {:thing => thing}
               - else
-
-    .simplists
-      - if @movies.empty?
-        .simplist
-          %center
-            %em None yet!
-      - else
+    - if @sortedlists.include? @movielist
+      .simplists
         - @movies.each do |movie|
           .simplist
             %h1.pull-left #{@movies.index(movie)+1}
@@ -164,12 +157,8 @@
             .clearfix
           - if current_user
             = render partial: "comments", locals: {:thing => movie}
-    .simplists
-      - if @books.empty?
-        .simplist
-          %center
-            %em None yet!
-      - else
+    - if @sortedlists.include? @booklist
+      .simplists
         - @books.each do |book|
           .simplist
             %h1.pull-left #{@books.index(book)+1}
@@ -195,12 +184,8 @@
             .clearfix
           - if current_user
             = render partial: "comments", locals: {:thing => book}
-    .simplists
-      - if @quotes.empty?
-        .simplist
-          %center
-            %em None yet!
-      - else
+    - if @sortedlists.include? @quotelist
+      .simplists
         - @quotes.each do |quote|
           .simplist
             %h1.pull-left #{@quotes.index(quote)+1}
@@ -211,12 +196,8 @@
             .clearfix
           - if current_user
             = render partial: "comments", locals: {:thing => quote}
-    .simplists
-      - if @songs.empty?
-        .simplist
-          %center
-            %em None yet!
-      - else
+    - if @sortedlists.include? @songlist
+      .simplists
         - @songs.each do |song|
           .simplist.song-simplist
             %h1.pull-left #{@songs.index(song)+1}
@@ -234,33 +215,24 @@
             .clearfix
           - if current_user
             = render partial: "comments", locals: {:thing => song}
-    - if @productlist
+    - if @sortedlists.include? @productlist
       .simplists
-        - if @products.empty?
+        - @products.each do |product|
           .simplist
-            %center
-              %em None yet!
-        - else
-          - @products.each do |product|
-            .simplist
-              %h1.pull-left #{@products.index(product)+1}
-              .product-wrapper.pull-left
-                %center
-                  .product-picture
-                    = image_tag(product.picture)
-                  %br
-                  .product-name
-                    - if product.link
-                      = link_to "#{product.name}", product.link
-                    - else
-                      = product.name
-              .clearfix
-    .simplists
-      - if @shows.empty?
-        .simplist
-          %center
-            %em None yet!
-      - else
+            %h1.pull-left #{@products.index(product)+1}
+            .product-wrapper.pull-left
+              %center
+                .product-picture
+                  = image_tag(product.picture)
+                %br
+                .product-name
+                  - if product.link
+                    = link_to "#{product.name}", product.link
+                  - else
+                    = product.name
+            .clearfix
+    - if @sortedlists.include? @showlist
+      .simplists
         - @shows.each do |show|
           .simplist
             %h1.pull-left #{@shows.index(show)+1}
@@ -281,8 +253,10 @@
 
 
   $(function() {
-    $(".slick-current.category").css('color', 'darkred');
-    $('.slick-current.category').css('borderBottom', '4px solid darkred');
+    //if ($(".slick-current.category").html()=="Now") {
+    //  $(".slick-current.slick-active.category").css('color', 'darkred');
+    //  $('.slick-current.slick-active.category').css('borderBottom', '4px solid darkred');
+    //};
     $('.share-it').tooltip({trigger: 'click'});
     $('.fa').tooltip({trigger:'click'});
 

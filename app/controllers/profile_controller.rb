@@ -73,29 +73,49 @@ class ProfileController < ApplicationController
           @items_of_ranking << c
         end
         var_name = "@number_#{ranking.to_s}"
+        # show the LAST updated
         @items_of_ranking.sort!{|a,b|a.updated_at <=> b.updated_at}
-
         self.instance_variable_set(var_name, @items_of_ranking.last)
-
       end
 
+      @sortedlists = []
+      unless @currentlist_items.empty?
+        @sortedlists << @currentlist
+      end
       # below: filters out empty items
       @movielist = @lists.where(name:"Movies").first
       @movies = @movielist.movies.where.not(name: "").sort
+      unless @movies.empty?
+        @sortedlists << @movielist
+      end
       @booklist = @lists.where(name:"Books").first
       @books = @booklist.books.where.not(name: "").sort
+      unless @books.empty?
+        @sortedlists << @booklist
+      end
       @quotelist = @lists.where(name:"Quotes").first
       @quotes = @quotelist.quotes.where.not(content: "").sort
+      unless @quotes.empty?
+        @sortedlists << @quotelist
+      end
       @songlist = @lists.where(name:"Songs").first
       @songs = @songlist.songs.where.not(name: "").sort
+      unless @songs.empty?
+        @sortedlists << @songlist
+      end
       @showlist = @lists.where(name:"TV").first
       @shows = @showlist.shows.where.not(name: "").sort
-      @sortedlists = [@currentlist, @movielist, @booklist, @quotelist, @songlist, @showlist]
+      unless @shows.empty?
+        @sortedlists << @songlist
+      end
+
 
       if @lists.where(name:"Products").first
         @productlist = @lists.where(name: "Products").first
         @products = @productlist.products.where.not(name:"").sort
-        @sortedlists << @productlist
+        unless @products.empty?
+          @sortedlists << @productlist
+        end
       end
 
     end
