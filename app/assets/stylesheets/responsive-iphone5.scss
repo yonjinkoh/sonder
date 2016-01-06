@@ -4,6 +4,18 @@
 and (min-device-width : 320px)
 and (max-device-width : 568px) {
 
+
+    .list-description {
+      font-size: 50px;
+    }
+
+    .movie-form:hover {
+      .item-overview {
+        display: none !important;
+      }
+    }
+
+
     .edit_quote {
       height: 1320px;
       width: 100%;
@@ -142,6 +154,15 @@ and (max-device-width : 568px) {
     .view-public-profile {a {font-size: 50px !important;} }
 
     .profile-edit {
+
+      .plus-sign {
+        font-size: 150px !important;
+        width: 150px !important;
+      }
+
+      .header-content h3 input {
+        line-height: 100px !important;
+      }
 
       .update-existing {
         padding: 100px 0px !important;
@@ -287,9 +308,9 @@ and (max-device-width : 568px) {
       height: 100px !important;
     }
 
-    // .category.slick-current {
-    //   border-bottom: 8px solid darkred !important;
-    // }
+    .category.slick-current {
+      border-bottom-width: 8px !important;
+    }
 
     .quote-text {
       font-size: 90px !important;

@@ -64,7 +64,7 @@
                       .item-info.pull-right
                         %strong.item-title= thing.name
                         %span.item-author= "(" + thing.year[0,4] + ")"
-                        .item-overview= thing.overview
+                        .item-overview.truncate= thing.overview
                   .clearfix
                 - if current_user
                   = render partial: "comments", locals: {:thing => thing}
@@ -121,6 +121,21 @@
                         .quote-author= thing.source
                         .clearfix
                       .clearfix
+                  .clearfix
+                - if current_user
+                  = render partial: "comments", locals: {:thing => thing}
+              - elsif thing.class == Show
+                .simplist
+                  %h1.pull-left #{ranking}
+                  .enter-new-movie
+                    .movie-form{style: "display: inline-block;"}
+                      = render partial: "like_and_comment", locals: {:thing => thing}
+                      .box.pull-left
+                        - if thing.picture && thing.picture.empty? != true
+                          %img{:src => "https://image.tmdb.org/t/p/w154#{thing.picture}"}
+                      .item-info.pull-right
+                        %strong.item-title= thing.name
+                        .item-overview.truncate= thing.description
                   .clearfix
                 - if current_user
                   = render partial: "comments", locals: {:thing => thing}

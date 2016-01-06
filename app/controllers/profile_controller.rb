@@ -50,6 +50,9 @@ class ProfileController < ApplicationController
       @currentlist.books.each do |c|
         @currentlist_items << c
       end
+      @currentlist.shows.each do |c|
+        @currentlist_items << c
+      end
 
 
       @rankings.each do |ranking|
@@ -64,6 +67,9 @@ class ProfileController < ApplicationController
           @items_of_ranking << c
         end
         @currentlist.books.where(position:ranking).each do |c|
+          @items_of_ranking << c
+        end
+        @currentlist.shows.where(position:ranking).each do |c|
           @items_of_ranking << c
         end
         var_name = "@number_#{ranking.to_s}"
