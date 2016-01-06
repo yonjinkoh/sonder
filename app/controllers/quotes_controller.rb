@@ -14,7 +14,11 @@ class QuotesController < ApplicationController
 
   def like
     @quote = Quote.find(params[:id])
-    @quote.like_by current_user
+    if current_user.voted_for? @quote
+      @quote.unliked_by current_user
+    else
+      @quote.like_by current_user
+    end
     respond_to do |format|
       format.js
     end

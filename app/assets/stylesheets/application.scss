@@ -52,7 +52,8 @@ body {
   }
   a:hover { color: black; text-decoration: none;
   }
-  a:active {text-decoration: none; color: black !important;}
+  a:focus { color: black; text-decoration: none !important}
+  a:active {text-decoration: none !important; color: black !important;}
   // a:visited {text-decoration: none;color: black}
   font-family: 'Source Sans Pro', sans-serif;
   // font-family: 'Helvetica Neue';

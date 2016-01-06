@@ -1,0 +1,10 @@
+var id = "<%= j @thing.id.to_s %>";
+var element = "#simplist-<%= j @thing.class.to_s.downcase%>-" + id;
+
+if ($(element).is(':visible')) {
+  $(element).slideUp();
+  $('.slick-list').height("-=300");
+} else {
+  $('.slick-list').height("+=300");
+  $(element).slideDown();
+}

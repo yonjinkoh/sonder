@@ -14,7 +14,11 @@ class ShowsController < ApplicationController
 
   def like
     @show = Show.find(params[:id])
-    @show.like_by current_user
+    if current_user.voted_for? @show
+      @show.unliked_by current_user
+    else
+      @show.like_by current_user
+    end
     respond_to do |format|
       format.js
     end

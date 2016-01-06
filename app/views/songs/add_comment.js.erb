@@ -1,5 +1,0 @@
-var song = "#simplist-song-" + "<%= j @song.id.to_s %>";
-$(song).find('.all-comments').prepend("<%= j render 'profile/new_comment', locals: {:comment => @comment } %>");
-$(song).find('input').val("");
-var thecomment = "#comment-song-" + "<%= j @song.id.to_s %>";
-$(thecomment).find('.fa-comment').html("<%= j @song.root_comments.size.to_s %>");

@@ -1,0 +1,2 @@
+var theheart = "#heart-"+"<%= j @thing.class.to_s.downcase %>" + "-" + "<%= j @thing.id.to_s %>";
+var like = $(theheart).parents(".like-comment").replaceWith("<%= j render partial: "like_and_comment", locals: {:thing => @thing} %>").hide().fadeIn();

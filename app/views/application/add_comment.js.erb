@@ -1,0 +1,4 @@
+var thing = "#simplist-"+"<%= j @thing.class.to_s.downcase %>-" + "<%= j @thing.id.to_s %>";
+$(thing).find('.all-comments').prepend("<%= j render 'profile/new_comment', locals: {:comment => @comment } %>");
+$(thing).find('input').val("");
+var thecomment = "#comment-<%= j @thing.class.to_s.downcase %>-" + "<%= j @thing.id.to_s %>";

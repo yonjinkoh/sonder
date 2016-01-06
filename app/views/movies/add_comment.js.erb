@@ -1,5 +1,0 @@
-var movie = "#simplist-movie-" + "<%= j @movie.id.to_s %>";
-$(movie).find('.all-comments').prepend("<%= j render 'profile/new_comment', locals: {:comment => @comment } %>");
-$(movie).find('input').val("");
-var thecomment = "#comment-movie-" + "<%= j @movie.id.to_s %>";
-$(thecomment).find('.fa-comment').html("<%= j @movie.root_comments.size.to_s %>");

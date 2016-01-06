@@ -12,7 +12,6 @@ class BooksController < ApplicationController
   def show
   end
 
-
   def like
     @book = Book.find(params[:id])
     @book.like_by current_user
@@ -20,6 +19,16 @@ class BooksController < ApplicationController
       format.js
     end
   end
+
+  def dislike
+    @book.unliked_by current_user
+    respond_to do |format|
+      format.js
+    end
+  end
+
+
+
 
   def add_to_current
     @list = List.find(params[:id])

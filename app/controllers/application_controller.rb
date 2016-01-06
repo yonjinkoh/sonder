@@ -7,6 +7,88 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!, only: [:secret]
 
 
+  def like
+    @b = params[:id]
+    case params[:class]
+    when "Movie"
+      @thing = Movie.find(@b)
+    when "Song"
+      @thing = Song.find(@b)
+    when "Quote"
+      @thing = Quote.find(@b)
+    when "Show"
+      @thing = Show.find(@b)
+    when "Book"
+      @thing = Book.find(@b)
+    end
+    @thing.liked_by current_user
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def dislike
+    @b = params[:id]
+    case params[:class]
+    when "Movie"
+      @thing = Movie.find(@b)
+    when "Song"
+      @thing = Song.find(@b)
+    when "Quote"
+      @thing = Quote.find(@b)
+    when "Show"
+      @thing = Show.find(@b)
+    when "Book"
+      @thing = Book.find(@b)
+    end
+    @thing.unliked_by current_user
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def comment
+    @b = params[:id]
+    case params[:class]
+    when "Movie"
+      @thing = Movie.find(@b)
+    when "Song"
+      @thing = Song.find(@b)
+    when "Quote"
+      @thing = Quote.find(@b)
+    when "Show"
+      @thing = Show.find(@b)
+    when "Book"
+      @thing = Book.find(@b)
+    end
+    @comment = @thing.root_comments.new
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def add_comment
+    @b = params[:id]
+    case params[:class]
+    when "Movie"
+      @thing = Movie.find(@b)
+    when "Song"
+      @thing = Song.find(@b)
+    when "Quote"
+      @thing = Quote.find(@b)
+    when "Show"
+      @thing = Show.find(@b)
+    when "Book"
+      @thing = Book.find(@b)
+    end
+    @comment = Comment.build_from(@thing, current_user.id, params[:body])
+    @comment.save
+    respond_to do |format|
+      format.js {render "add_comment", :locals => {:thing => @thing}}
+    end
+  end
+
+
   def about
   end
 

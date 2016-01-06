@@ -9,7 +9,11 @@ class SongsController < ApplicationController
 
   def like
     @song = Song.find(params[:id])
-    @song.like_by current_user
+    if current_user.voted_for? @song
+      @song.unliked_by current_user
+    else
+      @song.like_by current_user
+    end
     respond_to do |format|
       format.js
     end

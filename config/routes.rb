@@ -1,24 +1,20 @@
 Rails.application.routes.draw do
+  put 'mycomment' => 'application#comment', as: :mycomment
+  resources :comments
+
   resources :shows do
     get 'add', on: :member
     member do
       post 'add_to_current', to: "shows#create"
       get 'add_to_current', to: "shows#add_to_current"
-      put "like", to: "shows#like"
-      put "comment", to: "shows#comment"
-      post "add_comment", to: "shows#add_comment"
     end
   end
 
-  resources :comments
   resources :songs do
     get 'add', on: :member
     member do
       post 'add_to_current', to: "songs#create"
       get 'add_to_current', to: "songs#add_to_current"
-      put "like", to: "songs#like"
-      put "comment", to: "songs#comment"
-      post "add_comment", to: "songs#add_comment"
     end
   end
   resources :quotes do
@@ -26,9 +22,6 @@ Rails.application.routes.draw do
     member do
       post 'add_to_current', to: "quotes#create"
       get 'add_to_current', to: "quotes#add_to_current"
-      put "like", to: "quotes#like"
-      put "comment", to: "quotes#comment"
-      post "add_comment", to: "quotes#add_comment"
     end
   end
   resources :books do
@@ -36,9 +29,6 @@ Rails.application.routes.draw do
     member do
       post 'add_to_current', to: "books#create"
       get 'add_to_current', to: "books#add_to_current"
-      put "like", to: "books#like"
-      put "comment", to: "books#comment"
-      post "add_comment", to: "books#add_comment"
     end
   end
   devise_for :admins, :controllers =>
@@ -51,9 +41,6 @@ Rails.application.routes.draw do
     member do
       post 'add_to_current', to: "movies#create"
       get 'add_to_current', to: "movies#add_to_current"
-      put "like", to: "movies#like"
-      put "comment", to: "movies#comment"
-      post "add_comment", to: "movies#add_comment"
     end
   end
   resources :users
@@ -64,6 +51,10 @@ Rails.application.routes.draw do
   get 'about' => 'application#about'
   get 'explore' => 'profile#explore'
   get 'aprilkoh/edit' => 'profile#edit'
+  put 'like' => 'application#like'
+  put 'dislike' => 'application#dislike'
+  post 'add_comment' => 'application#add_comment'
+
   root to: "profile#show"
 
   resources :users do

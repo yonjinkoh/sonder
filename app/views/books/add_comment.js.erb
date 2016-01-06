@@ -1,5 +1,0 @@
-var book = "#simplist-book-" + "<%= j @book.id.to_s %>";
-$(book).find('.all-comments').prepend("<%= j render 'profile/new_comment', locals: {:comment => @comment } %>");
-$(book).find('input').val("");
-var thecomment = "#comment-book-" + "<%= j @book.id.to_s %>";
-$(thecomment).find('.fa-comment').html("<%= j @book.root_comments.size.to_s %>");

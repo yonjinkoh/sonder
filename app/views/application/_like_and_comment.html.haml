@@ -1,0 +1,25 @@
+- if current_user
+  .like-comment
+    - if thing.votes_for.size > 0
+      .people-who-liked
+        - if thing.votes_for.size == 1
+          #{thing.votes_for.size} person likes this
+        - else
+          #{thing.votes_for.size} people like this
+      .faces
+        - thing.get_likes.each do |liker|
+          = link_to user_profile_index_path(liker.voter_id) do
+            .face= image_tag (User.find(liker.voter_id).avatar)
+    - if current_user.voted_for? thing
+      = link_to dislike_path(:id => thing, :class => thing.class), id: "heart-#{thing.class.to_s.downcase}-#{thing.id}", method: :put, remote: true do
+        %i.fa.fa-heart.liked
+    - else
+      = link_to like_path(:id => thing, :class => thing.class), id: "heart-#{thing.class.to_s.downcase}-#{thing.id}", method: :put, remote: true do
+        %i.fa.fa-heart
+    = link_to mycomment_path(:id => thing, :class => thing.class), id: "comment-#{thing.class.to_s.downcase}-#{thing.id}", remote: true, method: :put do
+      %i.fa.fa-comment
+:javascript
+  $('.people-who-liked').on('click', function() {
+    $(this).hide();
+    $(this).siblings('.faces').fadeIn();
+  });

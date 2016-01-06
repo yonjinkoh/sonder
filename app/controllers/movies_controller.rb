@@ -14,7 +14,11 @@ class MoviesController < ApplicationController
 
   def like
     @movie = Movie.find(params[:id])
-    @movie.like_by current_user
+    if current_user.voted_for? @movie
+      @movie.unliked_by current_user
+    else
+      @movie.like_by current_user
+    end
     respond_to do |format|
       format.js
     end
