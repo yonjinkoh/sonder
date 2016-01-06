@@ -54,7 +54,7 @@ class ProfileController < ApplicationController
 
   def explore
     @profiles = User.where.not(first_name: "").where.not(avatar: "")
-    @featured = @profiles.where(featured:true)
+    @featured = @profiles.where(featured: true)
     @topmovies = []
     @topbooks = []
     @profiles.each do |profile|
