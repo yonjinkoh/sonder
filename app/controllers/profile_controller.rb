@@ -3,9 +3,19 @@ class ProfileController < ApplicationController
   before_action :set_s3_direct_post, only: [:new, :edit, :create, :update]
 
   def new
-    @client = GooglePlaces::Client.new("AIzaSyCALnnPrGEdIXTlhFvgA5BSFDL6D2VfzNY")
-    @james = @client.spots_by_query('serpentine in san francisco')
-    raise
+     # Using Google Web Services
+     # https://code.google.com/apis/console
+     url = "https://maps.googleapis.com/maps/api/place/autocomplete/json"
+     _params = {
+         :key => "AIzaSyCALnnPrGEdIXTlhFvgA5BSFDL6D2VfzNY",
+         :types => "geocode",
+         :sensor => (params[:sensor] or false),
+         :input => params[:q]
+     }
+     ans = %x{curl -G --data-urlencode #{_params.map{|k,v| "#{k}=\"#{v}\""}.join(" --data-urlencode ")} "#{url}"}
+     ans = ActiveSupport::JSON.decode(ans)
+     render :json => ans
+
   end
 
   def add_on_mobile
@@ -229,12 +239,14 @@ class ProfileController < ApplicationController
     @songs = @songlist.songs.sort
     @showlist = @lists.where(name:"TV").first
     @shows = @showlist.shows.sort
+    @placelist = @lists.where(name: "Places").first
+    @places = @placelist.places.sort
     if @lists.where(name:"Products").first
       @productlist = @lists.where(name: "Products").first
       @products = @productlist.products.sort
     end
 
-    @sortedlists = [@currentlist, @movielist, @booklist, @quotelist, @songlist, @showlist]
+    @sortedlists = [@currentlist, @movielist, @booklist, @quotelist, @songlist, @showlist, @placelist]
 
     respond_to do |format|
       format.html

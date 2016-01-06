@@ -21,6 +21,15 @@ class PlacesController < ApplicationController
   def edit
   end
 
+  def add_to_current
+    @list = List.find(params[:id])
+    @place = @list.places.new(position: params[:number])
+    @number = params[:number].to_s
+    respond_to do |format|
+      format.js{render "places/add_to_current", :locals => {:place => @place, :number => @number}}
+    end
+  end
+
   # POST /places
   # POST /places.json
   def create
@@ -28,7 +37,7 @@ class PlacesController < ApplicationController
 
     respond_to do |format|
       if @place.save
-        format.html { redirect_to @place, notice: 'Place was successfully created.' }
+        format.html { redirect_to edit_user_profile_index_path(List.find(@place.list_id).user) }
         format.json { render :show, status: :created, location: @place }
       else
         format.html { render :new }

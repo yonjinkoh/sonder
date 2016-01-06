@@ -12,17 +12,6 @@ class MoviesController < ApplicationController
   def show
   end
 
-  def like
-    @movie = Movie.find(params[:id])
-    if current_user.voted_for? @movie
-      @movie.unliked_by current_user
-    else
-      @movie.like_by current_user
-    end
-    respond_to do |format|
-      format.js
-    end
-  end
 
   def add_to_current
     @list = List.find(params[:id])

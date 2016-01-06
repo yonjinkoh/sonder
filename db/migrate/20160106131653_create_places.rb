@@ -4,7 +4,6 @@ class CreatePlaces < ActiveRecord::Migration
       t.string :name
       t.string :type
       t.string :description
-      t.string :id
       t.integer :position
       t.integer :list_id
       t.string :picture

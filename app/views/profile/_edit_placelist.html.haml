@@ -1,0 +1,66 @@
+= form_for(@placelist, remote: true) do |f|
+  .simplists
+    = f.fields_for(@places) do |place_form|
+      - unless place_form.object.name?
+        .simplist.song-simplist
+          -# %h1.pull-left #{place_form.index+1}
+          .enter-new-movie
+            .movie-form{style: "display: inline-block"}
+              .edit-options
+                %i.fa.fa-close CLEAR
+              .saved SAVED
+              .simplist-image.song-image.pull-left
+                - if place_form.object.picture
+                  %img{:src=> "#{place_form.object.picture}"}
+                %img#cover{:rel => "tooltip", :src=>"", :title=> ""}
+              %select.select-place
+                %option
+              .song-info.pull-left
+              = place_form.hidden_field :name
+              = place_form.hidden_field :picture
+              = place_form.hidden_field :description
+              = place_form.hidden_field :type
+          .clearfix
+        .simplist-mobile
+          -# %h1 #{place_form.index+1}
+          .enter-new-movie-mobile
+            - if place_form.index == 0
+              .prompt What's your all-time favorite place?
+            - else
+              -# .prompt What's your ##{place_form.index+1} song?
+            = link_to add_song_path(place_form.object.id) do
+              .btn-add Add It Now
+          .clearfix
+      - else
+        .simplist.song-simplist
+          %h1.pull-left #{place_form.index+1}
+          .enter-new-movie
+            .movie-form{style: "display: inline-block"}
+              .edit-options
+                %i.fa.fa-close CLEAR
+              .saved SAVED
+              .simplist-image.song-image.pull-left
+                - if place_form.object.picture
+                  %img{:src=> "#{place_form.object.picture}"}
+                %img#cover{:rel => "tooltip", :src=>"", :title=> ""}
+              %select.select-place
+                %option
+              .song-info.pull-left
+              = place_form.hidden_field :name
+              = place_form.hidden_field :picture
+              = place_form.hidden_field :description
+              = place_form.hidden_field :type
+          .clearfix
+      .update-existing
+        -# %h1.pull-left #{place_form.index+1}
+        .enter-new-movie
+          .movie-form{style: "display: inline-block;"}
+            .simplist-image.song-image.pull-left
+              - if place_form.object.picture && place_form.object.picture.empty? != true
+                %img{:src => "#{place_form.object.picture}"}
+            .item-info.pull-right
+              %strong.item-title= place_form.object.name
+              .item-author= place_form.object.description
+          = link_to add_song_path(place_form.object.id) do
+            .btn-add Change
+        .clearfix
