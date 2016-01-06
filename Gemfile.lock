@@ -102,6 +102,8 @@ GEM
       railties (>= 3.2, < 5.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
+    google_places (0.32.0)
+      httparty (~> 0.13.1)
     haml (4.0.7)
       tilt
     httparty (0.13.7)
@@ -128,6 +130,8 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    meta-tags (2.1.0)
+      actionpack (>= 3.0.0)
     mime-types (2.6.2)
     mini_portile (0.6.2)
     minitest (5.8.2)
@@ -238,12 +242,14 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   devise
   font-awesome-rails
+  google_places
   haml
   immigrant
   jbuilder (~> 2.0)
   jquery-rails
   jquery-slick-rails
   jquery-turbolinks
+  meta-tags
   pg
   puma
   quiet_assets

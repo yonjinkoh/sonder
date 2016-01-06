@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+gem 'meta-tags'
+
+
 gem 'bootstrap-sass', '~> 3.3.5'
 #Use bootstrap for styling, compatible with sass
 
@@ -16,6 +19,9 @@ gem 'jquery-turbolinks'
 
 gem 'immigrant'
 
+gem 'google_places'
+
+
 gem 'devise'
 # use devise for secure user registration
 
@@ -23,7 +29,7 @@ gem 'puma'
 # use puma as the web server
 
 gem "socialization"
-# gem to follow people 
+# gem to follow people
 
 gem 'aws-sdk', '~> 2'
 # using the Amazon Ruby SDK for interacting with S3.

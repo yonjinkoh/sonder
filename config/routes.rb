@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :places
   put 'mycomment' => 'application#comment', as: :mycomment
   resources :comments
 

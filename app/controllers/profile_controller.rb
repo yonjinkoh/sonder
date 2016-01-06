@@ -3,6 +3,9 @@ class ProfileController < ApplicationController
   before_action :set_s3_direct_post, only: [:new, :edit, :create, :update]
 
   def new
+    @client = GooglePlaces::Client.new("AIzaSyCALnnPrGEdIXTlhFvgA5BSFDL6D2VfzNY")
+    @james = @client.spots_by_query('serpentine in san francisco')
+    raise
   end
 
   def add_on_mobile
