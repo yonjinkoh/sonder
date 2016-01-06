@@ -33,7 +33,7 @@ Rails.application.routes.draw do
   end
   devise_for :admins, :controllers =>
   { sessions: 'admin/sessions' }
-   devise_for :users,
+  devise_for :users,
     :controllers => {:registrations => "users/registrations"}
   resources :categories
   resources :movies do
@@ -60,6 +60,7 @@ Rails.application.routes.draw do
   resources :users do
     resources :lists
     resources :profile do
+      put 'follow', on: :collection
       get 'edit', on: :collection
       get 'show', on: :collection
       get 'change_current', on: :collection

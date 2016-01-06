@@ -40,10 +40,16 @@ devise :database_authenticatable, :registerable,
 # mount_uploader :picture, PictureUploader, dependent: :destroy
 has_many :lists, dependent: :destroy
 acts_as_voter
+acts_as_follower
+acts_as_followable
+acts_as_mentionable
 #
 # def to_param
 #   username
 # end
+
+
+
 
 def add_product_list
   productlist = lists.find_or_create_by(name: "Products")

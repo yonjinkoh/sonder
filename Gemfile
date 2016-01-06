@@ -22,6 +22,9 @@ gem 'devise'
 gem 'puma'
 # use puma as the web server
 
+gem "socialization"
+# gem to follow people 
+
 gem 'aws-sdk', '~> 2'
 # using the Amazon Ruby SDK for interacting with S3.
 

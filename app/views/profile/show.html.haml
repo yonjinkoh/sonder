@@ -26,6 +26,10 @@
           %i.fa.fa-twitter{"data-toggle"=>"tooltip", "data-placement"=>"bottom", "title"=>"#{@user.twitter}"}
         - if @user.pinterest?
           %i.fa.fa-pinterest{"data-toggle"=>"tooltip", "data-placement"=>"bottom", "title"=>"#{@user.pinterest}"}
+  - if @user != current_user
+    %br
+    %center.follow-button
+      = link_to "Follow", follow_user_profile_index_path(@user), class: "btn"
   .top-buffer
   .categories.container-fluid
     .row.slider-nav
@@ -250,6 +254,59 @@
             = render partial: "comments", locals: {:thing => show}
 :javascript
 
+    $(document).ready(function(){
+
+      var prenumberOfLists = #{@sortedlists.size};
+      if (prenumberOfLists > 4) {
+        numberOfLists = 4;
+      } else {
+        numberOfLists = prenumberOfLists;
+      }
+
+      if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+        //$('.category.slick-current').css('color', 'darkred');
+        //$('.category.slick-current').css('borderBottom', '8px solid darkred');
+
+        $('.slider-nav').slick({
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          asNavFor: '.slider-for',
+          dots: false,
+          // centerMode: true,
+          focusOnSelect: true,
+        });
+        $('.slider-for').slick({
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          arrows: false,
+          fade: true,
+          adaptiveHeight: true,
+          asNavFor: '.slider-nav',
+        });
+      } else {
+
+        $('.slider-nav').slick({
+          slidesToShow: numberOfLists,
+          accessibility: false,
+          // slidesToScroll: 1,
+          asNavFor: '.slider-for',
+          dots: false,
+          // swipeToSlide: true,
+          // centerMode: true,
+          focusOnSelect: true,
+        });
+        $('.slider-for').slick({
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          accessibility: false,
+          adaptiveHeight: true,
+          arrows: false,
+          swipe: false,
+          fade: true,
+          asNavFor: '.slider-nav',
+        });
+      }
+    });
 
 
   $(function() {

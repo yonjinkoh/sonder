@@ -5,6 +5,11 @@ class ProfileController < ApplicationController
   def new
   end
 
+  def follow
+    @followed = params[:id]
+    current_user.follow!(@followed)
+  end
+
   def search
   end
 
@@ -106,7 +111,7 @@ class ProfileController < ApplicationController
       @showlist = @lists.where(name:"TV").first
       @shows = @showlist.shows.where.not(name: "").sort
       unless @shows.empty?
-        @sortedlists << @songlist
+        @sortedlists << @showlist
       end
 
 
