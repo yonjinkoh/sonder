@@ -66,8 +66,8 @@
                     .item-title= thing.name
                     .item-author= thing.artist
                     .item-overview= thing.album
-                  = link_to change_current_user_profile_index_path(ranking: ranking, user: @user), remote: true do
-                    .btn-add.btn-add-85 CHANGE
+                = link_to change_current_user_profile_index_path(ranking: ranking, user: @user), remote: true do
+                  .btn-add.btn-add-85 CHANGE
               .clearfix
           - elsif thing.class == Book
             .simplist-both
