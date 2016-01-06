@@ -1,2 +1,2 @@
 var target = ".simplists-" + "<%= @ranking %>"
-$(target).html("<%= j render "replace_current_item", locals: {:ranking => @ranking, :currentlist => @currentlist} %>").hide().fadeIn(1000);
+$(target).html("<%= j render "replace_current_item", locals: {:ranking => @ranking, :currentlist => @currentlist, :user => @user} %>").hide().fadeIn(1000);

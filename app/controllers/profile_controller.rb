@@ -5,6 +5,42 @@ class ProfileController < ApplicationController
   def new
   end
 
+  def add_on_mobile
+    @user = User.find(params[:id])
+    @list_id = params[:list_id]
+    @ranking = params[:ranking]
+    if params[:class] == "Movie"
+      @movie = Movie.new(list_id: @list_id, position: @ranking)
+      respond_to do |format|
+        format.html {render "movies/add", :layout => false}
+        format.js{render "movies/add"}
+      end
+    elsif  params[:class] == "Song"
+      @song = Song.new(list_id: @list_id, position: @ranking)
+      respond_to do |format|
+        format.html {render "songs/add", :layout => false}
+        format.js{render "songs/add"}
+      end
+    elsif params[:class] == "Book"
+      @book = Book.new(list_id: @list_id, position: @ranking)
+      respond_to do |format|
+        format.html {render "books/add", :layout => false}
+      end
+    elsif params[:class] == "Quote"
+      @quote = Quote.new(list_id: @list_id, position: @ranking)
+      respond_to do |format|
+        format.html {render "quotes/add", :layout => false}
+        format.js
+      end
+    elsif params[:class] == "Show"
+      @show = Show.new(list_id: @list_id, position: @ranking)
+      respond_to do |format|
+        format.html {render "shows/add", :layout => false}
+        format.js
+      end
+    end
+  end
+
   def follow
     @followed = params[:id]
     current_user.follow!(@followed)
@@ -22,8 +58,10 @@ class ProfileController < ApplicationController
 
   def change_current
     @lists = current_user.lists
+    @user = params[:user]
     @currentlist = @lists.where(name: "Now").first
     @ranking = params[:ranking].to_s
+
     respond_to do |format|
       format.js
     end

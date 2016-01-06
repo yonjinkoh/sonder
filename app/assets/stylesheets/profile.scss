@@ -121,6 +121,7 @@
 
 }
 .profile-edit{
+
     .current-list {
       .change {
         position: absolute;
@@ -132,6 +133,14 @@
           margin-right: 5px;
         }
       }
+
+      .simplist-both {
+        border-bottom: 1px solid whitesmoke ;
+        padding: 50px 0px;
+        // min-height:300px;
+
+      }
+
       .simplists {
         min-height: 200px;
         margin-bottom: 25px;

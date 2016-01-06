@@ -73,7 +73,7 @@ class SongsController < ApplicationController
 
     respond_to do |format|
       if @song.save
-        format.html { redirect_to :back }
+        format.html { redirect_to edit_user_profile_index_path(List.find(@song.list_id).user) }
         format.json { render :show, status: :created, location: @song }
         format.js {redirect_to :back }
       else

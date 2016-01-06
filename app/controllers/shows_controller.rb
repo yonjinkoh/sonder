@@ -72,7 +72,7 @@ class ShowsController < ApplicationController
 
     respond_to do |format|
       if @show.save
-        format.html { redirect_to :back }
+        format.html {  redirect_to edit_user_profile_index_path(List.find(@show.list_id).user) }
         format.json { render :show, status: :created, location: @show }
         format.js { redirect_to :back}
       else

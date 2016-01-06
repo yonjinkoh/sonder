@@ -20,4 +20,6 @@
   = form_for(@quote) do |f|
     = f.text_area :content,placeholder: "EX: I will sleep when I am dead.", class: "content"
     = f.text_field :source,placeholder: "EX: Warren Zevon", class: "source"
+    = f.hidden_field :list_id, class: "list"
+    = f.hidden_field :position, class: "position"
     = f.submit "Add Quote", class: "submit-quote"

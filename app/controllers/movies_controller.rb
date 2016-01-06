@@ -34,25 +34,6 @@ class MoviesController < ApplicationController
   end
 
 
-  def comment
-    @movie = Movie.find(params[:id])
-    @comment = @movie.root_comments.new
-    respond_to do |format|
-      format.js
-    end
-  end
-
-  def add_comment
-    @movie = Movie.find(params[:id])
-    @comment = Comment.build_from(@movie, current_user.id, params[:body])
-    @comment.save
-    respond_to do |format|
-      format.js{render "movies/add_comment", :locals => {:movie => @movie}}
-    end
-  end
-
-
-
   # GET /movies/new
   def new
     @movie = Movie.new
@@ -75,7 +56,7 @@ class MoviesController < ApplicationController
 
     respond_to do |format|
       if @movie.save
-        format.html { redirect_to(:back) }
+        format.html { redirect_to edit_user_profile_index_path(List.find(@movie.list_id).user)}
         format.json { render :show, status: :created, location: @movie }
         format.js
       else

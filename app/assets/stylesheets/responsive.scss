@@ -1,10 +1,37 @@
 .logo-iphone { display: none}
 .simplist-mobile { display: none}
 .update-existing {display: none}
+.wrapper-mobile {display: none}
+.btn-add {display: none}
 // iphone6
 @media only screen
 and (min-device-width : 375px)
 and (max-device-width : 667px) {
+
+  .current-list {
+
+    .simplists {
+      margin-bottom: 70px !important;
+    }
+    .wrapper {
+      display: none !important;
+    }
+    .wrapper-mobile {
+      display: block;
+      margin-left: 150px !important;
+      font-size: 40px !important;
+
+      .all-options {
+        height: 400px;
+        .add-from-category {
+          font-size: 45px !important;
+          margin: 10px 20px 20px 0px;
+          padding: 20px 30px;
+        }
+      }
+    }
+  }
+
 
   .btn {
     font-size: 45px !important;
@@ -163,6 +190,10 @@ and (max-device-width : 667px) {
 
   .profile-edit {
 
+    .change {
+      display: none !important;
+    }
+
     .plus-sign {
       font-size: 150px !important;
       width: 150px !important;
@@ -177,15 +208,24 @@ and (max-device-width : 667px) {
       display: block !important;
       // border-bottom: 1px solid lightgray !important;
 
-      .btn-add {
-        width: 85%;
-        margin-top: 1em;
-      }
     }
+
+    .btn-add {
+      // width: 85%;
+      margin-top: 1em;
+      display: block !important;
+    }
+
+    .btn-add-85{
+      width: 85%;
+    }
+
+
 
     .simplist {
       display: none !important;
     }
+
     .simplist-mobile {
       display: block !important;
     }
@@ -202,6 +242,7 @@ and (max-device-width : 667px) {
     .enter-new-movie-mobile {
       font-size: 70px;
       font-weight: 200;
+      position: relative !important;
       color: gray;
       width:700px;
       margin: 0 auto;
@@ -286,6 +327,7 @@ and (max-device-width : 667px) {
 
   .enter-new-movie {
     width: 800px;
+    position: relative !important;
     // height: 550px;
     font-size: 2.75em !important;
     .box {width: 30%; height: 350px;}

@@ -64,6 +64,7 @@ Rails.application.routes.draw do
       get 'edit', on: :collection
       get 'show', on: :collection
       get 'change_current', on: :collection
+      get 'add_on_mobile', on: :member
     end
   end
 

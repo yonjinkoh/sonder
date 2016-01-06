@@ -76,7 +76,7 @@ class QuotesController < ApplicationController
 
     respond_to do |format|
       if @quote.save
-        format.html { redirect_to :back }
+        format.html { redirect_to edit_user_profile_index_path(List.find(@quote.list_id).user)  }
         format.json { render :show, status: :created, location: @quote }
       else
         format.html { render :new }

@@ -31,11 +31,11 @@
           - when 5
             - thing = @number_5
           - if thing.class == Movie
-            .simplist
+            .simplist-both
               %h1.pull-left #{ranking}
               .enter-new-movie
                 .change
-                  = link_to change_current_user_profile_index_path(ranking: ranking), remote: true do
+                  = link_to change_current_user_profile_index_path(ranking: ranking, user: @user), remote: true do
                     %i.fa.fa-pencil
                     CHANGE
                 .movie-form{style: "display: inline-block;"}
@@ -46,13 +46,15 @@
                     %strong.item-title= thing.name
                     %span.item-author= "(" + thing.year[0,4] + ")"
                     .item-overview.truncate= thing.overview
+                = link_to change_current_user_profile_index_path(ranking: ranking, user: @user), remote: true do
+                  .btn-add.btn-add-85 CHANGE
               .clearfix
           - elsif thing.class == Song
-            .simplist.song-simplist
+            .simplist-both.song-simplist
               %h1.pull-left #{ranking}
               .enter-new-movie
                 .change
-                  = link_to change_current_user_profile_index_path(ranking: ranking), remote: true do
+                  = link_to change_current_user_profile_index_path(ranking: ranking, user: @user), remote: true do
                     %i.fa.fa-pencil
                     CHANGE
                 .movie-form{style: "display: inline-block;"}
@@ -64,13 +66,15 @@
                     .item-title= thing.name
                     .item-author= thing.artist
                     .item-overview= thing.album
+                  = link_to change_current_user_profile_index_path(ranking: ranking, user: @user), remote: true do
+                    .btn-add.btn-add-85 CHANGE
               .clearfix
           - elsif thing.class == Book
-            .simplist
+            .simplist-both
               %h1.pull-left #{ranking}
               .enter-new-movie
                 .change
-                  = link_to change_current_user_profile_index_path(ranking: ranking), remote: true do
+                  = link_to change_current_user_profile_index_path(ranking: ranking, user: @user), remote: true do
                     %i.fa.fa-pencil
                     CHANGE
                 .movie-form{style: "display: inline-block;"}
@@ -90,27 +94,33 @@
                       .item-author= thing.author
                       .item-published= thing.published[0,4]
                       .item-overview.truncate= thing.description
+                = link_to change_current_user_profile_index_path(ranking: ranking, user: @user), remote: true do
+                  .btn-add.btn-add-85 CHANGE
               .clearfix
           - elsif thing.class == Quote
-            .simplist
-              .change
-                = link_to change_current_user_profile_index_path(ranking: ranking), remote: true do
-                  %i.fa.fa-pencil
-                  CHANGE
+            .simplist-both
               %h1.pull-left #{ranking}
               .enter-new-movie
+                .change
+                  = link_to change_current_user_profile_index_path(ranking: ranking, user: @user), remote: true do
+                    %i.fa.fa-pencil
+                    CHANGE
                 .movie-form
                   .quote.pull-left
                     .quote-text= thing.content
                     .quote-author= thing.source
                     .clearfix
+                  .clearfix
+                .clearfix
+                = link_to change_current_user_profile_index_path(ranking: ranking, user: @user), remote: true do
+                  .btn-add.btn-add-85 CHANGE
               .clearfix
           - elsif thing.class == Show
-            .simplist
+            .simplist-both.simplist-mobile
               %h1.pull-left #{ranking}
               .enter-new-movie
                 .change
-                  = link_to change_current_user_profile_index_path(ranking: ranking), remote: true do
+                  = link_to change_current_user_profile_index_path(ranking: ranking, user: @user), remote: true do
                     %i.fa.fa-pencil
                     CHANGE
                 .movie-form{style: "display: inline-block;"}
@@ -120,24 +130,11 @@
                   .item-info.pull-right
                     %strong.item-title= thing.name
                     .item-overview.truncate= thing.description
+                = link_to change_current_user_profile_index_path(ranking: ranking, user: @user), remote: true do
+                  .btn-add.btn-add-85 CHANGE
               .clearfix
           - else
-            %h1.pull-left= ranking
-            .prompt-to-choose-category
-              Choose a category
-            .all-options
-              = link_to("Book", add_to_current_book_path(id: @currentlist, number: ranking), remote: true, class: "add-from-category")
-              = link_to(add_to_current_movie_path(id: @currentlist, number: ranking), remote: true) do
-                .add-from-category.movie Movie
-              = link_to(add_to_current_song_path(id: @currentlist, number: ranking), remote: true) do
-                .add-from-category.song Song
-              = link_to(add_to_current_quote_path(id: @currentlist, number: ranking), remote: true) do
-                .add-from-category.quote Quote
-              = link_to(add_to_current_show_path(id: @currentlist, number: ranking), remote: true) do
-                .add-from-category Show
-            .clearfix
-            .movie-form.add-list-item{id: "current-#{ranking}"}
-
+            = render partial: "replace_current_item", locals: {ranking: :ranking, currentlist: @currentlist, user: @user}
       -# %center= f.submit(class: "hidden submit-currentlist-btn btn")
     = render partial: "edit_movielist"
     = render partial: "edit_booklist"
