@@ -6,10 +6,15 @@
 and (min-device-width : 375px)
 and (max-device-width : 667px) {
 
-
+  .btn {
+    font-size: 45px !important;
+    padding: 15px 50px;
+    border: 3px solid black !important;
+  }
 
   .list-description {
     font-size: 50px;
+    margin: 80px 0px;
   }
 
   .movie-form:hover {
@@ -295,11 +300,15 @@ and (max-device-width : 667px) {
   h2 { font-size: 5em !important}
 
   h3 {
-    font-size: 5em !important
+    margin-top: 40px;
+    font-size: 5em !important;
+    bottom-bottom: 20px;
+
   }
 
   h6 {
     font-size: 3em !important;
+    margin: 1em !important;
   }
 
   .category {
