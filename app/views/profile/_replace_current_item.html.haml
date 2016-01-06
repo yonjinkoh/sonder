@@ -2,13 +2,15 @@
 .prompt-to-choose-category
   Choose a category
 .all-options
-  .add-from-category.book
-    = link_to("Book", add_to_current_book_path(id: @currentlist, number: @ranking), remote: true)
-  .add-from-category.movie
-    = link_to("Movie", add_to_current_movie_path(id: @currentlist, number: @ranking), remote: true)
-  .add-from-category.song
-    = link_to("Song", add_to_current_song_path(id: @currentlist, number: @ranking), remote: true)
-  .add-from-category.quote
-    = link_to("Quote", add_to_current_quote_path(id: @currentlist, number: @ranking), remote: true)
+  = link_to("book", add_to_current_book_path(id: @currentlist, number: @ranking), remote: true, class: "add-from-category")
+  = link_to("movie", add_to_current_movie_path(id: @currentlist, number: @ranking), remote: true, class: "add-from-category")
+  = link_to("quote", add_to_current_quote_path(id: @currentlist, number: @ranking), remote: true, class: "add-from-category")
+  = link_to("Song", add_to_current_song_path(id: @currentlist, number: @ranking), remote: true, class: "add-from-category")
+  = link_to("Show", add_to_current_show_path(id: @currentlist, number: @ranking), remote: true, class: "add-from-category")
 .clearfix
 .movie-form.add-list-item{id: "current-#{@ranking}"}
+
+:javascript
+  $('.add-from-category').click(function(){
+    $('.slick-list').height("+=400");
+  })

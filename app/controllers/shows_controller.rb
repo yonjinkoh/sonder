@@ -72,9 +72,9 @@ class ShowsController < ApplicationController
 
     respond_to do |format|
       if @show.save
-        format.html { redirect_to @show, notice: 'Show was successfully created.' }
+        format.html { redirect_to :back }
         format.json { render :show, status: :created, location: @show }
-        format.js
+        format.js { redirect_to :back}
       else
         format.html { render :new }
         format.json { render json: @show.errors, status: :unprocessable_entity }

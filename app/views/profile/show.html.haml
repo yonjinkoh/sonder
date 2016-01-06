@@ -120,6 +120,7 @@
                         .quote-text= thing.content
                         .quote-author= thing.source
                         .clearfix
+                      .clearfix
                   .clearfix
                 - if current_user
                   = render partial: "comments", locals: {:thing => thing}

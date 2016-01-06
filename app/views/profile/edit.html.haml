@@ -45,7 +45,7 @@
                   .item-info.pull-right
                     %strong.item-title= thing.name
                     %span.item-author= "(" + thing.year[0,4] + ")"
-                    .item-overview= thing.overview
+                    .item-overview.truncate= thing.overview
               .clearfix
           - elsif thing.class == Song
             .simplist.song-simplist
@@ -105,19 +105,36 @@
                     .quote-author= thing.source
                     .clearfix
               .clearfix
+          - elsif thing.class == Show
+            .simplist
+              %h1.pull-left #{ranking}
+              .enter-new-movie
+                .change
+                  = link_to change_current_user_profile_index_path(ranking: ranking), remote: true do
+                    %i.fa.fa-pencil
+                    CHANGE
+                .movie-form{style: "display: inline-block;"}
+                  .box.pull-left
+                    - if thing.picture && thing.picture.empty? != true
+                      %img{:src => "https://image.tmdb.org/t/p/w154#{thing.picture}"}
+                  .item-info.pull-right
+                    %strong.item-title= thing.name
+                    .item-overview.truncate= thing.description
+              .clearfix
           - else
             %h1.pull-left= ranking
             .prompt-to-choose-category
               Choose a category
             .all-options
-              .add-from-category.book
-                = link_to("Book", add_to_current_book_path(id: @currentlist, number: ranking), remote: true)
-              .add-from-category.movie
-                = link_to("Movie", add_to_current_movie_path(id: @currentlist, number: ranking), remote: true)
-              .add-from-category.song
-                = link_to("Song", add_to_current_song_path(id: @currentlist, number: ranking), remote: true)
-              .add-from-category.quote
-                = link_to("Quote", add_to_current_quote_path(id: @currentlist, number: ranking), remote: true)
+              = link_to("Book", add_to_current_book_path(id: @currentlist, number: ranking), remote: true, class: "add-from-category")
+              = link_to(add_to_current_movie_path(id: @currentlist, number: ranking), remote: true) do
+                .add-from-category.movie Movie
+              = link_to(add_to_current_song_path(id: @currentlist, number: ranking), remote: true) do
+                .add-from-category.song Song
+              = link_to(add_to_current_quote_path(id: @currentlist, number: ranking), remote: true) do
+                .add-from-category.quote Quote
+              = link_to(add_to_current_show_path(id: @currentlist, number: ranking), remote: true) do
+                .add-from-category Show
             .clearfix
             .movie-form.add-list-item{id: "current-#{ranking}"}
 
@@ -135,6 +152,9 @@
 :javascript
 
   $(function() {
+    $('.add-from-category').click(function(){
+    $('.slick-list').height("+=400");
+    })
     $('.category').first().addClass('active');
     sr = new ScrollReveal();
     sr.reveal('.simplist', {reset: true});

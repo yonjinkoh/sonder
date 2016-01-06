@@ -27,9 +27,6 @@ class BooksController < ApplicationController
     end
   end
 
-
-
-
   def add_to_current
     @list = List.find(params[:id])
     @book = @list.books.new(position: params[:number])

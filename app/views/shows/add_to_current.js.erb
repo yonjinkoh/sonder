@@ -1,66 +1,56 @@
 var where = "#current-" + "<%= j @number %>";
 $(where).siblings('.chosen').removeClass('chosen');
-$(where).siblings('.movie').addClass('chosen');
-$(where).html('<%= j render "movies/form", locals: {@movie => @new_movie} %>').hide().fadeIn(1000);
-
+$(where).siblings('.show').addClass('chosen');
+$(where).html('<%= j render "shows/form", locals: {@show => @new_show} %>').hide().fadeIn(1000);
 $(document).ready(function(){
 
-  function insertMovie (html, movieImage, movieId, releaseDate, movieOverview) {
+  function insertShow (html, showImage, showId, showOverview) {
     $('.select2-container--open').siblings('.box').html(html);
-    $('.select2-container--open').siblings('input').first().val(movieId);
-    $('.select2-container--open').siblings('input').first().next().val(movieImage);
-    $('.select2-container--open').siblings('input').first().next().next().val(releaseDate);
-    $('.select2-container--open').siblings('input').first().next().next().next().val(movieOverview);
+    $('.select2-container--open').siblings('input').first().val(showId);
+    $('.select2-container--open').siblings('input').first().next().val(showImage);
+    $('.select2-container--open').siblings('input').first().next().next().val(showOverview);
   }
 
-  function formatMovie (movie) {
+  function formatShow (show) {
 
-    if (movie.poster_path) {
+    if (show.poster_path) {
       var markup = "<div class='select2-result-thing clearfix'>" +
-        "<div class='select2-result-thing__poster'><img src='https://image.tmdb.org/t/p/w92" + movie.poster_path + "' /></div>" +
+        "<div class='select2-result-thing__poster'><img src='https://image.tmdb.org/t/p/w92" + show.poster_path + "' /></div>" +
         "<div class='select2-result-thing__meta'>" +
-          "<div class='select2-result-thing__title'>" + movie.title + "</div>";
-    } else if (movie.title) {
+          "<div class='select2-result-thing__title'>" + show.name + "</div>";
+    } else if (show.name) {
       var markup = "<div class='select2-result-thing clearfix'>" +
         "<div class='select2-result-thing__poster'><img src='" + "<%= image_path('filmfill.jpg') %>" + "' /></div>" +
         "<div class='select2-result-thing__meta'>" +
-          "<div class='select2-result-thing__title'>" + movie.title + "</div>";
+          "<div class='select2-result-thing__title'>" + show.name + "</div>";
     } else {
       return " ";
     }
-
-    if (movie.tagline) {
-      markup += "<div class='select2-result-movie__description'>" + movie.tagline + "</div>";
-    }
-    if (movie.primary_release_year) {
-      markup += "<div class='select2-result-movie__year'>" + movie.year + "</div>";
-    }
-    // console.log(movie.imdb_id);
     return markup;
     }
 
-  function formatMovieSelection (movie) {
-    if (movie.poster_path) {
-      var html = "<img src='https://image.tmdb.org/t/p/w185" + movie.poster_path + "' />"
+  function formatShowSelection (show) {
+    if (show.poster_path) {
+      var html = "<img src='https://image.tmdb.org/t/p/w185" + show.poster_path + "' />"
     }
 
-    var movieImage = movie.poster_path;
-    var movieId = movie.title;
-    var movieOverview = movie.overview;
-    var releaseDate = movie.release_date;
-    insertMovie(html, movieImage, movieId, releaseDate, movieOverview);
-    return movie.title;
-    if (movie.title !== 'undefined') {
-      return movie.title;
+    var showImage = show.poster_path;
+    var showId = show.name;
+    var showOverview = show.overview;
+    // var releaseDate = show.release_date;
+    insertShow(html, showImage, showId, showOverview);
+    // return show.name;
+    if (show.name !== 'undefined') {
+      return show.name;
     } else { return "" }
   }
 
 
 
-  $(".select-movie").select2({
-    placeholder: "What's your #1 movie?",
+  $(".select-show").select2({
+    placeholder: "What's your #1 show?",
     ajax: {
-      url: "https://api.themoviedb.org/3/search/movie",
+      url: "https://api.themoviedb.org/3/search/tv",
       dataType: 'jsonp',
       delay: 250,
       // inputTooShort: false,
@@ -89,8 +79,8 @@ $(document).ready(function(){
     escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
     minimumInputLength: 1,
     formatInputTooShort: false,
-    templateResult: formatMovie,
-    templateSelection: formatMovieSelection,
+    templateResult: formatShow,
+    templateSelection: formatShowSelection,
   });
 
 });

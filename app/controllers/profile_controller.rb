@@ -118,6 +118,9 @@ class ProfileController < ApplicationController
       @currentlist.books.where(position:ranking).each do |c|
         @items_of_ranking << c
       end
+      @currentlist.shows.where(position:ranking).each do |c|
+        @items_of_ranking << c
+      end
       var_name = "@number_#{ranking.to_s}"
       @items_of_ranking.sort!{|a,b|a.updated_at <=> b.updated_at}
 

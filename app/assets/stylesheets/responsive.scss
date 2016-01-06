@@ -6,6 +6,8 @@
 and (min-device-width : 375px)
 and (max-device-width : 667px) {
 
+
+
   .list-description {
     font-size: 50px;
   }
@@ -155,6 +157,15 @@ and (max-device-width : 667px) {
   .view-public-profile {a {font-size: 50px !important;} }
 
   .profile-edit {
+
+    .plus-sign {
+      font-size: 150px !important;
+      width: 150px !important;
+    }
+
+    .header-content h3 input {
+      line-height: 100px !important;
+    }
 
     .update-existing {
       padding: 100px 0px !important;

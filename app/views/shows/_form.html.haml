@@ -1,0 +1,37 @@
+= form_for(@show, authenticity_token: true) do |f|
+  .simplist
+    .enter-new-movie
+      .movie-form{style: "display: inline-block;"}
+        .saved SAVED
+        .edit-options
+          %i.fa.fa-close CLEAR
+        .box.pull-left.box-edit
+        %select.select-show
+          %option
+        = f.hidden_field :name, class: "name"
+        = f.hidden_field :picture
+        = f.hidden_field :description
+        = f.hidden_field :list_id, class: "list"
+        = f.hidden_field :position, class: "position"
+      %center= f.submit(class: "submit-currentlist-btn btn", value: "PUBLISH")
+    .clearfix
+.clearfix
+
+:javascript
+
+    $(function() {
+
+      function clickButton (){
+        $('.submit-currentlist-btn').trigger("click");
+      }
+
+      function insertPlaceholder(placeholder) {
+        var showname = $(placeholder).parents('.select2').siblings('input').first().val();
+        $(placeholder).html(showname);
+      };
+
+      $( ".select2-selection__placeholder" ).each(function(){
+        insertPlaceholder(this);
+      });
+
+    });
