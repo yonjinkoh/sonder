@@ -3,6 +3,8 @@ class ProfileController < ApplicationController
   before_action :set_s3_direct_post, only: [:new, :edit, :create, :update]
 
   def new
+
+
   end
 
   def add_on_mobile
@@ -211,7 +213,6 @@ class ProfileController < ApplicationController
       end
       var_name = "@number_#{ranking.to_s}"
       @items_of_ranking.sort!{|a,b|a.updated_at <=> b.updated_at}
-
       self.instance_variable_set(var_name, @items_of_ranking.last)
     end
 
@@ -226,6 +227,8 @@ class ProfileController < ApplicationController
     @songs = @songlist.songs.sort
     @showlist = @lists.where(name:"TV").first
     @shows = @showlist.shows.sort
+    # @placelist = @lists.where(name: "Places").first
+    # @places = @placelist.places.sort
     if @lists.where(name:"Products").first
       @productlist = @lists.where(name: "Products").first
       @products = @productlist.products.sort

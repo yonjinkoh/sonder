@@ -2,6 +2,7 @@ var where = "#current-" + "<%= j @number %>";
 $(where).siblings('.chosen').removeClass('chosen');
 $(where).siblings('.show').addClass('chosen');
 $(where).html('<%= j render "shows/form", locals: {@show => @new_show} %>').hide().fadeIn(1000);
+
 $(document).ready(function(){
 
   function insertShow (html, showImage, showId, showOverview) {

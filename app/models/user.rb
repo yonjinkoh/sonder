@@ -67,6 +67,14 @@ def add_show_list
   end
 end
 
+def add_place_list
+  placelist = lists.find_or_create_by(name: "Places")
+  5.times do
+    place = placelist.places.build
+    place.save
+  end
+end
+
 def add_current_list
   currentlist= lists.find_or_create_by(name: "Now", position: 1)
   if lists.find_by(name:"Movies")

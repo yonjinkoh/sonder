@@ -134,7 +134,37 @@
                   .btn-add.btn-add-85 CHANGE
               .clearfix
           - else
-            = render partial: "replace_current_item", locals: {ranking: :ranking, currentlist: @currentlist, user: @user}
+            %h1.pull-left= ranking
+            .wrapper
+              .prompt-to-choose-category
+                Choose a category
+              .all-options
+                = link_to("Book", add_to_current_book_path(id: @currentlist, number: ranking), remote: true, class: "add-from-category")
+                = link_to(add_to_current_movie_path(id: @currentlist, number: ranking), remote: true) do
+                  .add-from-category.movie Movie
+                = link_to(add_to_current_song_path(id: @currentlist, number: ranking), remote: true) do
+                  .add-from-category.song Song
+                = link_to(add_to_current_quote_path(id: @currentlist, number: ranking), remote: true) do
+                  .add-from-category.quote Quote
+                = link_to(add_to_current_show_path(id: @currentlist, number: ranking), remote: true) do
+                  .add-from-category Show
+              .clearfix
+            .wrapper-mobile
+              .prompt-to-choose-category
+                Choose a category
+              .all-options
+                = link_to add_on_mobile_user_profile_path(id: @user, list_id: @currentlist.id, ranking: ranking, class: "Movie") do
+                  .add-from-category Movie
+                = link_to add_on_mobile_user_profile_path(id: @user, list_id: @currentlist.id, ranking: ranking, class: "Song") do
+                  .add-from-category Song
+                = link_to add_on_mobile_user_profile_path(id: @user, list_id: @currentlist.id, ranking: ranking, class: "Book") do
+                  .add-from-category Book
+                = link_to add_on_mobile_user_profile_path(id: @user, list_id: @currentlist.id, ranking: ranking, class: "Quote") do
+                  .add-from-category Quote
+                = link_to add_on_mobile_user_profile_path(id: @user, list_id: @currentlist.id, ranking: ranking, class: "Show") do
+                  .add-from-category Show
+          .movie-form.add-list-item{id: "current-#{ranking}"}
+
       -# %center= f.submit(class: "hidden submit-currentlist-btn btn")
     = render partial: "edit_movielist"
     = render partial: "edit_booklist"
