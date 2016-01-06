@@ -53,7 +53,7 @@ class ProfileController < ApplicationController
   end
 
   def explore
-    @profiles = User.where.not(first_name: "")
+    @profiles = User.where.not(first_name: "").where.not(avatar: "")
     @topmovies = []
     @topbooks = []
     @profiles.each do |profile|
