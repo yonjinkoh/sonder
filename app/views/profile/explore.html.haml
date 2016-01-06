@@ -1,25 +1,66 @@
-.explore.container-fluid
-  .top-buffer
-    .row
-      %h1
-        %center.explore-header Explore
-  .top-buffer
+.explore
   .row
-    - @profiles.each do |profile|
-      .col-md-3.col-sm-12
+    %h1
+      %center.explore-header Explore
+  .top-buffer
+  .featured
+    featured
+    %span{style: "font-weight: 200"} tastemakers
+  .row.no-gutter
+    - @profiles.take(6).each do |profile|
+      .col-md-2.col-sm-2.col-xs-4
         = link_to user_profile_index_path(profile) do
           .profile-card
-            .blank-image
+            .image.grayscale
               - if profile.avatar.nil?
                 = image_tag("default.png")
               - else
                 = image_tag(profile.avatar)
-            .profile-info
-              .profile-name
-                %strong= profile.first_name
-                - if profile.verified?
-                  .verified-stamp= image_tag("verified.png")
-              .profile-description= profile.description
+            -# .profile-info
+            -#   .profile-name
+            -#     %strong= profile.first_name
+            -#     - if profile.verified?
+            -#       .verified-stamp= image_tag("verified.png")
+            -#   .profile-description= profile.description
+
+  .top-buffer
+  .featured
+    number ones:
+    %span{style: "font-weight: 200"} movies
+  .row.no-gutter.second-row
+    - @topmovies.each do |m|
+      .col-md-2.col-sm-2
+        = link_to user_profile_index_path(List.find(m.list_id).user) do
+          .top-movies
+            .image.grayscale
+              %img{:src => "https://image.tmdb.org/t/p/w154#{m.picture}"}
+
+  .top-buffer
+  .featured
+    number ones:
+    %span{style: "font-weight: 200"} books
+  .row.no-gutter.second-row
+    - @topbooks.each do |m|
+      .col-md-1.col-sm-1
+        = link_to user_profile_index_path(List.find(m.list_id).user) do
+          .top-movies
+            .image.grayscale
+              = image_tag(m.picture)
+
+
+
 
 
 :javascript
+  // make them all squaress!!!
+  var width = $('.profile-card').css('width');
+  $('.profile-card').css('height', width);
+  $( window ).resize(function() {
+    var width = $('.profile-card').css('width');
+    $('.profile-card').css('height', width)
+    var movieheight = $('.top-movies').find('img').css('height');
+    $('.second-row').css('height', movieheight);
+  });
+
+  var movieheight = $('.top-movies').find('img').css('height');
+  $('.second-row').css('height', movieheight);

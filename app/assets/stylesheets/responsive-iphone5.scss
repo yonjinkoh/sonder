@@ -4,9 +4,40 @@
 and (min-device-width : 320px)
 and (max-device-width : 568px) {
 
+    .current-list {
+
+      .simplists {
+        margin-bottom: 70px !important;
+      }
+      .wrapper {
+        display: none !important;
+      }
+      .wrapper-mobile {
+        display: block;
+        margin-left: 150px !important;
+        font-size: 40px !important;
+
+        .all-options {
+          height: 400px;
+          .add-from-category {
+            font-size: 45px !important;
+            margin: 10px 20px 20px 0px;
+            padding: 20px 30px;
+          }
+        }
+      }
+    }
+
+
+    .btn {
+      font-size: 45px !important;
+      padding: 15px 50px;
+      border: 3px solid black !important;
+    }
 
     .list-description {
       font-size: 50px;
+      margin: 80px 0px;
     }
 
     .movie-form:hover {
@@ -16,7 +47,7 @@ and (max-device-width : 568px) {
     }
 
 
-    .edit_quote {
+    .edit_quote, .new_quote {
       height: 1320px;
       width: 100%;
       .content {
@@ -155,6 +186,10 @@ and (max-device-width : 568px) {
 
     .profile-edit {
 
+      .change {
+        display: none !important;
+      }
+
       .plus-sign {
         font-size: 150px !important;
         width: 150px !important;
@@ -169,15 +204,24 @@ and (max-device-width : 568px) {
         display: block !important;
         // border-bottom: 1px solid lightgray !important;
 
-        .btn-add {
-          width: 85%;
-          margin-top: 1em;
-        }
       }
+
+      .btn-add {
+        // width: 85%;
+        margin-top: 1em;
+        display: block !important;
+      }
+
+      .btn-add-85{
+        width: 85%;
+      }
+
+
 
       .simplist {
         display: none !important;
       }
+
       .simplist-mobile {
         display: block !important;
       }
@@ -194,6 +238,7 @@ and (max-device-width : 568px) {
       .enter-new-movie-mobile {
         font-size: 70px;
         font-weight: 200;
+        position: relative !important;
         color: gray;
         width:700px;
         margin: 0 auto;
@@ -278,6 +323,7 @@ and (max-device-width : 568px) {
 
     .enter-new-movie {
       width: 800px;
+      position: relative !important;
       // height: 550px;
       font-size: 2.75em !important;
       .box {width: 30%; height: 350px;}
@@ -292,11 +338,15 @@ and (max-device-width : 568px) {
     h2 { font-size: 5em !important}
 
     h3 {
-      font-size: 5em !important
+      margin-top: 40px;
+      font-size: 5em !important;
+      bottom-bottom: 20px;
+
     }
 
     h6 {
       font-size: 3em !important;
+      margin: 1em !important;
     }
 
     .category {
@@ -460,34 +510,41 @@ and (max-device-width : 568px) {
       margin-bottom: 0.5em;
     }
 
-    .profile-card {
-      height: 200px !important;
-      margin-bottom: 1em;
-      text-align: left !important;
-      border-bottom: 1px solid whitesmoke;
-      .profile-info, .blank-image {
-        float: left !important;
-      }
+    .explore {
+      .featured {
+        font-size: 3.2em !important;
 
-      .profile-info {
-        margin: 0 0 0 3em !important ;
       }
     }
 
+    // .profile-card {
+    //   height: 200px !important;
+    //   margin-bottom: 1em;
+    //   text-align: left !important;
+    //   border-bottom: 1px solid whitesmoke;
+    //   .profile-info, .blank-image {
+    //     float: left !important;
+    //   }
+    //
+    //   .profile-info {
+    //     margin: 0 0 0 3em !important ;
+    //   }
+    // }
 
-
-
-    .profile-description {
-      max-width: 680px !important;
-      font-size: 2.75em !important;
-      font-weight: 400 !important;
-      line-height: 1em !important;
-    }
-
-    .profile-name {
-      font-size: 3em !important;
-      line-height: 1em !important;
-    }
+    //
+    //
+    //
+    // .profile-description {
+    //   max-width: 680px !important;
+    //   font-size: 2.75em !important;
+    //   font-weight: 400 !important;
+    //   line-height: 1em !important;
+    // }
+    //
+    // .profile-name {
+    //   font-size: 3em !important;
+    //   line-height: 1em !important;
+    // }
 
 
 

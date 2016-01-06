@@ -54,6 +54,18 @@ class ProfileController < ApplicationController
 
   def explore
     @profiles = User.where.not(first_name: "")
+    @topmovies = []
+    @topbooks = []
+    @profiles.each do |profile|
+      if profile.lists.where(name: "Movies").first.movies.first.picture?
+        @topmovies << profile.lists.where(name: "Movies").first.movies.first
+      end
+      unless profile.lists.where(name: "Books").first.books.empty?
+        if profile.lists.where(name: "Books").first.books.first.picture?
+          @topbooks << profile.lists.where(name: "Books").first.books.first
+        end
+      end
+    end
   end
 
   def change_current
