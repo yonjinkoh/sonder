@@ -7,6 +7,7 @@
         - else
           #{thing.votes_for.size} people like this
       .faces
+        .number.hidden= thing.votes_for.size
         - thing.get_likes.each do |liker|
           = link_to user_profile_index_path(liker.voter_id) do
             .face= image_tag (User.find(liker.voter_id).avatar)
@@ -18,8 +19,13 @@
         %i.fa.fa-heart
     = link_to mycomment_path(:id => thing, :class => thing.class), id: "comment-#{thing.class.to_s.downcase}-#{thing.id}", remote: true, method: :put do
       %i.fa.fa-comment
+
 :javascript
   $('.people-who-liked').on('click', function() {
     $(this).hide();
     $(this).siblings('.faces').fadeIn();
+    var width = $(this).siblings('.faces').find('.number').html();
+    console.log(width);
+    var finalWidth = 35*width;
+    $(this).siblings('.faces').css('width',finalWidth.toString());
   });
