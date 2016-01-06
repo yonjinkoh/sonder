@@ -28,7 +28,7 @@
     number ones:
     %span{style: "font-weight: 200"} movies
   .row.no-gutter.second-row
-    - @topmovies.each do |m|
+    - @topmovies.take(12).each do |m|
       .col-md-2.col-sm-2
         = link_to user_profile_index_path(List.find(m.list_id).user) do
           .top-movies
@@ -40,7 +40,7 @@
     number ones:
     %span{style: "font-weight: 200"} books
   .row.no-gutter.second-row
-    - @topbooks.each do |m|
+    - @topbooks.take(12).each do |m|
       .col-md-1.col-sm-1
         = link_to user_profile_index_path(List.find(m.list_id).user) do
           .top-movies
