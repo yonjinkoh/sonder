@@ -75,6 +75,21 @@ def add_place_list
   end
 end
 
+def add_positions_to_everything
+  a = lists.where(name: "Movies").first.movies.sort
+  a.map{|e| e.position = a.index(e) + 1; e.save}
+  b = lists.where(name: "TV").first.shows.sort
+  b.map{|e| e.position = b.index(e) + 1; e.save}
+  c = lists.where(name: "Songs").first.songs.sort
+  c.map{|e| e.position = c.index(e) + 1; e.save}
+  d = lists.where(name: "Books").first.books.sort
+  d.map{|e| e.position = d.index(e) + 1; e.save}
+  e = lists.where(name: "Quotes").first.quotes.sort
+  e.map{|e| e.position = e.index(e) + 1; e.save}
+  # f = lists.where(name: "Products").first.products.sort
+  # f.map{|e| e.position = f.index(e) + 1; e.save}
+end
+
 def add_current_list
   currentlist= lists.find_or_create_by(name: "Now", position: 1)
   if lists.find_by(name:"Movies")
