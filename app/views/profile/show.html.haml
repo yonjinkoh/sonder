@@ -165,7 +165,7 @@
       .simplists
         - @books.each do |book|
           .simplist
-            %h1.pull-left #{@books.index(book)+1}
+            %h1.pull-left #{book.position}
             .enter-new-movie
               .movie-form{style: "display: inline-block;"}
                 = render partial: "like_and_comment", locals: {:thing => book}
@@ -204,7 +204,7 @@
       .simplists
         - @songs.each do |song|
           .simplist.song-simplist
-            %h1.pull-left #{@songs.index(song)+1}
+            %h1.pull-left #{song.position}
             .enter-new-movie
               .movie-form{style: "display: inline-block;"}
                 = render partial: "like_and_comment", locals: {:thing => song}
@@ -223,7 +223,7 @@
       .simplists
         - @products.each do |product|
           .simplist
-            %h1.pull-left #{@products.index(product)+1}
+            %h1.pull-left #{@products.position}
             .product-wrapper.pull-left
               %center
                 .product-picture
@@ -239,7 +239,7 @@
       .simplists
         - @shows.each do |show|
           .simplist
-            %h1.pull-left #{@shows.index(show)+1}
+            %h1.pull-left #{show.position}
             .enter-new-movie
               .movie-form{style: "display: inline-block;"}
                 = render partial: "like_and_comment", locals: {:thing => show}

@@ -148,27 +148,27 @@ class ProfileController < ApplicationController
       end
       # below: filters out empty items
       @movielist = @lists.where(name:"Movies").first
-      @movies = @movielist.movies.sort{|a,b|a.position <=> b.position}
+      @movies = @movielist.movies.where.not(name: "").sort{|a,b|a.position <=> b.position}
       unless @movies.empty?
         @sortedlists << @movielist
       end
       @booklist = @lists.where(name:"Books").first
-      @books = @booklist.books.sort{|a,b|a.position <=> b.position}
+      @books = @booklist.books.where.not(name: "").sort{|a,b|a.position <=> b.position}
       unless @books.empty?
         @sortedlists << @booklist
       end
       @quotelist = @lists.where(name:"Quotes").first
-      @quotes = @quotelist.quotes.sort{|a,b|a.position <=> b.position}
+      @quotes = @quotelist.quotes.where.not(content: "").sort{|a,b|a.position <=> b.position}
       unless @quotes.empty?
         @sortedlists << @quotelist
       end
       @songlist = @lists.where(name:"Songs").first
-      @songs = @songlist.songs.sort{|a,b|a.position <=> b.position}
+      @songs = @songlist.songs.where.not(name: "").sort{|a,b|a.position <=> b.position}
       unless @songs.empty?
         @sortedlists << @songlist
       end
       @showlist = @lists.where(name:"TV").first
-      @shows = @showlist.shows.sort{|a,b|a.position <=> b.position}
+      @shows = @showlist.shows.where.not(name: "").sort{|a,b|a.position <=> b.position}
       unless @shows.empty?
         @sortedlists << @showlist
       end

@@ -3,4 +3,6 @@ class Movie < ActiveRecord::Base
   # validates :name, :picture,  presence: true
   acts_as_commentable
   acts_as_votable
+  default_scope {order('movies.position')}
+
 end

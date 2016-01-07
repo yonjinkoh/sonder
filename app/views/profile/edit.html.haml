@@ -252,18 +252,22 @@
 
     $('.fa-close').on('click', function(){
       $this = this;
-      var clearForm = function(variable, callback) {
+      var clearForm = function(variable) {
         $(variable).parents('.movie-form').find('input').val("");
         $(variable).parents('.movie-form').find('img').attr('src', '');
         $(variable).parents('.movie-form').find('.select2-selection__rendered').empty();
         $(variable).parents('.movie-form').find('.select2-selection__placeholder').empty();
         $(variable).parents('.movie-form').find('.saved').hide();
-
+        $(variable).parents('.movie-form').on('change', clickButton());
       }
       function clickButton (){
         $('.submit-booklist-btn').trigger("click");
+        $('.submit-movielist-btn').trigger("click");
+        $('.submit-showlist-btn').trigger("click");
+        $('.submit-quotelist-btn').trigger('click');
+        $('.submit-songlist-btn').trigger('click');
       }
-      clearForm($this,clickButton());
+      clearForm($this);
     });
 
 

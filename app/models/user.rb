@@ -84,8 +84,8 @@ def add_positions_to_everything
   c.map{|e| e.position = c.index(e) + 1; e.save}
   d = lists.where(name: "Books").first.books.sort
   d.map{|e| e.position = d.index(e) + 1; e.save}
-  e = lists.where(name: "Quotes").first.quotes.sort
-  e.map{|e| e.position = e.index(e) + 1; e.save}
+  # e = lists.where(name: "Quotes").first.quotes.sort
+  # e.map{|e| e.position = e.index(e) + 1; e.save}
   # f = lists.where(name: "Products").first.products.sort
   # f.map{|e| e.position = f.index(e) + 1; e.save}
 end
