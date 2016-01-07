@@ -245,7 +245,7 @@ class ProfileController < ApplicationController
       @products = @productlist.products.sort
     end
 
-    @sortedlists = [@currentlist, @movielist, @booklist, @quotelist, @songlist, @showlist, @placelist]
+    @sortedlists = [@currentlist, @movielist, @booklist, @quotelist, @songlist, @showlist]
 
     respond_to do |format|
       format.html
