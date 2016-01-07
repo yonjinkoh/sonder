@@ -1,0 +1,10 @@
+= form_for(@placelist, remote: true) do |f|
+  .simplists
+    = f.fields_for(:places, @places) do |place_form|
+      .simplist.song-simplist
+        %h1.pull-left #{place_form.index+1}
+        .enter-new-movie
+          .movie-form{style: "display: inline-block"}
+            .search-places
+              = place_form.text_field :name
+              = f.submit 

@@ -1,0 +1,63 @@
+$(document).ready(function(){
+
+  function insertPlace (placeDescription) {
+    // $('.select2-container--open').siblings('.song-image').html(html);
+    $('.select2-container--open').siblings('input').first().val(placeDescription);
+
+  }
+
+  function formatPlace (place) {
+    if (place.artworkUrl100) {
+      var markup = "<div class='select2-result-thing clearfix'>" +
+        "<div class='select2-result-thing__artwork pull-left'><img src='" + place.artworkUrl100 + "' /></div>" +
+        "<div class='select2-result-thing__meta pull-left'>" +
+          "<div class='select2-result-thing__title'>" + place.trackName + " " + "<span class='select2-result-thing__artist'>" + "- " + place.artistName + "</span>"+ "</div>";
+    } else { markup = " "}
+    return markup;
+  }
+
+  function formatPlaceSelection (place) {
+    var placeDescription = place.description;
+    insertPlace(placeDescription);
+    var markup = "<strong>" + place.description + "</strong>";
+      return markup;
+  }
+
+
+
+  $(".select-place").select2({
+    ajax: {
+      url: "https://maps.googleapis.com/maps/api/place/autocomplete/json",
+      dataType: 'jsonp',
+      delay: 250,
+      jsonp: "callback",
+      // inputTooShort: false,
+      data: function (params) {
+        return {
+          input: params.term, // search term
+          key: "AIzaSyCALnnPrGEdIXTlhFvgA5BSFDL6D2VfzNY"
+        };
+      },
+      processResults: function (data, params) {
+        params.page = params.page || 1;
+        var select2Data = $.map(data.predictions, function (obj) {
+                            obj.id = obj.description;
+                            return obj;
+        });
+        return {
+          results: select2Data,
+          pagination: {
+            more: (params.page * 30) < data.total_count
+          }
+        };
+      },
+      cache: true
+    },
+    escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
+    minimumInputLength: 1,
+    inputTooShort: false,
+    templateResult: formatPlace,
+    templateSelection: formatPlaceSelection,
+  });
+
+});

@@ -4,6 +4,18 @@ class ProfileController < ApplicationController
 
   def new
 
+    @client = GooglePlaces::Client.new("AIzaSyCALnnPrGEdIXTlhFvgA5BSFDL6D2VfzNY")
+
+    @predictions = @client.predictions_by_input(
+     'Serpentine San Francisco',
+     lat: 0.0,
+     lng: 0.0,
+     radius: 20000000,
+     types: ['establishment', 'geocode'],
+     language: I18n.locale,
+    )
+
+    @photos = @predictions.photos[0].fetch_url(800)
   end
 
   def add_on_mobile
@@ -226,14 +238,14 @@ class ProfileController < ApplicationController
     @songs = @songlist.songs.sort{|a,b|a.position <=> b.position}
     @showlist = @lists.where(name:"TV").first
     @shows = @showlist.shows.sort{|a,b|a.position <=> b.position}
-    # @placelist = @lists.where(name: "Places").first
-    # @places = @placelist.places.sort
+    @placelist = @lists.where(name: "Places").first
+    @places = @placelist.places.sort
     if @lists.where(name:"Products").first
       @productlist = @lists.where(name: "Products").first
       @products = @productlist.products.sort
     end
 
-    @sortedlists = [@currentlist, @movielist, @booklist, @quotelist, @songlist, @showlist]
+    @sortedlists = [@currentlist, @movielist, @booklist, @quotelist, @songlist, @showlist, @placelist]
 
     respond_to do |format|
       format.html
