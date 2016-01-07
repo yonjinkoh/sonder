@@ -4,7 +4,6 @@ class ProfileController < ApplicationController
 
   def new
 
-
   end
 
   def add_on_mobile
