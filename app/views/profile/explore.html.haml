@@ -47,10 +47,6 @@
             .image.grayscale
               = image_tag(m.picture)
 
-
-
-
-
 :javascript
 
   $(document).ready(function(){
@@ -58,11 +54,14 @@
     var width = $('.profile-card').css('width');
     $('.profile-card').css('height', width);
     $( window ).resize(function() {
-    var width = $('.profile-card').css('width');
-    $('.profile-card').css('height', width)
-    var movieheight = $('.top-movies').find('img').css('height');
-    $('.second-row').css('height', movieheight);
+      var width = $('.profile-card').css('width');
+      $('.profile-card').css('height', width);
+      var movieheight = $('.top-movies').find('img').css('height');
+      $('.second-row').css('height', movieheight);
     });
-    var movieheight = $('.top-movies').find('img').css('height');
-    $('.second-row').css('height', movieheight);
+
+    $('.top-movies').find('img').on('load', function() {
+      var movieheight = $('.top-movies').find('img').css('height');
+      $('.second-row').css('height', movieheight);
+    });
   });
