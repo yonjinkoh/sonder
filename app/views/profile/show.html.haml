@@ -223,7 +223,7 @@
       .simplists
         - @products.each do |product|
           .simplist
-            %h1.pull-left #{@products.position}
+            %h1.pull-left #{@products.index(product)+1}
             .product-wrapper.pull-left
               %center
                 .product-picture
