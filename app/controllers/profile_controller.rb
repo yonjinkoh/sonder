@@ -238,8 +238,8 @@ class ProfileController < ApplicationController
     @songs = @songlist.songs.sort{|a,b|a.position <=> b.position}
     @showlist = @lists.where(name:"TV").first
     @shows = @showlist.shows.sort{|a,b|a.position <=> b.position}
-    @placelist = @lists.where(name: "Places").first
-    @places = @placelist.places.sort
+    # @placelist = @lists.where(name: "Places").first
+    # @places = @placelist.places.sort
     if @lists.where(name:"Products").first
       @productlist = @lists.where(name: "Products").first
       @products = @productlist.products.sort
