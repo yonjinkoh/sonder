@@ -1,6 +1,6 @@
 = form_for(@booklist, remote: true) do |f|
   .simplists
-    = f.fields_for(:books, @book) do |book_form|
+    = f.fields_for(:books, @books) do |book_form|
       - unless book_form.object.name?
         = render partial: "edit_book", :locals => {:book_form => book_form}
         .simplist-mobile

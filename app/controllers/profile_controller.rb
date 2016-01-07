@@ -148,27 +148,27 @@ class ProfileController < ApplicationController
       end
       # below: filters out empty items
       @movielist = @lists.where(name:"Movies").first
-      @movies = @movielist.movies.where.not(name: "").sort
+      @movies = @movielist.movies.sort{|a,b|a.position <=> b.position}
       unless @movies.empty?
         @sortedlists << @movielist
       end
       @booklist = @lists.where(name:"Books").first
-      @books = @booklist.books.where.not(name: "").sort
+      @books = @booklist.books.sort{|a,b|a.position <=> b.position}
       unless @books.empty?
         @sortedlists << @booklist
       end
       @quotelist = @lists.where(name:"Quotes").first
-      @quotes = @quotelist.quotes.where.not(content: "").sort
+      @quotes = @quotelist.quotes.sort{|a,b|a.position <=> b.position}
       unless @quotes.empty?
         @sortedlists << @quotelist
       end
       @songlist = @lists.where(name:"Songs").first
-      @songs = @songlist.songs.where.not(name: "").sort
+      @songs = @songlist.songs.sort{|a,b|a.position <=> b.position}
       unless @songs.empty?
         @sortedlists << @songlist
       end
       @showlist = @lists.where(name:"TV").first
-      @shows = @showlist.shows.where.not(name: "").sort
+      @shows = @showlist.shows.sort{|a,b|a.position <=> b.position}
       unless @shows.empty?
         @sortedlists << @showlist
       end
@@ -212,21 +212,21 @@ class ProfileController < ApplicationController
         @items_of_ranking << c
       end
       var_name = "@number_#{ranking.to_s}"
-      @items_of_ranking.sort!{|a,b|a.updated_at <=> b.updated_at}
+      @items_of_ranking.sort{|a,b|a.updated_at <=> b.updated_at}
       self.instance_variable_set(var_name, @items_of_ranking.last)
     end
 
 
     @movielist = @lists.where(name:"Movies").first
-    @movies = @movielist.movies.sort
+    @movies = @movielist.movies.sort{|a,b|a.position <=> b.position}
     @booklist = @lists.where(name:"Books").first
-    @books = @booklist.books.sort
+    @books = @booklist.books.sort{|a,b|a.position <=> b.position}
     @quotelist = @lists.where(name:"Quotes").first
-    @quotes = @quotelist.quotes.sort
+    @quotes = @quotelist.quotes.sort{|a,b|a.position <=> b.position}
     @songlist = @lists.where(name:"Songs").first
-    @songs = @songlist.songs.sort
+    @songs = @songlist.songs.sort{|a,b|a.position <=> b.position}
     @showlist = @lists.where(name:"TV").first
-    @shows = @showlist.shows.sort
+    @shows = @showlist.shows.sort{|a,b|a.position <=> b.position}
     # @placelist = @lists.where(name: "Places").first
     # @places = @placelist.places.sort
     if @lists.where(name:"Products").first

@@ -146,7 +146,7 @@
       .simplists
         - @movies.each do |movie|
           .simplist
-            %h1.pull-left #{@movies.index(movie)+1}
+            %h1.pull-left #{movie.position}
             .enter-new-movie
               .movie-form{style: "display: inline-block;"}
                 = render partial: "like_and_comment", locals: {:thing => movie}

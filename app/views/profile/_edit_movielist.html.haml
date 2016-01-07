@@ -1,6 +1,6 @@
 = form_for(@movielist, remote: true) do |f|
   .simplists
-    = f.fields_for(:movies) do |movie_form|
+    = f.fields_for(:movies, @movies) do |movie_form|
       - if List.find(movie_form.object.list_id).name == "Now"
         .enter-new-movie
           .movie-form{style: "display: inline-block;"}
