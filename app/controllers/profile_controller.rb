@@ -223,7 +223,7 @@ class ProfileController < ApplicationController
         @items_of_ranking << c
       end
       var_name = "@number_#{ranking.to_s}"
-      @items_of_ranking.sort{|a,b|a.updated_at <=> b.updated_at}
+      @items_of_ranking.sort!{|a,b|a.updated_at <=> b.updated_at}
       self.instance_variable_set(var_name, @items_of_ranking.last)
     end
 
