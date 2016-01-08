@@ -3,19 +3,21 @@ class ProfileController < ApplicationController
   before_action :set_s3_direct_post, only: [:new, :edit, :create, :update]
 
   def new
+    render :layout => false
+    # @client = GooglePlaces::Client.new("AIzaSyCALnnPrGEdIXTlhFvgA5BSFDL6D2VfzNY")
+    #
+    # @predictions = @client.predictions_by_input(
+    #  'Serpentine San Francisco',
+    #  lat: 0.0,
+    #  lng: 0.0,
+    #  radius: 20000000,
+    #  types: ['establishment', 'geocode'],
+    #  language: I18n.locale,
+    # )
+    #
+    # @photos = @predictions.photos[0].fetch_url(800)
 
-    @client = GooglePlaces::Client.new("AIzaSyCALnnPrGEdIXTlhFvgA5BSFDL6D2VfzNY")
 
-    @predictions = @client.predictions_by_input(
-     'Serpentine San Francisco',
-     lat: 0.0,
-     lng: 0.0,
-     radius: 20000000,
-     types: ['establishment', 'geocode'],
-     language: I18n.locale,
-    )
-
-    @photos = @predictions.photos[0].fetch_url(800)
   end
 
   def add_on_mobile
