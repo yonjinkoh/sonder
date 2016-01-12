@@ -1,0 +1,2 @@
+$('.follow-button').html("<%= j link_to 'Following', unfollow_user_path(id: @followed.id), class: 'btn', remote:true %>");
+$('.follow-button > .btn').addClass('following');

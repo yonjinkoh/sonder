@@ -56,14 +56,6 @@ class ProfileController < ApplicationController
     end
   end
 
-  def follow
-    @followed = params[:id]
-    current_user.follow!(@followed)
-    respond_to do |format|
-      format.js
-    end
-  end
-
   def search
   end
 

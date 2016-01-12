@@ -8,6 +8,31 @@
 and (min-device-width : 375px)
 and (max-device-width : 667px) {
 
+
+  .follow-button {
+    position: static !important;
+    // top: 10px;
+    // right: 0px;
+  }
+
+  .user-description {
+    margin-bottom: 0px !important;
+  }
+
+  .socials {
+    font-size: 45px !important;
+    margin-bottom: 50px !important;
+    font-weight: 400 !important;
+  }
+
+  .following {
+    background-color: black !important;
+    color: white !important;
+    a {color: white !important}
+  }
+
+  .following.btn:active {color: white !important}
+
   .current-list {
 
     .simplists {
@@ -40,8 +65,8 @@ and (max-device-width : 667px) {
   }
 
   .list-description {
-    font-size: 50px;
-    margin: 60px 0px;
+    font-size: 40px;
+    margin: 80px 0px 0px;
   }
 
   .movie-form:hover {
@@ -228,6 +253,7 @@ and (max-device-width : 667px) {
 
     .simplist-mobile {
       display: block !important;
+      margin-top: 100px;
     }
     .btn-add {
       border: 1px solid gray;
@@ -247,7 +273,7 @@ and (max-device-width : 667px) {
       width:700px;
       margin: 0 auto;
       text-align: center;
-      height: 500px;
+      height: 400px;
       // border-bottom: 1px solid lightgray !important;
     }
   }
@@ -337,7 +363,7 @@ and (max-device-width : 667px) {
     width: 60% !important;
   }
 
-  h1 { font-size: 8em !important}
+  h1 { font-size: 7em !important}
 
   h2 { font-size: 5em !important}
 
@@ -345,20 +371,22 @@ and (max-device-width : 667px) {
     margin-top: 40px;
     font-size: 5em !important;
     bottom-bottom: 20px;
+    font-weight: 600 !important;
 
   }
 
   h6 {
-    font-size: 3em !important;
-    margin: 1em !important;
+    font-size: 50px !important;
+    margin: .5em !important;
   }
 
   .category {
     font-size: 3em !important;
     height:103px !important;
   }
+
   .categories {
-    margin-top: 150px !important;
+    margin-top: 100px !important;
     height: 100px !important;
   }
 

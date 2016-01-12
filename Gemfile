@@ -21,7 +21,6 @@ gem 'immigrant'
 
 gem 'google_places'
 
-
 gem 'devise'
 # use devise for secure user registration
 

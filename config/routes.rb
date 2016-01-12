@@ -44,7 +44,6 @@ Rails.application.routes.draw do
       get 'add_to_current', to: "movies#add_to_current"
     end
   end
-  resources :users
   resources :lists
   resources :admin
 
@@ -59,9 +58,10 @@ Rails.application.routes.draw do
   root to: "profile#show"
 
   resources :users do
+    get 'follow', on: :member
+    get 'unfollow', on: :member
     resources :lists
     resources :profile do
-      put 'follow', on: :collection
       get 'edit', on: :collection
       get 'show', on: :collection
       get 'change_current', on: :collection

@@ -15,6 +15,22 @@ class UsersController < ApplicationController
   def show
   end
 
+  def follow
+    @followed = User.find(params[:id])
+    current_user.follow!(@followed)
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def unfollow
+    @followed = User.find(params[:id])
+    current_user.unfollow!(@followed)
+    respond_to do |format|
+      format.js
+    end
+  end
+
   # # GET /users/new
   def new
     @user = User.new

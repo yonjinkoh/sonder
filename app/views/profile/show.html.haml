@@ -18,24 +18,29 @@
         %span= @user.first_name
         - if @user.verified?
           .verified-stamp= image_tag("verified.png")
-      %h6= @user.description
+      %h6.user-description= @user.description
       .socials
+        %strong #{@user.followers_count}
+        %span.follower-count Followers
+        %strong #{@user.followees_count}
+        %span.follower-count Following
         - if @user.facebook?
           %i.fa.fa-facebook{"data-toggle"=>"tooltip", "data-placement"=>"bottom", "title"=>"#{@user.facebook}"}
         - if @user.twitter?
           %i.fa.fa-twitter{"data-toggle"=>"tooltip", "data-placement"=>"bottom", "title"=>"#{@user.twitter}"}
         - if @user.pinterest?
           %i.fa.fa-pinterest{"data-toggle"=>"tooltip", "data-placement"=>"bottom", "title"=>"#{@user.pinterest}"}
-  - if @user != current_user
-    %br
-    %center.follow-button
-      = link_to "Follow", follow_user_profile_index_path(@user), class: "btn", remote: true
+    - if @user != current_user
+      %center.follow-button
+        - if @user.followed_by?(current_user)
+          = link_to "Following", unfollow_user_path(@user), class: "btn following", remote: true
+        - else
+          = link_to "+ Follow", follow_user_path(@user), class: "btn", remote: true
   .top-buffer
   .categories.container-fluid
     .row.slider-nav
       - @sortedlists.each do |list|
         .category= list.name
-  .top-buffer
   .slider-for
     - if @sortedlists.include? @currentlist
       .simplists
