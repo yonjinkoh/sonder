@@ -39,6 +39,9 @@ gem 'themoviedb'
 gem 'carrierwave'
 # use for picture uploads
 
+gem 'public_activity'
+# for the feed
+
 gem 'haml'
 #use haml for easy html
 

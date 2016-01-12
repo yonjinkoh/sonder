@@ -1,6 +1,7 @@
 class Comment < ActiveRecord::Base
+  include PublicActivity::Model
+  tracked owner: ->(controller, model) { controller.current_user }
   acts_as_nested_set :scope => [:commentable_id, :commentable_type]
-
   acts_as_mentioner
 
   validates :body, :presence => true

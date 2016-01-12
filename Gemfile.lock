@@ -144,6 +144,11 @@ GEM
       mini_portile (~> 0.6.0)
     orm_adapter (0.5.0)
     pg (0.18.3)
+    public_activity (1.4.2)
+      actionpack (>= 3.0.0)
+      activerecord (>= 3.0)
+      i18n (>= 0.5.0)
+      railties (>= 3.0.0)
     puma (2.15.3)
     quiet_assets (1.1.0)
       railties (>= 3.1, < 5.0)
@@ -251,6 +256,7 @@ DEPENDENCIES
   jquery-turbolinks
   meta-tags
   pg
+  public_activity
   puma
   quiet_assets
   rails (= 4.2.4)

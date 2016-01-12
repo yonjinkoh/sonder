@@ -1,0 +1,15 @@
+%h1 FEED
+- @activities.each do |activity|
+  - if activity.trackable.list_id
+    - if List.find(activity.trackable.list_id).name == "Now"
+      .activity
+      = link_to activity.owner.username, activity.owner if activity.owner
+      is currently into the #{activity.trackable_type.downcase}
+      %strong #{activity.trackable.name}
+    - else
+      .activity
+        = link_to activity.owner.username, activity.owner if activity.owner
+        updated their
+        %strong ##{activity.trackable.position} #{activity.trackable_type.downcase}
+        to
+        %strong #{activity.trackable.name}
