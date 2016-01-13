@@ -59,14 +59,20 @@ class MoviesController < ApplicationController
   # PATCH/PUT /movies/1
   # PATCH/PUT /movies/1.json
   def update
-    respond_to do |format|
-      if @movie.update(movie_params)
-        format.html { redirect_to edit_user_profile_index_path(List.find(@movie.list_id).user)}
-        format.json { render :show, status: :ok, location: @movie }
-      else
-        format.html { render :edit }
-        format.json { render json: @movie.errors, status: :unprocessable_entity }
+    @movie = Movie.find(params[:id])
+    @movie.assign_attributes(movie_params)
+
+    if @movie.changed?
+      respond_to do |format|
+        if @movie.update(movie_params)
+          format.html { redirect_to edit_user_profile_index_path(List.find(@movie.list_id).user)}
+          format.json { render :show, status: :ok, location: @movie }
+        else
+          format.html { render :edit }
+          format.json { render json: @movie.errors, status: :unprocessable_entity }
+        end
       end
+    else
     end
   end
 

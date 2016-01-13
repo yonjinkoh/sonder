@@ -92,8 +92,11 @@ class BooksController < ApplicationController
   # PATCH/PUT /books/1
   # PATCH/PUT /books/1.json
   def update
-    respond_to do |format|
-      if @book.changed?
+    @book = Book.find(params[:id])
+    @book.assign_attributes(book_params)
+
+    if @book.changed?
+      respond_to do |format|
         if @book.update(book_params)
           format.html { redirect_to edit_user_profile_index_path(List.find(@book.list_id).user) }
           format.json { render :show, status: :ok, location: @book }
@@ -101,8 +104,8 @@ class BooksController < ApplicationController
           format.html { render :edit }
           format.json { render json: @book.errors, status: :unprocessable_entity }
         end
-      else
       end
+    else
     end
   end
 

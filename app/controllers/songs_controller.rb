@@ -86,14 +86,21 @@ class SongsController < ApplicationController
   # PATCH/PUT /songs/1
   # PATCH/PUT /songs/1.json
   def update
-    respond_to do |format|
-      if @song.update(song_params)
-        format.html { redirect_to edit_user_profile_index_path(List.find(@song.list_id).user) }
-        format.json { render :show, status: :ok, location: @song }
-      else
-        format.html { render :edit }
-        format.json { render json: @song.errors, status: :unprocessable_entity }
+
+    @song = Song.find(params[:id])
+    @song.assign_attributes(book_params)
+
+    if @song.changed?
+      respond_to do |format|
+        if @song.update(song_params)
+          format.html { redirect_to edit_user_profile_index_path(List.find(@song.list_id).user) }
+          format.json { render :show, status: :ok, location: @song }
+        else
+          format.html { render :edit }
+          format.json { render json: @song.errors, status: :unprocessable_entity }
+        end
       end
+    else
     end
   end
 

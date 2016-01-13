@@ -1,15 +1,43 @@
-%h1 FEED
-- @activities.each do |activity|
-  - if activity.trackable.list_id
-    - if List.find(activity.trackable.list_id).name == "Now"
-      .activity
-      = link_to activity.owner.username, activity.owner if activity.owner
-      is currently into the #{activity.trackable_type.downcase}
-      %strong #{activity.trackable.name}
-    - else
-      .activity
-        = link_to activity.owner.username, activity.owner if activity.owner
-        updated their
-        %strong ##{activity.trackable.position} #{activity.trackable_type.downcase}
-        to
-        %strong #{activity.trackable.name}
+.profile-container
+  .explore
+    .row
+      %h1
+        %center.explore-header Feed
+  .top-buffer
+  - @activities.each do |activity|
+    - if activity.trackable_type == "Comment"
+      .activity-wrapper
+        .user-head
+          = image_tag(User.find(activity.owner).avatar)
+        .activity
+          = link_to activity.owner.username, activity.owner if activity.owner
+          commented on
+          #{User.find(activity.trackable.user_id).username}'s ##{activity.trackable.commentable.position}
+          #{activity.trackable.commentable_type.downcase}
+        .clearfix
+    - elsif activity.trackable.list_id?
+      .activity-wrapper
+        .user-head
+          = image_tag(User.find(activity.owner).avatar)
+        - if List.find(activity.trackable.list_id).name == "Now"
+          .activity
+            = link_to activity.owner.username, activity.owner if activity.owner
+            is currently into the #{activity.trackable_type.downcase}
+            %strong #{activity.trackable.name}
+          .clearfix
+        - else
+          .activity-wrapper
+            .activity
+              = link_to activity.owner.username, activity.owner if activity.owner
+              changed their
+              %strong ##{activity.trackable.position} #{activity.trackable_type.downcase}
+              to
+              %strong #{activity.trackable.name}
+            .clearfix
+
+:javascript
+    $(document).ready(function(){
+      $('.activity').succinct({
+        size: 250
+      });
+    });
