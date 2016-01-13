@@ -30,12 +30,13 @@
           %i.fa.fa-twitter{"data-toggle"=>"tooltip", "data-placement"=>"bottom", "title"=>"#{@user.twitter}"}
         - if @user.pinterest?
           %i.fa.fa-pinterest{"data-toggle"=>"tooltip", "data-placement"=>"bottom", "title"=>"#{@user.pinterest}"}
-    - if @user != current_user
-      %center.follow-button
-        - if @user.followed_by?(current_user)
-          = link_to "Following", unfollow_user_path(@user), class: "btn following", remote: true
-        - else
-          = link_to "+ Follow", follow_user_path(@user), class: "btn", remote: true
+    - if current_user
+      - if @user != current_user
+        %center.follow-button
+          - if @user.followed_by?(current_user)
+            = link_to "Following", unfollow_user_path(@user), class: "btn following", remote: true
+          - else
+            = link_to "+ Follow", follow_user_path(@user), class: "btn", remote: true
   .top-buffer
   .categories.container-fluid
     .row.slider-nav
