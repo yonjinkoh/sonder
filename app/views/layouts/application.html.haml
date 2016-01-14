@@ -76,7 +76,7 @@
     - if current_user
       .profile-link= link_to("Profile", user_profile_index_path(current_user))
       .edit-link= link_to "Edit Profile", edit_user_profile_index_path(current_user)
-      .edit-link= link_to "Feed", new_user_profile_path(current_user)
+      .edit-link= link_to "Feed", activities_path
       .logout-link= link_to 'Log Out', destroy_user_session_path, method: :delete
     - else
       .login-link= link_to('Log In', new_user_session_path)
