@@ -57,7 +57,7 @@ Rails.application.routes.draw do
   put 'dislike' => 'application#dislike'
   post 'add_comment' => 'application#add_comment'
 
-  root to: "profile#show"
+  root to: "activities#index"
 
   resources :users do
     get 'follow', on: :member

@@ -6,6 +6,32 @@
       |
       %span.share-it{"data-toggle"=>"tooltip", "data-placement"=>"bottom", "title"=>"mysimplist.com/#{@user.username}", style: 'padding: 0 10px; color: darkgray'}
         %a SHARE IT
+.overlay.followers
+  .overlay-contents
+    .close.fa.fa-close
+    %center
+      %h2 FOLLOWERS
+      .top-buffer
+    - @user.followers(User).each do |follower|
+      .user-avatar.pull-left
+        = image_tag(follower.avatar)
+      .user-description.pull-left
+        %h5= link_to "#{follower.first_name} (@#{follower.username})", user_profile_index_path(follower)
+        %br= follower.description
+      .clearfix
+.overlay.followees
+  .overlay-contents
+    .close.fa.fa-close
+    %center
+      %h2 FOLLOWING
+      .top-buffer
+    - @user.followees(User).each do |followee|
+      .user-avatar.pull-left
+        = image_tag(followee.avatar)
+      .user-description.pull-left
+        %h5= link_to "#{followee.first_name} (@#{followee.username})", user_profile_index_path(followee)
+        %br= followee.description
+      .clearfix
 .row.profile-container
   .header
     .header-content.text-center.center-block
@@ -20,10 +46,12 @@
           .verified-stamp= image_tag("verified.png")
       %h6.user-description= @user.description
       .socials
-        %strong #{@user.followers_count}
-        %span.follower-count Followers
-        %strong #{@user.followees_count}
-        %span.follower-count Following
+        %span.follower-count
+          %strong #{@user.followers_count}
+          Followers
+        %span.follower-count.followee-count
+          %strong #{@user.followees_count}
+          Following
         - if @user.facebook?
           %i.fa.fa-facebook{"data-toggle"=>"tooltip", "data-placement"=>"bottom", "title"=>"#{@user.facebook}"}
         - if @user.twitter?
@@ -261,6 +289,19 @@
 :javascript
 
     $(document).ready(function(){
+
+      $('.follower-count').on('click', function(){
+        $('.followers').fadeIn();
+      });
+
+      $('.close').on('click', function() {
+        $('.overlay').fadeOut();
+      })
+
+      $('.followee-count').on('click', function(){
+        $('.followees').fadeIn();
+      });
+
 
       var prenumberOfLists = #{@sortedlists.size};
       if (prenumberOfLists > 4) {
