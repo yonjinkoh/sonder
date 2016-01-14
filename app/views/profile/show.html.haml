@@ -17,7 +17,7 @@
         = image_tag(follower.avatar)
       .user-description.pull-left
         %h5= link_to "#{follower.first_name} (@#{follower.username})", user_profile_index_path(follower)
-        %br= follower.description
+        .small-text= follower.description
       .clearfix
 .overlay.followees
   .overlay-contents
@@ -30,7 +30,7 @@
         = image_tag(followee.avatar)
       .user-description.pull-left
         %h5= link_to "#{followee.first_name} (@#{followee.username})", user_profile_index_path(followee)
-        %br= followee.description
+        .small-text= followee.description
       .clearfix
 .row.profile-container
   .header

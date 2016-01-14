@@ -8,6 +8,31 @@
 and (min-device-width : 375px)
 and (max-device-width : 667px) {
 
+  .overlay {padding: 100px 50px !important;}
+  .overlay-contents {
+    .top-buffer {
+      margin-top: 100px !important;
+    }
+    .clearfix {margin-bottom: 100px !important}
+    width: 100% !important;
+    .fa {
+      font-size: 100px !important;
+      position: absolute !important;
+    }
+    .user-avatar {
+      width: 120px !important;
+      height: 120px !important;
+      margin-right: 50px !important;
+    }
+    .user-description {
+      font-size: 20px;
+      width: 600px !important;
+      max-width: none !important;
+      .small-text {
+        display: none;
+      }
+    }
+  }
 
 
   .activity {
