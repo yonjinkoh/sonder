@@ -19,6 +19,7 @@
   opacity: 0.95;
   color: black;
   display:none;
+  overflow-y: scroll;
   z-index:1000;
   padding: 200px;
   .overlay-contents {
